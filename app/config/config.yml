@@ -33,8 +33,6 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    read_from:      "%kernel.root_dir%/../www"
-    write_to:       "%assetic.read_from%"
     bundles:        [ ]
     #java: /usr/bin/java
     filters:

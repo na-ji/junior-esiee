@@ -1,0 +1,7 @@
+parameters:
+#    junior_esiee_page.example.class: JuniorEsiee\PageBundle\Example
+
+services:
+#    junior_esiee_page.example:
+#        class: %junior_esiee_page.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

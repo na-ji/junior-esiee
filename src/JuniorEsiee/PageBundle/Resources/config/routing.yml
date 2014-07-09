@@ -1,0 +1,3 @@
+junior_esiee_page_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: JuniorEsieePageBundle:Default:index }
