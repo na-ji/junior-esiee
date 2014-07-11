@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<title>Appel d'offre</title>
-	<head>
+{% extends "::base.html.twig" %}
+
+{% block title %} {{parent()}} - Appel d'offre{% endblock %}
 	
-	
-	<body>
-		<h1>
+{% block body %}
+		{{ parent()}}
+		<h3>
 			Déposer ici votre appel d'offre.
-		</h1>
-	</body>
-</html>	
+		</h3>
+{% endblock %}
