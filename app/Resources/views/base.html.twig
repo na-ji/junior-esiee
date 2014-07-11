@@ -2,29 +2,12 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Junior ESIEE{% endblock %}</title>
+        <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-	
     <body>
-		<header>
-			<h1>Page officielle de Junior ESIEE.</h1>
-		</header>
-		<nav>
-		
-				<ul style="list-style-type: none">Menu : 
-							
-					<li><a href="{{ path('page_accueil') }}" title="Retour à l'accueil.">Accueil</a></li>
-					<li><a href="{{ path('page_apropos') }}" title="A propos de nous.">Qui sommes-nous?</a></li>
-					<li><a href="{{ path('page_prestations') }}" title="Consulter nos prestations.">Nos prestations</a></li>
-					<li><a href="{{ path('page_appeloffre') }}" title="Déposer un appel d'offre.">Appel d'offre</a></li>		
-					<li><a href="{{ path('page_contact') }}" title="Contactez-nous!">Contact</a></li>
-				</ul>
-		</nav>	
-		<aside>
-			{% block body %}{% endblock %}
-        </aside>
-			{% block javascripts %}{% endblock %}
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
     </body>
 </html>
