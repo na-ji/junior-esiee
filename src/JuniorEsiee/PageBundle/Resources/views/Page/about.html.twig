@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<title>A propos</title>
-	<head>
+{% extends "::base.html.twig" %}
+
+{% block title %} {{parent()}} - A propos{% endblock %}
 	
-	
-	<body>
-		<h1>
-			Qui sommes-nous?
-		</h1>
-	</body>
-</html>	
+{% block body %}
+		{{ parent()}}
+		<h3>
+			Qu'est-ce que Junior ESIEE ?
+		</h3>
+{% endblock %}

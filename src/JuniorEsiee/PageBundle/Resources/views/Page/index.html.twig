@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<title>Junior ESIEE Paris</title>
-	<head>
+{% extends "::base.html.twig" %}
+
+{% block title %} {{parent()}} - Accueil{% endblock %}
 	
-	
-	<body>
-		<h1>
-			Bienvenue sur la page officiel de Junior ESIEE.
-		</h1>
-	</body>
-</html>	
+{% block body %}
+		{{ parent()}}
+		<h3>
+			Bienvenue !
+		</h3>
+{% endblock %}
