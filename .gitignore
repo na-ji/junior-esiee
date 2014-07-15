@@ -12,3 +12,5 @@
 /composer.lock
 /*.sublime-workspace
 /*.sublime-project
+/www/css/
+/www/js/
