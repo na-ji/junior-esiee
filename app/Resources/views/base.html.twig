@@ -2,29 +2,66 @@
 <html>
     <head>
         <meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
         <title>{% block title %}Junior ESIEE{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {% block stylesheets %} 
+			<!-- Bootstrap core CSS -->
+			<link href="{{ asset('css/bootstrap.css')}}" rel="stylesheet">
+
+			<!-- Custom CSS for the 'Business Frontpage' Template -->
+			<link href="{{ asset('css/business-frontpage.css')}}" rel="stylesheet">
+		{% endblock %}
+		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
 	
     <body>
-		<header>
-			<h1>Page officielle de Junior ESIEE.</h1>
-		</header>
-		<nav>
 		
-				<ul style="list-style-type: none">Menu : 
-							
-					<li><a href="{{ path('page_accueil') }}" title="Retour à l'accueil.">Accueil</a></li>
-					<li><a href="{{ path('page_apropos') }}" title="A propos de nous.">Qui sommes-nous?</a></li>
-					<li><a href="{{ path('page_prestations') }}" title="Consulter nos prestations.">Nos prestations</a></li>
-					<li><a href="{{ path('page_appeloffre') }}" title="Déposer un appel d'offre.">Appel d'offre</a></li>		
-					<li><a href="{{ path('page_contact') }}" title="Contactez-nous!">Contact</a></li>
-				</ul>
-		</nav>	
-		<aside>
+		<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.php">Start Bootstrap</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse navbar-ex1-collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="{{ path('page_accueil') }}" title="Retour à l'accueil.">Accueil</a></li>
+						<li><a href="{{ path('page_apropos') }}" title="A propos de nous.">Qui sommes-nous?</a></li>
+						<li><a href="{{ path('page_prestations') }}" title="Consulter nos prestations.">Nos prestations</a></li>
+						<li><a href="{{ path('page_appeloffre') }}" title="Déposer un appel d'offre.">Appel d'offre</a></li>		
+						<li><a href="{{ path('page_contact') }}" title="Contactez-nous!">Contact</a></li>
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container -->
+		</nav>
+	
+		<div class="container">
 			{% block body %}{% endblock %}
-        </aside>
-			{% block javascripts %}{% endblock %}
+			<hr>
+
+			<footer>
+				<div class="row">
+					<div class="col-lg-12">
+						<p>Copyright &copy; Company 2013</p>
+					</div>
+				</div>
+			</footer>
+        </div>
+		
+			{% block javascripts %}
+			<!-- JavaScript -->
+				<script src="{{ asset('js/jquery-1.10.2.js')}}"></script>
+				<script src="{{ asset('js/bootstrap.js')}}"></script>
+			{% endblock %}
     </body>
 </html>
