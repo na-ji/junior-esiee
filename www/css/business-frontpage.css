@@ -5,7 +5,7 @@ body {
 /* change the URL to a picture of your choice - the higher quality the better! */
 .business-header {
 	height: 400px;
-	background: url(http://placehold.it/1920x400) center center no-repeat;
+	background: center center no-repeat;
 	background-size: cover;
 }
 
@@ -27,3 +27,17 @@ footer {
 .navbar-inverse .navbar-nav > li > a {
 color: #223f62 !important;
 }
+
+.navbar-brand img {
+width : 150px;
+}
+
+@media (min-width: 768px) {
+  .form-horizontal .control-label {
+    text-align: left;
+  }
+}
+
+.copyright {
+	text-align : right;
+	}

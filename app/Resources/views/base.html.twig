@@ -13,7 +13,7 @@
 			<!-- Custom CSS for the 'Business Frontpage' Template -->
 			<link href="{{ asset('css/business-frontpage.css')}}" rel="stylesheet">
 		{% endblock %}
-		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+		<link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}" />
     </head>
 	
     <body>
@@ -27,7 +27,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.php">Start Bootstrap</a>
+					<a class="navbar-brand" href="{{ path('page_accueil') }}" title="Retour à l'accueil."><img src="{{asset('img/junioresieerd.png')}}"></a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -44,15 +44,18 @@
 			</div>
 			<!-- /.container -->
 		</nav>
+			{% block header %}
+			{% endblock %}
 	
 		<div class="container">
-			{% block body %}{% endblock %}
+			{% block body %}
+			{% endblock %}
 			<hr>
 
 			<footer>
 				<div class="row">
-					<div class="col-lg-12">
-						<p>Copyright &copy; Company 2013</p>
+					<div class="col-lg-12 copyright">
+						<p>Copyright &copy; Junior ESIEE 2014</p>
 					</div>
 				</div>
 			</footer>
