@@ -1,6 +1,14 @@
 {% extends "::base.html.twig" %}
 
 {% block title %} {{parent()}} - A propos{% endblock %}
+
+{% block header %}
+	<div class="business-header urlimgabout">
+       <!--   <img src="{{asset('img/appeloffreimg.jpg')}}" class="img-responsive"></img> -->
+    </div>
+{% endblock %}
+
+{%block li2%}class="active"{% endblock %}
 	
 {% block body %}
 		{{ parent()}}

@@ -1,10 +1,105 @@
 {% extends "::base.html.twig" %}
 
 {% block title %} {{parent()}} - Appel d'offre{% endblock %}
+
+{% block header %}
+	<div class="business-header urlimgoffre">
+       <!--   <img src="{{asset('img/appeloffreimg.jpg')}}" class="img-responsive"></img> -->
+    </div>
+{% endblock %}
+
+{%block li4%}class="active"{% endblock %}
 	
 {% block body %}
 		{{ parent()}}
-		<h3>
-			Déposer ici votre appel d'offre.
-		</h3>
+		<div class="row">
+            <div class="col-lg-8 col-md-offset-2 col-sm-8">
+                <h2>
+				Déposer ici votre appel d'offre.
+				</h2>
+                <p>Vous êtes intéressé à l'idée de nous confier la réalisation d'une étude ou d'un projet par un de nos réalisateurs sélectionnés sur mesure en fonction des compétences demandées par votre cahier des charges?</p>
+				<p>Remplissez ce formulaire et joignez-y les documents nécessaire afin que nous vous proposions au plus vite et dans la mesure du possible une proposition d'étude adaptée à votre demande.</p>
+				
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="Company">Société</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="Company" placeholder="Entrez ici le nom de votre entreprise, agence, association...">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="Name">Nom</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="Name" placeholder="Entrez ici votre nom">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="FirstName">Prénom</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="FirstName" placeholder="Entrez ici votre prénom">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="Téléphone">Téléphone</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="Téléphone" placeholder="Entrez ici votre numéro de téléphone">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="Address">Adresse</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="Address" placeholder="Entrez ici le nom et le numéro de la rue de votre adresse">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="PostCode">Code Postal</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="PostCode" placeholder="Entrez ici le code postal / CEDEX de votre adresse">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="City">Ville</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="City" placeholder="Entrez ici le nom de votre ville">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="Email">E-mail</label>
+						<div class="col-sm-10">
+							<input type="email" class="form-control" id="Email" placeholder="Entrez ici votre e-mail">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="Message">Desciption</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" id="Message" rows='15' style="resize:none;" placeholder="Entrez ici les éléments clés de votre demandes (objectifs, contexte, compétences, durée de réalisation..."></textarea>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="CCharge">Cahier des charges</label>
+						<div class="col-sm-9">
+							<input type="file" class="filestyle formfile" id="CCharge">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="CGraphique">Chartre graphique</label>
+						<div class="col-sm-9">
+							<input type="file" class="filestyle formfile" id="CGraphique">
+						</div>
+					</div>
+					
+					<button type="submit" class="btn btn-default col-sm-2 col-sm-offset-10">Envoyer</button>
+				</form>
+			
+			</div>
+		</div>	
 {% endblock %}
+
+{% block javascripts %}
+	{{parent()}}
+	<script src="{{ asset('js/bootstrap-filestyle.js')}}"></script>
+	<script>$(":file").filestyle({buttonText: " Choisissez un fichier"});	</script>
+{% endblock %}	

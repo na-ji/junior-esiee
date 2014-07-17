@@ -9,6 +9,14 @@ body {
 	background-size: cover;
 }
 
+.urlimgoffre{
+	background-image :url("../img/appeloffreimg.jpg");
+}
+
+.urlimgabout{
+	background-image :url("../img/team-about.jpg");
+}
+
 /* adjust the color and text shadow to optimize legibility once you have an image set - you can also change the vertical positioning if desired  */
 .tagline {
 	color: #fff;
@@ -19,17 +27,37 @@ footer {
 	margin: 50px 0;
 }
 
+.navbar {
+	max-height: 12px;  /* Pour bloquer la taille du menu et pouvoir utiliser le active sans augment la hateur du menu sur la page*/
+}
 .navbar-inverse {
 	background-color: #eee !important;
 	border-color: #eee !important;
 }
 
 .navbar-inverse .navbar-nav > li > a {
-color: #223f62 !important;
+	color: #223f62 !important;
 }
 
 .navbar-brand img {
-width : 150px;
+	width : 150px;  /* logo */
+}
+
+.navbar-nav > li > a:hover {
+	border-bottom: 4px #223f62 solid;   /* sélecteur de page sur le menu */
+}
+
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+	border-top: 4px #223f62 solid;
+	background-color: transparent;				/*montre la page active */
+	padding-top:11px;
+}	
+
+.form-horizontal{
+	margin-top : 40px;
 }
 
 @media (min-width: 768px) {
@@ -41,3 +69,72 @@ width : 150px;
 .copyright {
 	text-align : right;
 	}
+
+.form-control:focus {
+	border-color: #223f62;
+}
+
+a {
+	background: transparent;
+	color: #223f62;
+}
+
+.acontact a:hover {
+	outline: 0;
+	font-style: oblique;
+}
+
+p{
+	text-align:justify;
+}	
+
+.form-group:hover label{
+	text-decoration: underline;
+}
+
+.remarque-contact{
+	border: 2px #223f62 outset;
+	border-radius: 4px;
+	padding : 15px;
+	background-color: #eee;
+	margin-top : 10px;
+	margin-bottom : 20px;
+}
+
+h2,h3 {
+	color: #223f62;
+}
+
+.btn{
+	color: #223f62;
+}
+	 
+.btn:hover,
+.btn:focus {
+	background-color: #223f62;
+	color : white;
+	text-decoration: none;
+}
+
+.formfile {
+	margin-left: 130px;
+}
+
+@media (max-width: 720px)  {
+	.formfile{
+		margin-left : auto;
+	}
+}
+		
+@media (min-width: 1920px) {
+	.business-header img{ 
+		display: block;
+		margin: 0 auto;
+	}
+}
+
+/* .btn-primary {
+  color: #fff;
+  background-color: #223f62;
+  border-color: #357ebd;
+} */
