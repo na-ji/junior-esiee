@@ -4,7 +4,6 @@
 
 {% block header %}
 	<div class="business-header urlimgabout">
-       <!--   <img src="{{asset('img/appeloffreimg.jpg')}}" class="img-responsive"></img> -->
     </div>
 {% endblock %}
 
@@ -12,7 +11,83 @@
 	
 {% block body %}
 		{{ parent()}}
-		<h3>
+		<h2>
 			Qu'est-ce que Junior ESIEE ?
-		</h3>
+		</h2>
+		
+		</br>
+		</br>
+		
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<ul class="nav nav-pills nav-stacked nav-tabs navside" role="tablist">  
+						<li class="active"  > <a href="#Pres" role="tab" data-toggle="tab">Présentation</a></li>     
+						<li><a href="#Equipe" role="tab" data-toggle="tab">L'équipe</a></li>  
+						<li><a href="#Com" role="tab" data-toggle="tab">Communication</a></li>   
+						<li><a href="#Partenaires" role="tab" data-toggle="tab">Nos partenaires</a></li>      
+					</ul>
+				</div>
+				
+				<div class="col-sm-9 tab-content">
+					<div class="tab-pane active fade in" id="Pres">
+						<h3>Présentation</h3>
+						<h4 class="Sous-partie">Les Junior-Entreprises</h4>
+						</br>
+							<p>Junior ESIEE est affiliée à la Confédération Nationale des Junior-Entreprises (CNJE) qui détient la marque déposée Junior-Entreprise. 
+							Cette marque est attribuée aux associations loi 1901 des écoles d'ingénieurs et de commerce en France qui assure qualité et pérennité de leurs structures. La CNJE agit en véritable médiateur et dispense des formations nécessaires. 
+							L'objectif d'une JE est de faire découvrir le monde du travail aux étudiants ce qui leur permet d'acquérir de l'expérience professionnelle. </br>
+							"Depuis plus de 35 ans, le concept Junior-Entreprise, qui fut à l'origine français, a séduit les étudiants et les entreprises du monde entier. De nos jours des Junior-Entreprises existent aussi bien dans de nombreux pays européens, qu'en Afrique du Nord et qu'en Amérique du Sud." (CNJE).
+							</p>
+							<img src="{{asset('img/Logos-Junior-Entreprises.jpg')}}" class="img-responsive imgteam"></img>
+							<p style=text-align:center>Logos de quelques unes des 160 Junior-Entreprises de France.</p>
+						
+						<h4 class="Sous-partie">Junior ESIEE</h4>
+						</br>
+							<p>Junior ESIEE est un prestataire de services deplus de 30 années d'expérience au seins de l'école d'ingénieur ESIEE Paris. Ainsi, nous pouvons réaliser pour vous des études dans les domaines de l'ingénierie ou du management : cartes électroniques, sites web, études de marchés, business plans... 
+							Une fois qu'une étude correspond bien aux savoirs-faire des étudiants, nous vous proposons de la réaliser. 
+							Nous fonctionnons donc comme une véritable SSII. </br>Junior ESIEE figure parmi les 30 meilleures Junior-Entreprises de France sur plus de 160 structures, et ce depuis 6 années consécutives (selon le classement de la CNJE), gage de confiance et de qualité des services que nous proposons.
+							Junior ESIEE, forte de ses 31 ans d'expérience, vous propose de mener à bien l'ensemble de vos projets.
+							Dans le but de toujours vous satisfaire, nous mettons un point d'honneur à mettre notre sérieux et notre expérience à contribution dans la concrétisation de vos idées.
+							Nos onze administrateurs permanents ainsi que toute l'équipe de Junior ESIEE vous garantiront un suivi et une écoute attentive de vos attentes.
+							</p>
+							</br>
+							<img src="{{asset('img/junioresiee.png')}}" class="img-responsive imgteam"></img>
+						</br>
+						</br>
+					</div>	
+					
+					<div class="tab-pane fade" id="Equipe">
+						<h3>L'équipe</h3>
+									
+						<img src="{{asset('img/team.jpg')}}" class="img-responsive imgteam"></img>
+						<p style=text-align:right>Conseil d'Administration de Junior ESIEE 2014-2015</p>
+						</br>
+						</br>
+						
+						<div class="remarque-contact">
+							<p class="MotdelEquipe">Mot de l'équipe</p> 
+							<p>La nouvelle équipe du Conseil d'Administration de Junior ESIEE a été élue le 10 Avril 2014 en Assemblée Générale et a pris ses fonctions le 1er Juin 2014. Chaque membre a à coeur de faire grandir notre Junior Entreprise et est impliqué dans de nombreux projets et mission
+							afin de faire connaître, de valoriser et de pérenniser la structure Junior ESIEE.</p>
+						</div>
+						</br>
+						</br>
+					</div>	
+					
+					<div class="tab-pane fade" id="Com">
+						<h3>Communication</h3>
+					</div>	
+						
+					<div class="tab-pane fade" id="Partenaires">
+						<h3>Nos partenaires</h3>
+						<p>PEP</p>
+						<p>Société Générale</p>
+						<p>CNJE et ses partenaires</p>
+						<p>JINU</p>
+						<p>JUBS</p>
+					</div>	
+						
+				</div>
+			</div>
+		</div>	
 {% endblock %}

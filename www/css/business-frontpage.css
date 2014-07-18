@@ -1,3 +1,14 @@
+@font-face {
+	font-family: Chopin;
+	src: url(../fonts/ChopinScript.otf);
+}
+
+.MotdelEquipe{
+	font-family: Chopin;
+	font-size: 2.3em;
+	text-align:right;
+}
+
 body {
 	margin-top: 50px; /* 50px is the height of the navbar - change this if the navbarn height changes */
 }
@@ -15,6 +26,11 @@ body {
 
 .urlimgabout{
 	background-image :url("../img/team-about.jpg");
+}
+
+.imgteam{
+	border-radius:10px;
+	margin:auto;
 }
 
 /* adjust the color and text shadow to optimize legibility once you have an image set - you can also change the vertical positioning if desired  */
@@ -36,15 +52,35 @@ footer {
 }
 
 .navbar-inverse .navbar-nav > li > a {
-	color: #223f62 !important;
-}
+		color: #223f62 !important;
+	}
+
+@media (max-width: 767px) {
+
+	.navbar .container .navbar-collapse {
+	background-color: #eee;
+	}
+	
+	.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li.active > a,  .navbar-inverse .navbar-nav > li.active > a:hover {
+		color: #223f62;
+		background-color: #eee;
+	}
+	
+	.navbar-inverse .navbar-nav > .active > a{
+		border-bottom: 4px #223f62 solid;
+	}
+		
+} 
+
 
 .navbar-brand img {
 	width : 150px;  /* logo */
 }
 
-.navbar-nav > li > a:hover {
-	border-bottom: 4px #223f62 solid;   /* sélecteur de page sur le menu */
+@media (min-width: 768px) {
+	.navbar-nav > li > a:hover {
+		border-bottom: 4px #223f62 solid;   /* sélecteur de page sur le menu */
+	}
 }
 
 
@@ -55,6 +91,10 @@ footer {
 	background-color: transparent;				/*montre la page active */
 	padding-top:11px;
 }	
+
+.navside {
+	margin-bottom: 30px !important;
+}
 
 .form-horizontal{
 	margin-top : 40px;
@@ -138,3 +178,28 @@ h2,h3 {
   background-color: #223f62;
   border-color: #357ebd;
 } */
+
+.container .row .span2 .nav .nav-pills .nav-stacked{
+	display: inline-block;
+}
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  color: #fff;
+  background-color: #223f62;
+}
+ 
+h3 { 
+	margin-top: 0px;
+	margin-bottom: 15px;
+}
+
+.Sous-partie{
+	margin-top: 20px;
+	padding-left: 50px;
+}
+
+.navbar-inverse .navbar-toggle {
+	background-color: #223f62;
+}
