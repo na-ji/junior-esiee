@@ -9,9 +9,11 @@
         {% block stylesheets %} 
 			<!-- Bootstrap core CSS -->
 			<link href="{{ asset('css/bootstrap.css')}}" rel="stylesheet">
-
+			<link href="{{ asset('css/font-awesome.css')}}" rel="stylesheet">
+			<link rel="stylesheet" href="{{ asset('css/genericons.css')}}" type="text/css" media="all" />
 			<!-- Custom CSS for the 'Business Frontpage' Template -->
 			<link href="{{ asset('css/business-frontpage.css')}}" rel="stylesheet">
+			
 		{% endblock %}
 		<link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}" />
     </head>
@@ -33,11 +35,11 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-ex1-collapse">
 					<ul class="nav navbar-nav">
-						<li {%block li1%}{% endblock %}><a href="{{ path('page_accueil') }}" title="Retour à l'accueil.">Accueil</a></li>					
-						<li {%block li2%}{% endblock %}><a href="{{ path('page_apropos') }}" title="A propos de nous.">Qui sommes-nous?</a></li>			
-						<li {%block li3%}{% endblock %}><a href="{{ path('page_prestations') }}" title="Consulter nos prestations.">Nos prestations</a></li>
-						<li {%block li4%}{% endblock %}><a href="{{ path('page_appeloffre') }}" title="Déposer un appel d'offre.">Appel d'offre</a></li>		
-						<li {%block li5%}{% endblock %}><a href="{{ path('page_contact') }}" title="Contactez-nous!">Contact</a></li>						
+						<li {%block li1%}{% endblock %}><a href="{{ path('page_accueil') }}" title="Retour à l'accueil."><i class="fa fa-fw spinmenu fa-home"></i> Accueil</a></li>					
+						<li {%block li2%}{% endblock %}><a href="{{ path('page_apropos') }}" title="A propos de nous."><i class="fa fa-fw spinmenu fa-question"></i> Qui sommes-nous</a></li>			
+						<li {%block li3%}{% endblock %}><a href="{{ path('page_prestations') }}" title="Consulter nos prestations."><i class="fa fa-fw spinmenu fa-th-list"></i> Nos prestations</a></li>
+						<li {%block li4%}{% endblock %}><a href="{{ path('page_appeloffre') }}" title="Déposer un appel d'offre."><i class="fa fa-fw spinmenu fa-bullhorn"></i> Appel d'offre</a></li>		
+						<li {%block li5%}{% endblock %}><a href="{{ path('page_contact') }}" title="Contactez-nous!"><i class="fa fa-fw spinmenu fa-envelope-square"></i> Contact</a></li>						
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -50,16 +52,59 @@
 		<div class="container">
 			{% block body %}
 			{% endblock %}
-			<hr>
+		</div>
+
 
 			<footer>
-				<div class="row">
-					<div class="col-lg-12">
-						<p class="copyright">Copyright &copy; Junior ESIEE 2014</p>
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							 <div class="col-lg-4 col-sm-4">
+								<address>
+									<strong>Junior ESIEE</strong>
+										<br>2 Boulevard Blaise Pascal,
+										<br>BP. 99 - 93162 Noisy le Grand CEDEX
+										<br>
+								</address>
+								<address>
+									<span title="Téléphone">Téléphone |</span> 01.45.92.66.70
+									<br>
+									<span title="Email">E-mail |</span> 
+										<span class="acontact">
+											<script>document.write('<'+'a'+' '+'h'+'r'+'e'+'f'+'='+"'"+'m'+'&'+'#'+'9'+'7'+';'+'i'+'&'+'#'+'1'+'0'+'8'+';'+'&'+'#'+'1'+
+																								'1'+'6'+';'+'o'+'&'+'#'+'5'+'8'+';'+'c'+'o'+'%'+'&'+'#'+'5'+'4'+';'+'E'+'%'+'7'+'4'+'a'+'%'+'6'+'3'+
+																								't'+'%'+'&'+'#'+'5'+'2'+';'+'0'+'j'+'%'+'7'+'5'+'%'+'&'+'#'+'5'+'4'+';'+'&'+'#'+'6'+'9'+';'+'i'+'o'+
+																								'r'+'e'+'s'+'i'+'&'+'#'+'1'+'0'+'1'+';'+'%'+'6'+'5'+'&'+'#'+'4'+'6'+';'+'c'+'&'+'#'+'1'+'1'+'1'+';'+
+																								'&'+'#'+'1'+'0'+'9'+';'+"'"+'>'+'c'+'o'+'n'+'&'+'#'+'1'+'1'+'6'+';'+'a'+'c'+'t'+'&'+'#'+'6'+'4'+';'+
+																								'j'+'u'+'&'+'#'+'1'+'1'+'0'+';'+'i'+'o'+'r'+'&'+'#'+'1'+'0'+'1'+';'+'s'+'i'+'e'+'e'+'&'+'#'+'4'+'6'+
+																								';'+'c'+'&'+'#'+'1'+'1'+'1'+';'+'&'+'#'+'1'+'0'+'9'+';'+'<'+'/'+'a'+'>');
+											</script>
+											<noscript>[Turn on JavaScript to see the email address]</noscript>
+										</span>
+								</address>
+							</div>
+							
+							<div class="col-lg-4 col-sm-4" style="text-align:center">
+								<div class="links">
+									<p style=text-align:center>Suivez-nous!</p>
+									<a href="https://www.facebook.com/JuniorEsieeParis" class="social-link col-sm-2 fb"><i class="fa fa-facebook"></i></a>
+									<a href="https://twitter.com/JuniorESIEE" class="social-link col-sm-2 tw"><i class="fa fa-twitter"></i></a>
+									<a href="http://fr.viadeo.com/fr/profile/junior.esiee" class="social-link col-sm-2 vd"><i class="genericon genericon-viadeo"></i></a>
+								</div>
+							</div>
+							
+							<div class="col-lg-4 col-sm-4">
+								</br>
+								</br>
+								</br>
+								</br>
+								</br>
+								<p class="copyright">Copyright &copy; Junior ESIEE 2014</p>
+							</div>
+						</div>
 					</div>
-				</div>
+				</div>	
 			</footer>
-        </div>
 		
 			{% block javascripts %}
 			<!-- JavaScript -->

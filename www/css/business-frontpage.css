@@ -33,6 +33,10 @@ body {
 	margin:auto;
 }											/*definie la taille et laa position de l'image du CA*/
 
+.urlimghome{
+	background-image :url("../img/team-home2.jpg");
+}
+
 /* adjust the color and text shadow to optimize legibility once you have an image set - you can also change the vertical positioning if desired  */
 .tagline {
 	color: #fff;
@@ -40,7 +44,17 @@ body {
 }
 
 footer {
-	margin: 50px 0;
+	padding:15px 0;
+	background-color: #223f62;
+	color: white;
+}
+
+footer a{
+	color: #eee;
+}
+
+footer a:hover{
+	color: white;
 }
 
 .navbar {
@@ -87,8 +101,15 @@ footer {
 
 @media (min-width: 990px) {
 	.navbar-inverse .navbar-nav > li > a {	
-			padding-left : 15px;			/* Espace les liens pour les grandes résolutions */
-			padding-right: 15px;
+			padding-left : 15px !important;			/* Espace les liens pour les grandes résolutions */
+			padding-right: 15px !important;
+		}
+}
+
+@media (min-width: 768px) {
+	.navbar-inverse .navbar-nav > li > a {	
+			padding-left : 2px;			/* Espace les liens pour les grandes résolutions */
+			padding-right: 2px;
 		}
 }
 
@@ -202,3 +223,77 @@ h3 {
 .navbar-inverse .navbar-toggle {		/* Couleur de fond du bouton de navigation mobile */
 	background-color: #223f62;
 }
+
+@media (min-width: 768px) {			/* Mise en forme du block chiffre clé */
+	.col-lg-4 h2{
+		padding-left:20px;
+	}
+}
+
+.active a .spinmenu{					/* Rotation de l'icone sur la page active */
+	-webkit-animation: spin 2s infinite linear;
+	-moz-animation: spin 2s infinite linear;
+	-o-animation: spin 2s infinite linear;
+	animation: spin 2s infinite linear;
+}
+
+.social-link{
+	height: 50px;
+	width:50px ;
+	margin : 16px 16px;
+	font-size: 2.2em;
+	color: #fff;
+}
+
+.social-link:hover{
+	font-size: 2.7em;
+	text-decoration:none;
+}
+
+.social-link i{	
+	vertical-align: middle;
+}
+
+.links{
+	margin-top: 10px;
+	margin-left:45px;
+}
+
+.fb{
+	margin-left:50px;
+	background-color : #0254A0;
+}
+
+.tw{
+	background-color : #1AB2E8 ;
+}
+
+.tw:hover{
+	font-size: 2.52em;
+}
+
+.tw i{
+	padding-right: 10px;
+}
+
+.vd{
+	margin-right:40px;
+	background-color : #C48E3E;
+}
+
+.genericon-viadeo {
+	padding:auto;
+	margin:auto;
+	height: 23px;
+	width: 19px;
+	font-size: 0.71em;
+}
+
+.vd:hover .genericon-viadeo{
+	padding:auto;
+	margin:auto;
+	height: 33px;
+	width: 19px;
+	font-size: 0.729em;
+}
+
