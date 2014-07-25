@@ -3,8 +3,11 @@
 	src: url(../fonts/ChopinScript.otf);
 }												/*include the Chopin Font using in the site*/
 
-.MotdelEquipe{
-	font-family: Chopin;
+.Chopin{	
+		font-family: Chopin;
+}
+
+.remarque-contact .Chopin{
 	font-size: 2.3em;
 	text-align:right;
 }												/*défini la forme d'un titre dans la page de présentation */
@@ -47,6 +50,7 @@ footer {
 	padding:15px 0;
 	background-color: #223f62;
 	color: white;
+	margin-top: 20px;
 }
 
 footer a{
@@ -162,7 +166,8 @@ p{
 }
 
 .remarque-contact{								/* Cadre pour une remarque dans la page contact */
-	border: 2px #223f62 outset;
+	border: 3px solid;
+	border-color: #ed7706 #ed7706  #0096aa #0096aa;
 	border-radius: 4px;
 	padding : 15px;
 	background-color: #eee;
@@ -305,5 +310,53 @@ h3 {
 }
 
 .chiffrescle{
-	border-left: 2px #eee solid;
+	border-left: 5px #eee solid;
+}
+
+.CA{
+	border: 3px solid;
+	border-color: #ed7706 #ed7706  #0096aa #0096aa;
+	border-radius: 5px;
+	background-color: #eee;
+	margin-bottom : 25px;
+}
+
+.CA .Chopin{
+	font-size:2.40em;
+	text-align:center;
+}
+
+@media (max-width: 899px) {
+	.CA .Chopin{
+		font-size:3em ; 
+	}
+}
+
+@media (min-width: 900px) {
+	.RDI{
+		font-size:2.175em !important;
+	}
+}
+
+.CA .nom-CA, .CA .poste-CA{
+	text-align:center;
+}
+
+.nom-CA{
+	font-size: 1.15em;
+	font-weight:bold;
+}
+
+.poste-CA{
+	font-size: 1.10em;
+}
+
+.imgCA{
+	margin-left: auto;
+	margin-right: auto;
+	border: 5px outset #223f62;
+	margin-bottom: 5px;
+	border-radius: 50%;
+	max-height: 170px;
+	max-width: 170px;
 }
