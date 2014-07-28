@@ -31,6 +31,10 @@ body {
 	background-image :url("../img/team-about.jpg");
 }											/* definie l'url de l'image du header a propos */
 
+.urlimgprestations{
+	background-image :url("../img/Prestations.jpg");
+}	
+
 .imgteam{
 	border-radius:10px;
 	margin:auto;
@@ -72,6 +76,7 @@ footer a:hover{
 
 .navbar-inverse .navbar-nav > li > a {		/*  Couleur des liens dans le menu */
 		color: #223f62 !important;
+		transition: border 0.35s ease;
 	}
 
 @media (max-width: 767px) {				/* Optimisatoin du menu pour les résolutions mobiles */
@@ -143,9 +148,14 @@ footer a:hover{
 .copyright {							
 	text-align : right;							  /* texte du copyright aligné à droite */
 	}
+	
+.form-control{
+	transition: 0.8s ease;
+}
 
 .form-control:focus {
 	border-color: #223f62;						/* couleur de l'ombre des cases actives de formulaire */
+	transition: 1s ease;
 }
 
 a {
@@ -181,6 +191,7 @@ h2,h3 {											/* Sous-titres en bleu */
 
 .btn{											/* Mise en forme des boutons (couleur) */
 	color: #223f62;
+	transition: 0.5s ease;
 }
 	 
 .btn:hover,										/* Idem */
@@ -188,6 +199,7 @@ h2,h3 {											/* Sous-titres en bleu */
 	background-color: #223f62;
 	color : white;
 	text-decoration: none;
+	transition: 0.5s ease;
 }
 
 .formfile {										/* Alignement du texte de bouton pour les résolutions normales */
@@ -248,12 +260,14 @@ h3 {
 	margin : 16px 6px;
 	font-size: 2.2em;
 	color: #fff;
+	transition: 0.35s ease;
 }
 
 @media (min-width: 669px) {
 	.social-link:hover{
 		font-size: 2.7em;
 		text-decoration:none;
+		transition: 0.35s ease;
 	}
 }
 
