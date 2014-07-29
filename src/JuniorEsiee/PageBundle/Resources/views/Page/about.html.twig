@@ -21,12 +21,14 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-3">
-					<ul class="nav nav-pills nav-stacked nav-tabs navside" role="tablist">  
-						<li class="active" > <a href="#Pres" role="tab" data-toggle="tab">Présentation</a></li>     
-						<li><a href="#Equipe" role="tab" data-toggle="tab">L'équipe</a></li>  
-						<li><a href="#Com" role="tab" data-toggle="tab">Communication</a></li>   
-						<li><a href="#Partenaires" role="tab" data-toggle="tab">Nos partenaires</a></li>      
-					</ul>
+					<div id="menu">
+						<ul class="nav nav-pills nav-stacked nav-tabs navside" role="tablist">  
+							<li class="active" > <a href="#Pres" role="tab" data-toggle="tab">Présentation</a></li>     
+							<li><a href="#Equipe" role="tab" data-toggle="tab">L'équipe</a></li>  
+							<li><a href="#Com" role="tab" data-toggle="tab">Communication</a></li>   
+							<li><a href="#Partenaires" role="tab" data-toggle="tab">Nos partenaires</a></li>      
+						</ul>
+					</div>
 				</div>
 				
 				<div class="col-sm-9 tab-content">
@@ -213,4 +215,19 @@
 				</div>
 			</div>
 		</div>	
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	<script>
+	$('#menu').affix({
+		offset: {
+		  top: 450
+		, bottom: function () {
+			return (this.bottom = $('footer').outerHeight(true))
+		  }
+		}
+	  });
+	 </script>
 {% endblock %}
