@@ -52,6 +52,8 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
+        types:
+            json: Sonata\Doctrine\Types\JsonType
         # if using pdo_sqlite as your database driver, add the path in parameters.yml
         # e.g. database_path: "%kernel.root_dir%/data/data.db3"
         # path:     "%database_path%"
@@ -104,4 +106,23 @@ sonata_block:
             contexts:   [admin]
         sonata.admin_doctrine_orm.block.audit:
             contexts:   [admin]
+        sonata.user.block.menu:
+        sonata.user.block.account:
+        sonata.admin.block.search_result:
         sonata.block.service.text:
+
+sonata_user:
+    security_acl: true
+    manager_type: orm
+
+fos_user:
+    db_driver:      orm
+    firewall_name:  main
+    user_class:     Application\Sonata\UserBundle\Entity\User
+
+    group:
+        group_class:   Application\Sonata\UserBundle\Entity\Group
+        group_manager: sonata.user.orm.group_manager
+
+    service:
+        user_manager: sonata.user.orm.user_manager
