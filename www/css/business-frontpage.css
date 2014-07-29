@@ -135,6 +135,14 @@ footer a:hover{
 	margin-bottom: 30px !important;                  /* sépare le menu mobile du texte */
 }
 
+@media (min-width: 768px) {
+	.navside{
+		position:fixed;
+		width:175px;
+	}
+}
+
+
 .form-horizontal{								    /* sépare le formulaire du texte précédent */
 	margin-top : 40px;
 }
@@ -145,9 +153,37 @@ footer a:hover{
   }
 }
 
-.copyright {							
-	text-align : right;							  /* texte du copyright aligné à droite */
+.copyright p{	
+	text-align:center;
+}
+
+@media (min-width: 768px) {	
+	.copyright p{							
+		text-align : right;							  /* texte du copyright aligné à droite */
+		}
+}
+	
+.copyright hr{
+	margin-top:30px;
+	margin-bottom:15px;
+}
+
+@media (max-width: 990px) {
+	.copyright hr{
+	margin-top:50px;
+	margin-bottom:15px;
 	}
+}
+
+@media (max-width: 768px) {	
+	footer hr{
+		display:none;
+	}
+	
+	footer{
+		text-align:center;
+	}
+}
 	
 .form-control{
 	transition: 0.8s ease;
@@ -267,8 +303,21 @@ h3 {
 	.social-link:hover{
 		font-size: 2.7em;
 		text-decoration:none;
-		transition: 0.35s ease;
+		transition: 0.35s ease;	
 	}
+	
+	.tw:hover{
+		font-size: 2.52em;
+	}
+	
+	.vd:hover .genericon-viadeo{
+		padding:auto;
+		margin:auto;
+		height: 33px;
+		width: 19px;
+		font-size: 0.729em;
+	}
+
 }
 
 .social-link i{	
@@ -298,10 +347,6 @@ h3 {
 	padding-left: 13px;
 }
 
-.tw:hover{
-	font-size: 2.52em;
-}
-
 
 .vd{
 	background-color : #C48E3E;
@@ -313,14 +358,6 @@ h3 {
 	height: 23px;
 	width: 19px;
 	font-size: 0.71em;
-}
-
-.vd:hover .genericon-viadeo{
-	padding:auto;
-	margin:auto;
-	height: 33px;
-	width: 19px;
-	font-size: 0.729em;
 }
 
 .chiffrescle{
@@ -375,11 +412,11 @@ h3 {
 	max-width: 170px;
 }
 
-.partenaires div{
+/* .partenaires div{
 	height:100%;
 }
 
 .partenaires img{
 	vertical-align: middle;
 	margin : auto;
-}
+} */
