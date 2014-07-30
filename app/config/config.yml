@@ -28,6 +28,12 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        version: %application_version%
+    form:
+        resources:
+            - 'SonataAdminBundle:Form:silex_form_div_layout.html.twig'
+            - 'SonataFormatterBundle:Form:formatter.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -74,6 +80,8 @@ swiftmailer:
 sonata_admin:
     title:      JE Inside
     title_logo: logo.png
+    templates:
+        layout:  ApplicationSonataAdminBundle::layout.html.twig
     dashboard:
         blocks:
             -
