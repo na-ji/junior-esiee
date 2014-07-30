@@ -127,3 +127,57 @@ fos_user:
 
     service:
         user_manager: sonata.user.orm.user_manager
+
+ivory_ck_editor:
+    default_config: main
+    configs:
+        main:
+            toolbar: "toolbar_basic"
+            allowedContent: true
+            # protectedSource: ['/<i[^>]*><\/i>/g']
+            contentsCss: ['/bundles/ivoryckeditor/contents.css', '/bundles/junioresieepage/css/font-awesome.css', '/bundles/junioresieepage/css/bootstrap.min.css']
+    toolbars:
+        configs:
+            toolbar_basic: ["@clipboard", "@editing", "/", "@basicstyles", "@links", "@paragraph", "/", '@styles', '@colors', '@tools', '@insert' ]
+        items:
+            clipboard : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo', '-', 'Preview' ]
+            editing : [ 'Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ]
+
+            basicstyles : [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ]
+            paragraph : [ 'NumberedList','BulletedList','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ]
+            links: [ 'Link','Unlink','Anchor' ]
+            insert : [ 'Image', 'Table','HorizontalRule','SpecialChar' ]
+
+            styles : [ 'Format','FontSize' ]
+            colors : [ 'TextColor','BGColor' ]
+            tools : [ 'Source', 'Maximize' ]
+
+sonata_formatter:
+    formatters:
+        markdown:
+            service: sonata.formatter.text.markdown
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+
+        text:
+            service: sonata.formatter.text.text
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+
+        rawhtml:
+            service: sonata.formatter.text.raw
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+
+        richhtml:
+            service: sonata.formatter.text.raw
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+
+        twig:
+            service: sonata.formatter.text.twigengine
+            extensions: [] # Twig formatter cannot have extensions

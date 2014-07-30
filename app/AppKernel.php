@@ -20,6 +20,8 @@ class AppKernel extends Kernel
             // Dependencies
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
 
             // Sonata
             new Sonata\CoreBundle\SonataCoreBundle(),
@@ -28,6 +30,8 @@ class AppKernel extends Kernel
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
+            new Sonata\FormatterBundle\SonataFormatterBundle(),
+            new Sonata\MarkItUpBundle\SonataMarkItUpBundle(),
 
             // My bundles
             new JuniorEsiee\PageBundle\JuniorEsieePageBundle(),
