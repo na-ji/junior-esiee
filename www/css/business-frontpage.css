@@ -313,13 +313,15 @@ h3 {
 	font-size: 2.2em;
 	color: #fff;
 	transition: 0.35s ease;
+	display: inline-block;
 }
 
-@media (min-width: 669px) {
+/* @media (min-width: 669px) {
 	.social-link:hover{
 		font-size: 2.7em;
 		text-decoration:none;
 		transition: 0.35s ease;	
+		margin: 29px 24px 1px 0px;
 	}
 	
 	.tw:hover{
@@ -327,14 +329,13 @@ h3 {
 	}
 	
 	.vd:hover .genericon-viadeo{
-		padding:auto;
 		margin:auto;
 		height: 33px;
 		width: 19px;
 		font-size: 0.729em;
 	}
 
-}
+} */
 
 .social-link i{	
 	vertical-align: middle;
@@ -348,11 +349,32 @@ h3 {
 }
 
 
-@media (min-width: 992px) {
+
+
+@media (min-width: 768px) and (max-width: 990px) {
+	.social-link{
+		margin: 32px 16px 1px 4px;
+	}
+}
+
+@media (min-width: 496px) and (max-width: 767px) {
+	.social-link{
+		margin:29px 7px 1px 10px;
+	}
+}
+
+@media (max-width: 496px) {
+	.social-link{
+		margin: 4px 37px 4px 2px;
+	}
+}
+
+@media (min-width: 991px){
 	.social-link{
 		margin : 16px 24px 16px 16px;
 	}
 }
+
 
 .fb{
 	background-color : #0254A0;
@@ -362,7 +384,7 @@ h3 {
 	background-color : #1AB2E8 ;
 	font-size: 1.95em;
 	padding-top: 3px;
-	padding-left: 13px;
+	padding-left: 18px; 
 }
 
 
@@ -374,8 +396,18 @@ h3 {
 	background-color : #DA4836;
 }
 
+.tw i{
+	margin-left: -13px;
+	margin-top: -2px;
+}
+
+.gplus i{
+	margin-left: 2px;
+	margin-top: 7px;
+}
+
 .mél i{
-	margin-left: -6px;
+	margin-left: -2px;
 }
 
 .lk{
@@ -383,11 +415,14 @@ h3 {
 }
 
 .genericon-viadeo {
-	padding:auto;
 	margin:auto;
 	height: 23px;
 	width: 19px;
-	font-size: 0.71em;
+	font-size: 0.73em;
+}
+
+.social-link:hover .genericon-viadeo {
+	text-decoration:none;
 }
 
 .chiffrescle{
