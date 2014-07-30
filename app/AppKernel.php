@@ -32,6 +32,7 @@ class AppKernel extends Kernel
             // My bundles
             new JuniorEsiee\PageBundle\JuniorEsieePageBundle(),
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new Application\Sonata\BlockBundle\ApplicationSonataBlockBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

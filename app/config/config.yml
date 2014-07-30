@@ -110,6 +110,7 @@ sonata_block:
         sonata.user.block.account:
         sonata.admin.block.search_result:
         sonata.block.service.text:
+        application.sonata.block.service.editable_text:
 
 sonata_user:
     security_acl: true
