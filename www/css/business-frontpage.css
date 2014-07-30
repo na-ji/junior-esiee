@@ -373,6 +373,15 @@ h3 {
 	.social-link{
 		margin : 16px 24px 16px 16px;
 	}
+	
+	.fb{
+		margin-left : -36px;
+	}
+	
+	.gplus{
+		margin-left : -36px;
+	}
+	
 }
 
 
@@ -477,11 +486,12 @@ h3 {
 	max-width: 170px;
 }
 
-/* .partenaires div{
+.partenaires div{
 	height:100%;
 }
 
 .partenaires img{
 	vertical-align: middle;
 	margin : auto;
-} */
+	display: inline-block;
+}
