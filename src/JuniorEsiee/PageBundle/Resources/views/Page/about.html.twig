@@ -1,6 +1,6 @@
 {% extends "::base.html.twig" %}
 
-{% block title %} {{parent()}} - A propos{% endblock %}
+{% block title %}{{parent()}} - A propos{% endblock %}
 
 {% block header %}
 	<div class="business-header urlimgabout">
@@ -10,271 +10,292 @@
 {%block li2%}class="active"{% endblock %}
 	
 {% block body %}
-		{{ parent()}}
-		<h2>
-			Qu'est-ce que Junior ESIEE ?
-		</h2>
+	{{ parent()}}
+	<h2>Qu'est-ce que Junior ESIEE ?</h2>
+	
+	<br />
+	<br />
+	<div class="row">
+		<div class="col-sm-3">
+			<div id="menu">
+				<ul class="nav nav-pills nav-stacked nav-tabs navside" role="tablist">  
+					<li class="active" > <a href="#Pres" role="tab" data-toggle="tab">Présentation</a></li>     
+					<li><a href="#Equipe" role="tab" data-toggle="tab">L'équipe</a></li>  
+					<li><a href="#Com" role="tab" data-toggle="tab">Communication</a></li>   
+					<li><a href="#Partenaires" role="tab" data-toggle="tab">Nos partenaires</a></li>      
+				</ul>
+			</div>
+		</div>
 		
-		</br>
-		</br>
-		
-		<div class="container  container-xs-height">
-			<div class="row">
-				<div class="col-sm-3">
-					<div id="menu">
-						<ul class="nav nav-pills nav-stacked nav-tabs navside" role="tablist">  
-							<li class="active" > <a href="#Pres" role="tab" data-toggle="tab">Présentation</a></li>     
-							<li><a href="#Equipe" role="tab" data-toggle="tab">L'équipe</a></li>  
-							<li><a href="#Com" role="tab" data-toggle="tab">Communication</a></li>   
-							<li><a href="#Partenaires" role="tab" data-toggle="tab">Nos partenaires</a></li>      
-						</ul>
+		<div class="col-sm-9 tab-content tab-about">
+			<div class="tab-pane active fade in" id="Pres">
+				<h3>Présentation</h3>
+				
+				<h4 class="Sous-partie">Junior ESIEE</h4>
+				<br />
+				<p>Junior ESIEE est un prestataire de services deplus de 30 années d'expérience au seins de l'école d'ingénieur ESIEE Paris. Ainsi, nous pouvons réaliser pour vous des études dans les domaines de l'ingénierie ou du management : cartes électroniques, sites web, études de marchés, business plans... 
+				Une fois qu'une étude correspond bien aux savoirs-faire des étudiants, nous vous proposons de la réaliser. 
+				Nous fonctionnons donc comme une véritable SSII. <br />Junior ESIEE figure parmi les 30 meilleures Junior-Entreprises de France sur plus de 160 structures, et ce depuis 6 années consécutives (selon le classement de la CNJE), gage de confiance et de qualité des services que nous proposons.
+				Junior ESIEE, forte de ses 31 ans d'expérience, vous propose de mener à bien l'ensemble de vos projets.
+				Dans le but de toujours vous satisfaire, nous mettons un point d'honneur à mettre notre sérieux et notre expérience à contribution dans la concrétisation de vos idées.
+				Nos onze administrateurs permanents ainsi que toute l'équipe de Junior ESIEE vous garantiront un suivi et une écoute attentive de vos attentes.
+				</p>
+				<br />
+				<img src="{{ asset('img/junioresiee.png') }}" class="img-responsive imgteam imglogojunior"></img>
+					
+				<br />	
+				
+				<h4 class="Sous-partie">Les Junior-Entreprises</h4>
+				<br />
+				<p>Junior ESIEE est affiliée à la Confédération Nationale des Junior-Entreprises (CNJE) qui détient la marque déposée Junior-Entreprise. 
+				Cette marque est attribuée aux associations loi 1901 des écoles d'ingénieurs et de commerce en France qui assure qualité et pérennité de leurs structures. La CNJE agit en véritable médiateur et dispense des formations nécessaires. 
+				L'objectif d'une JE est de faire découvrir le monde du travail aux étudiants ce qui leur permet d'acquérir de l'expérience professionnelle. <br />
+				"Depuis plus de 35 ans, le concept Junior-Entreprise, qui fut à l'origine français, a séduit les étudiants et les entreprises du monde entier. De nos jours des Junior-Entreprises existent aussi bien dans de nombreux pays européens, qu'en Afrique du Nord et qu'en Amérique du Sud." (CNJE).
+				</p>
+				<img src="{{ asset('img/logos-Junior-Entreprises.jpg') }}" class="img-responsive imgteam"></img>
+				<p style=text-align:center>Logos de quelques unes des 160 Junior-Entreprises de France.</p>
+				<br />
+				<br />
+			</div>	
+			
+			<div class="tab-pane fade" id="Equipe">
+				<h3>L'équipe</h3>
+							
+				<img src="{{ asset('img/team.jpg') }}" class="img-responsive imgteam"></img>
+				<p style="text-align:right">Conseil d'Administration de Junior ESIEE 2014-2015</p>
+				<br />
+				<br />
+				
+				<div class="remarque-contact">
+				<p class="Chopin">Mot de l'équipe</p> 
+				<p>La nouvelle équipe du Conseil d'Administration de Junior ESIEE a été élue le 10 Avril 2014 en Assemblée Générale et a pris ses fonctions le 1er Juin 2014. Chaque membre a à coeur de faire grandir notre Junior Entreprise et est impliqué dans de nombreux projets et mission
+				afin de faire connaître, de valoriser et de pérenniser la structure Junior ESIEE.</p>
+				</div>
+				<br />
+				<br />
+				
+				<h3>Conseil d'Administration 2014-2015</h3>
+				<div class="CA col-lg-8 col-lg-offset-2">
+					<p class="Chopin">Présidence</p>
+					<div class="col-lg-5">
+						<img src="{{ asset('img/CA/Martin-CA.jpg') }}" class="img-responsive imgCA"></img>
+						<p class="nom-CA">Martin MAS</p>
+						<p class="poste-CA">Président</p>
+					</div>
+					<div class="col-lg-5 col-lg-offset-2">
+						<img src="{{ asset('img/CA/Sajna-CA.jpg') }}" class="img-responsive imgCA"></img>
+						<p class="nom-CA">Sajna HUSSAIN</p> 
+						<p class="poste-CA">Vice-Présidente</p>
 					</div>
 				</div>
 				
-				<div class="col-sm-9 tab-content">
-					<div class="tab-pane active fade in" id="Pres">
-						<h3>Présentation</h3>
-						
-						<h4 class="Sous-partie">Junior ESIEE</h4>
-						</br>
-							<p>Junior ESIEE est un prestataire de services deplus de 30 années d'expérience au seins de l'école d'ingénieur ESIEE Paris. Ainsi, nous pouvons réaliser pour vous des études dans les domaines de l'ingénierie ou du management : cartes électroniques, sites web, études de marchés, business plans... 
-							Une fois qu'une étude correspond bien aux savoirs-faire des étudiants, nous vous proposons de la réaliser. 
-							Nous fonctionnons donc comme une véritable SSII. </br>Junior ESIEE figure parmi les 30 meilleures Junior-Entreprises de France sur plus de 160 structures, et ce depuis 6 années consécutives (selon le classement de la CNJE), gage de confiance et de qualité des services que nous proposons.
-							Junior ESIEE, forte de ses 31 ans d'expérience, vous propose de mener à bien l'ensemble de vos projets.
-							Dans le but de toujours vous satisfaire, nous mettons un point d'honneur à mettre notre sérieux et notre expérience à contribution dans la concrétisation de vos idées.
-							Nos onze administrateurs permanents ainsi que toute l'équipe de Junior ESIEE vous garantiront un suivi et une écoute attentive de vos attentes.
-							</p>
-							</br>
-							<img src="{{asset('img/junioresiee.png')}}" class="img-responsive imgteam imglogojunior"></img>
-							
-						</br>	
-						
-						<h4 class="Sous-partie">Les Junior-Entreprises</h4>
-						</br>
-							<p>Junior ESIEE est affiliée à la Confédération Nationale des Junior-Entreprises (CNJE) qui détient la marque déposée Junior-Entreprise. 
-							Cette marque est attribuée aux associations loi 1901 des écoles d'ingénieurs et de commerce en France qui assure qualité et pérennité de leurs structures. La CNJE agit en véritable médiateur et dispense des formations nécessaires. 
-							L'objectif d'une JE est de faire découvrir le monde du travail aux étudiants ce qui leur permet d'acquérir de l'expérience professionnelle. </br>
-							"Depuis plus de 35 ans, le concept Junior-Entreprise, qui fut à l'origine français, a séduit les étudiants et les entreprises du monde entier. De nos jours des Junior-Entreprises existent aussi bien dans de nombreux pays européens, qu'en Afrique du Nord et qu'en Amérique du Sud." (CNJE).
-							</p>
-							<img src="{{asset('img/logos-Junior-Entreprises.jpg')}}" class="img-responsive imgteam"></img>
-							<p style=text-align:center>Logos de quelques unes des 160 Junior-Entreprises de France.</p>
-						
-						
-						</br>
-						</br>
-					</div>	
-					
-					<div class="tab-pane fade" id="Equipe">
-						<h3>L'équipe</h3>
-									
-						<img src="{{asset('img/team.jpg')}}" class="img-responsive imgteam"></img>
-						<p style="text-align:right">Conseil d'Administration de Junior ESIEE 2014-2015</p>
-						</br>
-						</br>
-						
-						<div class="remarque-contact">
-							<p class="Chopin">Mot de l'équipe</p> 
-							<p>La nouvelle équipe du Conseil d'Administration de Junior ESIEE a été élue le 10 Avril 2014 en Assemblée Générale et a pris ses fonctions le 1er Juin 2014. Chaque membre a à coeur de faire grandir notre Junior Entreprise et est impliqué dans de nombreux projets et mission
-							afin de faire connaître, de valoriser et de pérenniser la structure Junior ESIEE.</p>
+				<div class="CA col-lg-7">
+					<p class="Chopin">Finances</p>
+					<div class="col-lg-5">
+						<img src="{{ asset('img/CA/Alex-CA.jpg') }}" class="img-responsive imgCA"></img>
+						<p class="nom-CA">Alexandre WALLET</p>
+						<p class="poste-CA">Trésorier</p>
+					</div>
+					<div class="col-lg-5 col-lg-offset-2">
+						<img src="{{ asset('img/CA/Jean-CA.jpg') }}" class="img-responsive imgCA"></img>
+						<p class="nom-CA">Jean COVILLE</p> 
+						<p class="poste-CA">Comptable</p>
+					</div>
+				</div>
+				
+				<div class="CA col-lg-4 col-lg-offset-1">
+					<p class="Chopin">Gestion</p>
+					<div class="col-lg-offset-1">
+						<img src="{{ asset('img/CA/Sabrina-CA.jpg') }}" class="img-responsive imgCA"></img>
+						<p class="nom-CA">Sabrina BOUDJELTI</p>
+						<p class="poste-CA">Secrétaire Générale</p>
+					</div>
+				</div>
+				
+				<div class="CA col-lg-7">
+					<p class="Chopin">Business Unit</p>
+					<div class="col-lg-5">
+						<img src="{{ asset('img/CA/Guillaume-CA.jpg') }}" class="img-responsive imgCA"></img>
+						<p class="nom-CA">Guilaume JOLIN</p>
+						<p class="poste-CA">Responsable</p>
+					</div>
+					<div class="col-lg-5 col-lg-offset-2">
+						<img src="{{ asset('img/CA/Jordan-CA.jpg') }}" class="img-responsive imgCA"></img>
+						<p class="nom-CA">Jordan SINKOUSON</p> 
+						<p class="poste-CA">Responsable</p>
+					</div>
+				</div>
+				
+				<div class="CA col-lg-4 col-lg-offset-1">
+					<p class="Chopin">Qualité</p>
+					<div class="col-lg-offset-1">
+						<img src="{{ asset('img/CA/Lauren-CA.jpg') }}" class="img-responsive imgCA"></img>
+						<p class="nom-CA">Lauren SILMANA</p>
+						<p class="poste-CA">Responsable</p>
+					</div>
+				</div>
+				
+				<div class="CA col-lg-7">
+					<p class="Chopin">Communication</p>
+					<div class="col-lg-5">
+						<img src="{{ asset('img/CA/Julie-CA.jpg') }}" class="img-responsive imgCA"></img>
+						<p class="nom-CA">Julie BAFFARD</p>
+						<p class="poste-CA">Responsable Externe</p>
+					</div>
+					<div class="col-lg-5 col-lg-offset-2">
+						<img src="{{ asset('img/CA/Nico-CA.jpg') }}" class="img-responsive imgCA"></img>
+						<p class="nom-CA">Nicolas VELIKONIA</p> 
+						<p class="poste-CA">Responsable Interne</p>
+					</div>
+				</div>
+				
+				<div class="CA col-lg-4 col-lg-offset-1">
+					<p class="Chopin RDI">Développement Interne</p>
+					<div class="col-lg-offset-1">
+						<img src="{{ asset('img/CA/Naji-CA.jpg') }}" class="img-responsive imgCA"></img>
+						<p class="nom-CA">Naji ASTIER</p>
+						<p class="poste-CA">Responsable</p>
+					</div>
+				</div>
+			</div>	
+			
+			<div class="tab-pane fade" id="Com">
+				<h3>Communication</h3>
+				<p class="text-justify">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin bibendum turpis sapien, eget laoreet lacus aliquet nec. Sed tristique sit amet orci id gravida. Sed eu eros porta, volutpat ligula sit amet, viverra leo. Nulla accumsan, massa vitae condimentum euismod, tellus velit iaculis diam, at pharetra velit lacus id odio. Etiam ac libero erat. Duis eleifend non libero vel aliquam. In euismod hendrerit mauris eget ultricies. Etiam egestas diam nec metus ornare sollicitudin. Maecenas consequat vulputate rhoncus. Nunc tempus purus non blandit ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas felis purus, dignissim eu laoreet et, euismod eu ipsum.
+				</p>
+				<p class="text-justify">
+					Cras rhoncus bibendum interdum. Ut varius eu enim eget elementum. Ut dolor sapien, hendrerit vel lorem sit amet, venenatis dapibus mi. Praesent vehicula posuere est. Suspendisse vel lectus vel diam tincidunt rhoncus non eu lacus. Aliquam porttitor a risus vel placerat. Donec ante libero, feugiat non magna porta, consectetur tempus ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas mattis lacinia lacus id facilisis. Quisque fringilla mollis metus ut gravida.
+				</p>
+				<p class="text-justify">
+					Mauris id nunc rhoncus, luctus eros vitae, dapibus nibh. Phasellus lectus ligula, viverra vitae eleifend non, molestie non enim. Nam scelerisque erat sed semper ullamcorper. Aliquam eget tellus sed diam semper mollis. Vestibulum porta iaculis justo, ut luctus justo interdum in. Fusce vulputate risus non diam ornare tincidunt. Phasellus imperdiet imperdiet libero, sit amet malesuada quam lobortis sit amet. Vestibulum tincidunt tortor iaculis adipiscing vehicula. Donec egestas tempor iaculis. Nulla facilisi. Fusce imperdiet semper justo nec fringilla.
+				</p>
+				<p class="text-justify">
+					Vivamus vitae lobortis neque, id molestie neque. Suspendisse molestie justo et purus egestas, at mollis urna dignissim. Praesent eget lorem sit amet leo faucibus semper. Integer aliquet, libero ut accumsan consectetur, est velit egestas enim, a mollis velit sem at dolor. Donec nec egestas erat. Curabitur bibendum elit nec mauris dignissim sodales aliquam et nisi. Integer viverra mollis nisi condimentum ultricies. Ut congue nisi a mattis tempor. Cras mattis egestas orci, quis tristique mi tincidunt in. Morbi consequat venenatis aliquam. Ut facilisis malesuada tincidunt. Quisque eget venenatis tortor. Sed tempus augue mauris, sed imperdiet nisl viverra et. Phasellus vel tempus augue. Integer nec nunc purus. Curabitur dapibus vitae massa ut adipiscing.
+				</p>
+				<p class="text-justify">
+					Sed eu purus magna. Mauris at diam sem. Praesent non bibendum risus. Proin augue sem, tristique id lorem vel, interdum gravida dui. Quisque leo nisi, sagittis sit amet nulla vel, dapibus aliquam arcu. Quisque convallis risus vitae semper luctus. Duis blandit bibendum tempor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel cursus libero. Nulla urna ipsum, porttitor nec tempor eu, congue vel ante. Aliquam eget vulputate neque, id tincidunt tortor.
+				</p>
+				<p class="text-justify">
+					Vivamus vitae lobortis neque, id molestie neque. Suspendisse molestie justo et purus egestas, at mollis urna dignissim. Praesent eget lorem sit amet leo faucibus semper. Integer aliquet, libero ut accumsan consectetur, est velit egestas enim, a mollis velit sem at dolor. Donec nec egestas erat. Curabitur bibendum elit nec mauris dignissim sodales aliquam et nisi. Integer viverra mollis nisi condimentum ultricies. Ut congue nisi a mattis tempor. Cras mattis egestas orci, quis tristique mi tincidunt in. Morbi consequat venenatis aliquam. Ut facilisis malesuada tincidunt. Quisque eget venenatis tortor. Sed tempus augue mauris, sed imperdiet nisl viverra et. Phasellus vel tempus augue. Integer nec nunc purus. Curabitur dapibus vitae massa ut adipiscing.
+				</p>
+				<p class="text-justify">
+					Cras rhoncus blandit nisi, a luctus felis ultrices a. Integer malesuada odio sed suscipit pretium. Quisque varius turpis nec rhoncus dictum. Phasellus adipiscing risus at porttitor porttitor. Nulla feugiat libero lectus, ultricies venenatis leo egestas nec. Aliquam dignissim ac nisi sed venenatis. Vivamus rhoncus tortor urna, nec mollis diam tincidunt sit amet. Nullam pretium risus eu lorem tristique venenatis. Suspendisse ultricies condimentum turpis vel mollis. Donec dolor mi, tempor sed placerat eu, sodales sit amet ante. Sed venenatis, augue ac feugiat faucibus, neque tortor pretium enim, sed rhoncus sem urna at arcu. In hac habitasse platea dictumst. Nullam egestas aliquam orci, id bibendum tortor aliquet sed. Nulla lacinia consectetur sem ac egestas. Sed sagittis pulvinar eleifend. Duis ultrices faucibus tristique.
+				</p>
+				<p class="text-justify">
+					Sed eu purus magna. Mauris at diam sem. Praesent non bibendum risus. Proin augue sem, tristique id lorem vel, interdum gravida dui. Quisque leo nisi, sagittis sit amet nulla vel, dapibus aliquam arcu. Quisque convallis risus vitae semper luctus. Duis blandit bibendum tempor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel cursus libero. Nulla urna ipsum, porttitor nec tempor eu, congue vel ante. Aliquam eget vulputate neque, id tincidunt tortor.
+				</p>
+				<p class="text-justify">
+					Vivamus vitae lobortis neque, id molestie neque. Suspendisse molestie justo et purus egestas, at mollis urna dignissim. Praesent eget lorem sit amet leo faucibus semper. Integer aliquet, libero ut accumsan consectetur, est velit egestas enim, a mollis velit sem at dolor. Donec nec egestas erat. Curabitur bibendum elit nec mauris dignissim sodales aliquam et nisi. Integer viverra mollis nisi condimentum ultricies. Ut congue nisi a mattis tempor. Cras mattis egestas orci, quis tristique mi tincidunt in. Morbi consequat venenatis aliquam. Ut facilisis malesuada tincidunt. Quisque eget venenatis tortor. Sed tempus augue mauris, sed imperdiet nisl viverra et. Phasellus vel tempus augue. Integer nec nunc purus. Curabitur dapibus vitae massa ut adipiscing.
+				</p>
+				<p class="text-justify">
+					Cras rhoncus blandit nisi, a luctus felis ultrices a. Integer malesuada odio sed suscipit pretium. Quisque varius turpis nec rhoncus dictum. Phasellus adipiscing risus at porttitor porttitor. Nulla feugiat libero lectus, ultricies venenatis leo egestas nec. Aliquam dignissim ac nisi sed venenatis. Vivamus rhoncus tortor urna, nec mollis diam tincidunt sit amet. Nullam pretium risus eu lorem tristique venenatis. Suspendisse ultricies condimentum turpis vel mollis. Donec dolor mi, tempor sed placerat eu, sodales sit amet ante. Sed venenatis, augue ac feugiat faucibus, neque tortor pretium enim, sed rhoncus sem urna at arcu. In hac habitasse platea dictumst. Nullam egestas aliquam orci, id bibendum tortor aliquet sed. Nulla lacinia consectetur sem ac egestas. Sed sagittis pulvinar eleifend. Duis ultrices faucibus tristique.
+				</p>
+			</div>	
+				
+			<div class="tab-pane fade partenaires" id="Partenaires">
+				<h3>Nos partenaires</h3>
+				<div class="row">
+					<div class="col-sm-12 partnertype1">
+						<h2>Ponts Etudes Projets</h2>
+						<div class="row row-md-height">	
+							<div class="col-md-8 col-sm-12 col-xs-12 col-md-height col-middle">
+								<p>PEP c'est nos amis toussa toussa zfnzfFF N F FJEZ FJKZ FKZF FKZE FJKHEZ FJKEZ FJKEZ FKEZ FEZ FJIKEZ FJEZ FIKEZ FJEZ FZIK FEZJ FIKEZ FEZIK FZ FZ FF EAZF EZJF EZJK FEZK FEZK FEZ
+								F ZK FEJKZ FJKEZ FJKEZ FZ FZKJ FJKEZ FEZ FJKEZ FJKESZ FJKES FJKESZ FJKE FKEJ FEKJ FKEZ FKZJ FJKEZ FJKEZ FJKESZ FJKEZ FJKEZ FKZJ FEJK FEJK
+								aqbfaufbbafba aziu rgfeaziut azga rtiargiuartgiuaztiuaz tgazgaziu iuaz giuaz giuaz iuaz iua giua gagtt
+								ua razutgazhgeaz utgaziugeaziugiueaz tgtiua tgiuazgiuazg teaziutgiuaztgiuaz tgiuaz tgaaz $aaat aau aztugaza
+								azthaz tiazu tgiazugtueaz tgiueazgt iueazgtiuazaz a teazuh tgaztgiueaz a giua tgeazugt ua iueazg teaziutgiuaztgiuazua
+								azurh oazazytgaziu aziu azi utagaiut giuaz iazug  iazghaz tabazht gaz aziuyazazg tueaz gtiazugti ueaztg aziuaz
+								azih gaziuth azgiazg iuaz gaziutgaiuzgtiazg azig uga aiugz iazg gaiueg iuag aiuzeg iuag iga a ai
+								</p>
+							</div>	
+							<div class="col-md-4 col-md-offset-1 col-sm-12 col-xs-12 col-md-height col-middle">
+								<img src="{{ asset('img/Partenaires/PEP.png') }}" class="img-responsive" />
+							</div>
 						</div>
-						</br>
-						</br>
-						
-						<h3>Conseil d'Administration 2014-2015</h3>
-							<div class="CA col-lg-8 col-lg-offset-2">
-								<p class="Chopin">Présidence</p>
-								<div class="col-lg-5">
-									<img src="{{asset('img/CA/Martin-CA.jpg')}}" class="img-responsive imgCA"></img>
-									<p class="nom-CA">Martin MAS</p>
-									<p class="poste-CA">Président</p>
-								</div>
-								<div class="col-lg-5 col-lg-offset-2">
-									<img src="{{asset('img/CA/Sajna-CA.jpg')}}" class="img-responsive imgCA"></img>
-									<p class="nom-CA">Sajna HUSSAIN</p> 
-									<p class="poste-CA">Vice-Présidente</p>
-								</div>
-							</div>
-							
-							<div class="CA col-lg-7">
-								<p class="Chopin">Finances</p>
-								<div class="col-lg-5">
-									<img src="{{asset('img/CA/Alex-CA.jpg')}}" class="img-responsive imgCA"></img>
-									<p class="nom-CA">Alexandre WALLET</p>
-									<p class="poste-CA">Trésorier</p>
-								</div>
-								<div class="col-lg-5 col-lg-offset-2">
-									<img src="{{asset('img/CA/Jean-CA.jpg')}}" class="img-responsive imgCA"></img>
-									<p class="nom-CA">Jean COVILLE</p> 
-									<p class="poste-CA">Comptable</p>
-								</div>
-							</div>
-							
-							<div class="CA col-lg-4 col-lg-offset-1">
-								<p class="Chopin">Gestion</p>
-								<div class="col-lg-offset-1">
-									<img src="{{asset('img/CA/Sabrina-CA.jpg')}}" class="img-responsive imgCA"></img>
-									<p class="nom-CA">Sabrina BOUDJELTI</p>
-									<p class="poste-CA">Secrétaire Générale</p>
-								</div>
-							</div>
-							
-							<div class="CA col-lg-7">
-								<p class="Chopin">Business Unit</p>
-								<div class="col-lg-5">
-									<img src="{{asset('img/CA/Guillaume-CA.jpg')}}" class="img-responsive imgCA"></img>
-									<p class="nom-CA">Guilaume JOLIN</p>
-									<p class="poste-CA">Responsable</p>
-								</div>
-								<div class="col-lg-5 col-lg-offset-2">
-									<img src="{{asset('img/CA/Jordan-CA.jpg')}}" class="img-responsive imgCA"></img>
-									<p class="nom-CA">Jordan SINKOUSON</p> 
-									<p class="poste-CA">Responsable</p>
-								</div>
-							</div>
-							
-							<div class="CA col-lg-4 col-lg-offset-1">
-								<p class="Chopin">Qualité</p>
-								<div class="col-lg-offset-1">
-									<img src="{{asset('img/CA/Lauren-CA.jpg')}}" class="img-responsive imgCA"></img>
-									<p class="nom-CA">Lauren SILMANA</p>
-									<p class="poste-CA">Responsable</p>
-								</div>
-							</div>
-							
-							<div class="CA col-lg-7">
-								<p class="Chopin">Communication</p>
-								<div class="col-lg-5">
-									<img src="{{asset('img/CA/Julie-CA.jpg')}}" class="img-responsive imgCA"></img>
-									<p class="nom-CA">Julie BAFFARD</p>
-									<p class="poste-CA">Responsable Externe</p>
-								</div>
-								<div class="col-lg-5 col-lg-offset-2">
-									<img src="{{asset('img/CA/Nico-CA.jpg')}}" class="img-responsive imgCA"></img>
-									<p class="nom-CA">Nicolas VELIKONIA</p> 
-									<p class="poste-CA">Responsable Interne</p>
-								</div>
-							</div>
-							
-							<div class="CA col-lg-4 col-lg-offset-1">
-								<p class="Chopin RDI">Développement Interne</p>
-								<div class="col-lg-offset-1">
-									<img src="{{asset('img/CA/Naji-CA.jpg')}}" class="img-responsive imgCA"></img>
-									<p class="nom-CA">Naji ASTIER</p>
-									<p class="poste-CA">Responsable</p>
-								</div>
-							</div>
-							
-					</div>	
+					</div>
 					
-					<div class="tab-pane fade" id="Com">
-						<h3>Communication</h3>
-					</div>	
-						
-					<div class="tab-pane fade partenaires" id="Partenaires">
-						<h3>Nos partenaires</h3>
-						<div class="row">
-							<div class="col-sm-12 partnertype1">
-								<h2>Ponts Etudes Projets</h2>
-								<div class="row  row-xs-height">	
-									<div class="col-md-9 col-sm-12 col-xs-height col-middle">
-										<p>PEP c'est nos amis toussa toussa zfnzfFF N F FJEZ FJKZ FKZF FKZE FJKHEZ FJKEZ FJKEZ FKEZ FEZ FJIKEZ FJEZ FIKEZ FJEZ FZIK FEZJ FIKEZ FEZIK FZ FZ FF EAZF EZJF EZJK FEZK FEZK FEZ
-										F ZK FEJKZ FJKEZ FJKEZ FZ FZKJ FJKEZ FEZ FJKEZ FJKESZ FJKES FJKESZ FJKE FKEJ FEKJ FKEZ FKZJ FJKEZ FJKEZ FJKESZ FJKEZ FJKEZ FKZJ FEJK FEJK
-										aqbfaufbbafba aziu rgfeaziut azga rtiargiuartgiuaztiuaz tgazgaziu iuaz giuaz giuaz iuaz iua giua gagtt
-										ua razutgazhgeaz utgaziugeaziugiueaz tgtiua tgiuazgiuazg teaziutgiuaztgiuaz tgiuaz tgaaz $aaat aau aztugaza
-										azthaz tiazu tgiazugtueaz tgiueazgt iueazgtiuazaz a teazuh tgaztgiueaz a giua tgeazugt ua iueazg teaziutgiuaztgiuazua
-										azurh oazazytgaziu aziu azi utagaiut giuaz iazug  iazghaz tabazht gaz aziuyazazg tueaz gtiazugti ueaztg aziuaz
-										azih gaziuth azgiazg iuaz gaziutgaiuzgtiazg azig uga aiugz iazg gaiueg iuag aiuzeg iuag iga a ai
-										</p>
-									</div>	
-									<div class="col-md-3 col-md-offset-1 col-sm-12 col-xs-height col-middle">
-										<img src="{{asset('img/Partenaires/PEP.png')}}" class="img-responsive" />
-									</div>
-								</div>
+					<div class="col-sm-12 partnertype2">	
+						<h2>Société Générale</h2>
+						<div class="row row-md-height">
+							<div class="col-md-4 col-sm-12 col-md-height col-middle">
+								<img src="{{ asset('img/Partenaires/soge.png') }}" class="img-responsive" />
 							</div>
-							
-							<div class="col-sm-12 partnertype2">	
-								<h2>Société Générale</h2>
-								<div class="row">
-									<div class=" col-md-3 col-sm-12 col-xs-height col-middle">
-										<img src="{{asset('img/Partenaires/soge.png')}}" class="img-responsive" />
-									</div>
-									<div class=" col-md-9 col-md-offset-1 col-xs-12 col-xs-height col-middle">
-										<p>Notre banque c'est la société générale et eztez totnioatnartia réthioath "atioazth ioazoaith oazitioa thioa azeiotha ohaotia htahtioatioah toaihtoiahtoai thaotathataiot haz
-										iuzt eaztheiutueazh ah "aoih"a iotioahtioz hoiath azothathaiotaothzith ioezthg zehez keszjbgjkesg kznbgks jjezb ezbgrezb ztbgezu btb zetb zuh rezhn rzgh rzhtg ihg ezi tzhg
-										zth zeoh ziz ioz thzoigh zoithg zoith zioeth ozeith iezht iozhgoezgn ozrgio hezioezntgioezjfziogjhoezhgz h zeioh ezhzh goezirgjn zng zgioz nnzo zing ozoing ziong zgnoezingz
-										zoie iuoezioezt rehgrezgrez gv fds g b gfdh hgf  hgfdh e h hfd fdh fdh rte he h rteh rt hrt jhrtjrtjh  hgre g ggjksndiog hgonrh h yiohy hoez hozhioez iohezoezihoez ihozh
-										ez orho hy ioze hoezih ioezh ezoie hoezihoezi hezh ezio hyiozjhgior reziuohgiorengioe ngiore ngti irteh reijhy iorehgie htiorshoirhyoreihy reihyreioh yiore hi(ore hyiorehy
-										</p>
-									</div>
-								</div>	
-							</div>
-							
-							<div class="col-sm-12">
-								<h2>Confédération Nationale des Junior Entreprises</h2>
-								<div class="row  row-xs-height">	
-									<div class="col-md-9 col-sm-12 col-xs-height col-middle">
-										<p>PEP c'est nos amis toussa toussa zfnzfFF N F FJEZ FJKZ FKZF FKZE FJKHEZ FJKEZ FJKEZ FKEZ FEZ FJIKEZ FJEZ FIKEZ FJEZ FZIK FEZJ FIKEZ FEZIK FZ FZ FF EAZF EZJF EZJK FEZK FEZK FEZ
-										F ZK FEJKZ FJKEZ FJKEZ FZ FZKJ FJKEZ FEZ FJKEZ FJKESZ FJKES FJKESZ FJKE FKEJ FEKJ FKEZ FKZJ FJKEZ FJKEZ FJKESZ FJKEZ FJKEZ FKZJ FEJK FEJK
-										aqbfaufbbafba aziu rgfeaziut azga rtiargiuartgiuaztiuaz tgazgaziu iuaz giuaz giuaz iuaz iua giua gagtt
-										ua razutgazhgeaz utgaziugeaziugiueaz tgtiua tgiuazgiuazg teaziutgiuaztgiuaz tgiuaz tgaaz $aaat aau aztugaza
-										azthaz tiazu tgiazugtueaz tgiueazgt iueazgtiuazaz a teazuh tgaztgiueaz a giua tgeazugt ua iueazg teaziutgiuaztgiuazua
-										azurh oazazytgaziu aziu azi utagaiut giuaz iazug  iazghaz tabazht gaz aziuyazazg tueaz gtiazugti ueaztg aziuaz
-										azih gaziuth azgiazg iuaz gaziutgaiuzgtiazg azig uga aiugz iazg gaiueg iuag aiuzeg iuag iga a ai
-										</p>
-									</div>	
-									<div class="col-md-3 col-md-offset-1 col-sm-12 col-xs-height col-middle">
-										<img src="{{asset('img/Partenaires/JuniorEntreprises.png')}}" class="img-responsive" />
-									</div>
-								</div>
-							</div>
-							
-							<div class="col-sm-12">	
-								<h2>ESIEE</h2>
-								<div class="row">
-									<div class=" col-md-3 col-sm-12 col-xs-height col-middle">
-										<img src="{{asset('img/Partenaires/ESIEE.jpg')}}" class="img-responsive" />
-									</div>
-									<div class=" col-md-9 col-md-offset-1 col-xs-12 col-xs-height col-middle">
-										<p>Notre banque c'est la société générale et eztez totnioatnartia réthioath "atioazth ioazoaith oazitioa thioa azeiotha ohaotia htahtioatioah toaihtoiahtoai thaotathataiot haz
-										iuzt eaztheiutueazh ah "aoih"a iotioahtioz hoiath azothathaiotaothzith ioezthg zehez keszjbgjkesg kznbgks jjezb ezbgrezb ztbgezu btb zetb zuh rezhn rzgh rzhtg ihg ezi tzhg
-										zth zeoh ziz ioz thzoigh zoithg zoith zioeth ozeith iezht iozhgoezgn ozrgio hezioezntgioezjfziogjhoezhgz h zeioh ezhzh goezirgjn zng zgioz nnzo zing ozoing ziong zgnoezingz
-										zoie iuoezioezt rehgrezgrez gv fds g b gfdh hgf  hgfdh e h hfd fdh fdh rte he h rteh rt hrt jhrtjrtjh  hgre g ggjksndiog hgonrh h yiohy hoez hozhioez iohezoezihoez ihozh
-										ez orho hy ioze hoezih ioezh ezoie hoezihoezi hezh ezio hyiozjhgior reziuohgiorengioe ngiore ngti irteh reijhy iorehgie htiorshoirhyoreihy reihyreioh yiore hi(ore hyiorehy
-										</p>
-									</div>
-								</div>	
-							</div>
-							
-							<div class="col-sm-12">
-								<h2>Chambre de Commerce et d'Industrie PARIS - Ile de France</h2>
-								<div class="row  row-xs-height">	
-									<div class="col-md-9 col-sm-12 col-xs-height col-middle">
-										<p>PEP c'est nos amis toussa toussa zfnzfFF N F FJEZ FJKZ FKZF FKZE FJKHEZ FJKEZ FJKEZ FKEZ FEZ FJIKEZ FJEZ FIKEZ FJEZ FZIK FEZJ FIKEZ FEZIK FZ FZ FF EAZF EZJF EZJK FEZK FEZK FEZ
-										F ZK FEJKZ FJKEZ FJKEZ FZ FZKJ FJKEZ FEZ FJKEZ FJKESZ FJKES FJKESZ FJKE FKEJ FEKJ FKEZ FKZJ FJKEZ FJKEZ FJKESZ FJKEZ FJKEZ FKZJ FEJK FEJK
-										aqbfaufbbafba aziu rgfeaziut azga rtiargiuartgiuaztiuaz tgazgaziu iuaz giuaz giuaz iuaz iua giua gagtt
-										ua razutgazhgeaz utgaziugeaziugiueaz tgtiua tgiuazgiuazg teaziutgiuaztgiuaz tgiuaz tgaaz $aaat aau aztugaza
-										azthaz tiazu tgiazugtueaz tgiueazgt iueazgtiuazaz a teazuh tgaztgiueaz a giua tgeazugt ua iueazg teaziutgiuaztgiuazua
-										azurh oazazytgaziu aziu azi utagaiut giuaz iazug  iazghaz tabazht gaz aziuyazazg tueaz gtiazugti ueaztg aziuaz
-										azih gaziuth azgiazg iuaz gaziutgaiuzgtiazg azig uga aiugz iazg gaiueg iuag aiuzeg iuag iga a ai
-										</p>
-									</div>	
-									<div class="col-md-3 col-md-offset-1 col-sm-12 col-xs-height col-middle">
-										<img src="{{asset('img/Partenaires/logo_cci75.gif')}}" class="img-responsive" />
-									</div>
-								</div>
-							</div>
-							
-							
-							<div class="col-sm-12">	
-								<p>CNJE et ses partenaires</p>
-								<p>JINU</p>
-								<p>JUBS</p>
+							<div class="col-md-8 col-md-offset-1 col-xs-12 col-md-height col-middle">
+								<p>Notre banque c'est la société générale et eztez totnioatnartia réthioath "atioazth ioazoaith oazitioa thioa azeiotha ohaotia htahtioatioah toaihtoiahtoai thaotathataiot haz
+								iuzt eaztheiutueazh ah "aoih"a iotioahtioz hoiath azothathaiotaothzith ioezthg zehez keszjbgjkesg kznbgks jjezb ezbgrezb ztbgezu btb zetb zuh rezhn rzgh rzhtg ihg ezi tzhg
+								zth zeoh ziz ioz thzoigh zoithg zoith zioeth ozeith iezht iozhgoezgn ozrgio hezioezntgioezjfziogjhoezhgz h zeioh ezhzh goezirgjn zng zgioz nnzo zing ozoing ziong zgnoezingz
+								zoie iuoezioezt rehgrezgrez gv fds g b gfdh hgf  hgfdh e h hfd fdh fdh rte he h rteh rt hrt jhrtjrtjh  hgre g ggjksndiog hgonrh h yiohy hoez hozhioez iohezoezihoez ihozh
+								ez orho hy ioze hoezih ioezh ezoie hoezihoezi hezh ezio hyiozjhgior reziuohgiorengioe ngiore ngti irteh reijhy iorehgie htiorshoirhyoreihy reihyreioh yiore hi(ore hyiorehy
+								</p>
 							</div>
 						</div>	
-					</div>	
-				</div>
-			</div>
-		</div>	
+					</div>
+					
+					<div class="col-sm-12">
+						<h2>Confédération Nationale des Junior Entreprises</h2>
+						<div class="row row-md-height">	
+							<div class="col-md-8 col-sm-12 col-xs-12 col-md-height col-middle">
+								<p>PEP c'est nos amis toussa toussa zfnzfFF N F FJEZ FJKZ FKZF FKZE FJKHEZ FJKEZ FJKEZ FKEZ FEZ FJIKEZ FJEZ FIKEZ FJEZ FZIK FEZJ FIKEZ FEZIK FZ FZ FF EAZF EZJF EZJK FEZK FEZK FEZ
+								F ZK FEJKZ FJKEZ FJKEZ FZ FZKJ FJKEZ FEZ FJKEZ FJKESZ FJKES FJKESZ FJKE FKEJ FEKJ FKEZ FKZJ FJKEZ FJKEZ FJKESZ FJKEZ FJKEZ FKZJ FEJK FEJK
+								aqbfaufbbafba aziu rgfeaziut azga rtiargiuartgiuaztiuaz tgazgaziu iuaz giuaz giuaz iuaz iua giua gagtt
+								ua razutgazhgeaz utgaziugeaziugiueaz tgtiua tgiuazgiuazg teaziutgiuaztgiuaz tgiuaz tgaaz $aaat aau aztugaza
+								azthaz tiazu tgiazugtueaz tgiueazgt iueazgtiuazaz a teazuh tgaztgiueaz a giua tgeazugt ua iueazg teaziutgiuaztgiuazua
+								azurh oazazytgaziu aziu azi utagaiut giuaz iazug  iazghaz tabazht gaz aziuyazazg tueaz gtiazugti ueaztg aziuaz
+								azih gaziuth azgiazg iuaz gaziutgaiuzgtiazg azig uga aiugz iazg gaiueg iuag aiuzeg iuag iga a ai
+								</p>
+							</div>	
+							<div class="col-md-4 col-md-offset-1 col-sm-12 col-xs-12 col-md-height col-middle">
+								<img src="{{ asset('img/Partenaires/JuniorEntreprises.png') }}" class="img-responsive" />
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-sm-12">	
+						<h2>ESIEE</h2>
+						<div class="row row-md-height">
+							<div class="col-md-4 col-sm-12 col-xs-12 col-md-height col-middle">
+								<img src="{{ asset('img/Partenaires/ESIEE.jpg') }}" class="img-responsive" />
+							</div>
+							<div class="col-md-8 col-md-offset-1 col-xs-12 col-sm-12 col-md-height col-middle">
+								<p>Notre banque c'est la société générale et eztez totnioatnartia réthioath "atioazth ioazoaith oazitioa thioa azeiotha ohaotia htahtioatioah toaihtoiahtoai thaotathataiot haz
+								iuzt eaztheiutueazh ah "aoih"a iotioahtioz hoiath azothathaiotaothzith ioezthg zehez keszjbgjkesg kznbgks jjezb ezbgrezb ztbgezu btb zetb zuh rezhn rzgh rzhtg ihg ezi tzhg
+								zth zeoh ziz ioz thzoigh zoithg zoith zioeth ozeith iezht iozhgoezgn ozrgio hezioezntgioezjfziogjhoezhgz h zeioh ezhzh goezirgjn zng zgioz nnzo zing ozoing ziong zgnoezingz
+								zoie iuoezioezt rehgrezgrez gv fds g b gfdh hgf  hgfdh e h hfd fdh fdh rte he h rteh rt hrt jhrtjrtjh  hgre g ggjksndiog hgonrh h yiohy hoez hozhioez iohezoezihoez ihozh
+								ez orho hy ioze hoezih ioezh ezoie hoezihoezi hezh ezio hyiozjhgior reziuohgiorengioe ngiore ngti irteh reijhy iorehgie htiorshoirhyoreihy reihyreioh yiore hi(ore hyiorehy
+								</p>
+							</div>
+						</div>	
+					</div>
+					
+					<div class="col-sm-12">
+						<h2>Chambre de Commerce et d'Industrie PARIS - Ile de France</h2>
+						<div class="row row-md-height">	
+							<div class="col-md-8 col-sm-12 col-xs-12 col-md-height col-middle">
+								<p>PEP c'est nos amis toussa toussa zfnzfFF N F FJEZ FJKZ FKZF FKZE FJKHEZ FJKEZ FJKEZ FKEZ FEZ FJIKEZ FJEZ FIKEZ FJEZ FZIK FEZJ FIKEZ FEZIK FZ FZ FF EAZF EZJF EZJK FEZK FEZK FEZ
+								F ZK FEJKZ FJKEZ FJKEZ FZ FZKJ FJKEZ FEZ FJKEZ FJKESZ FJKES FJKESZ FJKE FKEJ FEKJ FKEZ FKZJ FJKEZ FJKEZ FJKESZ FJKEZ FJKEZ FKZJ FEJK FEJK
+								aqbfaufbbafba aziu rgfeaziut azga rtiargiuartgiuaztiuaz tgazgaziu iuaz giuaz giuaz iuaz iua giua gagtt
+								ua razutgazhgeaz utgaziugeaziugiueaz tgtiua tgiuazgiuazg teaziutgiuaztgiuaz tgiuaz tgaaz $aaat aau aztugaza
+								azthaz tiazu tgiazugtueaz tgiueazgt iueazgtiuazaz a teazuh tgaztgiueaz a giua tgeazugt ua iueazg teaziutgiuaztgiuazua
+								azurh oazazytgaziu aziu azi utagaiut giuaz iazug  iazghaz tabazht gaz aziuyazazg tueaz gtiazugti ueaztg aziuaz
+								azih gaziuth azgiazg iuaz gaziutgaiuzgtiazg azig uga aiugz iazg gaiueg iuag aiuzeg iuag iga a ai
+								</p>
+							</div>	
+							<div class="col-md-4 col-md-offset-1 col-sm-12 col-xs-12 col-md-height col-middle">
+								<img src="{{ asset('img/Partenaires/logo_cci75.gif') }}" class="img-responsive" />
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-sm-12">	
+						<p>CNJE et ses partenaires</p>
+						<p>JINU</p>
+						<p>JUBS</p>
+					</div>
+				</div>	
+			</div>	
+		</div>
+	</div>
 {% endblock %}
 
 {% block javascripts %}
@@ -285,7 +306,7 @@
 		offset: {
 		  top: 450
 		, bottom: function () {
-			return (this.bottom = $('footer').outerHeight(true))
+			return (this.bottom = $('footer').outerHeight(true) + 200)
 		  }
 		}
 	  });

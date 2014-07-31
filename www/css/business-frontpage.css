@@ -575,3 +575,7 @@ CSS for vertical align in columns
 .col-bottom {
     vertical-align:bottom;
 }
+
+.tab-about .tab-pane {
+	min-height: 750px;
+}
