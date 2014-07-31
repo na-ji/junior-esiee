@@ -190,3 +190,38 @@ sonata_formatter:
         twig:
             service: sonata.formatter.text.twigengine
             extensions: [] # Twig formatter cannot have extensions
+
+sonata_media:
+    class:
+        media:             Application\Sonata\MediaBundle\Entity\Media
+        gallery:           Application\Sonata\MediaBundle\Entity\Gallery
+        gallery_has_media: Application\Sonata\MediaBundle\Entity\GalleryHasMedia
+    db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
+    default_context: default
+    contexts:
+        default:
+            providers:
+                - sonata.media.provider.dailymotion
+                - sonata.media.provider.youtube
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+
+            formats:
+                big:   { width: 500 , quality: 90}
+                small: { width: 90 , quality: 95}
+        cv:
+            providers:
+                - sonata.media.provider.file
+
+            formats:
+                big:   { width: 500 , quality: 90}
+                small: { width: 90 , quality: 95}
+
+    cdn:
+        server:
+            path: %hostname%/uploads/media
+
+    filesystem:
+        local:
+            directory:  %kernel.root_dir%/../www/uploads/media
+            create:     false

@@ -32,12 +32,14 @@ class AppKernel extends Kernel
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             new Sonata\FormatterBundle\SonataFormatterBundle(),
             new Sonata\MarkItUpBundle\SonataMarkItUpBundle(),
+            new Sonata\MediaBundle\SonataMediaBundle(),
 
             // My bundles
             new JuniorEsiee\PageBundle\JuniorEsieePageBundle(),
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
             new Application\Sonata\BlockBundle\ApplicationSonataBlockBundle(),
             new Application\Sonata\AdminBundle\ApplicationSonataAdminBundle(),
+            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

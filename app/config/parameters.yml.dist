@@ -18,3 +18,4 @@ parameters:
     debug_redirects:        false
     use_assetic_controller: true
     application_version: b1
+    hostname: http://127.0.0.1
