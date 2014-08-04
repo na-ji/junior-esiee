@@ -3,12 +3,15 @@
 namespace JuniorEsiee\PageBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use JuniorEsiee\PageBundle\Form\OffreFormType;
+use JuniorEsiee\PageBundle\Form\ContactFormType;
 
 class PageController extends Controller
 {
     function contactAction()
     {
-        return $this->render('JuniorEsieePageBundle:Page:contact.html.twig');
+        $form = $this->createForm(new  ContactFormType);
+		return $this->render('JuniorEsieePageBundle:Page:contact.html.twig', array('form' => $form->createView(),));
     }
 	
 	function indexAction()
@@ -28,6 +31,7 @@ class PageController extends Controller
 	
 	function appeloffreAction()
     {
-        return $this->render('JuniorEsieePageBundle:Page:appeloffre.html.twig');
+		$form = $this->createForm(new OffreFormType);
+        return $this->render('JuniorEsieePageBundle:Page:appeloffre.html.twig', array('form' => $form->createView(),));
     }
 }
