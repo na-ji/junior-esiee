@@ -34,6 +34,7 @@ twig:
         resources:
             - 'SonataAdminBundle:Form:silex_form_div_layout.html.twig'
             - 'SonataFormatterBundle:Form:formatter.html.twig'
+            - 'SonataMediaBundle:Form:media_widgets.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -124,6 +125,10 @@ sonata_block:
 sonata_user:
     security_acl: true
     manager_type: orm
+    admin:
+        user:
+            class:       Application\Sonata\UserBundle\Admin\UserAdmin
+            translation: ApplicationSonataUserBundle
 
 fos_user:
     db_driver:      orm
@@ -209,7 +214,7 @@ sonata_media:
             formats:
                 big:   { width: 500 , quality: 90}
                 small: { width: 90 , quality: 95}
-        cv:
+        attachment:
             providers:
                 - sonata.media.provider.file
 

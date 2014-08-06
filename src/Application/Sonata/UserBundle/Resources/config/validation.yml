@@ -1,0 +1,19 @@
+Application\Sonata\UserBundle\Entity\User:
+    properties:
+        username:
+            - NotBlank: ~
+        email:
+            - NotBlank: ~
+            - Email:
+                message: "'{{ value }}' n'est pas un email valide."
+            - Regex:
+                pattern: "/^[a-z0-9\.-]+@edu\.esiee\.fr$/"
+                message: "Vous devez avoir un mail @edu.esiee.fr"
+        phone:
+            - Type:
+                type: integer
+                message: "Le numéro {{ value }} n'est pas un numéro valide."
+        zipCode:
+            - Type:
+                type: integer
+                message: "Le code postal {{ value }} n'est pas un code postal valide."

@@ -32,6 +32,11 @@ security:
             logout:
                 path:           /admin/logout
             anonymous:          true
+            remember_me:
+                key:      "%secret%"
+                lifetime: 31536000 # 365 jours en secondes
+                path:     /
+                domain:   ~
 
         # -> end custom configuration
 
@@ -50,6 +55,11 @@ security:
                 failure_path:   null
             logout:             true
             anonymous:          true
+            remember_me:
+                key:      "%secret%"
+                lifetime: 31536000 # 365 jours en secondes
+                path:     /
+                domain:   ~
 
     access_control:
         # URL of FOSUserBundle which need to be available to anonymous users
