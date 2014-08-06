@@ -49,6 +49,19 @@
 			{% endblock %}
 	
 		<div class="container">
+			{% for type, flashMessages in app.session.flashbag.all() %}
+				{% for flashMessage in flashMessages %}
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="alert alert-{{ type }} alert-dismissible">
+							 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+							{{ flashMessage|raw }}
+						</div>
+					</div>	
+				</div>				
+				{% endfor %}
+			{% endfor %}
+			
 			{% block body %}
 			{% endblock %}
 		</div>

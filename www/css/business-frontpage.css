@@ -81,7 +81,7 @@ footer a:hover{
 
 .navbar-inverse .navbar-nav > li > a {		/*  Couleur des liens dans le menu */
 		color: #223f62 !important;
-		transition: border 0.35s ease;
+		transition: border 0.35s ease-in-out;
 	}
 
 @media (max-width: 767px) {				/* Optimisatoin du menu pour les résolutions mobiles */
@@ -208,12 +208,12 @@ footer a:hover{
 }
 	
 .form-control{
-	transition: 0.8s ease;
+	transition: 0.8s ease-in-out;
 }
 
 .form-control:focus {
 	border-color: #223f62;						/* couleur de l'ombre des cases actives de formulaire */
-	transition: 1s ease;
+	transition: 1s ease-in-out;
 }
 
 a {
@@ -249,7 +249,7 @@ h2,h3 {											/* Sous-titres en bleu */
 
 .btn{											/* Mise en forme des boutons (couleur) */
 	color: #223f62;
-	transition: 0.5s ease;
+	transition: 0.5s ease-in-out;
 }
 	 
 .btn:hover,										/* Idem */
@@ -257,7 +257,7 @@ h2,h3 {											/* Sous-titres en bleu */
 	background-color: #223f62;
 	color : white;
 	text-decoration: none;
-	transition: 0.5s ease;
+	transition: 0.5s ease-in-out;
 }
 
 .formfile {										/* Alignement du texte de bouton pour les résolutions normales */
@@ -281,8 +281,8 @@ h2,h3 {											/* Sous-titres en bleu */
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
-  color: #fff;							/* Couleurs de l'onglet actif dans un menu latéral */
-  background-color: #223f62;
+	color: #fff;							/* Couleurs de l'onglet actif dans un menu latéral */
+	background-color: #223f62;
 }
  
 h3 { 	
@@ -317,7 +317,7 @@ h3 {
 	width:50px ;
 	font-size: 2.2em;
 	color: #fff;
-	transition: 0.35s ease;
+	transition: 0.35s ease-in-out;
 	display: inline-block;
 }
 
@@ -325,7 +325,7 @@ h3 {
 	.social-link:hover{
 		font-size: 2.7em;
 		text-decoration:none;
-		transition: 0.35s ease;	
+		transition: 0.35s ease-in-out;	
 		margin: 29px 24px 1px 0px;
 	}
 	
@@ -501,7 +501,11 @@ h3 {
 	background-color: #eee ;
 }
 
-
+.formserror ul{
+	list-style-type:none;
+	color: red; 
+	font-style:oblique;
+}
 
 
 
