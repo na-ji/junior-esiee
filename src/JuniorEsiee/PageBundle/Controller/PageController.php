@@ -23,7 +23,7 @@ class PageController extends Controller
 				->setSubject('Message depuis de le site web')
 				->setFrom($data['common']['email'])
 				->setTo('alexandre.wallet@junioresiee.com')
-				->setBody($this->renderView('JuniorEsieePageBundle:Page:EmailContact.html.twig', array('data' => $data)));
+				->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailContact.html.twig', array('data' => $data)));
 				
 				$response = $this->get('mailer')->send($message);
 
@@ -71,7 +71,7 @@ class PageController extends Controller
 					->setSubject('Message depuis de le site web')
 					->setFrom($data['common']['email'])
 					->setTo('alexandre.wallet@junioresiee.com')
-					->setBody($this->renderView('JuniorEsieePageBundle:Page:EmailOffre.html.twig', array('data' => $data)));
+					->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailOffre.html.twig', array('data' => $data)));
 					
 					$response = $this->get('mailer')->send($message);
 
