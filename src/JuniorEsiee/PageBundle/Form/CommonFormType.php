@@ -33,7 +33,6 @@ class CommonFormType extends AbstractType
 			'label'=>"Téléphone", 
 			'attr' => array('placeholder' => 'Renseignez ici votre numéro de téléphone'),
 			 'constraints' => array(new Length(array('min' => 10)), 
-				new Length(array('max' => 1)),
 				new NotBlank,
 				)
 			))
