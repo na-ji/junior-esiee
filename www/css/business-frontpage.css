@@ -14,7 +14,7 @@
 
 body {
 	margin-top: 50px; /* 50px is the height of the navbar - change this if the navbarn height changes */
-	background-color: #E4FFFF;
+	background-color: #eee;
 }
 
 
@@ -46,7 +46,7 @@ body {
 }
 
 .urlimghome{
-	background-image :url("../img/team-home2.jpg");
+	background-image :url("../img/team-home3.jpg");
 }
 
 /* adjust the color and text shadow to optimize legibility once you have an image set - you can also change the vertical positioning if desired  */
@@ -75,8 +75,8 @@ footer a:hover{
 }
 
 .navbar-inverse {
-	background-color: #eee !important;
-	border-color: #eee !important;
+	background-color: #FFF1EA   !important;
+	border-color: #223f62  !important;
 }
 
 .navbar-inverse .navbar-nav > li > a {		/*  Couleur des liens dans le menu */
@@ -238,7 +238,7 @@ p{
 	border-color: #ed7706 #ed7706  #0096aa #0096aa;
 	border-radius: 4px;
 	padding : 15px;
-	background-color: #eee;
+	background-color: #dbdbdb;
 	margin-top : 10px;
 	margin-bottom : 20px;
 }
@@ -440,14 +440,14 @@ h3 {
 }
 
 .chiffrescle{
-	border-left: 5px #eee solid;
+	border-left: 5px #dbdbdb solid;
 }
 
 .CA{
 	border: 3px solid;
 	border-color: #ed7706 #ed7706  #0096aa #0096aa;
 	border-radius: 5px;
-	background-color: #eee;
+	background-color: #dbdbdb;
 	margin-bottom : 25px;
 }
 
