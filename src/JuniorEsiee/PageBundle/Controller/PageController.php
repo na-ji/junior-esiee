@@ -101,7 +101,7 @@ class PageController extends Controller
 					
 					// Redirect - This is important to prevent users re-posting
 					// the form if they refresh the page
-					//return $this->redirect($this->generateUrl('page_accueil'));
+					return $this->redirect($this->generateUrl('page_accueil'));
 				}
 
 			}
