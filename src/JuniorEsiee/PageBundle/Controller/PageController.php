@@ -70,12 +70,13 @@ class PageController extends Controller
 					
 					if ( $form['cahiercharges']->getData() != null) {
 						$file1 = $form['cahiercharges']->getData();
-						$file1->move('temp', $file1->getClientOriginalName());
+						
+						$file1->move('tmp', 'cahier_charges.pdf');
 					}
 					
 					if ( $form['chartegraph']->getData() != null) {
 						$file2 = $form['chartegraph']->getData();
-						$file2->move('temp', $file2->getClientOriginalName());
+						$file2->move('tmp', 'charte_graphique.pdf');
 					}
 					
 					 $message = \Swift_Message::newInstance()
@@ -84,29 +85,23 @@ class PageController extends Controller
 					->setTo('walleta@esiee.fr');
 					
 					if ( $form['cahiercharges']->getData() != null) {
-						$message->attach(\Swift_Attachment::fromPath('temp/'.$file1->getClientOriginalName()));
+						$message->attach(\Swift_Attachment::fromPath('tmp/cahier_charges.pdf'));
 					}
 					
 					if ( $form['chartegraph']->getData() != null) {
-						$message->attach(\Swift_Attachment::fromPath('temp/'.$file2->getClientOriginalName()));
+						$message->attach(\Swift_Attachment::fromPath('tmp/charte_graphique.pdf'));
 					}
 					
 					$message->setBody($this->renderView('JuniorEsieePageBundle:Page:EmailOffre.html.twig', array('data' => $data)));
 
 					$response = $this->get('mailer')->send($message);
 						
-					if ( $form['cahiercharges']->getData() != null) {
-						unlink('temp/'.$file1->getClientOriginalName()); 	
-					}
 					
-					if ( $form['chartegraph']->getData() != null) {
-						unlink('temp/'.$file2->getClientOriginalName()); 
-					}
 					$this->get('session')->getFlashBag()->add('success', '<strong>Votre message a bien été envoyé à nos équipes</strong>, merci de votre intérêt.');
 					
 					// Redirect - This is important to prevent users re-posting
 					// the form if they refresh the page
-					return $this->redirect($this->generateUrl('page_accueil'));
+					//return $this->redirect($this->generateUrl('page_accueil'));
 				}
 
 			}
