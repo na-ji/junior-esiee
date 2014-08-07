@@ -20,14 +20,15 @@ class PageController extends Controller
 				$data = $form -> getData();
 				
 				 $message = \Swift_Message::newInstance()
-				->setSubject('Message depuis de le site web')
+				->setSubject('Message de contact depuis de le site web')
 				->setFrom($data['common']['email'])
-				->setTo('alexandre.wallet@junioresiee.com')
+				->setTo('walleta@esiee.fr')
 				->setBody($this->renderView('JuniorEsieePageBundle:Page:EmailContact.html.twig', array('data' => $data)));
+				
 				
 				$response = $this->get('mailer')->send($message);
 
-				$this->get('session')->getFlashBag()->add('success', 'Votre message a bien été envoyé à nos équipes, merci de votre intérêt.');
+				$this->get('session')->getFlashBag()->add('success', '<strong>Votre message a bien été envoyé à nos équipes, merci de votre intérêt.</strong>');
 				
 				// Redirect - This is important to prevent users re-posting
 				// the form if they refresh the page
@@ -66,13 +67,20 @@ class PageController extends Controller
 				if ($form->isValid()) {
 					// Perform some action, such as sending an email
 					$data = $form -> getData();
+					/* $attachment = Swift_Attachment::newInstance($data, 'my-file.pdf', 'application/pdf');
+					$attachment1 =  $data['cahiercharges']
+					$attachment2 =  $data['chartegraph'] */ 
+					
+					$file = $form['cahiercharges']->getData();
+					$file->move('file', $file->getClientOriginalName());
 					
 					 $message = \Swift_Message::newInstance()
-					->setSubject('Message depuis de le site web')
+					->setSubject("Message d'appel d'offre depuis de le site web")
 					->setFrom($data['common']['email'])
-					->setTo('alexandre.wallet@junioresiee.com')
+					->setTo('walleta@esiee.fr')
+					->attach(\Swift_Attachment::fromPath('file/'.$file->getClientOriginalName()))
 					->setBody($this->renderView('JuniorEsieePageBundle:Page:EmailOffre.html.twig', array('data' => $data)));
-					
+
 					$response = $this->get('mailer')->send($message);
 
 					$this->get('session')->getFlashBag()->add('success', '<strong>Votre message a bien été envoyé à nos équipes</strong>, merci de votre intérêt.');
