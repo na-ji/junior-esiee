@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TextBlock
  *
- * @ORM\Table(name="bde__editable_text_block")
+ * @ORM\Table(name="editable_text_block")
  * @ORM\Entity(repositoryClass="Application\Sonata\BlockBundle\Repository\EditableTextBlockRepository")
  */
 class EditableTextBlock
