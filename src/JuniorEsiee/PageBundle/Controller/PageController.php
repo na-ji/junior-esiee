@@ -5,6 +5,7 @@ namespace JuniorEsiee\PageBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use JuniorEsiee\PageBundle\Form\OffreFormType;
 use JuniorEsiee\PageBundle\Form\ContactFormType;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class PageController extends Controller
 {
@@ -71,12 +72,15 @@ class PageController extends Controller
 					if ( $form['cahiercharges']->getData() != null) {
 						$file1 = $form['cahiercharges']->getData();
 						
-						$file1->move('tmp', 'cahier_charges.pdf');
+						$ext1  = $file1->guessExtension();
+						$file1->move('tmp', 'cahier_charges.'.$ext1);
 					}
 					
 					if ( $form['chartegraph']->getData() != null) {
 						$file2 = $form['chartegraph']->getData();
-						$file2->move('tmp', 'charte_graphique.pdf');
+						
+						$ext2  = $file2->guessExtension();
+						$file2->move('tmp', 'charte_graphique.'.$ext2);
 					}
 					
 					 $message = \Swift_Message::newInstance()
@@ -85,11 +89,11 @@ class PageController extends Controller
 					->setTo('walleta@esiee.fr');
 					
 					if ( $form['cahiercharges']->getData() != null) {
-						$message->attach(\Swift_Attachment::fromPath('tmp/cahier_charges.pdf'));
+						$message->attach(\Swift_Attachment::fromPath('tmp/cahier_charges.'.$ext1));
 					}
 					
 					if ( $form['chartegraph']->getData() != null) {
-						$message->attach(\Swift_Attachment::fromPath('tmp/charte_graphique.pdf'));
+						$message->attach(\Swift_Attachment::fromPath('tmp/charte_graphique.'.$ext2));
 					}
 					
 					$message->setBody($this->renderView('JuniorEsieePageBundle:Page:EmailOffre.html.twig', array('data' => $data)));
