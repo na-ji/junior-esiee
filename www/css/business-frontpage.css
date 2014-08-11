@@ -140,6 +140,9 @@ footer a:hover{
 	margin-bottom: 30px !important;                  /* sépare le menu mobile du texte */
 }
 
+.navbar-brand{
+	margin-top: -7px;
+}
 
 @media (min-width: 768px) {
 	#menu{
@@ -235,7 +238,7 @@ p{
 
 .remarque-contact{								/* Cadre pour une remarque dans la page contact */
 	border: 3px solid;
-	border-color: #ed7706 #ed7706  #0096aa #0096aa;
+	border-color: #ed7708 #ed7708  #0096aa #0096aa;
 	border-radius: 4px;
 	padding : 15px;
 	background-color: #dbdbdb;
@@ -317,8 +320,9 @@ h3 {
 	width:50px ;
 	font-size: 2.2em;
 	color: #fff;
-	transition: 0.35s ease-in-out;
+	transition: 0.15s ease-in-out;
 	display: inline-block;
+	opacity : 0.65;
 }
 
 /* @media (min-width: 669px) {
@@ -345,6 +349,11 @@ h3 {
 .social-link i{	
 	vertical-align: middle;
 	margin-left: -2px;
+}
+
+.social-link:hover {	
+	opacity : 1;
+	
 }
 
 .links{
@@ -445,7 +454,7 @@ h3 {
 
 .CA{
 	border: 3px solid;
-	border-color: #ed7706 #ed7706  #0096aa #0096aa;
+	border-color: #ed7708 #ed7708 #0096aa #0096aa;
 	border-radius: 5px;
 	background-color: #dbdbdb;
 	margin-bottom : 25px;
@@ -493,12 +502,16 @@ h3 {
 
 
 .partnertype1{
-	background-color: #ddd;
-	margin-bottom: 15px;
+	background-color: rgba(0, 149, 168, 0.56);
 }
 
 .partnertype2{
-	background-color: #eee ;
+	background-color: rgba(237, 119, 8, 0.63);
+}
+
+.partnertype2, .partnertype1{
+	border-radius : 8px;
+	margin-bottom: 15px;
 }
 
 .formserror ul{
