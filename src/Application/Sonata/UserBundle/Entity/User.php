@@ -49,6 +49,11 @@ class User extends BaseUser
     protected $hasPassword = false;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    protected $skills;
+
+    /**
      * Get id
      *
      * @return integer $id
@@ -411,5 +416,38 @@ class User extends BaseUser
     public function getHasPassword()
     {
         return $this->hasPassword;
+    }
+
+    /**
+     * Add skills
+     *
+     * @param \Application\Sonata\UserBundle\Entity\UserSkill $skills
+     * @return User
+     */
+    public function addSkill(\Application\Sonata\UserBundle\Entity\UserSkill $skills)
+    {
+        $this->skills[] = $skills;
+
+        return $this;
+    }
+
+    /**
+     * Remove skills
+     *
+     * @param \Application\Sonata\UserBundle\Entity\UserSkill $skills
+     */
+    public function removeSkill(\Application\Sonata\UserBundle\Entity\UserSkill $skills)
+    {
+        $this->skills->removeElement($skills);
+    }
+
+    /**
+     * Get skills
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSkills()
+    {
+        return $this->skills;
     }
 }

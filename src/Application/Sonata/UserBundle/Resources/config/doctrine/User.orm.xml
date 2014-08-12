@@ -49,6 +49,8 @@
         </one-to-one>
 
         <field name="chequeNumber" type="integer" length="10" nullable="true" />
+
+        <one-to-many field="skills" target-entity="Application\Sonata\UserBundle\Entity\UserSkill" mapped-by="user" />
     </entity>
 
 </doctrine-mapping>

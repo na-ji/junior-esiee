@@ -15,6 +15,7 @@ services:
             - [ setTokenGenerator, [@fos_user.util.token_generator]]
             - [ setMailer, [@application.sonata.user.mailer]]
             - [ setLogger, [@logger]]
+
     application.sonata.user.mailer:
         class: Application\Sonata\UserBundle\Mailer\Mailer
         public: false
@@ -23,3 +24,21 @@ services:
             - @router
             - @templating
             - { confirmation.template: '%fos_user.registration.confirmation.template%', resetting.template: '%fos_user.resetting.email.template%', from_email: {confirmation: %fos_user.registration.confirmation.from_email%, resetting: %fos_user.resetting.email.from_email%} }
+
+    application_sonata_user.admin.skill_category:
+        class: Application\Sonata\UserBundle\Admin\SkillCategoryAdmin
+        arguments: [~, Application\Sonata\UserBundle\Entity\SkillCategory, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Utilisateurs", label: "Domaines de compétences"}
+
+    application_sonata_user.admin.skill:
+        class: Application\Sonata\UserBundle\Admin\SkillAdmin
+        arguments: [~, Application\Sonata\UserBundle\Entity\Skill, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Utilisateurs", label: "Compétences"}
+
+    application_sonata_user.admin.user_skill:
+        class: Application\Sonata\UserBundle\Admin\UserSkillAdmin
+        arguments: [~, Application\Sonata\UserBundle\Entity\UserSkill, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Utilisateurs", label: UserSkill}

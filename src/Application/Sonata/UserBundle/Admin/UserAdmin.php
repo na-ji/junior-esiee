@@ -180,6 +180,7 @@ class UserAdmin extends BaseAdmin
      */
     protected function configureShowFields(ShowMapper $showMapper)
     {
+        print_r($this->templates);
         $showMapper
             ->with('General')
                 ->add('username')
@@ -209,6 +210,7 @@ class UserAdmin extends BaseAdmin
                 ->add('cv')
                 ->add('socialSecurity')
                 ->add('chequeNumber')
+                ->add('skills')
             ->end()
             ->with('Groups')
                 ->add('groups')

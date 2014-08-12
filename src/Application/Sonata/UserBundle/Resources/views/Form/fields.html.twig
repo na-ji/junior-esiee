@@ -1,0 +1,20 @@
+{% block skill_widget %}
+    {% spaceless %}
+        <div class="radiosToSlider" {{ block('widget_container_attributes') }}>
+        {% for child in form %}
+            {# {{ dump(child) }} #}
+            <input type="radio" id="{{ child.vars.id }}" name="{{ child.vars.full_name }}"{% if child.vars.value is defined %} value="{{ child.vars.value }}"{% endif %}{% if child.vars.checked %} checked="checked"{% endif %}
+            {% for attrname, attrvalue in child.vars.attr %}
+                {% if attrname in ['placeholder', 'title'] %}
+                    {{ attrname }}="{{ attrvalue|trans({}, translation_domain) }}" 
+                {% else %}
+                    {{ attrname }}="{{ attrvalue }}" 
+                {% endif %}
+            {% endfor %}/>
+            <label>
+                {{ child.vars.label|trans({}, translation_domain)|raw }}
+            </label>
+        {% endfor %}
+        </div>
+    {% endspaceless %}
+{% endblock %}
