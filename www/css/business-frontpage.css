@@ -75,7 +75,7 @@ footer a:hover{
 }
 
 .navbar-inverse {
-	background-color: #FFF1EA   !important;
+	background-color: #FFC893   !important;
 	border-color: #223f62  !important;
 }
 
@@ -113,7 +113,7 @@ footer a:hover{
 	}
 }
 
-@media (min-width: 990px) {
+@media (min-width: 992px) {
 	.navbar-inverse .navbar-nav > li > a {	
 			padding-left : 15px !important;			/* Espace les liens pour les grandes résolutions */
 			padding-right: 15px !important;
@@ -193,7 +193,7 @@ footer a:hover{
 	margin-bottom:15px;
 }
 
-@media (max-width: 990px) {
+@media (max-width: 991px) {
 	.copyright hr{
 	margin-top:50px;
 	margin-bottom:15px;
@@ -365,7 +365,7 @@ h3 {
 
 
 
-@media (min-width: 768px) and (max-width: 990px) {
+@media (min-width: 768px) and (max-width: 991px) {
 	.social-link{
 		margin: 32px 16px 1px 4px;
 	}
@@ -514,14 +514,59 @@ h3 {
 	margin-bottom: 15px;
 }
 
+#Partenaires h3, #Equipe h3, #Com h3, #Pres h3{
+	text-align:center;
+}
+
+#Partenaires .col-sm-3 img{
+	margin: 40px 0;
+	display: block;
+}
+
+.alten{
+	min-width: 100px;
+}
+
+.bnp{
+	max-width: 228px;
+}
+
+.ey{
+	margin-top: -7px !important;
+	max-width: 180px;
+	margin-left: 71px !important;
+	margin-right: 40px !important;
+}
+
+@media (max-width: 1199px) {
+	.partenairesCNJE{
+		display : block !important;
+		margin:  auto !important;
+	}
+}
+
+
 .formserror ul{
 	list-style-type:none;
 	color: red; 
 	font-style:oblique;
 }
 
+.img-esiee{
+	max-width: 249px;	
+}
 
+.img-cci{
+	max-width: 260px;	
+}
 
+@media (max-width: 991px) {
+	#Partenaires img{
+		margin: 18px auto;
+		
+	}
+	
+}
 
 /**
 CSS for vertical align in columns
