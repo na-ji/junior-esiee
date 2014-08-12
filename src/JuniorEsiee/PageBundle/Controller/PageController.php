@@ -23,7 +23,8 @@ class PageController extends Controller
 				 $message = \Swift_Message::newInstance()
 				->setSubject('Message de contact depuis de le site web')
 				->setFrom($data['common']['email'])
-				->setTo('walleta@esiee.fr')
+				->setTo('contact@junioresiee.com')
+				->setContentType('text/html')
 				->setBody($this->renderView('JuniorEsieePageBundle:Page:EmailContact.html.twig', array('data' => $data)));
 				
 				
@@ -86,7 +87,8 @@ class PageController extends Controller
 					 $message = \Swift_Message::newInstance()
 					->setSubject("Message d'appel d'offre depuis de le site web")
 					->setFrom($data['common']['email'])
-					->setTo('walleta@esiee.fr');
+					->setTo('contact@junioresiee.com')
+					->setContentType('text/html');
 					
 					if ( $form['cahiercharges']->getData() != null) {
 						$message->attach(\Swift_Attachment::fromPath('tmp/cahier_charges.'.$ext1));
