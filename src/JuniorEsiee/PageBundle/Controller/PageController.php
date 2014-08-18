@@ -20,7 +20,7 @@ class PageController extends Controller
 				// Perform some action, such as sending an email
 				$data = $form -> getData();
 				
-				 $message = \Swift_Message::newInstance()
+				$messageadmin = \Swift_Message::newInstance()
 				->setSubject('Message de contact depuis de le site web')
 				->setFrom($data['common']['email'])
 				->setTo('contact@junioresiee.com')
@@ -28,9 +28,21 @@ class PageController extends Controller
 				->setBody($this->renderView('JuniorEsieePageBundle:Page:EmailContact.html.twig', array('data' => $data)));
 				
 				
-				$response = $this->get('mailer')->send($message);
+				$response = $this->get('mailer')->send($messageadmin);
 
-				$this->get('session')->getFlashBag()->add('success', '<strong>Votre message a bien été envoyé à nos équipes, merci de votre intérêt.</strong>');
+				$messageclient = \Swift_Message::newInstance()
+				->setSubject("Confirmation d'envoi d'appel d'offre.")
+				->setFrom('contact@junioresiee.com')
+				->setTo($data['common']['email'])
+				->setContentType('text/html')
+				->attach(\Swift_Attachment::fromPath('uploads/plaquetteJE.pdf'))
+				->attach(\Swift_Attachment::fromPath('uploads/Conseil-administration-2014.pdf'))	
+				->setBody($this->renderView('JuniorEsieePageBundle:Page:EmailConfirmation.html.twig', array('data' => $data, 'cas' => "votre demande de contact")));
+
+				$this->get('mailer')->send($messageclient);
+				
+				
+				$this->get('session')->getFlashBag()->add('success', '<strong>Votre demande de contact a bien été envoyé à nos équipes</strong>, un mail de confirmation vous a été envoyé. <strong>Merci</strong> de votre intérêt.');
 				
 				// Redirect - This is important to prevent users re-posting
 				// the form if they refresh the page
@@ -98,7 +110,7 @@ class PageController extends Controller
 				
 				$messageadmin->setBody($this->renderView('JuniorEsieePageBundle:Page:EmailOffre.html.twig', array('data' => $data)));
 
-				$response = $this->get('mailer')->send($messageadmin);
+				$this->get('mailer')->send($messageadmin);
 				
 				 $messageclient = \Swift_Message::newInstance()
 				->setSubject("Confirmation d'envoi d'appel d'offre.")
@@ -106,9 +118,13 @@ class PageController extends Controller
 				->setTo($data['common']['email'])
 				->setContentType('text/html')
 				->attach(\Swift_Attachment::fromPath('uploads/plaquetteJE.pdf'))
-				->attach(\Swift_Attachment::fromPath('uploads/plaquetteJE.pdf'))	
+				->attach(\Swift_Attachment::fromPath('uploads/Conseil-administration-2014.pdf'))	
+				->setBody($this->renderView('JuniorEsieePageBundle:Page:EmailConfirmation.html.twig', array('data' => $data, 'cas' => "votre dépot appel d'offre")));
+
+				$this->get('mailer')->send($messageclient);
 				
-				$this->get('session')->getFlashBag()->add('success', '<strong>Votre message a bien été envoyé à nos équipes</strong>, un mail de confirmation vous a été envoyé. <strong>Merci</strong> de votre intérêt.');
+				
+				$this->get('session')->getFlashBag()->add('success', "<strong>Votre appel d'offre a bien été envoyé à nos équipes</strong>, un mail de confirmation vous a été envoyé. <strong>Merci</strong> de votre intérêt.");
 				
 				// Redirect - This is important to prevent users re-posting
 				// the form if they refresh the page
