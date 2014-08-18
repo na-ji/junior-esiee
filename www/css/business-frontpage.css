@@ -293,6 +293,10 @@ h3 {
 	margin-bottom: 15px;
 }
 
+hr{
+	border-color : #FFC893;
+}
+
 .Sous-partie{
 	margin-top: 20px;
 	padding-left: 50px;
@@ -303,7 +307,7 @@ h3 {
 }
 
 @media (min-width: 768px) {			/* Mise en forme du block chiffre clé */
-	.col-lg-4 h2{
+	.chiffrescle h2{
 		padding-left:20px;
 	}
 }
@@ -449,7 +453,7 @@ h3 {
 }
 
 .chiffrescle{
-	border-left: 5px #dbdbdb solid;
+	border-left: 2px #FFC893 solid;
 }
 
 .CA{
@@ -563,6 +567,23 @@ h3 {
 	}
 	
 }
+
+
+.presse p{	
+	text-align:center;
+	margin-bottom : 45px;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 /**
 CSS for vertical align in columns

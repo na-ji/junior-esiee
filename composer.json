@@ -29,7 +29,8 @@
         "jms/serializer-bundle"                   : "dev-master",
         "jms/security-extra-bundle"               : "dev-master",
         "knplabs/knp-menu"                        : "dev-master as 1.1",
-        "knplabs/knp-menu-bundle"                 : "dev-master as 1.1"
+        "knplabs/knp-menu-bundle"                 : "dev-master as 1.1",
+        "leafo/lessphp"                           : "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

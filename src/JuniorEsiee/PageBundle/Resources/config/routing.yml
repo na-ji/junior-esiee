@@ -16,4 +16,12 @@ page_accueil:
 
 page_appeloffre:
     pattern : /appel-offre
-    defaults: { _controller: JuniorEsieePageBundle:Page:appeloffre }
+    defaults: { _controller: JuniorEsieePageBundle:Page:appeloffre } 
+
+page_mentions:
+    pattern : /mentions-legales
+    defaults: { _controller: JuniorEsieePageBundle:Page:mentions } 
+
+page_presse:
+    pattern : /presse
+    defaults: { _controller: JuniorEsieePageBundle:Page:presse } 	

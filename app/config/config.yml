@@ -44,12 +44,18 @@ assetic:
     bundles:
         - JuniorEsieePageBundle
     #java: /usr/bin/java
+    read_from:      "%kernel.root_dir%/../www"
     filters:
         cssrewrite: ~
         yui_css:
             jar: "%kernel.root_dir%/Resources/java/yuicompressor.jar"
         yui_js:
             jar: "%kernel.root_dir%/Resources/java/yuicompressor.jar"
+        lessphp:
+            apply_to: "\.less$"
+            file: %kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php
+            formatter: "compressed"
+            preserve_comments: false
 
 # Doctrine Configuration
 doctrine:
