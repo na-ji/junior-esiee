@@ -40,6 +40,7 @@ class AppKernel extends Kernel
             new Application\Sonata\BlockBundle\ApplicationSonataBlockBundle(),
             new Application\Sonata\AdminBundle\ApplicationSonataAdminBundle(),
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+            new JuniorEsiee\BusinessBundle\JuniorEsieeBusinessBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -84,26 +84,33 @@ class PageController extends Controller
 						$file2->move('tmp', 'charte_graphique.'.$ext2);
 					}
 					
-					 $message = \Swift_Message::newInstance()
+					 $messageadmin = \Swift_Message::newInstance()
 					->setSubject("Message d'appel d'offre depuis de le site web")
 					->setFrom($data['common']['email'])
 					->setTo('contact@junioresiee.com')
 					->setContentType('text/html');
 					
 					if ( $form['cahiercharges']->getData() != null) {
-						$message->attach(\Swift_Attachment::fromPath('tmp/cahier_charges.'.$ext1));
+						$messageadmin->attach(\Swift_Attachment::fromPath('tmp/cahier_charges.'.$ext1));
 					}
 					
 					if ( $form['chartegraph']->getData() != null) {
-						$message->attach(\Swift_Attachment::fromPath('tmp/charte_graphique.'.$ext2));
+						$messageadmin->attach(\Swift_Attachment::fromPath('tmp/charte_graphique.'.$ext2));
 					}
 					
-					$message->setBody($this->renderView('JuniorEsieePageBundle:Page:EmailOffre.html.twig', array('data' => $data)));
+					$messageadmin->setBody($this->renderView('JuniorEsieePageBundle:Page:EmailOffre.html.twig', array('data' => $data)));
 
-					$response = $this->get('mailer')->send($message);
-						
+					$response = $this->get('mailer')->send($messageadmin);
 					
-					$this->get('session')->getFlashBag()->add('success', '<strong>Votre message a bien été envoyé à nos équipes</strong>, merci de votre intérêt.');
+					 $messageclient = \Swift_Message::newInstance()
+					->setSubject("Confirmation d'envoi d'appel d'offre.")
+					->setFrom('contact@junioresiee.com')
+					->setTo($data['common']['email'])
+					->setContentType('text/html')
+					->attach(\Swift_Attachment::fromPath('uploads/plaquetteJE.pdf'))
+					->attach(\Swift_Attachment::fromPath('uploads/plaquetteJE.pdf'))	
+					
+					$this->get('session')->getFlashBag()->add('success', '<strong>Votre message a bien été envoyé à nos équipes</strong>, un mail de confirmation vous a été envoyé. <strong>Merci</strong> de votre intérêt.');
 					
 					// Redirect - This is important to prevent users re-posting
 					// the form if they refresh the page

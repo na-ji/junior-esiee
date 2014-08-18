@@ -1,0 +1,275 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="form_label_id">
+                <source>form.label_id</source>
+                <target>ID</target>
+            </trans-unit>
+            <trans-unit id="form_label_client_last_name">
+                <source>form.label_client_last_name</source>
+                <target>Nom de famille</target>
+            </trans-unit>
+            <trans-unit id="form_label_client_first_name">
+                <source>form.label_client_first_name</source>
+                <target>Prénom</target>
+            </trans-unit>
+            <trans-unit id="form_label_client_company">
+                <source>form.label_client_company</source>
+                <target>Entreprise</target>
+            </trans-unit>
+            <trans-unit id="form_label_client_phone">
+                <source>form.label_client_phone</source>
+                <target>Téléphone</target>
+            </trans-unit>
+            <trans-unit id="form_label_client_email">
+                <source>form.label_client_email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="form_label_deposit_date">
+                <source>form.label_deposit_date</source>
+                <target>Date de dépôt</target>
+            </trans-unit>
+            <trans-unit id="form_label_title">
+                <source>form.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="form_label_description">
+                <source>form.label_description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="form_label_delay">
+                <source>form.label_delay</source>
+                <target>Délais</target>
+            </trans-unit>
+            <trans-unit id="form_label_skill_categories">
+                <source>form.label_skill_categories</source>
+                <target>Majeure(s)</target>
+            </trans-unit>
+            <trans-unit id="form_label_skills">
+                <source>form.label_skills</source>
+                <target>Compétence(s)</target>
+            </trans-unit>
+            <trans-unit id="form_label_state">
+                <source>form.label_state</source>
+                <target>Statut</target>
+            </trans-unit>
+            <trans-unit id="form_label_commercial">
+                <source>form.label_commercial</source>
+                <target>Commercial</target>
+            </trans-unit>
+            <trans-unit id="form_label_rbu">
+                <source>form.label_rbu</source>
+                <target>RBU</target>
+            </trans-unit>
+            <trans-unit id="form_label_students">
+                <source>form.label_students</source>
+                <target>Réalisateur(s)</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb_link_project_list">
+                <source>breadcrumb.link_project_list</source>
+                <target>Liste des Projets</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb_link_project_history">
+                <source>breadcrumb.link_project_history</source>
+                <target>Historique des modifications</target>
+            </trans-unit>
+            
+            <trans-unit id="filter_label_id">
+                <source>filter.label_id</source>
+                <target>ID</target>
+            </trans-unit>
+            <trans-unit id="filter_label_client_last_name">
+                <source>filter.label_client_last_name</source>
+                <target>Nom de famille</target>
+            </trans-unit>
+            <trans-unit id="filter_label_client_first_name">
+                <source>filter.label_client_first_name</source>
+                <target>Prénom</target>
+            </trans-unit>
+            <trans-unit id="filter_label_client_company">
+                <source>filter.label_client_company</source>
+                <target>Entreprise</target>
+            </trans-unit>
+            <trans-unit id="filter_label_client_phone">
+                <source>filter.label_client_phone</source>
+                <target>Téléphone</target>
+            </trans-unit>
+            <trans-unit id="filter_label_client_email">
+                <source>filter.label_client_email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="filter_label_deposit_date">
+                <source>filter.label_deposit_date</source>
+                <target>Date de dépôt</target>
+            </trans-unit>
+            <trans-unit id="filter_label_title">
+                <source>filter.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="filter_label_description">
+                <source>filter.label_description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="filter_label_delay">
+                <source>filter.label_delay</source>
+                <target>Délais</target>
+            </trans-unit>
+            <trans-unit id="filter_label_skill_categories">
+                <source>filter.label_skill_categories</source>
+                <target>Majeure(s)</target>
+            </trans-unit>
+            <trans-unit id="filter_label_skills">
+                <source>filter.label_skills</source>
+                <target>Compétence(s)</target>
+            </trans-unit>
+            <trans-unit id="filter_label_state">
+                <source>filter.label_state</source>
+                <target>Statut</target>
+            </trans-unit>
+            <trans-unit id="filter_label_commercial">
+                <source>filter.label_commercial</source>
+                <target>Commercial</target>
+            </trans-unit>
+            <trans-unit id="filter_label_rbu">
+                <source>filter.label_rbu</source>
+                <target>RBU</target>
+            </trans-unit>
+            <trans-unit id="filter_label_students">
+                <source>filter.label_students</source>
+                <target>Réalisateur(s)</target>
+            </trans-unit>
+            
+            <trans-unit id="show_label_id">
+                <source>show.label_id</source>
+                <target>ID</target>
+            </trans-unit>
+            <trans-unit id="show_label_client_last_name">
+                <source>show.label_client_last_name</source>
+                <target>Nom de famille</target>
+            </trans-unit>
+            <trans-unit id="show_label_client_first_name">
+                <source>show.label_client_first_name</source>
+                <target>Prénom</target>
+            </trans-unit>
+            <trans-unit id="show_label_client_company">
+                <source>show.label_client_company</source>
+                <target>Entreprise</target>
+            </trans-unit>
+            <trans-unit id="show_label_client_phone">
+                <source>show.label_client_phone</source>
+                <target>Téléphone</target>
+            </trans-unit>
+            <trans-unit id="show_label_client_email">
+                <source>show.label_client_email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="show_label_deposit_date">
+                <source>show.label_deposit_date</source>
+                <target>Date de dépôt</target>
+            </trans-unit>
+            <trans-unit id="show_label_title">
+                <source>show.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="show_label_description">
+                <source>show.label_description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="show_label_delay">
+                <source>show.label_delay</source>
+                <target>Délais</target>
+            </trans-unit>
+            <trans-unit id="show_label_skill_categories">
+                <source>show.label_skill_categories</source>
+                <target>Majeure(s)</target>
+            </trans-unit>
+            <trans-unit id="show_label_skills">
+                <source>show.label_skills</source>
+                <target>Compétence(s)</target>
+            </trans-unit>
+            <trans-unit id="show_label_state">
+                <source>show.label_state</source>
+                <target>Statut</target>
+            </trans-unit>
+            <trans-unit id="show_label_commercial">
+                <source>show.label_commercial</source>
+                <target>Commercial</target>
+            </trans-unit>
+            <trans-unit id="show_label_rbu">
+                <source>show.label_rbu</source>
+                <target>RBU</target>
+            </trans-unit>
+            <trans-unit id="show_label_students">
+                <source>show.label_students</source>
+                <target>Réalisateur(s)</target>
+            </trans-unit>
+            
+            <trans-unit id="list_label_id">
+                <source>list.label_id</source>
+                <target>ID</target>
+            </trans-unit>
+            <trans-unit id="list_label_client_last_name">
+                <source>list.label_client_last_name</source>
+                <target>Nom de famille</target>
+            </trans-unit>
+            <trans-unit id="list_label_client_first_name">
+                <source>list.label_client_first_name</source>
+                <target>Prénom</target>
+            </trans-unit>
+            <trans-unit id="list_label_client_company">
+                <source>list.label_client_company</source>
+                <target>Entreprise</target>
+            </trans-unit>
+            <trans-unit id="list_label_client_phone">
+                <source>list.label_client_phone</source>
+                <target>Téléphone</target>
+            </trans-unit>
+            <trans-unit id="list_label_client_email">
+                <source>list.label_client_email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="list_label_deposit_date">
+                <source>list.label_deposit_date</source>
+                <target>Date de dépôt</target>
+            </trans-unit>
+            <trans-unit id="list_label_title">
+                <source>list.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="list_label_description">
+                <source>list.label_description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="list_label_delay">
+                <source>list.label_delay</source>
+                <target>Délais</target>
+            </trans-unit>
+            <trans-unit id="list_label_skill_categories">
+                <source>list.label_skill_categories</source>
+                <target>Majeure(s)</target>
+            </trans-unit>
+            <trans-unit id="list_label_skills">
+                <source>list.label_skills</source>
+                <target>Compétence(s)</target>
+            </trans-unit>
+            <trans-unit id="list_label_state">
+                <source>list.label_state</source>
+                <target>Statut</target>
+            </trans-unit>
+            <trans-unit id="list_label_commercial">
+                <source>list.label_commercial</source>
+                <target>Commercial</target>
+            </trans-unit>
+            <trans-unit id="list_label_rbu">
+                <source>list.label_rbu</source>
+                <target>RBU</target>
+            </trans-unit>
+            <trans-unit id="list_label_students">
+                <source>list.label_students</source>
+                <target>Réalisateur(s)</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

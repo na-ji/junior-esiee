@@ -1,22 +1,18 @@
-junior_esiee_page_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: JuniorEsieePageBundle:Default:index }
-
 page_contact:
     pattern : /contactez-nous
-    defaults: { _controller: JuniorEsieePageBundle:Page:contact } 
+    defaults: { _controller: JuniorEsieePageBundle:Page:contact }
 
 page_apropos:
     pattern : /a-propos
-    defaults: { _controller: JuniorEsieePageBundle:Page:about } 
+    defaults: { _controller: JuniorEsieePageBundle:Page:about }
 
 page_prestations:
     pattern : /nos-prestations
-    defaults: { _controller: JuniorEsieePageBundle:Page:prestations } 
+    defaults: { _controller: JuniorEsieePageBundle:Page:prestations }
 
 page_accueil:
     pattern : /
-    defaults: { _controller: JuniorEsieePageBundle:Page:index } 
+    defaults: { _controller: JuniorEsieePageBundle:Page:index }
 
 page_appeloffre:
     pattern : /appel-offre

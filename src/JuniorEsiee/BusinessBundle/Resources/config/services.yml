@@ -1,0 +1,10 @@
+parameters:
+
+services:
+    junior_esiee_business.admin.project:
+        class: JuniorEsiee\BusinessBundle\Admin\ProjectAdmin
+        arguments: [~, JuniorEsiee\BusinessBundle\Entity\Project, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Commercial, label: Projets, label_translator_strategy: "sonata.admin.label.strategy.underscore"}
+        calls:
+            - [ setTranslationDomain, [JuniorEsieeBusinessBundle]]
