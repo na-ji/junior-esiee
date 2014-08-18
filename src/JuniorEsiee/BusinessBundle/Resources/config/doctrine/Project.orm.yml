@@ -1,0 +1,75 @@
+JuniorEsiee\BusinessBundle\Entity\Project:
+    type: entity
+    table: null
+    repositoryClass: JuniorEsiee\BusinessBundle\Repository\ProjectRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        clientLastName:
+            type: string
+            length: 255
+            column: client_last_name
+        clientFirstName:
+            type: string
+            length: 255
+            column: client_first_name
+        clientCompany:
+            type: string
+            length: 255
+            column: client_company
+        clientPhone:
+            type: string
+            length: 20
+            column: client_phone
+        clientEmail:
+            type: string
+            length: 255
+            column: client_email
+        depositDate:
+            type: datetime
+            column: deposit_date
+        title:
+            type: string
+            length: 255
+        description:
+            type: text
+        delay:
+            type: datetime
+        state:
+            type: string
+            length: 255
+    manyToMany:
+        students:
+            targetEntity: Application\Sonata\UserBundle\Entity\User
+        skills:
+            targetEntity: Application\Sonata\UserBundle\Entity\Skill
+        skillCategories:
+            targetEntity: Application\Sonata\UserBundle\Entity\SkillCategory
+    oneToOne:
+        commercial:
+            targetEntity: Application\Sonata\UserBundle\Entity\User
+            joinTable:
+                name: mission_students
+                joinColumns:
+                    mission_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    user_id:
+                        referencedColumnName: id
+                        unique: true
+        rbu:
+            targetEntity: Application\Sonata\UserBundle\Entity\User
+            joinTable:
+                name: mission_students
+                joinColumns:
+                    mission_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    user_id:
+                        referencedColumnName: id
+                        unique: true
+    lifecycleCallbacks: {  }
