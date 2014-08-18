@@ -1,0 +1,69 @@
+{% extends "::base.html.twig" %}
+
+{% block title %} {{parent()}} - Presse / Communication{% endblock %}
+	
+{% block body %}
+
+	<div class="row presse">
+		<div class="col-sm-12 col-xs-12">
+			<h2>Espace Presse - Communication</h2>
+			
+			<h3>Les logos de Junior ESIEE</h3>
+			<hr/>
+			<p>
+				<img src="{{asset('uploads/logos/vertical-petit.png')}}"></img></br></br>
+				<a href="{{asset('uploads/logos/Junior-ESIEE-V.ai')}}"><i class="fa fa-file-image-o"></i> Adobe Illustrator</a></br>	
+				<a href="{{asset('uploads/logos/vertical-petit.png')}}"><i class="fa fa-file-image-o"></i> PNG 111*69 pixels</a></br>
+				<a href="{{asset('uploads/logos/vertical-moyen.png')}}"><i class="fa fa-file-image-o"></i> PNG 665*412 pixels</a></br>
+				<a href="{{asset('uploads/logos/vertical-grand.png')}}"><i class="fa fa-file-image-o"></i> PNG 1596*988 pixels</a></br>
+				<a href="{{asset('uploads/logos/vertical-Tgrand.png')}}"><i class="fa fa-file-image-o"></i> PNG 3326*2058 pixels</a></br>
+				<a href="{{asset('uploads/logos/vertical-grand.jpg')}}"><i class="fa fa-file-image-o"></i> JPEG 1597*1007 pixels</a></br>	
+			</p>
+			
+			<p>	
+				<img src="{{asset('uploads/logos/horizontal-petit.png')}}"></img></br></br>
+				<a href="{{asset('uploads/logos/Junior-ESIEE-H.ai')}}"><i class="fa fa-file-image-o"></i> Adobe Illustrator</a></br>
+				<a href="{{asset('uploads/logos/horizontal-petit.png')}}"><i class="fa fa-file-image-o"></i> PNG 157x33 pixels</a></br>
+				<a href="{{asset('uploads/logos/horizontal-moyen.png')}}"><i class="fa fa-file-image-o"></i> PNG 944*199 pixels</a></br>
+				<a href="{{asset('uploads/logos/horizontal-grand.png')}}"><i class="fa fa-file-image-o"></i> PNG 2265*478 pixels</a></br>
+				<a href="{{asset('uploads/logos/horizontal-Tgrand.png')}}"><i class="fa fa-file-image-o"></i> PNG 4718*995 pixels</a></br>
+				<a href="{{asset('uploads/logos/horizontal-grand.jpg')}}"><i class="fa fa-file-image-o"></i> JPEG 2265*478 pixels</a></br>
+				<a href="{{asset('uploads/logos/horizontal-Tgrand.jpg')}}"><i class="fa fa-file-image-o"></i> JPEG 4718*995 pixels</a></br>
+
+			</p>
+			
+			
+			<h3>Les fonds d'écran Junior ESIEE</h3>
+			<hr/>
+			
+			<p>
+				<a href="{{asset('uploads/logos/1280-800.jpg')}}"><i class="fa fa-image"></i> 800*600</a></br>
+				<a href="{{asset('uploads/logos/1024-768.jpg')}}"><i class="fa fa-image"></i> 1024*768</a></br>
+				<a href="{{asset('uploads/logos/1280-800.jpg')}}"><i class="fa fa-image"></i> 1280*800</a></br>
+			</p>
+			
+
+			
+			<h3>Charte de communication de Junior ESIEE</h3>
+			<hr/>
+			
+			<p>
+				<a href="{{asset('uploads/charte.pdf')}}"><i class="fa fa-file-pdf-o"></i> Télécharger la charte</a></br>
+			</p>
+			
+			
+			<h3>Plaquette Junior ESIEE</h3>
+			<hr/>
+			
+			<p>
+				<a href="{{asset('uploads/PlaquetteJE.pdf')}}"><i class="fa fa-file-pdf-o"></i> Télécharger la plaquette</a></br>
+			</p>
+			
+		</div>
+		
+	</div>	
+		
+		
+		
+		
+{% endblock %}

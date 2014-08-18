@@ -114,4 +114,14 @@ class PageController extends Controller
 
 			return $this->render('JuniorEsieePageBundle:Page:appeloffre.html.twig', array('form' => $form->createView(),));
 		}
+		
+		function mentionsAction()
+		{
+			return $this->render('JuniorEsieePageBundle:Annexe:mentions.html.twig');
+		}
+		
+		function presseAction()
+		{
+			return $this->render('JuniorEsieePageBundle:Annexe:presse.html.twig');
+		}
 }
