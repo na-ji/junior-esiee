@@ -250,3 +250,6 @@ jms_di_extra:
             mailer: @mailer
             session: @session
             dispatcher: @event_dispatcher
+
+jms_security_extra:
+    expressions: true
