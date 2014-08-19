@@ -1,0 +1,32 @@
+.compact.table{
+    .mini.button{
+        font-size: 0.6em;
+    }
+}
+
+.ui.compact.table{
+    th.sortable{
+        padding: 0;
+        a{
+            padding: 0.3em 0.5em;
+            color: rgba(0, 0, 0, 0.8);
+            text-decoration: none;
+            display: block;
+
+            &:hover{
+                background: rgba(0,0,0,.1);
+            }
+
+            &.sortable{
+                i{
+                    opacity: 0;
+                }
+                &:hover{
+                    i{
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}

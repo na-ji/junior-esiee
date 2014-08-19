@@ -1,6 +1,6 @@
 junior_esiee_business:
     resource: "@JuniorEsieeBusinessBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /tool
 
 junior_esiee_page:
     resource: "@JuniorEsieePageBundle/Resources/config/routing.yml"

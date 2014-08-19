@@ -1,1 +1,3 @@
-
+je_home_index:
+    pattern : /
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:index }

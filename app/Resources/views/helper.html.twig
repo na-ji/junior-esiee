@@ -1,0 +1,5 @@
+{% macro current(route, target) %}
+    class="{% if route in app.request.get('_route') %}active {% endif %}item"
+    {% set target = target|default(route) %}
+    href="{{ path(target) }}"
+{% endmacro %}

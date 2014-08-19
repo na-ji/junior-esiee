@@ -1,0 +1,37 @@
+.staked-checkboxes{
+
+    .ui.checkbox{
+        display: block;
+    }
+}
+
+@padding: 15px;
+@label-width: 150px;
+.form{
+    .field{
+
+        > label{
+            display: table-cell;
+            width: @label-width;
+            text-align: right;
+            float: left;
+            padding-top: 13px;
+        }
+
+        > .controls{
+            margin-left: @label-width + @padding;
+        }
+    }
+
+    > .button{
+        margin-left: @label-width + @padding;
+
+        ~ .button{
+            margin-left: 0;
+        }
+    }
+}
+
+.ui.pointing.label:before{
+    z-index: 0;
+}

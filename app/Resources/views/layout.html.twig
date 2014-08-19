@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Coucou{% endblock %}</title>
+        {% block stylesheets %}
+            {% stylesheets
+                'bundles/junioresieebusiness/css/smoothness/jquery-ui-1.10.3.custom.min.css'
+                'bundles/junioresieebusiness/css/semantic.min.css'
+                'bundles/junioresieebusiness/less/global.less'
+                'bundles/junioresieebusiness/less/form.less'
+                'bundles/junioresieebusiness/less/table.less'
+            filter='cssrewrite'
+            %}
+            <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
+            {% endstylesheets %}
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}" />
+    </head>
+    <body>
+        {% import '::helper.html.twig' as helper %}
+        <div class="ui tiered menu">
+            <div class="menu">
+                <a {{ helper.current('je_home', 'je_home_index') }}>
+                    <i class="home icon"></i>
+                    Accueil
+                </a>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a {{ helper.current('je_user', 'je_home_index') }}>
+                        <i class="users icon"></i>
+                        Utilisateurs
+                    </a>
+                {% endif %}
+                {% if is_granted('ROLE_TREZ') %}
+                    <a {{ helper.current('je_finances', 'je_home_index') }}>
+                        <i class="dollar icon"></i>
+                        Trésorerie
+                    </a>
+                    <a {{ helper.current('je_stat', 'je_home_index') }}>
+                        <i class="tasks icon"></i>
+                        Indicateurs
+                    </a>
+                {% endif %}
+                <a {{ helper.current('je_business', 'je_home_index') }}>
+                    <i class="browser icon"></i>
+                    Projets
+                </a>
+                {% if is_granted('ROLE_COM') %}
+                    <a {{ helper.current('je_marketing', 'je_home_index') }}>
+                        <i class="bullhorn icon"></i>
+                        Communication
+                    </a>
+                {% endif %}
+                <a {{ helper.current('je_bargain', 'je_home_index') }}>
+                    <i class="money icon"></i>
+                    Stage
+                </a>
+
+                <div class="right menu">
+                    <a class="item notification">
+                        <div class="ui black circular small label">
+                            <i class="bell outline icon"></i> 23
+                        </div>
+                    </a>
+                    <a class="item">
+                        <i class="settings icon"></i>
+                        Paramettres
+                    </a>
+                    <a class="item" href="{{ path('sonata_user_security_logout') }}">
+                        <i class="off icon"></i>
+                        Déconnexion
+                    </a>
+                </div>
+            </div>
+
+            {% set route = app.request.get('_route') %}
+
+            <div class="ui sub menu">
+                {# {% if 'je_user' in route %} #}
+                    <a class="item active" {# {{ helper.current('je_user_users') }} #}>Equipe</a>
+                    <a class="item" {# {{ helper.current('je_user_groups') }} #}>Postes</a>
+                {# {% endif %} #}
+
+                {% if 'je_finances' in route %}
+                    <a {{ helper.current('je_finances_treasury') }}>Trésorerie réelle</a>
+                    <a {{ helper.current('je_finances_taxes') }}>TVA</a>
+                    <div class="ui pointing dropdown item{% if 'je_finances_urssaf' in route %} active{% endif %}">
+                        URSSAF <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <a href="{{ path('je_finances_urssaf_year') }}" class="item">URSSAF annuel</a>
+                            <a href="{{ path('je_finances_urssaf_month') }}" class="item">URSSAF mensuel</a>
+                        </div>
+                    </div>
+                    <a {{ helper.current('je_finances_fc') }}>Factures clients</a>
+                    <a {{ helper.current('je_finances_bv') }}>Bulletins de versement</a>
+                    <a {{ helper.current('je_finances_ff') }}>Factures fournisseurs / RF</a>
+                    <a {{ helper.current('je_finances_vars') }}>Variables</a>
+                {% endif %}
+
+                {% if 'je_stat' in route %}
+                    <div class="ui pointing dropdown item{% if 'je_stat_finance' in route %} active{% endif %}">
+                        Trésorerie <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <a href="{{ path('je_stat_finances_treasury') }}" class="item">Trésorerie réelle</a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="ui right sidebar notification">
+            <div class="ui feed">
+                <h4 class="ui header">Notifications</h4>
+                <div class="event">
+                    <div class="content">
+                        <div class="date">
+                            Just moments ago
+                        </div>
+                        <div class="summary">
+                            <a>Sally Poodle</a> added <a>hotpup202</a> as a friend
+                        </div>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="content">
+                        <div class="date">
+                            3 days ago
+                        </div>
+                        <div class="summary">
+                            <a>Dally Doodle</a> added <a>hotpup202</a> as a friend
+                        </div>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="content">
+                        <div class="date">
+                            3 days ago
+                        </div>
+                        <div class="summary">
+                            <a>Sally Poodle</a> added <a>sixpack dog</a> as a friend
+                        </div>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="content">
+                        <div class="date">
+                            3 days ago
+                        </div>
+                        <div class="summary">
+                            <a>Dally Doodle</a> added <a>hotpup202</a> as a friend
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+
+        {% block javascripts %}
+            <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            {% javascripts
+                'bundles/junioresieebusiness/js/jquery-ui-1.10.3.custom.min.js'
+                'bundles/junioresieebusiness/js/semantic.js'
+                'bundles/junioresieebusiness/js/form.js'
+                'bundles/junioresieebusiness/js/table.js'
+            %}
+                <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+            <script type="text/javascript">
+                $('.item.notification').click(function () {
+                    $('.notification.sidebar').sidebar({overlay: true}).sidebar('toggle');
+                });
+            </script>
+        {% endblock %}
+    </body>
+</html>
