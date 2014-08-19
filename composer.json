@@ -31,6 +31,7 @@
         "jms/di-extra-bundle"                     : "~1.4",
         "knplabs/knp-menu"                        : "dev-master as 1.1",
         "knplabs/knp-menu-bundle"                 : "dev-master as 1.1",
+        "knplabs/knp-paginator-bundle"            : "~2.4",
         "leafo/lessphp"                           : "dev-master"
     },
     "require-dev": {
