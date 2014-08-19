@@ -37,6 +37,7 @@ class AppKernel extends Kernel
             new Sonata\FormatterBundle\SonataFormatterBundle(),
             new Sonata\MarkItUpBundle\SonataMarkItUpBundle(),
             new Sonata\MediaBundle\SonataMediaBundle(),
+            new Sonata\IntlBundle\SonataIntlBundle(),
 
             // My bundles
             new JuniorEsiee\PageBundle\JuniorEsieePageBundle(),

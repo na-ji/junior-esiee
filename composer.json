@@ -25,6 +25,7 @@
         "sonata-project/user-bundle"              : "~2.2",
         "sonata-project/formatter-bundle"         : "dev-master",
         "sonata-project/media-bundle"             : "~2.2",
+        "sonata-project/intl-bundle"              : "dev-master",
         "simplethings/entity-audit-bundle"        : "~0.5",
         "jms/serializer-bundle"                   : "dev-master",
         "jms/security-extra-bundle"               : "~1.5",
