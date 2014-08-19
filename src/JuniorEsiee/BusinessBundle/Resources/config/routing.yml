@@ -1,3 +1,37 @@
 je_home_index:
     pattern : /
     defaults: { _controller: JuniorEsieeBusinessBundle:Project:index }
+
+je_business_my_project:
+    pattern : /mes-ap/{page}
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:myProject, page: 1 }
+    requirements:
+        page: \d+
+
+je_business_project_create:
+    pattern : /ap/create
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:create }
+
+je_business_project_edit:
+    pattern : /ap/{id}/edit
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:edit }
+    requirements:
+        id: \d+
+
+je_business_project_show:
+    pattern : /ap/{id}/show
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:show }
+    requirements:
+        id: \d+
+
+je_business_project_delete_confirmation:
+    pattern : /ap/{id}/delete-confirmation
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:deleteConfirmation }
+    requirements:
+        id: \d+
+
+je_business_project_delete:
+    pattern : /ap/{id}/delete
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:delete }
+    requirements:
+        id: \d+

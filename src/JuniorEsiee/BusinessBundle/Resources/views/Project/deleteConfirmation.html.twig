@@ -1,0 +1,13 @@
+{% extends '::layout.html.twig' %}
+
+{% block title 'Confirmation de suppression' %}
+
+{% block content %}
+	<h1 class="ui header">Voulez-vous vraiment supprimer "{{ project.title }}" ?</h1>
+    <a class="ui red labeled icon button" href="{{ path('je_business_project_delete', {id:project.id}) }}">
+        Oui <i class="trash icon"></i>
+    </a>
+    <a class="ui green labeled icon button" href="{{ path('je_business_my_project') }}">
+        Non <i class="reply mail icon"></i>
+    </a>
+{% endblock %}

@@ -79,12 +79,17 @@ class ProjectAdmin extends Admin
             ->end()
             ->with('Suivi')
                 ->add('state')
-                ->add('commercial', 'sonata_type_model_list')
-                ->add('rbu', 'sonata_type_model_list')
+                ->add('commercial', 'sonata_type_model_list', array(
+                    'required'  => false,
+                ))
+                ->add('rbu', 'sonata_type_model_list', array(
+                    'required'  => false,
+                ))
             ->end()
             ->with('Réalisation')
                 ->add('students', 'sonata_type_model', array(
                     'multiple' => true,
+                    'required'  => false,
                 ))
             ->end()
         ;

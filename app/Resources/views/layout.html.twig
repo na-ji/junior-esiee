@@ -41,7 +41,7 @@
                         Indicateurs
                     </a>
                 {% endif %}
-                <a {{ helper.current('je_business', 'je_home_index') }}>
+                <a {{ helper.current('je_business', 'je_business_my_project') }}>
                     <i class="browser icon"></i>
                     Projets
                 </a>
@@ -76,10 +76,15 @@
             {% set route = app.request.get('_route') %}
 
             <div class="ui sub menu">
-                {# {% if 'je_user' in route %} #}
-                    <a class="item active" {# {{ helper.current('je_user_users') }} #}>Equipe</a>
-                    <a class="item" {# {{ helper.current('je_user_groups') }} #}>Postes</a>
-                {# {% endif %} #}
+                {% if 'je_user' in route %}
+                    <a {# {{ helper.current('je_user_users') }} #}>Equipe</a>
+                    <a {# {{ helper.current('je_user_groups') }} #}>Postes</a>
+                {% endif %}
+
+                {% if 'je_business' in route %}
+                    <a {{ helper.current('je_business_my_project') }}>Mes AP</a>
+                    <a {{ helper.current('je_business_project_create') }}>Déposer un AP</a>
+                {% endif %}
 
                 {% if 'je_finances' in route %}
                     <a {{ helper.current('je_finances_treasury') }}>Trésorerie réelle</a>

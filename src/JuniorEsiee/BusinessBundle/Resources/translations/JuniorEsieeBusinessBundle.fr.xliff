@@ -270,6 +270,10 @@
                 <source>list.label_students</source>
                 <target>Réalisateur(s)</target>
             </trans-unit>
+            <trans-unit id="list_label__action">
+                <source>list.label__action</source>
+                <target>Actions</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

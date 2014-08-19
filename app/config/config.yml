@@ -245,7 +245,7 @@ jms_di_extra:
             em: @doctrine.orm.entity_manager
             um: @fos_user.user_manager
             gm: @fos_user.group_manager
-            # paginator: @knp_paginator
+            paginator: @knp_paginator
             # uploadableManager: @stof_doctrine_extensions.uploadable.manager
             mailer: @mailer
             session: @session
