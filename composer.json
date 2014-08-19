@@ -28,6 +28,7 @@
         "simplethings/entity-audit-bundle"        : "~0.5",
         "jms/serializer-bundle"                   : "dev-master",
         "jms/security-extra-bundle"               : "dev-master",
+        "jms/di-extra-bundle"                     : "~1.4",
         "knplabs/knp-menu"                        : "dev-master as 1.1",
         "knplabs/knp-menu-bundle"                 : "dev-master as 1.1",
         "leafo/lessphp"                           : "dev-master"

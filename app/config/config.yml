@@ -237,3 +237,16 @@ sonata_media:
         local:
             directory:  %kernel.root_dir%/../www/uploads/media
             create:     false
+
+jms_di_extra:
+    automatic_controller_injections:
+        properties:
+            request: @request
+            em: @doctrine.orm.entity_manager
+            um: @fos_user.user_manager
+            gm: @fos_user.group_manager
+            # paginator: @knp_paginator
+            # uploadableManager: @stof_doctrine_extensions.uploadable.manager
+            mailer: @mailer
+            session: @session
+            dispatcher: @event_dispatcher
