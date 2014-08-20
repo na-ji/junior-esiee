@@ -25,7 +25,7 @@ class PageController extends Controller
 				->setFrom($data['common']['email'])
 				->setTo('contact@junioresiee.com')
 				->setContentType('text/html')
-				->setBody($this->renderView('JuniorEsieePageBundle:Page:EmailContact.html.twig', array('data' => $data)));
+				->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailContact.html.twig', array('data' => $data)));
 				
 				
 				$response = $this->get('mailer')->send($messageadmin);
@@ -37,7 +37,7 @@ class PageController extends Controller
 				->setContentType('text/html')
 				->attach(\Swift_Attachment::fromPath('uploads/plaquetteJE.pdf'))
 				->attach(\Swift_Attachment::fromPath('uploads/Conseil-administration-2014.pdf'))	
-				->setBody($this->renderView('JuniorEsieePageBundle:Page:EmailConfirmation.html.twig', array('data' => $data, 'cas' => "votre demande de contact")));
+				->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailConfirmation.html.twig', array('data' => $data, 'cas' => "votre demande de contact")));
 
 				$this->get('mailer')->send($messageclient);
 				
@@ -108,7 +108,7 @@ class PageController extends Controller
 					$messageadmin->attach(\Swift_Attachment::fromPath('tmp/charte_graphique.'.$ext2));
 				}
 				
-				$messageadmin->setBody($this->renderView('JuniorEsieePageBundle:Page:EmailOffre.html.twig', array('data' => $data)));
+				$messageadmin->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailOffre.html.twig', array('data' => $data)));
 
 				$this->get('mailer')->send($messageadmin);
 				
@@ -119,7 +119,7 @@ class PageController extends Controller
 				->setContentType('text/html')
 				->attach(\Swift_Attachment::fromPath('uploads/plaquetteJE.pdf'))
 				->attach(\Swift_Attachment::fromPath('uploads/Conseil-administration-2014.pdf'))	
-				->setBody($this->renderView('JuniorEsieePageBundle:Page:EmailConfirmation.html.twig', array('data' => $data, 'cas' => "votre dépot appel d'offre")));
+				->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailConfirmation.html.twig', array('data' => $data, 'cas' => "votre dépot appel d'offre")));
 
 				$this->get('mailer')->send($messageclient);
 				
