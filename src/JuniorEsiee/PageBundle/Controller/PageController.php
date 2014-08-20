@@ -35,7 +35,7 @@ class PageController extends Controller
 				->setFrom('contact@junioresiee.com')
 				->setTo($data['common']['email'])
 				->setContentType('text/html')
-				->attach(\Swift_Attachment::fromPath('uploads/plaquetteJE.pdf'))
+				->attach(\Swift_Attachment::fromPath('uploads/plaquetteclient.pdf'))
 				->attach(\Swift_Attachment::fromPath('uploads/Conseil-administration-2014.pdf'))	
 				->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailConfirmation.html.twig', array('data' => $data, 'cas' => "votre demande de contact")));
 
@@ -80,19 +80,7 @@ class PageController extends Controller
 				// Perform some action, such as sending an email
 				$data = $form -> getData();
 				
-				if ( $form['cahiercharges']->getData() != null) {
-					$file1 = $form['cahiercharges']->getData();
-					
-					$ext1  = $file1->guessExtension();
-					$file1->move('tmp', 'cahier_charges.'.$ext1);
-				}
-				
-				if ( $form['chartegraph']->getData() != null) {
-					$file2 = $form['chartegraph']->getData();
-					
-					$ext2  = $file2->guessExtension();
-					$file2->move('tmp', 'charte_graphique.'.$ext2);
-				}
+
 				
 				 $messageadmin = \Swift_Message::newInstance()
 				->setSubject("Message d'appel d'offre depuis de le site web")
@@ -101,10 +89,18 @@ class PageController extends Controller
 				->setContentType('text/html');
 				
 				if ( $form['cahiercharges']->getData() != null) {
+					$file1 = $form['cahiercharges']->getData();
+					
+					$ext1  = $file1->guessExtension();
+					$file1->move('tmp', 'cahier_charges.'.$ext1);
 					$messageadmin->attach(\Swift_Attachment::fromPath('tmp/cahier_charges.'.$ext1));
 				}
 				
 				if ( $form['chartegraph']->getData() != null) {
+					$file2 = $form['chartegraph']->getData();
+					
+					$ext2  = $file2->guessExtension();
+					$file2->move('tmp', 'charte_graphique.'.$ext2);
 					$messageadmin->attach(\Swift_Attachment::fromPath('tmp/charte_graphique.'.$ext2));
 				}
 				
@@ -117,7 +113,7 @@ class PageController extends Controller
 				->setFrom('contact@junioresiee.com')
 				->setTo($data['common']['email'])
 				->setContentType('text/html')
-				->attach(\Swift_Attachment::fromPath('uploads/plaquetteJE.pdf'))
+				->attach(\Swift_Attachment::fromPath('uploads/plaquetteclient.pdf'))
 				->attach(\Swift_Attachment::fromPath('uploads/Conseil-administration-2014.pdf'))	
 				->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailConfirmation.html.twig', array('data' => $data, 'cas' => "votre dépot appel d'offre")));
 
