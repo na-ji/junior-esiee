@@ -115,7 +115,7 @@ class PageController extends Controller
 				->setContentType('text/html')
 				->attach(\Swift_Attachment::fromPath('uploads/plaquetteclient.pdf'))
 				->attach(\Swift_Attachment::fromPath('uploads/Conseil-administration-2014.pdf'))	
-				->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailConfirmation.html.twig', array('data' => $data, 'cas' => "votre dépot appel d'offre")));
+				->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailConfirmation.html.twig', array('data' => $data, 'cas' => "votre dépot d'appel d'offre")));
 
 				$this->get('mailer')->send($messageclient);
 				
