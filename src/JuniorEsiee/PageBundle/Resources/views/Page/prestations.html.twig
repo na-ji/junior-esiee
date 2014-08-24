@@ -22,12 +22,134 @@
 {%endblock%}
 	
 {% block body %}
-		{{ parent()}}
-		<div class="container">		
 			<div class="row">
 				<h2>
-				Découvrez notre gammes de compétences
+				Les activités de Junior ESIEE
 				</h2>
+				
+				
+				<div id="menu-presta" >
+					<ul class="nav nav-pills nav-stacked" role="tablist">
+						<li class="active"><a href="#Competences" role="tab" data-toggle="tab">Domaines de compétences</a></li>
+						<li><a href="#Etude" role="tab" data-toggle="tab">Déroulement d'une étude</a></li>
+					</ul>
+				</div>
+				
+				<div class="col-sm-12 tab-content tab-about">
+					<div class="tab-pane active fade in" id="Competences">
+					
+					
+						<div class="img-menu nav nav-pills nav-stacked" role="tablist">
+							<a data-toggle="collapse" data-parent="#accordion" href="#elec" role="tab" ></a>
+							<a data-toggle="collapse" data-parent="#accordion" href="#info" ></a>
+							<a data-toggle="collapse" data-parent="#accordion" href="#managment" ></a>
+							<a data-toggle="collapse" data-parent="#accordion" href="#bio" ></a>
+							<a data-toggle="collapse" data-parent="#accordion" href="#esiee" style="display:none"></a>
+						</div>	
+						
+						<div class="col-sm-12 tab-content tab-about">
+							
+							
+							
+							<div class="tab-pane active fade in " id="esiee">
+								infzfd 
+							</div>
+					
+							<!-- <div class="tab-pane " id="elec">
+						
+								<h2>Electronique</h2>
+								
+						
+							</div>
+						
+							<div class="tab-pane" id="info">
+						
+								<p>Info</p>
+						
+							</div>
+							
+							<div class="tab-pane" id="managment">
+						
+								<p>Managment</p>
+						
+							</div>
+							
+							<div class="tab-pane" id="bio">
+						
+								<p>Bio</p>
+						
+							</div> -->
+						 
+						
+							<div class="panel-group" id="accordion">
+							  <div class="panel panel-default">
+								<div class="panel-heading">
+								  <h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#elec" >
+									 Electronique
+									</a>
+								  </h4>
+								</div>
+								<div id="elec" class="panel-collapse collapse">
+								  <div class="panel-body">
+									Electronique
+								  </div>
+								</div>
+							  </div>
+							  <div class="panel panel-default">
+								<div class="panel-heading">
+								  <h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#info">
+									  Informatique - Télécomunication
+									</a>
+								  </h4>
+								</div>
+								<div id="info" class="panel-collapse collapse">
+								  <div class="panel-body">
+									Informatique - Télécomunication
+								  </div>
+								</div>
+							  </div>
+							  <div class="panel panel-default">
+								<div class="panel-heading">
+								  <h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#bio">
+									  Biotechnologies
+									</a>
+								  </h4>
+								</div>
+								<div id="bio" class="panel-collapse collapse">
+								  <div class="panel-body">
+									Biotechnologies
+								  </div>
+								</div>
+							  </div>
+							  <div class="panel panel-default">
+								<div class="panel-heading">
+								  <h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#managment">
+									  Management
+									</a>
+								  </h4>
+								</div>
+								<div id="managment" class="panel-collapse collapse">
+								  <div class="panel-body">
+									Management
+								  </div>
+								</div>
+							  </div>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					<div class="tab-pane" id="Etude">
+					
+						rersg
+					</div>
+					
+					
+				</div>
 			</div>
-		</div>
 {% endblock %}

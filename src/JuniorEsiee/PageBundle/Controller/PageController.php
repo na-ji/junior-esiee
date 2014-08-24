@@ -21,7 +21,7 @@ class PageController extends Controller
 				$data = $form -> getData();
 				
 				$messageadmin = \Swift_Message::newInstance()
-				->setSubject('Message de CONTACT depuis de le site web de $data['common']['prénom'] $data['common']['nom']')
+				->setSubject("Message de CONTACT depuis de le site web de ".$data['common']['prénom']." ".$data['common']['nom'].".")
 				->setFrom($data['common']['email'])
 				->setTo('contact@junioresiee.com')
 				->setContentType('text/html')
@@ -83,7 +83,7 @@ class PageController extends Controller
 
 				
 				 $messageadmin = \Swift_Message::newInstance()
-				->setSubject("Message d'APPEL D'OFFRE depuis de le site web de $data['common']['prénom'] $data['common']['nom']. ")
+				->setSubject("Message d'APPEL D'OFFRE depuis de le site web de ".$data['common']['prénom']." ".$data['common']['nom'].".")
 				->setFrom($data['common']['email'])
 				->setTo('contact@junioresiee.com')
 				->setContentType('text/html');

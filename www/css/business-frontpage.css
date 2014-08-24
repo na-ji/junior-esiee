@@ -45,7 +45,7 @@ q{
 }											/*definie la taille et laa position de l'image du CA*/
 
 .imglogojunior{
-	max-width:320px;
+	max-width:60%;
 }
 
 .urlimghome{
@@ -544,7 +544,7 @@ hr{
 }
 
 
-#Partenaires h3, #Equipe h3, #Com h3, #Pres h3{
+#Partenaires h3, #Equipe h3, #Com h3, #Pres h3, #menu-presta{
 	text-align:center;
 }
 
@@ -614,7 +614,73 @@ hr{
 	background-color: #FFBC7C;
 }
 
+#menu-presta li{
+	display:inline-block;
+	width: 49%;
+	height: 45px;
+	margin-left: 0px;
+	background-color:#fff;
+	font-size: 1.50em;
+	line-height: 1.15;
+}
 
+#menu-presta{
+	margin: 20px;
+}
+
+#menu-presta a{	
+	height: 100%;
+	transition: 0.35s ease;
+}
+
+#menu-presta li a:hover, #menu-presta li a:focus{
+	color: #fff;
+	background-color: #223f62 !important;
+	transition: 0.35s ease;
+}
+	
+
+
+
+.menu-img-1{
+	background-image :url("../img/wallpaper-ferus-1.png");
+}
+
+
+.img-menu{
+	background-image: url("../img/presta/junior.png");
+	min-height: 500px;
+	min-width: 800px;
+	max-width: 800px;
+	font-size: 0px;
+	margin:auto;
+}
+
+.img-menu a{
+	display:inline-block;
+	min-height: 250px;
+	min-width: 400px;
+}
+
+
+.img-menu a:first-child:hover{
+	background-image: url("../img/presta/elec.png");
+}
+
+
+.img-menu a:nth-child(2):hover{
+	background-image: url("../img/presta/info.png");
+}
+
+
+.img-menu  a:nth-child(3):hover{
+	background-image: url("../img/presta/managment.png");
+}
+
+
+.img-menu a:nth-child(4):hover{
+	background-image: url("../img/presta/bio.png");
+}
 
 
 
