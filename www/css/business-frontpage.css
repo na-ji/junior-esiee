@@ -700,6 +700,23 @@ hr{
 	}
 }
 
+#Competences #esiee, #Competences .panel-body div{
+	margin : 20px auto;
+}
+	
+	
+#about .tab-about .tab-pane {
+	min-height: 750px;
+}
+
+.panel-default > .panel-heading {
+	color: #fff;
+	background-color: #223f62;
+	border-color: #914B4B;
+}
+
+	
+
 
 /**
 CSS for vertical align in columns
@@ -771,6 +788,3 @@ CSS for vertical align in columns
     vertical-align:bottom;
 }
 
-.tab-about .tab-pane {
-	min-height: 750px;
-}
