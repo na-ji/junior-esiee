@@ -703,7 +703,29 @@ hr{
 #Competences #esiee, #Competences .panel-body div{
 	margin : 20px auto;
 }
-	
+
+.panel-title {
+	font-size: 25px;
+}
+
+.panel-collapse{
+	background-color: #FDE0C5;
+}
+
+.panel-body .col-sm-4 {
+	background-color: #CDFFEF;
+	border-radius: 0px;
+}
+
+.panel-body .col-sm-4:first-of-type{
+	background-color: #CDFFFF;
+	border-radius: 10px 0 0 10px;
+}
+
+.panel-body .col-sm-4:last-of-type {
+	background-color: #CDFFFF;
+	border-radius: 0 10px 10px 0;
+}
 	
 #about .tab-about .tab-pane {
 	min-height: 750px;
@@ -715,8 +737,23 @@ hr{
 	border-color: #914B4B;
 }
 
-	
+#Competences .panel-body h3{
+	font-size: 28px;
+}
 
+.panel-body .col-sm-4 .text-center{
+	font-size:1.9em;
+	font-family: fantasy;
+	font-style : oblique;
+    color : #223f62;
+	transition : 0.3s ease;
+}
+
+.panel-body .col-sm-4 .text-center:hover{
+	font-size:2.2em;
+	margin-bottom:4px;
+	transition : 0.3s ease;
+}
 
 /**
 CSS for vertical align in columns
