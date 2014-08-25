@@ -211,6 +211,10 @@ footer a:hover{
 	footer{
 		text-align:center;
 	}
+	
+	.copyright{
+		margin-top: 23px;
+	}
 }
 	
 .form-control{
@@ -682,7 +686,19 @@ hr{
 	background-image: url("../img/presta/bio.png");
 }
 
+@media (max-width: 991px) {
+	.img-menu{
+		margin-left: -48px;
+	}
+}
 
+@media (max-width: 650px) {
+	#menu-presta li{
+		display:block;
+		width : 100%;
+		font-size: 1.32em;;
+	}
+}
 
 
 /**

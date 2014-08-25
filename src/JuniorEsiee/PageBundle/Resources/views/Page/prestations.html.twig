@@ -39,12 +39,12 @@
 					<div class="tab-pane active fade in" id="Competences">
 					
 					
-						<div class="img-menu nav nav-pills nav-stacked" role="tablist">
-							<a data-toggle="collapse" data-parent="#accordion" href="#elec" role="tab" ></a>
-							<a data-toggle="collapse" data-parent="#accordion" href="#info" ></a>
-							<a data-toggle="collapse" data-parent="#accordion" href="#managment" ></a>
-							<a data-toggle="collapse" data-parent="#accordion" href="#bio" ></a>
-							<a data-toggle="collapse" data-parent="#accordion" href="#esiee" style="display:none"></a>
+						<div class="img-menu nav nav-pills nav-stacked hidden-xs" role="tablist">
+							<a data-toggle="collapse" data-parent="#accordion" href="#elec" role="tab" class="a-menu" ></a>
+							<a data-toggle="collapse" data-parent="#accordion" href="#info" class="a-menu" ></a>
+							<a data-toggle="collapse" data-parent="#accordion" href="#managment" class="a-menu" ></a>
+							<a data-toggle="collapse" data-parent="#accordion" href="#bio"  class="a-menu"></a>
+							<a data-toggle="collapse" data-parent="#accordion" href="#esiee" style="display:none" class="a-menu"></a>
 						</div>	
 						
 						<div class="col-sm-12 tab-content tab-about">
@@ -153,3 +153,19 @@
 				</div>
 			</div>
 {% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	
+	<script>
+		$(function(){
+			$(".a-menu").click(function() {
+				$('html, body').animate({
+					scrollTop: $($(this).attr("href")).parent().offset().top
+				}, 500);
+			}); 
+		});	
+	</script>
+	
+{% endblock %}
+	
