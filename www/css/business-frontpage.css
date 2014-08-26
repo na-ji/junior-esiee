@@ -741,10 +741,19 @@ hr{
 	font-size: 28px;
 }
 
+#Competences .panel-body > i:before, #Competences .panel-body > i:after{	
+	float : right;
+	font-size : 220px;
+	color: #223f62
+}
+
+#Competences .col-sm-4 i:before, #Competences .col-sm-4 i:after{
+	font-size : 150px;
+}
+
 .panel-body .col-sm-4 .text-center{
-	font-size:1.9em;
-	font-family: fantasy;
-	font-style : oblique;
+	font-size:1.7em;
+	font-family: sans-serif;
     color : #223f62;
 	transition : 0.3s ease;
 }
@@ -754,6 +763,36 @@ hr{
 	margin-bottom:4px;
 	transition : 0.3s ease;
 }
+
+
+#Etude .col-sm-8{
+	background-color: #66CBD8;
+	padding : 5px;
+	border-radius : 8px;
+}
+
+#Etude i{
+	margin : 15px auto;
+	font-size: 4.5em;
+	color : #223f62;
+}
+
+#Etude .col-sm-8 i:before, #Etude .col-sm-8 i:after{
+	font-size : 100px;
+}
+
+#Etude h3{	
+	margin : 20px auto;
+}
+
+#Etude strong{
+	color: #CC6D2E;
+}
+
+
+
+
+
 
 /**
 CSS for vertical align in columns
