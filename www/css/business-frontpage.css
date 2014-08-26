@@ -765,20 +765,23 @@ hr{
 }
 
 
-#Etude .col-sm-8{
+#Etude .col-sm-10{
 	background-color: #66CBD8;
-	padding : 5px;
 	border-radius : 8px;
 }
 
 #Etude i{
-	margin : 15px auto;
+	margin : 15px 0px;
 	font-size: 4.5em;
 	color : #223f62;
 }
 
-#Etude .col-sm-8 i:before, #Etude .col-sm-8 i:after{
+#Etude .col-sm-10 i:before, #Etude .col-sm-10 i:after{
 	font-size : 100px;
+}
+
+#Etude .col-sm-12 i:before, #Etude .col-sm-12 i:after{
+	padding-left: 15px;
 }
 
 #Etude h3{	
