@@ -1,0 +1,79 @@
+@font-face {
+	font-family: "Flaticon";
+	src: url("../fonts/flaticon.eot");
+	src: url("../fonts/flaticon.eot#iefix") format("embedded-opentype"),
+	url("../fonts/flaticon.woff") format("woff"),
+	url("../fonts/flaticon.ttf") format("truetype"),
+	url("../fonts/flaticon.svg") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+	font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+margin-left: 20px;
+}.flaticon-bio5:before {
+	content: "\e000";
+}
+.flaticon-bricks3:before {
+	content: "\e001";
+}
+.flaticon-businessman116:before {
+	content: "\e002";
+}
+.flaticon-circuit4:before {
+	content: "\e003";
+}
+.flaticon-cloud228:before {
+	content: "\e004";
+}
+.flaticon-computers3:before {
+	content: "\e005";
+}
+.flaticon-cpu1:before {
+	content: "\e006";
+}
+.flaticon-data45:before {
+	content: "\e007";
+}
+.flaticon-delivery35:before {
+	content: "\e008";
+}
+.flaticon-eco43:before {
+	content: "\e009";
+}
+.flaticon-ecommerce1:before {
+	content: "\e00a";
+}
+.flaticon-green2:before {
+	content: "\e00b";
+}
+.flaticon-joystick5:before {
+	content: "\e00c";
+}
+.flaticon-market:before {
+	content: "\e00d";
+}
+.flaticon-men14:before {
+	content: "\e00e";
+}
+.flaticon-mobile19:before {
+	content: "\e00f";
+}
+.flaticon-passport2:before {
+	content: "\e010";
+}
+.flaticon-pc6:before {
+	content: "\e011";
+}
+.flaticon-phone322:before {
+	content: "\e012";
+}
+.flaticon-verification5:before {
+	content: "\e013";
+}
+.flaticon-worker8:before {
+	content: "\e014";
+}
