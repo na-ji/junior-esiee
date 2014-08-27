@@ -8,7 +8,7 @@
 }
 
 .remarque-contact .Chopin{
-	font-size: 2.3em;
+	font-size: 2.8em;
 	text-align:right;
 }												/*défini la forme d'un titre dans la page de présentation */
 
@@ -536,14 +536,17 @@ hr{
 	padding-left: 0;
 }
 
-.partnertype{
+.partnertype, #Pres div, #Com #Externe{
 	background-color: #70CDD8;
+}
+
+.partnertype{
 	border-radius : 12px;
 	padding : 10px 18px;
 	margin : 20px 0 ;
 }
 
-#Partenaires .col-sm-12:nth-child(2n+1) .partnertype{
+#Partenaires .col-sm-12:nth-child(2n+1) .partnertype, #Pres div:nth-child(2n+1), #Com #Interne{
 	background-color: #FFBC7C;
 }
 
@@ -607,16 +610,12 @@ hr{
 
 
 #Pres div{
-	background-color: #70CDD8;
 	border-radius : 12px;
 	padding : 10px 18px;
 	margin : 20px 0 ;
 }
 
 
-#Pres div:nth-child(2n+1){
-	background-color: #FFBC7C;
-}
 
 #menu-presta li{
 	display:inline-block;
@@ -793,9 +792,36 @@ hr{
 }
 
 
+#Com #Interne img{
+	float : right;
+	width : 120px;
+	margin : auto auto 10px 10px;
+}
 
+#Com #Externe img{
+	float : left;
+	width : 120px;
+	margin : auto 10px 10px auto  ;
+}
 
+#carousel h3, #carousel p{
+	text-align:center;
+	background-color : #C7C7C7;
+	color :  #223f62;
+	text-shadow:none;
+}
 
+#carousel p{	
+	font-size: 20px; 
+}
+
+#carousel{
+	margin-top : 20px;
+}
+
+#carousel h3, #carousel p, #Com #Interne img, #Com #Externe img, #Com #Interne, #Com #Externe{
+	border-radius: 8px;
+}
 
 /**
 CSS for vertical align in columns

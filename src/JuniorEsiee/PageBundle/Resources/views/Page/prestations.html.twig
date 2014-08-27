@@ -27,7 +27,7 @@
 			</h2>
 			<div class="row">
 				<div id="menu-presta" >
-					<ul class="nav nav-pills nav-stacked" role="tablist">
+					<ul class="nav nav-pills nav-stacked nav-tabs" role="tablist">
 						<li class="active"><a href="#Competences" role="tab" data-toggle="tab">Domaines de compétences</a></li>
 						<li><a href="#Etude" role="tab" data-toggle="tab">Déroulement d'une étude</a></li>
 					</ul>
@@ -477,9 +477,11 @@
 	<script>
 		$(function(){
 			$(".a-menu").click(function() {
-				$('html, body').animate({
+				$('html, body').animate(
+				{
 					scrollTop: $($(this).attr("href")).parent().offset().top
-				}, 1500);
+				}
+				, 1500);
 			}); 
 		});	
 	</script>
