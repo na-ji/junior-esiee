@@ -536,8 +536,8 @@ hr{
 	padding-left: 0;
 }
 
-.partnertype, #Pres div, #Com #Externe{
-	background-color: #70CDD8;
+.partnertype, #Pres div, #Com #Externe, #Etude .col-sm-10{
+	background-color: #66CBD8;
 }
 
 .partnertype{
@@ -750,6 +750,12 @@ hr{
 	font-size : 150px;
 }
 
+#Confiance{
+	background-color:#fff;
+	margin: 20px 0;
+}
+
+
 .panel-body .col-sm-4 .text-center{
 	font-size:1.7em;
 	font-family: sans-serif;
@@ -791,7 +797,6 @@ hr{
 	color: #CC6D2E;
 }
 
-
 #Com #Interne img{
 	float : right;
 	width : 120px;
@@ -819,9 +824,21 @@ hr{
 	margin-top : 20px;
 }
 
-#carousel h3, #carousel p, #Com #Interne img, #Com #Externe img, #Com #Interne, #Com #Externe{
+#carousel h3, #carousel p, #Com #Interne img, #Com #Externe img, #Com #Interne, #Com #Externe, #Etude .col-sm-10, #Confiance{
 	border-radius: 8px;
 }
+
+#Confiance{
+	border-radius: 50px;
+}
+
+
+
+
+
+
+
+
 
 /**
 CSS for vertical align in columns
