@@ -6,16 +6,22 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
         <title>{% block title %}Junior ESIEE{% endblock %}</title>
-        {% block stylesheets %} 
-			<!-- Bootstrap core CSS -->
-			<link href="{{ asset('css/bootstrap.css')}}" rel="stylesheet">
-			<link href="{{ asset('css/font-awesome.css')}}" rel="stylesheet">
-			<link rel="stylesheet" href="{{ asset('css/genericons.css')}}" type="text/css" media="all" />
-			<link rel="stylesheet" href="{{ asset('css/flaticon.css')}}" type="text/css"  />
-			<!-- Custom CSS for the 'Business Frontpage' Template -->
-			<link href="{{ asset('css/business-frontpage.css')}}" rel="stylesheet">
-		{% endblock %}
-		<link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}" />
+        
+		 {% block stylesheets %}
+            {% stylesheets
+                'bundles/junioresieepage/css/bootstrap.css'
+                'bundles/junioresieepage/css/font-awesome.css'
+                'bundles/junioresieepage/css/genericons.css'
+                'bundles/junioresieepage/css/flaticon.css'
+                'bundles/junioresieepage/css/business-frontpage.css'
+            filter='cssrewrite, ?yui_css'
+			output='css/base.css'
+            %}
+            <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
+            {% endstylesheets %}
+        {% endblock %}
+		
+		<link rel="icon" type="image/x-icon" href="{{ asset('bundles/junioresieepage/img/favicon.png') }}" />
     </head>
 	
     <body>
@@ -29,7 +35,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="{{ path('page_accueil') }}" title="Retour à l'accueil."><img src="{{asset('img/junioresieerd.png')}}"></a>
+					<a class="navbar-brand" href="{{ path('page_accueil') }}" title="Retour à l'accueil."><img src="{{asset('bundles/junioresieepage/img/junioresieerd.png')}}"></a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->

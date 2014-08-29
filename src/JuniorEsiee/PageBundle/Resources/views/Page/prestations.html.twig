@@ -71,48 +71,49 @@
 								<div class="col-sm-12 row" id="Confiance">
 									<div class="col-sm-12 row">
 										<div class="col-sm-2 col-xs-2">
-											<img src="{{ asset('img/Confiance/edf-grand.jpg') }}" class="img-responsive"/>
+											<img src="{{ asset('bundles/junioresieepage/img/Confiance/edf-grand.jpg') }}" class="img-responsive"/>
 										</div>
 										<div class="col-sm-3 col-xs-3">
-											<img src="{{ asset('img/Confiance/GDF-Suez.jpg') }}" class="img-responsive"/>
+											<img src="{{ asset('bundles/junioresieepage/img/Confiance/GDF-Suez.jpg') }}" class="img-responsive"/>
 										</div>
 										<div class="col-sm-2 col-xs-2">
-											<img src="{{ asset('img/Confiance/logo_orange france.png') }}" class="img-responsive"/>
+											<img src="{{ asset('bundles/junioresieepage/img/Confiance/logo_orange france.png') }}" class="img-responsive"/>
 										</div>
 										<div class="col-sm-3 col-xs-3">
-											<img src="{{ asset('img/Confiance/samsung-logo.jpg') }}" class="img-responsive"/>
+											<img src="{{ asset('bundles/junioresieepage/img/Confiance/samsung-logo.jpg') }}" class="img-responsive"/>
 										</div>
 										<div class="col-sm-2 col-xs-2">
-											<img src="{{ asset('img/Confiance/renault-logo.jpg') }}" class="img-responsive"/>
+											<img src="{{ asset('bundles/junioresieepage/img/Confiance/renault-logo.jpg') }}" class="img-responsive"/>
 										</div>
 									</div>
 									<div class="col-sm-12 row">
-										<div class="col-sm-4 col-xs-4">
-											<img src="{{ asset('img/Confiance/logo-safran.jpg') }}" class="img-responsive"/>
+										<div class="col-sm-2 col-xs-2">
+											<img src="{{ asset('bundles/junioresieepage/img/Confiance/spie-batignolles.jpg') }}" class="img-responsive"/>
+										</div>
+										<div class="col-sm-5 col-xs-5">
+											<img src="{{ asset('bundles/junioresieepage/img/Confiance/logo-safran.jpg') }}" class="img-responsive"/>
+										</div>
+										<div class="col-sm-3 col-xs-3">
+											<img src="{{ asset('bundles/junioresieepage/img/Confiance/netgear_logo.jpg') }}" class="img-responsive"/>
 										</div>
 										<div class="col-sm-2 col-xs-2">
-											<img src="{{ asset('img/Confiance/logo_RATP.jpg') }}" class="img-responsive"/>
+											<img src="{{ asset('bundles/junioresieepage/img/Confiance/logo_RATP.jpg') }}" class="img-responsive"/>
 										</div>
-										<div class="col-sm-3 col-xs-3">
-											<img src="{{ asset('img/Confiance/netgear_logo.jpg') }}" class="img-responsive"/>
-										</div>
-										<div class="col-sm-3 col-xs-3">
-											<img src="{{ asset('img/Confiance/spie-batignolles.jpg') }}" class="img-responsive"/>
-										</div>
+										
 									</div>
 									<div class="col-sm-12 row">
 										
 										<div class="col-sm-2 col-xs-2">
-											<img src="{{ asset('img/Confiance/logo-credit-agricole.jpg') }}" class="img-responsive"/>
+											<img src="{{ asset('bundles/junioresieepage/img/Confiance/logo-credit-agricole.jpg') }}" class="img-responsive"/>
 										</div>
 										<div class="col-sm-3 col-xs-3">
-											<img src="{{ asset('img/Confiance/Motorola_logo1.jpg') }}" class="img-responsive"/>
+											<img src="{{ asset('bundles/junioresieepage/img/Confiance/ege_hec_logo.jpg') }}" class="img-responsive"/>
 										</div>
 										<div class="col-sm-4 col-xs-4">
-											<img src="{{ asset('img/Confiance/Thales_logo-566x292.jpg') }}" class="img-responsive"/>
+											<img src="{{ asset('bundles/junioresieepage/img/Confiance/Thales_logo-566x292.jpg') }}" class="img-responsive"/>
 										</div>
 										<div class="col-sm-3 col-xs-3">
-											<img src="{{ asset('img/Confiance/ege_hec_logo.jpg') }}" class="img-responsive"/>
+											<img src="{{ asset('bundles/junioresieepage/img/Confiance/Motorola_logo1.jpg') }}" class="img-responsive"/>
 										</div>
 									</div>
 								</div>	
@@ -519,8 +520,8 @@
 							<i class="flaticon-delivery35" ></i>
 							<h3>Remise du projet</h3>
 							<h4>
-								Une fois l'étude <strong>finalisée</strong>, votre <strong>projet</strong> ainsi qu’un <strong>rapport d’étude</strong> vous seront remis avec une <strong>garantie de 3 mois</strong>.<br/>
-								De plus, vous serez aider pour <strong>paramétrer</strong>,  <strong>découvrir</strong> ou  <strong>améliorer</strong> votre projet autant que possible.
+								Une fois l'étude <strong>finalisée</strong>, votre <strong>projet</strong> ainsi qu’un <strong>rapport d’étude</strong> (pour les études techniques) vous seront remis avec une <strong>garantie de 3 mois</strong>. <!-- <br/>
+								De plus, vous serez aider pour <strong>paramétrer</strong>,  <strong>découvrir</strong> ou  <strong>améliorer</strong> votre projet autant que possible. -->
 							</h4>
 						</div>	
 					</div>
@@ -535,13 +536,20 @@
 	
 	<script>
 		$(function(){
-			$(".a-menu").click(function() {
+			//$(".a-menu").click(function() {
+			//	$('html, body').animate(
+			//	{
+			//		scrollTop: $($(this).attr("href")).parent().offset().top
+			//	}
+			//	, 1500);
+			//}); 
+			$('.collapse').on('shown.bs.collapse', function () {
+				console.log($(this));
 				$('html, body').animate(
 				{
-					scrollTop: $($(this).attr("href")).parent().offset().top
-				}
-				, 1500);
-			}); 
+					scrollTop: $(this).parent().offset().top
+				}, 1000);
+			});
 		});	
 	</script>
 	

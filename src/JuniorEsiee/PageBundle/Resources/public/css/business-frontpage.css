@@ -62,7 +62,22 @@ footer {
 	padding:15px 0;
 	background-color: #223f62;
 	color: white;
-	margin-top: 20px;
+	margin-top: 60px;
+}
+
+#Domaines-Accueil .img-responsive{
+	display:inline-block;
+}
+
+#Domaines-Accueil > div:hover > div {
+	background-color: #FFBC7C;
+	border-radius: 8px;
+	transition: 1s ease;
+}
+
+#Domaines-Accueil > div > div {
+	transition: 1s ease;
+	padding : 3px;
 }
 
 footer a{
@@ -831,6 +846,14 @@ hr{
 
 #Confiance{
 	border-radius: 50px;
+}
+
+#Confiance .col-sm-12:first-of-type div:first-of-type img, #Confiance .col-sm-12:first-of-type div:last-of-type img {
+	margin-top : 15px;
+}
+
+#Confiance .col-sm-12:last-of-type div:first-of-type img, #Confiance .col-sm-12:last-of-type div:last-of-type img {
+	margin-bottom : 15px;
 }
 
 

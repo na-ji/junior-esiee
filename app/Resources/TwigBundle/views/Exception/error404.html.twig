@@ -1,0 +1,35 @@
+<!-- {#{% block title %} {{parent()}} - Erreur{% endblock %}
+	
+{% block body %}
+
+	<div class="row presse">
+		<div class="col-sm-12 col-xs-12">
+			<h2>Page introuvable !</h2>
+			
+			<h3>Désolé mais, malgré nos efforts, nous n'avons pas réussi à afficher cette page, elle ne fait pas partie de notre site.</h3>
+			<p>Vérifiez l'URL ou bien retourner sur une page grâce au menu</p>
+		
+		</div>
+	</div>
+
+	
+	
+{% block body %}   #}	-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>An Error Occurred: {{ status_text }}</title>
+		<link rel="icon" type="image/x-icon" href="{{ asset('bundles/junioresieepage/img/favicon.png') }}" />
+    </head>
+    <body>
+        <h1>Page introuvable !</h1>
+        <h2>The server returned a "{{ status_code }} {{ status_text }}".</h2>
+
+        <h3>
+            Désolé mais, malgré tous les efforts de l'équipe de Junior ESIEE, nous n'avons pas réussi à afficher cette page, elle ne fait pas partie de notre site.
+			Vérifiez l'URL ou bien retournez à l'<a href="http://www.junioresiee.com">accueil</a>.
+        </h3>
+    </body>
+</html>
