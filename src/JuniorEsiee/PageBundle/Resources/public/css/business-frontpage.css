@@ -658,15 +658,8 @@ hr{
 }
 	
 
-
-
-.menu-img-1{
-	background-image :url("../img/wallpaper-ferus-1.png");
-}
-
-
 .img-menu{
-	background-image: url("../img/presta/junior.png");
+	background-image: url("../img/presta/wallpaper-ferus.png");
 	min-height: 500px;
 	min-width: 800px;
 	max-width: 800px;
