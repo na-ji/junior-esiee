@@ -21,7 +21,7 @@ class PageController extends Controller
 				$data = $form -> getData();
 				
 				$messageadmin = \Swift_Message::newInstance()
-				->setSubject("Message de CONTACT depuis de le site web de ".$data['common']['prénom']." ".$data['common']['nom'].".")
+				->setSubject("Message de CONTACT depuis de le site web de ".$data['common']['prenom']." ".$data['common']['nom'].".")
 				->setFrom($data['common']['email'])
 				->setTo('contact@junioresiee.com')
 				->setContentType('text/html')
@@ -32,7 +32,7 @@ class PageController extends Controller
 
 				$messageclient = \Swift_Message::newInstance()
 				->setSubject("Confirmation d'envoi d'appel d'offre.")
-				->setFrom('Junior ESIEE website')
+				->setFrom('contact@junioresiee.com')
 				->setTo($data['common']['email'])
 				->setContentType('text/html')
 				->attach(\Swift_Attachment::fromPath('uploads/plaquetteclient.pdf'))
@@ -83,7 +83,7 @@ class PageController extends Controller
 
 				
 				 $messageadmin = \Swift_Message::newInstance()
-				->setSubject("Message d'APPEL D'OFFRE depuis de le site web de ".$data['common']['prénom']." ".$data['common']['nom'].".")
+				->setSubject("Message d'APPEL D'OFFRE depuis de le site web de ".$data['common']['prenom']." ".$data['common']['nom'].".")
 				->setFrom($data['common']['email'])
 				->setTo('contact@junioresiee.com')
 				->setContentType('text/html');
@@ -110,7 +110,7 @@ class PageController extends Controller
 				
 				 $messageclient = \Swift_Message::newInstance()
 				->setSubject("Confirmation d'envoi d'appel d'offre.")
-				->setFrom('Junior ESIEE website')
+				->setFrom('contact@junioresiee.com')
 				->setTo($data['common']['email'])
 				->setContentType('text/html')
 				->attach(\Swift_Attachment::fromPath('uploads/plaquetteclient.pdf'))
