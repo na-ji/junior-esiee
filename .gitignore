@@ -1,6 +1,7 @@
 /www/bundles/
 /www/css/*
 /www/js/*
+/www/tmp/*
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml
