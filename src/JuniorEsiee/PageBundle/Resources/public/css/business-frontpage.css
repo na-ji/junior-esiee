@@ -21,6 +21,11 @@ q{
 	font-style: oblique;
 }
 
+@media (max-width: 767px) {
+.business-header {
+	height: 280px;
+}
+
 .business-header {
 	height: 400px;
 	background: center center no-repeat;
