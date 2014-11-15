@@ -21,16 +21,17 @@ q{
 	font-style: oblique;
 }
 
-@media (max-width: 767px) {
-.business-header {
-	height: 280px;
-}
-
 .business-header {
 	height: 400px;
 	background: center center no-repeat;
 	background-size: cover;
-}											/* define the header with the image in 1920*400 */
+}/* define the header with the image in 1920*400 */
+
+@media (max-width: 767px) {
+	.business-header {
+		height: 280px;
+	}
+}
 
 .urlimgoffre{
 	background-image :url("../img/appeloffreimg.jpg");
