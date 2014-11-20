@@ -27,7 +27,7 @@ q{
 	background-size: cover;
 }/* define the header with the image in 1920*400 */
 
-@media (max-width: 767px) {
+@media (max-width: 1440px) {
 	.business-header {
 		height: 280px;
 	}
