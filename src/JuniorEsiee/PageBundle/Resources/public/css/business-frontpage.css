@@ -717,6 +717,24 @@ hr{
 	margin : 20px auto;
 }
 
+@media (min-width: 768px) {	
+	#Competences #esiee, #Competences .panel-body div{	
+		height: 1510px;
+	}
+}
+
+@media (min-width: 992px) {	
+	#Competences #esiee, #Competences .panel-body div{	
+		height: 1170px;
+	}
+}
+
+@media (min-width: 1200px) {	
+	#Competences #esiee, #Competences .panel-body div{	
+		height: 900px;
+	}
+}
+
 .panel-title {
 	font-size: 25px;
 }
@@ -771,14 +789,14 @@ hr{
 
 
 .panel-body .col-sm-4 .text-center{
-	font-size:1.7em;
+	font-size:1.55em;
 	font-family: sans-serif;
     color : #223f62;
 	transition : 0.3s ease;
 }
 
 .panel-body .col-sm-4 .text-center:hover{
-	font-size:2.2em;
+	font-size:1.65em;
 	margin-bottom:4px;
 	transition : 0.3s ease;
 }
