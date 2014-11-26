@@ -670,7 +670,7 @@ hr{
 	min-width: 800px;
 	max-width: 800px;
 	font-size: 0px;
-	margin:auto;
+	margin:15px auto;
 }
 
 .img-menu a{
@@ -731,7 +731,7 @@ hr{
 
 @media (min-width: 1200px) {	
 	#Competences #esiee, #Competences .panel-body div{	
-		height: 900px;
+		height: 960px;
 	}
 }
 
