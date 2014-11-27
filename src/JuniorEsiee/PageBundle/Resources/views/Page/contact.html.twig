@@ -5,107 +5,112 @@
 {%block li5%}class="active"{% endblock %}
 	
 {% block body %}
-		{{ parent()}}
+		<div class="container">
 		
 
-		{% form_theme form 'JuniorEsieePageBundle:Form:fields.html.twig' %}	
-		 <div class="row">
-            <div class="col-lg-8 col-sm-8">
-                <h2>
-				Contactez-nous vite !
-				</h2>
-                <p>Remplissez le formulaire ci-dessous pour toute question relative à Junior ESIEE et ses activités ou pour une proposition de partenariat ou de communication.</p>
-				<p>Nous essaierons de répondre à votre message dans les plus brefs délais.</p>
-				<div class="remarque-contact">
-					<p>
-							Pour toute demande relative à une <strong>proposition d'étude</strong> que vous souhaiteriez communiquer à Junior ESIEE, merci de passer par le formulaire d'<strong>appel d'offre</strong> qui vous permettra de déposer des fichiers (plaquette, cahier des charges...).
-					</p>
-					<p><a class="btn btn-default btn-large" href="{{ path('page_appeloffre') }}" title="Déposer un appel d'offre.">Formulaire d'appel d'offre &raquo;</a></p>
-				</div>
-				
-				<div>
-					<form class="form-horizontal" method="post" {{ form_enctype(form) }}>
-						{{ form_widget(form) }}
+			{% form_theme form 'JuniorEsieePageBundle:Form:fields.html.twig' %}	
+			 <div class="row">
+				<div class="col-lg-8 col-sm-8">
+					<h2>
+					Contactez-nous vite !
+					</h2>
+					<p>Remplissez le formulaire ci-dessous pour toute question relative à Junior ESIEE et ses activités ou pour une proposition de partenariat ou de communication.</p>
+					<p>Nous essaierons de répondre à votre message dans les plus brefs délais.</p>
+					<div class="remarque-contact">
+						<p>
+								Pour toute demande relative à une <strong>proposition d'étude</strong> que vous souhaiteriez communiquer à Junior ESIEE, merci de passer par le formulaire d'<strong>appel d'offre</strong> qui vous permettra de déposer des fichiers (plaquette, cahier des charges...).
+						</p>
+						<p><a class="btn btn-default btn-large" href="{{ path('page_appeloffre') }}" title="Déposer un appel d'offre.">Formulaire d'appel d'offre &raquo;</a></p>
+					</div>
+					
+					<div>
+						<form class="form-horizontal" method="post" {{ form_enctype(form) }}>
+							{{ form_widget(form) }}
+							<button type="submit" class="btn btn-default col-sm-2 col-sm-offset-10">Envoyer</button>
+						</form>
+					</div>
+					
+					<!-- <form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for="Name">Nom</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="Name" placeholder="Entrez ici votre nom" autofocus />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for="FirstName">Prénom</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="FirstName" placeholder="Entrez ici votre prénom" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for="Company">Société</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="Company" placeholder="Entrez ici le nom de votre entreprise, agence, association..." />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for="Email">E-mail</label>
+							<div class="col-sm-10">
+								<input type="email" class="form-control" id="Email" placeholder="Entrez ici votre e-mail" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for="Téléphone">Téléphone</label>
+							<div class="col-sm-10">
+								<input type="tel" class="form-control" id="Téléphone" placeholder="Entrez ici votre numéro de téléphone" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for="Message">Message</label>
+							<div class="col-sm-10">
+								<textarea class="form-control" id="Message" rows='10' style="resize:none;" placeholder="Entrez ici votre proposition, demande, question, remarque..."></textarea>
+							</div>
+						</div>
 						<button type="submit" class="btn btn-default col-sm-2 col-sm-offset-10">Envoyer</button>
-					</form>
-				</div>
-                
-				<!-- <form class="form-horizontal" role="form">
-					<div class="form-group">
-						<label class="col-sm-2 control-label" for="Name">Nom</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="Name" placeholder="Entrez ici votre nom" autofocus />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label" for="FirstName">Prénom</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="FirstName" placeholder="Entrez ici votre prénom" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label" for="Company">Société</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="Company" placeholder="Entrez ici le nom de votre entreprise, agence, association..." />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label" for="Email">E-mail</label>
-						<div class="col-sm-10">
-							<input type="email" class="form-control" id="Email" placeholder="Entrez ici votre e-mail" />
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<label class="col-sm-2 control-label" for="Téléphone">Téléphone</label>
-						<div class="col-sm-10">
-							<input type="tel" class="form-control" id="Téléphone" placeholder="Entrez ici votre numéro de téléphone" />
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<label class="col-sm-2 control-label" for="Message">Message</label>
-						<div class="col-sm-10">
-							<textarea class="form-control" id="Message" rows='10' style="resize:none;" placeholder="Entrez ici votre proposition, demande, question, remarque..."></textarea>
-						</div>
-					</div>
-					<button type="submit" class="btn btn-default col-sm-2 col-sm-offset-10">Envoyer</button>
-				</form> -->
-			
-			</div>
-			
-            <div class="col-lg-4 col-sm-4">
-                <h2>Coordonnées</h2>
-                <address>
-                    <strong>Junior ESIEE</strong>
-                    <br>2 Boulevard Blaise Pascal,
-					<br>BP. 99 - 93162 Noisy le Grand CEDEX
-                    <br>
-                </address>
-                <address>
-                    <span title="Téléphone"><strong>Téléphone</strong> :</span> <span  class="acontact"><a href="tel:0033145926670" type="tel">01.45.92.66.70</a></span>
-                    <br>
-                    <span title="Email"><strong>E-mail</strong> :</span> 
-						<span class="acontact">
-							<script>document.write('<'+'a'+' '+'h'+'r'+'e'+'f'+'='+"'"+'m'+'&'+'#'+'9'+'7'+';'+'i'+'&'+'#'+'1'+'0'+'8'+';'+'&'+'#'+'1'+
-																				'1'+'6'+';'+'o'+'&'+'#'+'5'+'8'+';'+'c'+'o'+'%'+'&'+'#'+'5'+'4'+';'+'E'+'%'+'7'+'4'+'a'+'%'+'6'+'3'+
-																				't'+'%'+'&'+'#'+'5'+'2'+';'+'0'+'j'+'%'+'7'+'5'+'%'+'&'+'#'+'5'+'4'+';'+'&'+'#'+'6'+'9'+';'+'i'+'o'+
-																				'r'+'e'+'s'+'i'+'&'+'#'+'1'+'0'+'1'+';'+'%'+'6'+'5'+'&'+'#'+'4'+'6'+';'+'c'+'&'+'#'+'1'+'1'+'1'+';'+
-																				'&'+'#'+'1'+'0'+'9'+';'+"'"+'>'+'c'+'o'+'n'+'&'+'#'+'1'+'1'+'6'+';'+'a'+'c'+'t'+'&'+'#'+'6'+'4'+';'+
-																				'j'+'u'+'&'+'#'+'1'+'1'+'0'+';'+'i'+'o'+'r'+'&'+'#'+'1'+'0'+'1'+';'+'s'+'i'+'e'+'e'+'&'+'#'+'4'+'6'+
-																				';'+'c'+'&'+'#'+'1'+'1'+'1'+';'+'&'+'#'+'1'+'0'+'9'+';'+'<'+'/'+'a'+'>');
-																				</script>
-																				<noscript>[Turn on JavaScript to see the email address]</noscript>
-						</span>
-                </address>
-				<div><strong>Permanence téléphonique</strong> : <br/>En semaine, <strong>12h30 - 13h</strong> et <strong>16h - 19h</strong></div>
+					</form> -->
 				
-            </div>
-        </div>
+				</div>
+				
+				<div class="col-lg-4 col-sm-4">
+					<h2>Coordonnées</h2>
+					<address>
+						<strong>Junior ESIEE</strong>
+						<br>2 Boulevard Blaise Pascal,
+						<br>BP. 99 - 93162 Noisy le Grand CEDEX
+						<br>
+					</address>
+					<address>
+						<span title="Téléphone"><strong>Téléphone</strong> :</span> <span  class="acontact"><a href="tel:0033145926670" type="tel">01.45.92.66.70</a></span>
+						<br>
+						<span title="Email"><strong>E-mail</strong> :</span> 
+							<span class="acontact">
+								<script>document.write('<'+'a'+' '+'h'+'r'+'e'+'f'+'='+"'"+'m'+'&'+'#'+'9'+'7'+';'+'i'+'&'+'#'+'1'+'0'+'8'+';'+'&'+'#'+'1'+
+																					'1'+'6'+';'+'o'+'&'+'#'+'5'+'8'+';'+'c'+'o'+'%'+'&'+'#'+'5'+'4'+';'+'E'+'%'+'7'+'4'+'a'+'%'+'6'+'3'+
+																					't'+'%'+'&'+'#'+'5'+'2'+';'+'0'+'j'+'%'+'7'+'5'+'%'+'&'+'#'+'5'+'4'+';'+'&'+'#'+'6'+'9'+';'+'i'+'o'+
+																					'r'+'e'+'s'+'i'+'&'+'#'+'1'+'0'+'1'+';'+'%'+'6'+'5'+'&'+'#'+'4'+'6'+';'+'c'+'&'+'#'+'1'+'1'+'1'+';'+
+																					'&'+'#'+'1'+'0'+'9'+';'+"'"+'>'+'c'+'o'+'n'+'&'+'#'+'1'+'1'+'6'+';'+'a'+'c'+'t'+'&'+'#'+'6'+'4'+';'+
+																					'j'+'u'+'&'+'#'+'1'+'1'+'0'+';'+'i'+'o'+'r'+'&'+'#'+'1'+'0'+'1'+';'+'s'+'i'+'e'+'e'+'&'+'#'+'4'+'6'+
+																					';'+'c'+'&'+'#'+'1'+'1'+'1'+';'+'&'+'#'+'1'+'0'+'9'+';'+'<'+'/'+'a'+'>');
+																					</script>
+																					<noscript>[Turn on JavaScript to see the email address]</noscript>
+							</span>
+					</address>
+					<div><strong>Permanence téléphonique</strong> : <br/>En semaine, <strong>12h30 - 13h</strong> et <strong>16h - 19h</strong></div>
+					
+				</div>
+			</div>
+		</div>
 		
-	<div class="business-header">
-        	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5251.888410830473!2d2.5852759950269584!3d48.840202934049366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xe643b83e6c217949!2sESIEE!5e0!3m2!1sfr!2sfr!4v1405418946428" width=100% height="400" frameborder="0" style="border:0"></iframe>
-    	</div>	
+		
 					
 		
+{% endblock %}
+	
+{% block map %}
+	<div class="business-header map">
+       	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5251.888410830473!2d2.5852759950269584!3d48.840202934049366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xe643b83e6c217949!2sESIEE!5e0!3m2!1sfr!2sfr!4v1405418946428" width=100% height="400" frameborder="0" style="border:0"></iframe>
+	</div>
 {% endblock %}
