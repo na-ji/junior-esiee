@@ -37,12 +37,12 @@ class PageController extends Controller
 				->setContentType('text/html')
 				->attach(\Swift_Attachment::fromPath('uploads/plaquetteclient.pdf'))
 				->attach(\Swift_Attachment::fromPath('uploads/Conseil-administration-2014.pdf'))	
-				->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailConfirmation.html.twig', array('data' => $data, 'cas' => "votre demande de contact")));
+				->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailConfirmation.html.twig', array('data' => $data, 'cas' => " demande de contact")));
 
 				$this->get('mailer')->send($messageclient);
 				
 				
-				$this->get('session')->getFlashBag()->add('success', '<strong>Votre demande de contact a bien été envoyé à nos équipes</strong>, un mail de confirmation vous a été envoyé. <strong>Merci</strong> de votre intérêt.');
+				$this->get('session')->getFlashBag()->add('success', '<strong>Votre demande de contact a bien été envoyée à nos équipes</strong>, un mail de confirmation vous a été envoyé. <strong>Merci</strong> de votre intérêt.');
 				
 				// Redirect - This is important to prevent users re-posting
 				// the form if they refresh the page
@@ -115,12 +115,12 @@ class PageController extends Controller
 				->setContentType('text/html')
 				->attach(\Swift_Attachment::fromPath('uploads/plaquetteclient.pdf'))
 				->attach(\Swift_Attachment::fromPath('uploads/Conseil-administration-2014.pdf'))	
-				->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailConfirmation.html.twig', array('data' => $data, 'cas' => "votre dépot d'appel d'offre")));
+				->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailConfirmation.html.twig', array('data' => $data, 'cas' => " dépot d'appel d'offre")));
 
 				$this->get('mailer')->send($messageclient);
 				
 				
-				$this->get('session')->getFlashBag()->add('success', "<strong>Votre appel d'offre a bien été envoyé à nos équipes</strong>, un mail de confirmation vous a été envoyé. <strong>Merci</strong> de votre intérêt.");
+				$this->get('session')->getFlashBag()->add('success', "<strong>Votre appel d'offre a bien été envoyé à nos équipes</strong>, un mail de confirmation vous a été envoyée. <strong>Merci</strong> de votre intérêt.");
 				
 				// Redirect - This is important to prevent users re-posting
 				// the form if they refresh the page

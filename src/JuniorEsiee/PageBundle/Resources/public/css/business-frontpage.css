@@ -91,6 +91,13 @@ footer {
 	margin-top: 85px;
 }
 
+@media (max-width: 1440px) {
+	.map{
+		margin-bottom: 120px;
+		margin-top: 85px;
+	}
+}
+
 footer a{
 	color: #eee;
 }
