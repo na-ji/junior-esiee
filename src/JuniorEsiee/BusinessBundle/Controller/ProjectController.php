@@ -5,6 +5,8 @@ namespace JuniorEsiee\BusinessBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JuniorEsiee\BusinessBundle\Entity\Project;
+use JuniorEsiee\BusinessBundle\Form\ProjectType;
+use Symfony\Component\HttpFoundation\Request;
 
 class ProjectController extends Controller
 {
@@ -17,6 +19,16 @@ class ProjectController extends Controller
      * @var Paginator
      */
     private $paginator;
+
+    /**
+     * @var FormFactory
+     */
+    private $formFactory;
+
+    /**
+     * @var Request
+     */
+    private $request;
 
 	/**
 	 * @Template
@@ -46,17 +58,49 @@ class ProjectController extends Controller
 	/**
 	 * @Template
 	 */
-	public function createAction()
+	public function newAction(Request $request)
 	{
-		return array();
+		$project = new Project();
+		$form = $this->formFactory->create('junioresiee_businessbundle_project', $project);
+
+		if ($this->request->getMethod() == 'POST') {
+			$form->handleRequest($this->request);
+
+			if ($form->isValid()) {
+				$this->em->persist($project);
+				$this->em->flush();
+				$request->getSession()->getFlashBag()->add('success', 'Votre appel à projet a bien été enregistré.');
+
+				return $this->redirect($this->generateUrl('je_business_project_edit', array('id' => $project->getId())));
+			}
+		}
+
+		return array(
+			'form' => $form->createView(),
+		);
 	}
 
 	/**
 	 * @Template
 	 */
-	public function editAction(Project $project)
+	public function editAction(Project $project, Request $request)
 	{
-		return array();
+		$form = $this->formFactory->create('junioresiee_businessbundle_project', $project);
+
+		if ($this->request->getMethod() == 'POST') {
+			$form->handleRequest($this->request);
+
+			if ($form->isValid()) {
+				$this->em->persist($project);
+				$this->em->flush();
+				$request->getSession()->getFlashBag()->add('success', 'Votre appel à projet a bien été mis-à-jour.');
+			}
+		}
+
+		return array(
+			'form'    => $form->createView(),
+			'project' => $project,
+		);
 	}
 
 	/**

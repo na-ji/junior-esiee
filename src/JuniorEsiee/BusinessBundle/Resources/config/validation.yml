@@ -1,0 +1,20 @@
+JuniorEsiee\BusinessBundle\Entity\Project:
+    properties:
+        clientLastName:
+            - NotBlank: ~
+        clientFirstName:
+            - NotBlank: ~
+        clientPhone:
+            - NotBlank: ~
+            - Length:
+                max: 20
+        clientEmail:
+            - NotBlank: ~
+            - Email:
+                message: "'{{ value }}' n'est pas un email valide."
+        depositDate:
+            - DateTime: ~
+        delay:
+            - DateTime: ~
+        state:
+            - Choice: { callback: getStates }

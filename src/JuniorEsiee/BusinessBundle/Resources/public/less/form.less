@@ -32,6 +32,25 @@
     }
 }
 
-.ui.pointing.label:before{
-    z-index: 0;
+.ui {
+    &.pointing.label:before{
+        z-index: 0;
+    }
+    &.selection.dropdown {
+        margin-right: 10px;
+    }
+    &.checkbox label {
+        padding-right: 1em;
+    }
+    &.form .field .association_list_input {
+        width: 295px;
+        margin-right: 10px;
+    }
+}
+
+.hoverhidden :last-child div {
+    visibility: hidden;
+}
+.hoverhidden:hover :last-child div {
+    visibility: visible;
 }

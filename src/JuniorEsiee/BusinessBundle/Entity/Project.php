@@ -9,6 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Project
 {
+    const STATE_WAITING_INFORMATION = 'state_waiting_information';
+    const STATE_WAITING_STUDENT     = 'state_waiting_student';
+    const STATE_ABORTED             = 'state_aborted';
+    const STATE_CLOSED              = 'state_closed';
+
     /**
      * @var integer
      */
@@ -62,7 +67,7 @@ class Project
     /**
      * @var string
      */
-    private $state;
+    private $state = Project::STATE_WAITING_INFORMATION;
 
     /**
      * @var \Application\Sonata\UserBundle\Entity\User
@@ -97,6 +102,8 @@ class Project
         $this->students = new \Doctrine\Common\Collections\ArrayCollection();
         $this->skills = new \Doctrine\Common\Collections\ArrayCollection();
         $this->skillCategories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->depositDate = new \DateTime();
+        $this->delay = new \DateTime();
     }
 
     public function __toString()
@@ -342,6 +349,16 @@ class Project
     public function getState()
     {
         return $this->state;
+    }
+
+    /**
+     * Get valid states
+     *
+     * @return array
+     */
+    public static function getStates()
+    {
+        return array(Project::STATE_WAITING_INFORMATION, Project::STATE_WAITING_STUDENT, Project::STATE_ABORTED, Project::STATE_CLOSED);
     }
 
     /**

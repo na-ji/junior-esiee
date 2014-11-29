@@ -66,10 +66,10 @@ class ProjectAdmin extends Admin
                 ->add('clientEmail')
             ->end()
             ->with('Projet')
-                ->add('depositDate')
+                ->add('depositDate', 'date')
                 ->add('title')
                 ->add('description')
-                ->add('delay')
+                ->add('delay', 'date')
                 ->add('skillCategories', 'sonata_type_model', array(
                     'multiple' => true,
                 ))

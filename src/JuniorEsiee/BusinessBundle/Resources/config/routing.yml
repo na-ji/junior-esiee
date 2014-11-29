@@ -8,9 +8,13 @@ je_business_my_project:
     requirements:
         page: \d+
 
-je_business_project_create:
-    pattern : /ap/create
-    defaults: { _controller: JuniorEsieeBusinessBundle:Project:create }
+je_business_project_new: # nom de la route
+    pattern : /ap/new    # schéma de l'URL
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:new }
+
+je_events_temporary:
+    pattern : /events
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:myProject, page: 1 }
 
 je_business_project_edit:
     pattern : /ap/{id}/edit

@@ -239,6 +239,10 @@ sonata_media:
             create:     false
 
 jms_di_extra:
+    locations:
+        all_bundles: false
+        bundles: [JuniorEsieeBusinessBundle]
+        directories: ["%kernel.root_dir%/../src"]
     automatic_controller_injections:
         properties:
             request: @request
@@ -250,6 +254,7 @@ jms_di_extra:
             mailer: @mailer
             session: @session
             dispatcher: @event_dispatcher
+            formFactory: @form.factory
 
 jms_security_extra:
     expressions: true
@@ -261,3 +266,11 @@ knp_paginator:
     template:
         pagination: ::pagination.html.twig
         sortable:   ::sortable.html.twig
+
+jms_serializer:
+  metadata:
+    auto_detection: true
+    directories:
+      FOSUserBundle:
+        namespace_prefix: "FOS\\UserBundle"
+        path: "@ApplicationSonataUserBundle/Resources/config/serializer/FOS"

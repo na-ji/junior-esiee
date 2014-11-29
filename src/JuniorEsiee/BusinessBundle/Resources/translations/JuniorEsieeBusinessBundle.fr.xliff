@@ -274,6 +274,23 @@
                 <source>list.label__action</source>
                 <target>Actions</target>
             </trans-unit>
+
+            <trans-unit id="state_waiting_information">
+                <source>state_waiting_information</source>
+                <target>En attente de renseignements supplémentaires</target>
+            </trans-unit>
+            <trans-unit id="state_waiting_student">
+                <source>state_waiting_student</source>
+                <target>En attente d'intervenant</target>
+            </trans-unit>
+            <trans-unit id="state_aborted">
+                <source>state_aborted</source>
+                <target>Avorté</target>
+            </trans-unit>
+            <trans-unit id="state_closed">
+                <source>state_closed</source>
+                <target>Cloturé</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

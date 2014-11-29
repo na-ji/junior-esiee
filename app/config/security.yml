@@ -6,10 +6,11 @@ security:
         Application\Sonata\UserBundle\Entity\User: sha512
 
     role_hierarchy:
-        ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN]
-        ROLE_TREZ:        ROLE_ADMIN
-        ROLE_COM:         ROLE_ADMIN
-        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH, ROLE_TREZ, ROLE_COM]
+        ROLE_COMMERCIAL:    ROLE_USER
+        ROLE_ADMIN:         [ROLE_USER, ROLE_SONATA_ADMIN, ROLE_COMMERCIAL]
+        ROLE_TREZ:          ROLE_ADMIN
+        ROLE_COMMUNICATION: ROLE_ADMIN
+        ROLE_SUPER_ADMIN:   [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH, ROLE_TREZ, ROLE_COMMUNICATION]
 
     providers:
         fos_userbundle:
@@ -18,7 +19,7 @@ security:
     firewalls:
         # Disabling the security for the web debug toolbar, the profiler and Assetic.
         dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            pattern:  ^/(_(profiler|wdt)|css|images|img|js)/
             security: false
 
         # -> custom firewall for the admin area of the URL

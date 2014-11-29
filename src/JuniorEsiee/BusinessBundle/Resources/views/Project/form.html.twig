@@ -1,0 +1,47 @@
+{% form_theme form 'JuniorEsieeBusinessBundle:Form:form_div_layout.html.twig' %}
+
+{{ form_start(form) }}
+    <div class="ui blue form segment">
+        <h2>Client</h2>
+        {{ form_row(form.clientLastName) }}
+        {{ form_row(form.clientFirstName) }}
+        {{ form_row(form.clientCompany) }}
+        {{ form_row(form.clientPhone) }}
+        {{ form_row(form.clientEmail) }}
+    </div>
+    <div class="ui blue form segment">
+        <h2>Projet</h2>
+        {{ form_row(form.title) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.depositDate) }}
+        {{ form_row(form.delay) }}
+        {% if is_granted('ROLE_COMMERCIAL') %}
+            {{ form_row(form.skillCategories) }}
+            {{ form_row(form.skills) }}
+        {% endif %}
+    </div>
+    {% if is_granted('ROLE_COMMERCIAL') %}
+        <div class="ui blue form segment">
+            <h2>Suivi</h2>
+            {% if is_granted('ROLE_COMMERCIAL') %}
+                {{ form_row(form.state) }}
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+                {{ form_row(form.commercial) }}
+                {{ form_row(form.rbu) }}
+            {% endif %}
+        </div>
+    {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="ui blue form segment">
+            <h2>Réalisation</h2>
+            {{ form_row(form.students) }}
+        </div>
+    {% endif %}
+    <button type="submit" class="ui blue labeled icon submit button">
+        Editer <i class="pencil icon"></i>
+    </button>
+    <a href="{{ path('je_business_my_project') }}" class="ui labeled icon submit button">
+        Annuler <i class="reply mail icon"></i>
+    </a>
+{{ form_end(form) }}
