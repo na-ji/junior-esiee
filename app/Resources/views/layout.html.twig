@@ -26,7 +26,7 @@
                     Accueil
                 </a>
                 {% if is_granted('ROLE_ADMIN') %}
-                    <a {{ helper.current('je_user', 'je_home_index') }}>
+                    <a {{ helper.current('je_user', 'je_user_users') }}>
                         <i class="users icon"></i>
                         Utilisateurs
                     </a>
@@ -77,8 +77,8 @@
 
             <div class="ui sub menu">
                 {% if 'je_user' in route %}
-                    <a {# {{ helper.current('je_user_users') }} #}>Equipe</a>
-                    <a {# {{ helper.current('je_user_groups') }} #}>Postes</a>
+                    <a {{ helper.current('je_user_users') }}>Equipe</a>
+                    <a {{ helper.current('je_user_groups') }}>Postes</a>
                 {% endif %}
 
                 {% if 'je_business' in route %}

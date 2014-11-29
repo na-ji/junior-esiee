@@ -1,0 +1,40 @@
+{% form_theme form 'JuniorEsieeBusinessBundle:Form:form_div_layout.html.twig' %}
+
+{{ form_start(form) }}
+    <div class="ui {{ color }} form segment">
+        <h2>Général</h2>
+        {{ form_row(form.username) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.group) }}
+    </div>
+    <div class="ui {{ color }} form segment">
+        <h2>Dossier</h2>
+        {{ form_row(form.isComplete) }}
+        {{ form_row(form.registredAt) }}
+        {{ form_row(form.lastname) }}
+        {{ form_row(form.firstname) }}
+        {{ form_row(form.gender) }}
+        {{ form_row(form.promo) }}
+        {{ form_row(form.phone) }}
+        {{ form_row(form.address) }}
+        {{ form_row(form.zipCode) }}
+        {{ form_row(form.city) }}
+        {{ form_row(form.birthCity) }}
+        {{ form_row(form.birthDepartment) }}
+        {{ form_row(form.nationality) }}
+        {{ form_row(form.socialSecurityNumber) }}
+        {{ form_row(form.socialSecurityCenter) }}
+    </div>
+    <div class="ui {{ color }} form segment">
+        <h2>Pièces Jointes</h2>
+        {{ form_row(form.cv) }}
+        {{ form_row(form.socialSecurity) }}
+        {{ form_row(form.chequeNumber) }}
+    </div>
+    <button type="submit" class="ui {{ color }} labeled icon submit button">
+        Editer <i class="pencil icon"></i>
+    </button>
+    <a href="{{ path('je_user_users') }}" class="ui labeled icon submit button">
+        Annuler <i class="reply mail icon"></i>
+    </a>
+{{ form_end(form) }}

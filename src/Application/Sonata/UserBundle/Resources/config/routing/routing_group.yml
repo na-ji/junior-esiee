@@ -1,0 +1,13 @@
+je_user_groups:
+    pattern:  /
+    defaults: { _controller: ApplicationSonataUserBundle:Group:index }
+
+je_user_groups_new:
+    pattern:  /new
+    defaults: { _controller: ApplicationSonataUserBundle:Group:new }
+
+je_user_groups_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: ApplicationSonataUserBundle:Group:edit }
+    requirements:
+        id: \d+

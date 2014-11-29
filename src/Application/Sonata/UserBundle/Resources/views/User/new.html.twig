@@ -1,0 +1,10 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+
+    <h1 class="ui header">
+        Nouvel utilisateur
+    </h1>
+
+    {% include 'ApplicationSonataUserBundle:User:form.html.twig' with {color: 'green'} %}
+{% endblock %}

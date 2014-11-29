@@ -1,0 +1,50 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+
+    <h1 class="ui header">
+        {{ user }}
+    </h1>
+    <div class="ui two column grid">
+        <div class="column">
+            <div class="ui segment">
+                <h2>Informations</h2>
+                <h3 class="ui ribbon label">Contact</h3>
+                <p>
+                    <b>Email</b> : {{ user.email }}<br>
+                    <b>Téléphone</b> : {{ user.phone }}
+                </p>
+                <a class="ui blue labeled icon submit button" href="{{ path('je_user_users_edit', {id:user.id}) }}">
+                    Editer
+                    <i class="pencil icon"></i>
+                </a>
+                <div class="ui divider"></div>
+
+                <h3 class="ui ribbon label">Poste</h3>
+                <p>{{ user.group }}</p>
+                <ul class="ui list">
+                    {% for role in user.group.roles %}
+                        <li class="item">{{ role|trans({}, 'roles')|raw }}</li>
+                    {% endfor %}
+                </ul>
+                <a class="ui blue labeled icon submit button" href="{{ path('je_user_groups_edit', {id:user.group.id}) }}">
+                    Editer
+                    <i class="pencil icon"></i>
+                </a>
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui segment">
+                <h2>Signature</h2>
+                <h3 class="ui ribbon label">Résultat</h3>
+                {% include 'JEUserBundle:User:signature.html.twig' %}
+                <h3 class="ui ribbon label" style="margin-top: 20px;margin-bottom: 20px">Code HTML</h3>
+                <div class="ui form">
+                    <div class="field">
+                        <textarea>{% include 'JEUserBundle:User:signature.html.twig' %}</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

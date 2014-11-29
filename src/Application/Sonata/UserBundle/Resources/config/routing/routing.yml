@@ -1,0 +1,7 @@
+je_user_users:
+    resource: "@ApplicationSonataUserBundle/Resources/config/routing/routing_user.yml"
+    prefix:   /users
+
+je_user_groups:
+    resource: "@ApplicationSonataUserBundle/Resources/config/routing/routing_group.yml"
+    prefix:   /groups

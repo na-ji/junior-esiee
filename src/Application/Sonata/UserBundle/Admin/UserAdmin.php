@@ -51,6 +51,7 @@ class UserAdmin extends BaseAdmin
             ->with('General')
                 ->add('username')
                 ->add('email')
+            ->end()
             ->with('Dossier')
                 ->add('isComplete', 'sonata_type_boolean', array(
                     'expanded' => true

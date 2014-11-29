@@ -1,0 +1,20 @@
+ROLE_USERS_VIEW: <i class="unhide icon"></i> Voir la liste des utilisateurs
+ROLE_USERS_ADD: <i class="plus icon"></i> Ajouter des utilisateurs
+ROLE_USERS_EDIT: <i class="pencil icon"></i> Editer des utilisateurs
+ROLE_USERS_REMOVE: <i class="remove icon"></i> Supprimer des utilisateurs
+
+ROLE_GROUP_VIEW: <i class="unhide icon"></i> Voir la liste des postes
+ROLE_GROUP_ADD: <i class="plus icon"></i> Ajouter des postes
+ROLE_GROUP_EDIT: <i class="pencil icon"></i> Editer des postes
+ROLE_GROUP_REMOVE: <i class="remove icon"></i> Supprimer des postes
+
+ROLE_TREZ_VIEW: <i class="unhide icon"></i> Voir les comptes
+ROLE_TREZ_ADD: <i class="plus icon"></i> Ajouter des entrés dans les comptes
+ROLE_TREZ_EDIT: <i class="pencil icon"></i> Editer des entrés dans les comptes
+ROLE_TREZ_REMOVE: <i class="remove icon"></i> Supprimer des entrés dans les comptes
+
+ROLE_COMMERCIAL: <i class="unhide icon"></i> Accéder à l'onglet Projets
+
+ROLE_COMMUNICATION: <i class="unhide icon"></i> Accéder à l'onglet Evénementiel
+
+ROLE_ADMIN: <i class="unhide icon"></i> Conseil d'administration

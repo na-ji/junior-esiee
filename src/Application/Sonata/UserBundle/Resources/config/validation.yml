@@ -17,6 +17,14 @@ Application\Sonata\UserBundle\Entity\User:
             - Type:
                 type: integer
                 message: "Le code postal {{ value }} n'est pas un code postal valide."
+        group:
+            - NotBlank: 
+                message: "Choisissez un poste"
+
+Application\Sonata\UserBundle\Entity\User:
+    properties:
+        name:
+            - NotBlank: ~
 
 Application\Sonata\UserBundle\Entity\UserSkill:
     properties:

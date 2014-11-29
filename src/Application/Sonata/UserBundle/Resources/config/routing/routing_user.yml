@@ -1,0 +1,21 @@
+je_user_users:
+    pattern:  /{page}
+    defaults: { _controller: ApplicationSonataUserBundle:User:index, page: 1 }
+    requirements:
+        page: \d+
+
+je_user_users_new:
+    pattern:  /new
+    defaults: { _controller: ApplicationSonataUserBundle:User:new }
+
+je_user_users_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: ApplicationSonataUserBundle:User:edit }
+    requirements:
+        id: \d+
+
+je_user_users_profile:
+    pattern:  /{id}/profile
+    defaults: { _controller: ApplicationSonataUserBundle:User:profile }
+    requirements:
+        id: \d+

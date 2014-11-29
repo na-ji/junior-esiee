@@ -1,0 +1,11 @@
+{% extends '::layout.html.twig' %}
+
+{% block title "Editer l'utlisateur "  ~ user.username %}
+
+{% block content %}
+    <h1 class="ui header">
+        {{ block('title') }}
+    </h1>
+
+    {% include 'ApplicationSonataUserBundle:User:form.html.twig' with {color: 'blue'} %}
+{% endblock %}
