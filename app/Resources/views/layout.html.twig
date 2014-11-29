@@ -6,11 +6,12 @@
         {% block stylesheets %}
             {% stylesheets
                 'bundles/junioresieebusiness/css/smoothness/jquery-ui-1.10.3.custom.min.css'
-                'bundles/junioresieebusiness/css/semantic.min.css'
+                'bundles/junioresieebusiness/css/semantic.1.0.1.min.css'
                 'bundles/junioresieebusiness/less/global.less'
                 'bundles/junioresieebusiness/less/form.less'
                 'bundles/junioresieebusiness/less/table.less'
-            filter='cssrewrite'
+                filter='cssrewrite'
+                output="css/base.css"
             %}
             <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
             {% endstylesheets %}
@@ -19,6 +20,53 @@
     </head>
     <body>
         {% import '::helper.html.twig' as helper %}
+
+        <div class="ui notification sidebar vertical">
+            <div class="ui feed">
+                <h4 class="ui header">Notifications</h4>
+                <div class="event">
+                    <div class="content">
+                        <div class="date">
+                            A l'instant
+                        </div>
+                        <div class="summary">
+                            <a>Sajna</a> a déposé un nouvel <a>AP</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="content">
+                        <div class="date">
+                            Il y a 3 jours
+                        </div>
+                        <div class="summary">
+                            <a>Martin</a> a complété votre <a>AP</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="content">
+                        <div class="date">
+                            Il y a 3 jours
+                        </div>
+                        <div class="summary">
+                            <a>Martin</a> a marqué votre <a>AP</a> en comme en cours
+                        </div>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="content">
+                        <div class="date">
+                            Il y a 3 jours
+                        </div>
+                        <div class="summary">
+                            <a>Martin</a> vous a ajouté en tant que réalisateur sur un <a>AP</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pusher">
         <div class="ui tiered menu fix-menu">
             <div class="menu">
                 <a {{ helper.current('je_home', 'je_home_index') }}>
@@ -57,7 +105,7 @@
                 </a>
 
                 <div class="right menu">
-                    <a class="item notification">
+                    <a class="item notification" data-transition="overlay" data-direction="right">
                         <div class="ui black circular small label">
                             <i class="bell outline icon"></i> 4
                         </div>
@@ -67,7 +115,7 @@
                         Parametres
                     </a>
                     <a class="item" href="{{ path('sonata_user_security_logout') }}">
-                        <i class="off icon"></i>
+                        <i class="power icon"></i>
                         Déconnexion
                     </a>
                 </div>
@@ -122,52 +170,6 @@
             </div>
         </div>
 
-        <div class="ui right sidebar notification">
-            <div class="ui feed">
-                <h4 class="ui header">Notifications</h4>
-                <div class="event">
-                    <div class="content">
-                        <div class="date">
-                            A l'instant
-                        </div>
-                        <div class="summary">
-                            <a>Sajna</a> a déposé un nouvel <a>AP</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="event">
-                    <div class="content">
-                        <div class="date">
-                            Il y a 3 jours
-                        </div>
-                        <div class="summary">
-                            <a>Martin</a> a complété votre <a>AP</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="event">
-                    <div class="content">
-                        <div class="date">
-                            Il y a 3 jours
-                        </div>
-                        <div class="summary">
-                            <a>Martin</a> a marqué votre <a>AP</a> en comme en cours
-                        </div>
-                    </div>
-                </div>
-                <div class="event">
-                    <div class="content">
-                        <div class="date">
-                            Il y a 3 jours
-                        </div>
-                        <div class="summary">
-                            <a>Martin</a> vous a ajouté en tant que réalisateur sur un <a>AP</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="content">
             {% for type, flashMessages in app.session.flashbag.all() %}
                 {% for flashMessage in flashMessages %}
@@ -179,14 +181,16 @@
             {% endfor %}
             {% block content %}{% endblock %}
         </div>
+        </div>
 
         {% block javascripts %}
             <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
             {% javascripts
                 'bundles/junioresieebusiness/js/jquery-ui-1.10.3.custom.min.js'
-                'bundles/junioresieebusiness/js/semantic.js'
+                'bundles/junioresieebusiness/js/semantic.1.0.1.min.js'
                 'bundles/junioresieebusiness/js/form.js'
                 'bundles/junioresieebusiness/js/table.js'
+                output="js/base.js"
             %}
                 <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}

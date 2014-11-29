@@ -28,7 +28,7 @@
 
 {% block choice_widget_expanded %}
     {% spaceless %}
-        <div {{ block('widget_container_attributes') }}>
+        <div {{ block('widget_container_attributes') }} style="padding: 9px 0;">
             {% for group_label, choice in choices %}
                 {% if choice is iterable %}
                     <div class="ui segment">
@@ -41,7 +41,7 @@
                         {% endfor %}
                     </div>
                 {% else %}
-                    <div class="ui checkbox">
+                    <div class="ui {% if not multiple %}radio {% endif %} checkbox">
                         {{ form_widget(form.children[group_label]) }}
                         {{ form_label(form.children[group_label]) }}
                     </div>

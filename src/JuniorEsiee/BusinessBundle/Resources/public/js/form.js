@@ -3,6 +3,10 @@ $(function(){
         .dropdown()
     ;
 
+    $('.message .close').on('click', function() {
+        $(this).closest('.message').fadeOut();
+    });
+
     $('[data-dimmer=click]').click(function(e){
         $(this).find('.dimmer').dimmer('show');
         e.stopPropagation();
