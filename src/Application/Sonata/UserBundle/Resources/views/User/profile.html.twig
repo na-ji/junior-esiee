@@ -1,9 +1,11 @@
 {% extends '::layout.html.twig' %}
 
+{% block title "Profile de " ~ user %}
+
 {% block content %}
 
     <h1 class="ui header">
-        {{ user }}
+        {{ block('title') }}
     </h1>
     <div class="ui two column grid">
         <div class="column">
@@ -11,8 +13,11 @@
                 <h2>Informations</h2>
                 <h3 class="ui ribbon label">Contact</h3>
                 <p>
-                    <b>Email</b> : {{ user.email }}<br>
-                    <b>Téléphone</b> : {{ user.phone }}
+                    <b>Email</b> : {{ user.email }}<br />
+                    {% if user.phone is not null %}<b>Téléphone</b> : {{ user.phone }}<br />{% endif %}
+                    {% if user.address is not null %}<b>Adresse</b> : {{ user.address }}<br />{% endif %}
+                    {% if user.zipCode is not null %}<b>Code Postal</b> : {{ user.zipCode }}<br />{% endif %}
+                    {% if user.city is not null %}<b>Ville</b> : {{ user.city }}<br />{% endif %}
                 </p>
                 <a class="ui blue labeled icon submit button" href="{{ path('je_user_users_edit', {id:user.id}) }}">
                     Editer
@@ -37,11 +42,11 @@
             <div class="ui segment">
                 <h2>Signature</h2>
                 <h3 class="ui ribbon label">Résultat</h3>
-                {% include 'JEUserBundle:User:signature.html.twig' %}
+                {% include 'ApplicationSonataUserBundle:User:signature.html.twig' %}
                 <h3 class="ui ribbon label" style="margin-top: 20px;margin-bottom: 20px">Code HTML</h3>
                 <div class="ui form">
                     <div class="field">
-                        <textarea>{% include 'JEUserBundle:User:signature.html.twig' %}</textarea>
+                        <textarea>{% include 'ApplicationSonataUserBundle:User:signature.html.twig' %}</textarea>
                     </div>
                 </div>
             </div>

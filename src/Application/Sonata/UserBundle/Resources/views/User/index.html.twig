@@ -1,9 +1,11 @@
 {% extends '::layout.html.twig' %}
 
+{% block title "Liste des utilisateurs" %}
+
 {% block content %}
 
     <h1 class="ui header">
-        Liste des utilisateurs
+        {{ block('title') }}
     </h1>
 
     <table class="ui compact table segment">
@@ -22,7 +24,7 @@
             <tr>
                 <td>{{ user|linkUser }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ user.phone }}</td>
+                <td>{{ user.phone|phone }}</td>
                 <td>{{ user.group }}</td>
                 <td>Le {{ user.lastLogin|date('d/m/Y à h:i') }}</td>
                 <td>
@@ -30,6 +32,9 @@
                         <i class="settings icon"></i>
                         Actions
                         <div class="menu">
+                            <a href="{{ path('je_user_users_profile', {id:user.id}) }}" class="item">
+                                <i class="unhide icon"></i> Afficher
+                            </a>
                             <a href="{{ path('je_user_users_edit', {id:user.id}) }}" class="item">
                                 <i class="pencil icon"></i> Editer
                             </a>

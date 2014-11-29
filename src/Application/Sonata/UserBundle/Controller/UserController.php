@@ -43,21 +43,21 @@ class UserController extends Controller
      * @Secure(roles="ROLE_USERS_ADD")
      * @Template
      */
-    public function newAction()
+    public function newAction(Request $request)
     {
-        $user = new User;
+        $user = new User();
         $user->setEnabled(true);
 
-        return $this->handleForm($user);
+        return $this->handleForm($user, $request);
     }
 
     /**
      * @Secure(roles="ROLE_USERS_EDIT")
      * @Template
      */
-    public function editAction(User $user)
+    public function editAction(User $user, Request $request)
     {
-        return $this->handleForm($user);
+        return $this->handleForm($user, $request);
     }
 
     /**
@@ -71,7 +71,7 @@ class UserController extends Controller
         );
     }
 
-    private function handleForm(User $user)
+    private function handleForm(User $user, Request $request)
     {
         $form = $this->createForm(new UserType, $user);
 
@@ -81,6 +81,8 @@ class UserController extends Controller
             if($form->isValid()){
                 $this->em->persist($user);
                 $this->em->flush();
+
+                $request->getSession()->getFlashBag()->add('success', $user->getUsername().' a bien été enregistré.');
 
                 return $this->redirect($this->generateUrl('je_user_users'));
             }
