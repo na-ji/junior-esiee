@@ -1,7 +1,7 @@
 {% form_theme form 'JuniorEsieeBusinessBundle:Form:form_div_layout.html.twig' %}
 
 {{ form_start(form) }}
-    <div class="ui blue form segment">
+    <div class="ui {{ color }} form segment">
         <h2>Client</h2>
         {{ form_row(form.clientLastName) }}
         {{ form_row(form.clientFirstName) }}
@@ -9,7 +9,7 @@
         {{ form_row(form.clientPhone) }}
         {{ form_row(form.clientEmail) }}
     </div>
-    <div class="ui blue form segment">
+    <div class="ui {{ color }} form segment">
         <h2>Projet</h2>
         {{ form_row(form.title) }}
         {{ form_row(form.description) }}
@@ -21,7 +21,7 @@
         {% endif %}
     </div>
     {% if is_granted('ROLE_COMMERCIAL') %}
-        <div class="ui blue form segment">
+        <div class="ui {{ color }} form segment">
             <h2>Suivi</h2>
             {% if is_granted('ROLE_COMMERCIAL') %}
                 {{ form_row(form.state) }}
@@ -33,12 +33,12 @@
         </div>
     {% endif %}
     {% if is_granted('ROLE_ADMIN') %}
-        <div class="ui blue form segment">
+        <div class="ui {{ color }} form segment">
             <h2>Réalisation</h2>
             {{ form_row(form.students) }}
         </div>
     {% endif %}
-    <button type="submit" class="ui blue labeled icon submit button">
+    <button type="submit" class="ui {{ color }} labeled icon submit button">
         Editer <i class="pencil icon"></i>
     </button>
     <a href="{{ path('je_business_my_project') }}" class="ui labeled icon submit button">

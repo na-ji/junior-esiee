@@ -5,5 +5,5 @@
 {% block content %}
 	<h1 class="ui header">{{ block('title') }}</h1>
 
-	{% include 'JuniorEsieeBusinessBundle:Project:form.html.twig' %}
+	{% include 'JuniorEsieeBusinessBundle:Project:form.html.twig' with {color: 'green'} %}
 {% endblock %}
