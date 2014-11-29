@@ -3,10 +3,10 @@
 {% block stylesheets %}
     {{ parent() }}
     {% if form is defined %}
-        <link rel="stylesheet" href="{{ asset('bundles/sonatamarkitup/markitup/markitup/skins/sonata/style.css') }}" type="text/css" media="all" />
-        <link rel="stylesheet" href="{{ asset('bundles/sonatamarkitup/markitup/markitup/sets/markdown/style.css') }}" type="text/css" media="all" />
-        <link rel="stylesheet" href="{{ asset('bundles/sonatamarkitup/markitup/markitup/sets/html/style.css') }}" type="text/css" media="all" />
-        <link rel="stylesheet" href="{{ asset('bundles/sonatamarkitup/markitup/markitup/sets/textile/style.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/sonataformatter/markitup/skins/sonata/style.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/sonataformatter/markitup/sets/markdown/style.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/sonataformatter/markitup/sets/html/style.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/sonataformatter/markitup/sets/textile/style.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('bundles/junioresieepage/css/radios-to-slider.css') }}" type="text/css" media="all" />
     {% endif %}
 {% endblock %}
