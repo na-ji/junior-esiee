@@ -30,9 +30,11 @@ class ProjectController extends Controller
      */
     private $request;
 
-	public function myProjectAction($page)
+	public function myProjectAction($page, $sort, $direction)
 	{
-        $projects = $this->em->getRepository('JuniorEsieeBusinessBundle:Project')->queryAll();
+		$_GET['sort']      = $sort;
+		$_GET['direction'] = $direction;
+		$projects          = $this->em->getRepository('JuniorEsieeBusinessBundle:Project')->queryAll();
 
         return $this->listProject($projects, $page, 'Mes appels à projets');
 	}

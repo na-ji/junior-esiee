@@ -3,10 +3,12 @@ je_home_index:
     defaults: { _controller: JuniorEsieeBusinessBundle:Project:index }
 
 je_business_my_project:
-    pattern : /mes-ap/{page}
-    defaults: { _controller: JuniorEsieeBusinessBundle:Project:myProject, page: 1 }
+    pattern : /mes-ap/{page}/{sort}/{direction}
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:myProject, page: 1, sort: p.depositDate, direction: desc }
     requirements:
         page: \d+
+        sort: p\.[^/]+
+        direction: asc|desc
 
 je_business_project_new: # nom de la route
     pattern : /ap/new    # schéma de l'URL

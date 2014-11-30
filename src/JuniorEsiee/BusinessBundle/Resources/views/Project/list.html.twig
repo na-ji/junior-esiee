@@ -5,15 +5,15 @@
 {% block content %}
 	<h1 class="ui header">{{ block('title') }}</h1>
 
-    <table class="ui compact table segment">
+    <table class="ui compact table">
         <thead>
-        <tr>
-            <th>Titre</th>
-            <th>Date de dépôt</th>
-            <th>Délais</th>
-            <th>Statut</th>
-            <th>Actions</th>
-        </tr>
+            <tr>
+                <th style="padding: 0em .7em;">Titre</th>
+                {{ knp_pagination_sortable(projects, "Date de dépôt", 'p.depositDate') }}
+                {{ knp_pagination_sortable(projects, "Délais", 'p.delay') }}
+                {{ knp_pagination_sortable(projects, "Statut", 'p.state') }}
+                <th style="padding: 0em;">Actions</th>
+            </tr>
         </thead>
         <tbody>
         {% for project in projects %} {# une boucle "For Each" afin de parcourir tous les AP #}
