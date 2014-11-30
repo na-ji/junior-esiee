@@ -11,6 +11,7 @@ class Project
 {
     const STATE_WAITING_INFORMATION = 'state_waiting_information';
     const STATE_WAITING_STUDENT     = 'state_waiting_student';
+    const STATE_WAITING_COMMERCIAL  = 'state_waiting_commercial';
     const STATE_ABORTED             = 'state_aborted';
     const STATE_CLOSED              = 'state_closed';
 
@@ -45,6 +46,21 @@ class Project
     private $clientEmail;
 
     /**
+     * @var string
+     */
+    private $clientAddress;
+
+    /**
+     * @var string
+     */
+    private $clientZipCode;
+
+    /**
+     * @var string
+     */
+    private $clientCity;
+
+    /**
      * @var \DateTime
      */
     private $depositDate;
@@ -67,7 +83,7 @@ class Project
     /**
      * @var string
      */
-    private $state = Project::STATE_WAITING_INFORMATION;
+    private $state;
 
     /**
      * @var \Application\Sonata\UserBundle\Entity\User
@@ -93,6 +109,16 @@ class Project
      * @var \Doctrine\Common\Collections\Collection
      */
     private $skillCategories;
+
+    /**
+     * @var Application\Sonata\MediaBundle\Entity\Media
+     */
+    private $scopeStatement;
+
+    /**
+     * @var Application\Sonata\MediaBundle\Entity\Media
+     */
+    private $graphicCharter;
 
     /**
      * Constructor
@@ -358,7 +384,7 @@ class Project
      */
     public static function getStates()
     {
-        return array(Project::STATE_WAITING_INFORMATION, Project::STATE_WAITING_STUDENT, Project::STATE_ABORTED, Project::STATE_CLOSED);
+        return array(Project::STATE_WAITING_INFORMATION, Project::STATE_WAITING_STUDENT, Project::STATE_ABORTED, Project::STATE_CLOSED, Project::STATE_WAITING_COMMERCIAL);
     }
 
     /**
@@ -504,5 +530,120 @@ class Project
     public function getSkillCategories()
     {
         return $this->skillCategories;
+    }
+
+    /**
+     * Set scopeStatement
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Media $scopeStatement
+     * @return Project
+     */
+    public function setScopeStatement(\Application\Sonata\MediaBundle\Entity\Media $scopeStatement = null)
+    {
+        $this->scopeStatement = $scopeStatement;
+
+        return $this;
+    }
+
+    /**
+     * Get scopeStatement
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media 
+     */
+    public function getScopeStatement()
+    {
+        return $this->scopeStatement;
+    }
+
+    /**
+     * Set graphicCharter
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Media $graphicCharter
+     * @return Project
+     */
+    public function setGraphicCharter(\Application\Sonata\MediaBundle\Entity\Media $graphicCharter = null)
+    {
+        $this->graphicCharter = $graphicCharter;
+
+        return $this;
+    }
+
+    /**
+     * Get graphicCharter
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media 
+     */
+    public function getGraphicCharter()
+    {
+        return $this->graphicCharter;
+    }
+
+    /**
+     * Set clientAddress
+     *
+     * @param string $clientAddress
+     * @return Project
+     */
+    public function setClientAddress($clientAddress)
+    {
+        $this->clientAddress = $clientAddress;
+
+        return $this;
+    }
+
+    /**
+     * Get clientAddress
+     *
+     * @return string 
+     */
+    public function getClientAddress()
+    {
+        return $this->clientAddress;
+    }
+
+    /**
+     * Set clientZipCode
+     *
+     * @param string $clientZipCode
+     * @return Project
+     */
+    public function setClientZipCode($clientZipCode)
+    {
+        $this->clientZipCode = $clientZipCode;
+
+        return $this;
+    }
+
+    /**
+     * Get clientZipCode
+     *
+     * @return string 
+     */
+    public function getClientZipCode()
+    {
+        return $this->clientZipCode;
+    }
+
+    /**
+     * Set clientCity
+     *
+     * @param string $clientCity
+     * @return Project
+     */
+    public function setClientCity($clientCity)
+    {
+        $this->clientCity = $clientCity;
+
+        return $this;
+    }
+
+    /**
+     * Get clientCity
+     *
+     * @return string 
+     */
+    public function getClientCity()
+    {
+        return $this->clientCity;
     }
 }

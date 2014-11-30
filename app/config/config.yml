@@ -251,6 +251,26 @@ sonata_media:
             formats:
                 big:   { width: 500 , quality: 90}
                 small: { width: 90 , quality: 95}
+        scopeStatement:
+            download:
+                strategy: sonata.media.security.connected_strategy
+
+            providers:
+                - sonata.media.provider.file
+
+            formats:
+                big:   { width: 500 , quality: 90}
+                small: { width: 90 , quality: 95}
+        graphicCharter:
+            download:
+                strategy: sonata.media.security.connected_strategy
+
+            providers:
+                - sonata.media.provider.file
+
+            formats:
+                big:   { width: 500 , quality: 90}
+                small: { width: 90 , quality: 95}
 
     cdn:
         server:
@@ -278,6 +298,7 @@ jms_di_extra:
             session: @session
             dispatcher: @event_dispatcher
             formFactory: @form.factory
+            security: @security.context
 
 jms_security_extra:
     expressions: true

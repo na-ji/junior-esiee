@@ -34,6 +34,16 @@
                             <a href="{{ path('je_business_project_edit', {id:project.id}) }}" class="item">
                                 <i class="pencil icon"></i> Editer
                             </a>
+                            {% if project.scopeStatement is not null %}
+                                <a href="{{ path('sonata_media_download', {'id': project.scopeStatement|sonata_urlsafeid }) }}" class="item">
+                                    <i class="file icon"></i> Cahier des charges
+                                </a>
+                            {% endif %}
+                            {% if project.graphicCharter is not null %}
+                                <a href="{{ path('sonata_media_download', {'id': project.graphicCharter|sonata_urlsafeid }) }}" class="item">
+                                    <i class="file icon"></i> Charte graphique
+                                </a>
+                            {% endif %}
                             <a href="{{ path('je_business_project_delete_confirmation', {id:project.id}) }}" class="item">
                                 <i class="delete icon"></i> Supprimer
                             </a>

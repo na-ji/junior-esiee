@@ -76,6 +76,20 @@ class ProjectAdmin extends Admin
                 ->add('skills', 'sonata_type_model', array(
                     'multiple' => true,
                 ))
+                ->add('scopeStatement', 'sonata_media_type', array(
+                    'required'      => false,
+                    'provider'      => 'sonata.media.provider.file',
+                    'context'       => 'scopeStatement',
+                    'new_on_update' => false,
+                    'label'         => 'Cahier des charges',
+                ))
+                ->add('graphicCharter', 'sonata_media_type', array(
+                    'required'      => false,
+                    'provider'      => 'sonata.media.provider.file',
+                    'context'       => 'graphicCharter',
+                    'new_on_update' => false,
+                    'label'         => 'Charte graphique',
+                ))
             ->end()
             ->with('Suivi')
                 ->add('state')

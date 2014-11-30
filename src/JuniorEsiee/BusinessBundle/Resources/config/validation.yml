@@ -12,9 +12,17 @@ JuniorEsiee\BusinessBundle\Entity\Project:
             - NotBlank: ~
             - Email:
                 message: "'{{ value }}' n'est pas un email valide."
+        clientAddress:
+            - NotBlank: ~
+        clientZipCode:
+            - NotBlank: ~
+        clientCity:
+            - NotBlank: ~
         depositDate:
             - DateTime: ~
         delay:
             - DateTime: ~
         state:
-            - Choice: { callback: getStates }
+            - Choice: 
+                - callback: getStates
+                - multiple: true

@@ -30,13 +30,28 @@ class ProjectController extends Controller
      */
     private $request;
 
+    /**
+     * @var SecurityContext
+     */
+    private $security;
+
 	public function myProjectAction($page, $sort, $direction)
 	{
 		$_GET['sort']      = $sort;
 		$_GET['direction'] = $direction;
-		$projects          = $this->em->getRepository('JuniorEsieeBusinessBundle:Project')->queryAll();
+		$user              = $this->security->getToken()->getUser();
+		$projects          = $this->em->getRepository('JuniorEsieeBusinessBundle:Project')->queryUsers($user);
 
         return $this->listProject($projects, $page, 'Mes appels à projets');
+	}
+
+	public function inboxAction($page, $sort, $direction)
+	{
+		$_GET['sort']      = $sort;
+		$_GET['direction'] = $direction;
+		$projects          = $this->em->getRepository('JuniorEsieeBusinessBundle:Project')->queryWithoutCommercial();
+
+        return $this->listProject($projects, $page, 'Boîte de réception');
 	}
 
 	public function listProject($projects, $page, $title)
@@ -109,7 +124,12 @@ class ProjectController extends Controller
 
 	public function deleteAction(Project $project)
 	{
-		return array();
+		$this->em->remove($project);
+		$this->em->flush();
+
+		$this->request->getSession()->getFlashBag()->add('success', 'Votre appel à projet a bien été supprimé.');
+
+		return $this->redirect($this->generateUrl('je_business_my_project'));
 	}
 
 	/**

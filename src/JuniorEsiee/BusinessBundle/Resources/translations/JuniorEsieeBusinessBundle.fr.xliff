@@ -283,6 +283,10 @@
                 <source>state_waiting_student</source>
                 <target>En attente d'intervenant</target>
             </trans-unit>
+            <trans-unit id="state_waiting_commercial">
+                <source>state_waiting_commercial</source>
+                <target>En attente de suivi commercial</target>
+            </trans-unit>
             <trans-unit id="state_aborted">
                 <source>state_aborted</source>
                 <target>Avorté</target>

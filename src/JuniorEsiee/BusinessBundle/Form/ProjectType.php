@@ -41,6 +41,15 @@ class ProjectType extends AbstractType
             ->add('clientEmail', null, array(
                 'label' => 'Email'
             ))
+            ->add('clientAddress', null, array(
+                'label' => 'Adresse'
+            ))
+            ->add('clientZipCode', null, array(
+                'label' => 'Code Postal'
+            ))
+            ->add('clientCity', null, array(
+                'label' => 'Ville'
+            ))
             ->add('depositDate', 'date', array(
                 'required' => false,
                 'label'    => 'Date de dépôt'
@@ -102,6 +111,20 @@ class ProjectType extends AbstractType
                     'choices'            => array_combine(Project::getStates(), Project::getStates()),
                     'translation_domain' => 'JuniorEsieeBusinessBundle',
                     'label'              => 'Statut'
+                ))
+                ->add('scopeStatement', 'sonata_media_type', array(
+                    'required'      => false,
+                    'provider'      => 'sonata.media.provider.file',
+                    'context'       => 'scopeStatement',
+                    'new_on_update' => false,
+                    'label'         => 'Cahier des charges',
+                ))
+                ->add('graphicCharter', 'sonata_media_type', array(
+                    'required'      => false,
+                    'provider'      => 'sonata.media.provider.file',
+                    'context'       => 'graphicCharter',
+                    'new_on_update' => false,
+                    'label'         => 'Charte graphique',
                 ))
             ;
         }

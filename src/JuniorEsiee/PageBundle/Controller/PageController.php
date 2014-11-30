@@ -7,6 +7,8 @@ use JuniorEsiee\PageBundle\Form\OffreFormType;
 use JuniorEsiee\PageBundle\Form\ContactFormType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use JuniorEsiee\BusinessBundle\Entity\Project;
+use Application\Sonata\MediaBundle\Entity\Media;
 
 class PageController extends Controller
 {
@@ -19,26 +21,33 @@ class PageController extends Controller
 
 			if ($form->isValid()) {
 				// Perform some action, such as sending an email
-				$data = $form -> getData();
+				$data = $form->getData();
 				
 				$messageadmin = \Swift_Message::newInstance()
-				->setSubject("Message de CONTACT depuis de le site web de ".$data['common']['prenom']." ".$data['common']['nom'].".")
-				->setFrom($data['common']['email'])
-				->setTo('contact@junioresiee.com')
-				->setContentType('text/html')
-				->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailContact.html.twig', array('data' => $data)));
+					->setSubject("Message de CONTACT depuis de le site web de ".$data['common']['prenom']." ".$data['common']['nom'].".")
+					->setFrom($data['common']['email'])
+					->setTo('contact@junioresiee.com')
+					->setContentType('text/html')
+					->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailContact.html.twig', array(
+						'data' => $data
+					)))
+				;
 				
 				
 				$response = $this->get('mailer')->send($messageadmin);
 
 				$messageclient = \Swift_Message::newInstance()
-				->setSubject("Confirmation d'envoi d'appel d'offre.")
-				->setFrom('contact@junioresiee.com')
-				->setTo($data['common']['email'])
-				->setContentType('text/html')
-				->attach(\Swift_Attachment::fromPath('uploads/plaquetteclient.pdf'))
-				->attach(\Swift_Attachment::fromPath('uploads/Conseil-administration-2014.pdf'))	
-				->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailConfirmation.html.twig', array('data' => $data, 'cas' => " demande de contact")));
+					->setSubject("Confirmation d'envoi d'appel d'offre.")
+					->setFrom('contact@junioresiee.com')
+					->setTo($data['common']['email'])
+					->setContentType('text/html')
+					->attach(\Swift_Attachment::fromPath('uploads/plaquetteclient.pdf'))
+					->attach(\Swift_Attachment::fromPath('uploads/Conseil-administration-2014.pdf'))	
+					->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailConfirmation.html.twig', array(
+						'data' => $data, 
+						'cas' => " demande de contact"
+					)))
+				;
 
 				$this->get('mailer')->send($messageclient);
 				
@@ -71,7 +80,7 @@ class PageController extends Controller
 	
 	function appeloffreAction()
 	{
-		$form = $this->createForm(new OffreFormType);
+		$form    = $this->createForm(new OffreFormType);
 		
 		$request = $this->getRequest();
 		if ($request->getMethod() == 'POST') {
@@ -79,47 +88,91 @@ class PageController extends Controller
 
 			if ($form->isValid()) {
 				// Perform some action, such as sending an email
-				$data = $form -> getData();
+				$data = $form->getData();
 				
+				$messageadmin = \Swift_Message::newInstance()
+					->setSubject("Message d'APPEL D'OFFRE depuis de le site web de ".$data['common']['prenom']." ".$data['common']['nom'].".")
+					->setFrom($data['common']['email'])
+					->setTo('dsi@junioresiee.com')
+					->setContentType('text/html')
+				;
 
+				/* On sauvegarde dans la BDD l'appel d'offre ---> Il sera affiché dans la boite de réception */
+				// On créer un objet et rempli les infos
+				$project = new Project;
+				$project
+					->setClientLastName($data['common']['nom'])
+					->setClientFirstName($data['common']['prenom'])
+					->setClientCompany($data['common']['societe'])
+					->setClientPhone($data['common']['telephone'])
+					->setClientEmail($data['common']['email'])
+					->setClientAddress($data['adresse'])
+					->setClientZipCode($data['codepostal'])
+					->setClientCity($data['ville'])
+					->setDescription($data['description'])
+				;
+				// On récupère l'Entity Manager
+				$em           = $this->get('doctrine.orm.entity_manager');
+				$mediaManager = $this->get('sonata.media.manager.media');
 				
-				 $messageadmin = \Swift_Message::newInstance()
-				->setSubject("Message d'APPEL D'OFFRE depuis de le site web de ".$data['common']['prenom']." ".$data['common']['nom'].".")
-				->setFrom($data['common']['email'])
-				->setTo('contact@junioresiee.com')
-				->setContentType('text/html');
-				
-				if ( $form['cahiercharges']->getData() != null) {
+				if (null !== $form['cahiercharges']->getData()) {
 					$file1 = $form['cahiercharges']->getData();
 					
 					$ext1  = $file1->guessExtension();
-					$file1->move('tmp', 'cahier_charges.'.$ext1);
-					$messageadmin->attach(\Swift_Attachment::fromPath('tmp/cahier_charges.'.$ext1));
+					$file1 = $file1->move('tmp', 'cahier_des_charges.'.$ext1);
+					$messageadmin->attach(\Swift_Attachment::fromPath('tmp/cahier_des_charges.'.$ext1));
+
+					// On sauvegarde le media et on l'attache à l'appel à projet
+					$media1 = new Media;
+					$media1->setContext('scopeStatement');
+					$media1->setProviderName('sonata.media.provider.file');
+					$media1->setBinaryContent($file1);
+					$media1->setName('Cahier des charges de '.$project->getClientCompany());
+					$mediaManager->save($media1);
+
+					$project->setScopeStatement($media1);
 				}
 				
-				if ( $form['chartegraph']->getData() != null) {
+				if (null !== $form['chartegraph']->getData()) {
 					$file2 = $form['chartegraph']->getData();
 					
 					$ext2  = $file2->guessExtension();
-					$file2->move('tmp', 'charte_graphique.'.$ext2);
+					$file2 = $file2->move('tmp', 'charte_graphique.'.$ext2);
 					$messageadmin->attach(\Swift_Attachment::fromPath('tmp/charte_graphique.'.$ext2));
+
+					// On sauvegarde le media et on l'attache à l'appel à projet
+					$media2 = new Media;
+					$media2->setContext('graphicCharter');
+					$media2->setProviderName('sonata.media.provider.file');
+					$media2->setBinaryContent($file2);
+					$media2->setName('Charte graphique de '.$project->getClientCompany());
+					$mediaManager->save($media2);
+
+					$project->setGraphicCharter($media2);
 				}
+
+				// On sauvegarde l'appel à projet
+				$em->persist($project);
+				$em->flush();
 				
 				$messageadmin->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailOffre.html.twig', array('data' => $data)));
 
 				$this->get('mailer')->send($messageadmin);
 				
-				 $messageclient = \Swift_Message::newInstance()
-				->setSubject("Confirmation d'envoi d'appel d'offre.")
-				->setFrom('contact@junioresiee.com')
-				->setTo($data['common']['email'])
-				->setContentType('text/html')
-				->attach(\Swift_Attachment::fromPath('uploads/plaquetteclient.pdf'))
-				->attach(\Swift_Attachment::fromPath('uploads/Conseil-administration-2014.pdf'))	
-				->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailConfirmation.html.twig', array('data' => $data, 'cas' => " dépot d'appel d'offre")));
+				$messageclient = \Swift_Message::newInstance()
+					->setSubject("Confirmation d'envoi d'appel d'offre.")
+					->setFrom('contact@junioresiee.com')
+					->setTo($data['common']['email'])
+					->setContentType('text/html')
+					->attach(\Swift_Attachment::fromPath('uploads/plaquetteclient.pdf'))
+					->attach(\Swift_Attachment::fromPath('uploads/Conseil-administration-2014.pdf'))	
+					->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailConfirmation.html.twig', array(
+						'data' => $data, 
+						'cas'  => " dépot d'appel d'offre"
+					)))
+				;
 
-				$this->get('mailer')->send($messageclient);
-				
+				$this->get('mailer')->send($messageclient);				
 				
 				$this->get('session')->getFlashBag()->add('success', "<strong>Votre appel d'offre a bien été envoyé à nos équipes</strong>, un mail de confirmation vous a été envoyée. <strong>Merci</strong> de votre intérêt.");
 				

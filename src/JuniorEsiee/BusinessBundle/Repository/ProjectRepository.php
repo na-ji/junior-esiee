@@ -3,6 +3,7 @@
 namespace JuniorEsiee\BusinessBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Application\Sonata\UserBundle\Entity\User;
 
 /**
  * ProjectRepository
@@ -15,6 +16,24 @@ class ProjectRepository extends EntityRepository
     public function queryAll()
     {
         return $this->createQueryBuilder('p')
+            ->orderBy('p.depositDate');
+    }
+
+    public function queryUsers(User $user)
+    {
+        return $this->createQueryBuilder('p')
+        	->leftJoin('p.students', 'stu')
+        	->where('p.commercial = :user')
+        	->orWhere('p.rbu = :user')
+        	->orWhere('stu.id = :user')
+        		->setParameter('user', $user->getId())
+            ->orderBy('p.depositDate');
+    }
+
+    public function queryWithoutCommercial()
+    {
+        return $this->createQueryBuilder('p')
+        	->where('p.commercial is NULL')
             ->orderBy('p.depositDate');
     }
 }

@@ -132,7 +132,7 @@
                 {% if 'je_business' in route %}
                     <a {{ helper.current('je_business_my_project') }}>Mes AP</a>
                     <a class="item">AP en cours</a>
-                    <a class="item">Boite de réception</a>
+                    <a {{ helper.current('je_business_inbox') }}>Boite de réception</a>
                     <a {{ helper.current('je_business_project_new') }}>Déposer un AP</a>
                 {% endif %}
 
