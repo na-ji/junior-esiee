@@ -30,14 +30,6 @@ class ProjectController extends Controller
      */
     private $request;
 
-	/**
-	 * @Template
-	 */
-	public function indexAction()
-	{
-		return array();
-	}
-
 	public function myProjectAction($page)
 	{
         $projects = $this->em->getRepository('JuniorEsieeBusinessBundle:Project')->queryAll();

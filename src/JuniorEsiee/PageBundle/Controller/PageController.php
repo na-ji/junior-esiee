@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use JuniorEsiee\PageBundle\Form\OffreFormType;
 use JuniorEsiee\PageBundle\Form\ContactFormType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class PageController extends Controller
 {
@@ -140,5 +141,13 @@ class PageController extends Controller
 	function presseAction()
 	{
 		return $this->render('JuniorEsieePageBundle:Annexe:presse.html.twig');
+	}
+
+	/**
+	 * @Template
+	 */
+	public function toolIndexAction()
+	{
+		return array();
 	}
 }

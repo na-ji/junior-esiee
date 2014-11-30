@@ -8,7 +8,7 @@ junior_esiee_finances:
 
 junior_esiee_business:
     resource: "@JuniorEsieeBusinessBundle/Resources/config/routing.yml"
-    prefix:   /tool
+    prefix:   /project
 
 junior_esiee_page:
     resource: "@JuniorEsieePageBundle/Resources/config/routing.yml"

@@ -69,7 +69,7 @@
         <div class="pusher">
         <div class="ui tiered menu fix-menu">
             <div class="menu">
-                <a {{ helper.current('je_home', 'je_home_index') }}>
+                <a {{ helper.current('je_home', 'page_tool_index') }}>
                     <i class="home icon"></i>
                     Accueil
                 </a>
@@ -94,12 +94,12 @@
                     Projets
                 </a>
                 {% if is_granted('ROLE_COMMUNICATION') %}
-                    <a {{ helper.current('je_events', 'je_home_index') }}>
+                    <a {{ helper.current('je_events', 'page_tool_index') }}>
                         <i class="bullhorn icon"></i>
                         Evénementiel
                     </a>
                 {% endif %}
-                <a {{ helper.current('je_bargain', 'je_home_index') }}>
+                <a {{ helper.current('je_bargain', 'page_tool_index') }}>
                     <i class="money icon"></i>
                     Stage
                 </a>
@@ -122,7 +122,7 @@
             </div>
 
             {% set route = app.request.get('_route') %}
-
+            {% if 'page_tool_index' not in route %}
             <div class="ui sub menu">
                 {% if 'je_user' in route %}
                     <a {{ helper.current('je_user_users') }}>Equipe</a>
@@ -167,6 +167,7 @@
                     <a {{ helper.current('je_stat_finances_treasury') }}>Trésorerie réelle</a>
                 {% endif %}
             </div>
+            {% endif %}
         </div>
 
         <div class="content">
