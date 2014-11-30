@@ -27,7 +27,7 @@
 
     {% for quarter in range(1, 4) %}
         <h2>Trimestre {{ quarter }}</h2>
-        <table class="ui compact table segment">
+        <table class="ui compact table striped">
             <thead>
                 <th>Période</th>
                 <th>Nombre de JEH</th>
@@ -66,18 +66,18 @@
 
     <h2>Résumé</h2>
 
-    <table class="ui compact collapsing table segment">
+    <table class="ui definition compact collapsing table">
         <tbody>
         <tr>
-            <th>Nombre de JEH</th>
+            <td>Nombre de JEH</td>
             <td>{{ totalNumberOfDays }}</td>
         </tr>
         <tr>
-            <th>Rémunérations HT</th>
+            <td>Rémunérations HT</td>
             <td>{{ totalAmount|money }}</td>
         </tr>
         <tr>
-            <th>Totale URSSAF</th>
+            <td>Totale URSSAF</td>
             <td>{{ totalUrssaf|money }}</td>
         </tr>
         </tbody>

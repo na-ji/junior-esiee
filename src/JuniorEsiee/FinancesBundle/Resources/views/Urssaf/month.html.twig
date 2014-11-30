@@ -33,18 +33,18 @@
 
     <h2>Résumé</h2>
 
-    <table class="ui compact collapsing table">
+    <table class="ui definition compact collapsing table">
         <tbody>
             <tr>
-                <th>Nombre de JEH</th>
+                <td>Nombre de JEH</td>
                 <td>{{ paymentSlipsSum.numberOfDays|default(0) }}</td>
             </tr>
             <tr>
-                <th>Rémunérations HT</th>
+                <td>Rémunérations HT</td>
                 <td>{{ paymentSlipsSum.amount|money }}</td>
             </tr>
             <tr>
-                <th>Cotisation</th>
+                <td>Cotisation</td>
                 <td>{{ paymentSlipsSum.urssaf|money }}</td>
             </tr>
         </tbody>
