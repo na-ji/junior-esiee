@@ -146,11 +146,14 @@
                 {% if 'je_finances' in route %}
                     <a {{ helper.current('je_finances_treasury') }}>Trésorerie réelle</a>
                     <a {{ helper.current('je_finances_taxes') }}>TVA</a>
-                    <div class="ui pointing dropdown item{% if 'je_finances_urssaf' in route %} active{% endif %}">
-                        URSSAF <i class="dropdown icon"></i>
-                        <div class="menu">
-                            <a href="{{ path('je_finances_urssaf_year') }}" class="item">URSSAF annuel</a>
-                            <a href="{{ path('je_finances_urssaf_month') }}" class="item">URSSAF mensuel</a>
+                    <div class="item{% if 'je_finances_urssaf' in route %} active{% endif %}">
+                        <div class="ui pointing dropdown">
+                            <span class="text">URSSAF</span>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <a href="{{ path('je_finances_urssaf_year') }}" class="item">URSSAF annuel</a>
+                                <a href="{{ path('je_finances_urssaf_month') }}" class="item">URSSAF mensuel</a>
+                            </div>
                         </div>
                     </div>
                     <a {{ helper.current('je_finances_fc') }}>Factures clients</a>
