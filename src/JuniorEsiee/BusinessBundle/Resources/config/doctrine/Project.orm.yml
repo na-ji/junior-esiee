@@ -55,7 +55,9 @@ JuniorEsiee\BusinessBundle\Entity\Project:
             type: date
             nullable: true
         state:
-            type: array
+            type: string
+            length: 255
+            nullable: true
     manyToMany:
         students:
             targetEntity: Application\Sonata\UserBundle\Entity\User

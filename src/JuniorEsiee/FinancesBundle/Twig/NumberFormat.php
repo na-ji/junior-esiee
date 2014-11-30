@@ -20,7 +20,7 @@ class NumberFormat extends \Twig_Extension
 
     public function money($number, $unit = '€', $decimals = 2, $decPoint = ',', $thousandsSep = ' ', $colors = true)
     {
-        $result = number_format($number, $decimals, $decPoint, $thousandsSep).($unit == null ? '': ' '.$unit);;
+        $result = number_format($number, $decimals, $decPoint, $thousandsSep).($unit == null ? '': ' '.$unit);
 
         if($colors){
             if($number < 0)

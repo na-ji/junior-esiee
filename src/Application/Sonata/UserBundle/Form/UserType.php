@@ -121,8 +121,9 @@ class UserType extends AbstractType
                 'label'    => 'Numéro de chèque',
             ))
             ->add('group', 'entity', array(
-                'label' => 'Poste',
-                'class' => 'ApplicationSonataUserBundle:Group',
+                'label'    => 'Poste',
+                'class'    => 'ApplicationSonataUserBundle:Group',
+                'multiple' => false,
             ))
         ;
     }

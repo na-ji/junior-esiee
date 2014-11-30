@@ -80,6 +80,9 @@ class UserController extends Controller
 
             if($form->isValid()){
                 $this->em->persist($user);
+                foreach ($user->getGroups() as $group) {
+                    $this->em->persist($group);
+                }
                 $this->em->flush();
 
                 $request->getSession()->getFlashBag()->add('success', $user->getUsername().' a bien été enregistré.');

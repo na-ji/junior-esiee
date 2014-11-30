@@ -16,18 +16,28 @@
             </tr>
         </thead>
         <tbody>
-        {% for project in projects %} {# une boucle "For Each" afin de parcourir tous les AP #}
+        {% for project in projects %}
             <tr>
                 <td>{{ project.title }}</td>
-                <td>{{ project.depositDate|format_date }}</td> {# format_date est une fonction de formatage de la date #}
+                <td>{{ project.depositDate|format_date }}</td>
                 <td>{{ project.delay|format_date }}</td>
-                <td>{{ project.state|trans({},'JuniorEsieeBusinessBundle') }}</td>
+                {% if project.state != 'state_aborted' and project.state != 'state_closed' and project.state != 'state_waiting_information' %}
+                    <td>
+                        {% if project.commercial is null %}
+                            {{ 'state_waiting_commercial'|projectState }}
+                        {% endif %}
+                        {% if project.students|length < 1 %}
+                            {{ 'state_waiting_student'|projectState }}
+                        {% endif %}
+                    </td>
+                {% else %}
+                    <td>{{ project.state|projectState }}</td>
+                {% endif %}
                 <td>
                     <div class="ui labeled icon top right pointing dropdown mini button">
                         <i class="settings icon"></i>
                         Actions
                         <div class="menu">
-                            {# génération d'une URL à partir du nom de la route #}
                             <a href="{{ path('je_business_project_show', {id:project.id}) }}" class="item">
                                 <i class="unhide icon"></i> Afficher
                             </a>

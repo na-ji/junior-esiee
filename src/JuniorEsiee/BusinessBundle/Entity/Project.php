@@ -9,11 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Project
 {
-    const STATE_WAITING_INFORMATION = 'state_waiting_information';
-    const STATE_WAITING_STUDENT     = 'state_waiting_student';
-    const STATE_WAITING_COMMERCIAL  = 'state_waiting_commercial';
     const STATE_ABORTED             = 'state_aborted';
     const STATE_CLOSED              = 'state_closed';
+    const STATE_WAITING_INFORMATION = 'state_waiting_information';
 
     /**
      * @var integer
@@ -384,7 +382,7 @@ class Project
      */
     public static function getStates()
     {
-        return array(Project::STATE_WAITING_INFORMATION, Project::STATE_WAITING_STUDENT, Project::STATE_ABORTED, Project::STATE_CLOSED, Project::STATE_WAITING_COMMERCIAL);
+        return array(Project::STATE_ABORTED, Project::STATE_CLOSED, Project::STATE_WAITING_INFORMATION);
     }
 
     /**

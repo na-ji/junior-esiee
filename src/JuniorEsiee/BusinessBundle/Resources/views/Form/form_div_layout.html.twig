@@ -41,7 +41,7 @@
                         {% endfor %}
                     </div>
                 {% else %}
-                    <div class="ui {% if not multiple %}radio {% endif %} checkbox">
+                    <div class="ui {% if not multiple %}radio {% endif %}checkbox">
                         {{ form_widget(form.children[group_label]) }}
                         {{ form_label(form.children[group_label]) }}
                     </div>
@@ -115,15 +115,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for choice in options %}
-                        <tr class="hoverhidden">
-                            {% for property in form.vars.properties %}
-                                <td>{{ attribute(choice.data, property) }}</td>
-                            {% endfor %}
-                            <td>
-                                <div class="ui left labeled icon button select-line" target="{{ id }}" target-value="{{ choice.data.id }}"><i class="right arrow icon"></i>Select</div>
-                            </td>
-                        </tr>
+                    {% for choice in options if form.vars.role is null or choice.data.isGranted(form.vars.role) %}
+                            <tr class="hoverhidden">
+                                {% for property in form.vars.properties %}
+                                    <td>{{ attribute(choice.data, property) }}</td>
+                                {% endfor %}
+                                <td>
+                                    <div class="ui left labeled icon button select-line" target="{{ id }}" target-value="{{ choice.data.id }}"><i class="right arrow icon"></i>Select</div>
+                                </td>
+                            </tr>
                     {% endfor %}
                 </tbody>
                 <tfoot>

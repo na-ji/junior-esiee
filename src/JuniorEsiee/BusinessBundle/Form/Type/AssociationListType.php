@@ -35,6 +35,9 @@ class AssociationListType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setRequired(array('class', 'properties'));
+        $resolver->setDefaults(array(
+            'role' => null,
+        ));
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options)
@@ -42,6 +45,7 @@ class AssociationListType extends AbstractType
         $view->vars = array_replace($view->vars, array(
             'multiple'   => $options['multiple'],
             'properties' => $options['properties'],
+            'role'       => $options['role'],
         ));
     }
 }

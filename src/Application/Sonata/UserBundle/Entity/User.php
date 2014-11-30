@@ -469,4 +469,20 @@ class User extends BaseUser
     {
         return $this->group;
     }
+
+    /**
+     * @return boolean
+     */
+    public function isGranted($role)
+    {
+        return in_array($role, $this->getRoles());
+    }
+
+    /**
+     * @return array|void
+     */
+    public function getRoles()
+    {
+        return array_unique(array_merge(parent::getRoles(), $this->getGroup()->getRoles()));
+    }
 }

@@ -23,6 +23,4 @@ JuniorEsiee\BusinessBundle\Entity\Project:
         delay:
             - DateTime: ~
         state:
-            - Choice: 
-                - callback: getStates
-                - multiple: true
+            - Choice: { callback: getStates }

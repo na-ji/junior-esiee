@@ -75,11 +75,13 @@ class ProjectType extends AbstractType
                     'required'   => false,
                     'class'      => 'ApplicationSonataUserBundle:User',
                     'properties' => array('id', 'username'),
+                    'role'       => 'ROLE_COMMERCIAL'
                 ))
                 ->add('rbu', 'association_list', array(
                     'required'   => false,
                     'class'      => 'ApplicationSonataUserBundle:User',
                     'properties' => array('id', 'username'),
+                    'role'       => 'ROLE_ADMIN'
                 ))
                 ->add('students', 'association_list', array(
                     'required'   => false,
