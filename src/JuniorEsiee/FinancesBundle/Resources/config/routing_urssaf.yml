@@ -1,0 +1,12 @@
+je_finances_urssaf_year:
+    pattern:  /year/{year}
+    defaults: { _controller: JuniorEsieeFinancesBundle:Urssaf:year, year: null }
+    requirements:
+        year: "20[0-9]{2}"
+
+je_finances_urssaf_month:
+    pattern:  /{month}/{year}
+    defaults: { _controller: JuniorEsieeFinancesBundle:Urssaf:month, month: null, year: null }
+    requirements:
+        month: "[1-9]|1[0-2]"
+        year: "20[0-9]{2}"

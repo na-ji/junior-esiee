@@ -1,0 +1,27 @@
+je_finances_treasury:
+    resource: "@JuniorEsieeFinancesBundle/Resources/config/routing_treasury.yml"
+    prefix:   /treasury
+
+je_finances_taxes:
+    resource: "@JuniorEsieeFinancesBundle/Resources/config/routing_taxes.yml"
+    prefix:   /taxes
+
+je_finances_fc:
+    resource: "@JuniorEsieeFinancesBundle/Resources/config/routing_customer_invoice.yml"
+    prefix:   /fc
+
+je_finances_bv:
+    resource: "@JuniorEsieeFinancesBundle/Resources/config/routing_payment_slip.yml"
+    prefix:   /bv
+
+je_finances_ff:
+    resource: "@JuniorEsieeFinancesBundle/Resources/config/routing_supplier_invoice.yml"
+    prefix:   /ff
+
+je_finances_vars:
+    resource: "@JuniorEsieeFinancesBundle/Resources/config/routing_vars.yml"
+    prefix:   /vars
+
+je_finances_urssaf:
+    resource: "@JuniorEsieeFinancesBundle/Resources/config/routing_urssaf.yml"
+    prefix:   /urssaf

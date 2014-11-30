@@ -1,0 +1,17 @@
+je_finances_ff:
+    pattern:  /{page}/{sort}/{direction}
+    defaults: { _controller: JuniorEsieeFinancesBundle:SupplierInvoice:index, page: 1, sort: i.createdAt, direction: desc }
+    requirements:
+        page: \d+
+        sort: i\.[^/]+
+        direction: asc|desc
+
+je_finances_ff_new:
+    pattern:  /new
+    defaults: { _controller: JuniorEsieeFinancesBundle:SupplierInvoice:new }
+
+je_finances_ff_edit:
+    pattern:  /{ref}/edit
+    defaults: { _controller: JuniorEsieeFinancesBundle:SupplierInvoice:edit }
+    requirements:
+        ref: "[RF]F\d+"

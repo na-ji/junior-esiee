@@ -1,0 +1,17 @@
+je_finances_bv:
+    pattern:  /{page}/{sort}/{direction}
+    defaults: { _controller: JuniorEsieeFinancesBundle:PaymentSlip:index, page: 1, sort: s.createdAt, direction: desc }
+    requirements:
+        page: \d+
+        sort: s\.[^/]+
+        direction: asc|desc
+
+je_finances_bv_new:
+    pattern:  /new
+    defaults: { _controller: JuniorEsieeFinancesBundle:PaymentSlip:new }
+
+je_finances_bv_edit:
+    pattern:  /{bv}/edit
+    defaults: { _controller: JuniorEsieeFinancesBundle:PaymentSlip:edit }
+    requirements:
+        bv: BV\d+

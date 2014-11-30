@@ -1,0 +1,3 @@
+je_finances_vars:
+    pattern:  /
+    defaults: { _controller: JuniorEsieeFinancesBundle:Variable:index }

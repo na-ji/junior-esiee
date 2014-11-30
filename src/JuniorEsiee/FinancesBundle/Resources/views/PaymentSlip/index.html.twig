@@ -1,0 +1,77 @@
+{% extends '::layout.html.twig' %}
+
+{% block title 'Bulletins de versement' %}
+
+{% block content %}
+    <h1 class="ui header">
+        {{ block('title') }}
+    </h1>
+
+    <table class="ui compact table">
+        <thead>
+        <tr>
+            {{ knp_pagination_sortable(slips, "Référence", 's.ref') }}
+            {{ knp_pagination_sortable(slips, "BV", 's.bv') }}
+            {{ knp_pagination_sortable(slips, "Date", 's.createdAt') }}
+            {{ knp_pagination_sortable(slips, "Client", 's.client') }}
+            {{ knp_pagination_sortable(slips, "Réalisateur", 's.student') }}
+            <th style="padding: 0em;">Montant HT</th>
+            <th style="padding: 0em;">Nb JEH</th>
+            <th style="padding: 0em;">URSSAF</th>
+            <th style="padding: 0em;">Montant TTC</th>
+            <th style="padding: 0em;">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for slip in slips %}
+        <tr>
+            <td>{{ slip.ref }}</td>
+            <td>{{ slip.bv }}</td>
+            <td>{{ slip.createdAt|date('d/m/Y') }}</td>
+            <td>{{ slip.client }}</td>
+            <td>{{ slip.student }}</td>
+            <td>{{ slip.amount|money }}</td>
+            <td>{{ slip.numberOfDays }}</td>
+            <td>{{ slip.urssaf|money }}</td>
+            <td>{{ slip.totalAmount|money }}</td>
+            <td>
+                <div class="ui labeled icon top right pointing dropdown mini button">
+                    <i class="settings icon"></i>
+                    Actions
+                    <div class="menu">
+                        {% if slip.hasFile %}
+                            <a href="{% path slip.file, 'reference' %}" class="item">
+                                <i class="file icon"></i> Document
+                            </a>
+                        {% endif %}
+                        <a href="{{ path('je_finances_bv_edit', {bv:slip.bv}) }}" class="item">
+                            <i class="pencil icon"></i> Editer
+                        </a>
+                        <a class="item">
+                            <i class="delete icon"></i> Supprimer
+                        </a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">
+                    Aucun BV
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <th colspan="10">
+                <a class="ui green labeled icon button" href="{{ path('je_finances_bv_new') }}">
+                    Nouveau <i class="plus icon"></i>
+                </a>
+                {{ knp_pagination_render(slips) }}
+            </th>
+        </tr>
+        </tfoot>
+    </table>
+
+{% endblock %}

@@ -75,7 +75,16 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        auto_mapping: true
+        entity_managers:
+            default:
+                auto_mapping: true
+                dql:
+                    numeric_functions:
+                        year: JuniorEsiee\FinancesBundle\DQL\Year
+                        month: JuniorEsiee\FinancesBundle\DQL\Month
+                        max: JuniorEsiee\FinancesBundle\DQL\Max
+                        min: JuniorEsiee\FinancesBundle\DQL\Min
+                        sum: JuniorEsiee\FinancesBundle\DQL\Sum
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -228,6 +237,20 @@ sonata_media:
             formats:
                 big:   { width: 500 , quality: 90}
                 small: { width: 90 , quality: 95}
+        invoice:
+            providers:
+                - sonata.media.provider.file
+
+            formats:
+                big:   { width: 500 , quality: 90}
+                small: { width: 90 , quality: 95}
+        slip:
+            providers:
+                - sonata.media.provider.file
+
+            formats:
+                big:   { width: 500 , quality: 90}
+                small: { width: 90 , quality: 95}
 
     cdn:
         server:
@@ -241,7 +264,7 @@ sonata_media:
 jms_di_extra:
     locations:
         all_bundles: false
-        bundles: [JuniorEsieeBusinessBundle, ApplicationSonataUserBundle]
+        bundles: [JuniorEsieeBusinessBundle, ApplicationSonataUserBundle, JuniorEsieeFinancesBundle]
         directories: ["%kernel.root_dir%/../src"]
     automatic_controller_injections:
         properties:

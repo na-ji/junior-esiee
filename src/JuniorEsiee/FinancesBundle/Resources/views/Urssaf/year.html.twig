@@ -1,0 +1,85 @@
+{% extends '::layout.html.twig' %}
+
+{% block title 'URSSAF annuel' %}
+
+{% block content %}
+    <h1 class="ui header">
+        {{ block('title') }}
+    </h1>
+    
+    <div>
+        Affichage de l'année
+        <div class="ui inline dropdown">
+            <input name="gender" type="hidden" value="{{ year }}">
+            <div class="text">Année</div>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+                {% for y in range(dateRange.min, dateRange.max) %}
+                    <a href="{{ path('je_finances_urssaf_year', {year:y}) }}" class="item" data-value="{{ y }}">{{ y }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {% set totalNumberOfDays = 0 %}
+    {% set totalAmount = 0 %}
+    {% set totalUrssaf = 0 %}
+
+    {% for quarter in range(1, 4) %}
+        <h2>Trimestre {{ quarter }}</h2>
+        <table class="ui compact table segment">
+            <thead>
+                <th>Période</th>
+                <th>Nombre de JEH</th>
+                <th>Rémunérations HT</th>
+                <th>URSSAF à payer</th>
+            </thead>
+            <tbody>
+                {% set numberOfDays = 0 %}
+                {% set amount = 0 %}
+                {% set urssaf = 0 %}
+                {% for month in range(3*(quarter -1) + 1, 3*(quarter -1) + 3) %}
+                    <tr>
+                        <td>{{ months()[month] }}</td>
+                        <td>{{ paymentSlips[year ~ month].numberOfDays }}</td>
+                        <td>{{ paymentSlips[year ~ month].amount|money }}</td>
+                        <td>{{ paymentSlips[year ~ month].urssaf|money }}</td>
+                    </tr>
+                    {% set numberOfDays = numberOfDays + paymentSlips[year ~ month].numberOfDays %}
+                    {% set amount = amount + paymentSlips[year ~ month].amount %}
+                    {% set urssaf = urssaf + paymentSlips[year ~ month].urssaf %}
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Totale :</th>
+                    <th>{{ numberOfDays }}</th>
+                    <th>{{ amount|money }}</th>
+                    <th>{{ urssaf|money }}</th>
+                </tr>
+            </tfoot>
+        </table>
+        {% set totalNumberOfDays = totalNumberOfDays + numberOfDays %}
+        {% set totalAmount = totalAmount + amount %}
+        {% set totalUrssaf = totalUrssaf + urssaf %}
+    {% endfor %}
+
+    <h2>Résumé</h2>
+
+    <table class="ui compact collapsing table segment">
+        <tbody>
+        <tr>
+            <th>Nombre de JEH</th>
+            <td>{{ totalNumberOfDays }}</td>
+        </tr>
+        <tr>
+            <th>Rémunérations HT</th>
+            <td>{{ totalAmount|money }}</td>
+        </tr>
+        <tr>
+            <th>Totale URSSAF</th>
+            <td>{{ totalUrssaf|money }}</td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

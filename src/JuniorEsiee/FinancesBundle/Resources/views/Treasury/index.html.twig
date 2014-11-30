@@ -1,0 +1,193 @@
+{% extends '::layout.html.twig' %}
+
+{% block title 'Trésorerie réelle' %}
+
+{% block content %}
+    <h1 class="ui header">
+        {{ block('title') }}
+    </h1>
+
+    <div>
+        Affichage du mois de
+        <div class="ui inline dropdown">
+            <input name="month" type="hidden" value="{{ month }}">
+            <div class="text">Mois</div>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+                {% for key, m in months() %}
+                    <a href="{{ path('je_finances_treasury', {month:key, year:year}) }}" class="item" data-value="{{ key }}">{{ m }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="ui inline dropdown">
+            <input name="gender" type="hidden" value="{{ year }}">
+            <div class="text">Année</div>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+                {% for y in range(dateRange.min, dateRange.max) %}
+                    <a href="{{ path('je_finances_treasury', {month:month, year:y}) }}" class="item" data-value="{{ y }}">{{ y }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <h2>Résumé</h2>
+
+    <table class="ui definition compact collapsing table">
+        <tbody>
+            <tr>
+                <td>TVA</td>
+                <td>{{ (salesSum.taxesAmount - purchasesSum.taxesAmount)|money }}</td>
+            </tr>
+            <tr>
+                <td>Entrées</td>
+                <td>{{ salesSum.totalAmount|money }}</td>
+            </tr>
+            <tr>
+                <td>Sorties</td>
+                <td>{{ (purchasesSum.totalAmount + paymentSlipsSum.totalAmount)|money }}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td style="border-top: 1px solid #d4d4d5;">Résultat</td>
+                <td style="border-top: 1px solid #d4d4d5;">{{ (salesSum.totalAmount - purchasesSum.totalAmount - paymentSlipsSum.totalAmount)|money }}</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <h2>Ventes</h2>
+    <table class="ui compact table">
+        <thead>
+        <tr>
+            <th>Référence</th>
+            <th>Date d'émmission</th>
+            <th>Date du paiment</th>
+            <th>Client</th>
+            <th>Pourcentage</th>
+            <th>Montant HT</th>
+            <th>Montant TVA</th>
+            <th>Montant TTC</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for invoice in sales %}
+            <tr>
+                <td>{{ invoice.fc }}</td>
+                <td>{{ invoice.issuedAt|date('d/m/Y') }}</td>
+                <td>{{ invoice.paidAt|date('d/m/Y') }}</td>
+                <td>{{ invoice.client }}</td>
+                <td>{{ invoice.percentage }} %</td>
+                <td>{{ invoice.amount|money }}</td>
+                <td>{{ invoice.taxesAmount|money }}</td>
+                <td>{{ invoice.totalAmount|money }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">
+                    Aucun FC pour ce mois
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <th colspan="5">
+                Totale
+            </th>
+            <th>{{ salesSum.amount|money }}</th>
+            <th>{{ salesSum.taxesAmount|money }}</th>
+            <th>{{ salesSum.totalAmount|money }}</th>
+        </tr>
+        </tfoot>
+    </table>
+
+    <h2>Achats</h2>
+    <table class="ui compact table">
+        <thead>
+            <tr>
+                <th>Référence</th>
+                <th>Date</th>
+                <th>Récepteur</th>
+                <th>Description</th>
+                <th>Montant HT</th>
+                <th>Montant TVA</th>
+                <th>Montant TTC</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for purchase in purchases %}
+                <tr>
+                    <td>{{ purchase.ref }}</td>
+                    <td>{{ purchase.createdAt|date('d/m/Y') }}</td>
+                    <td>{{ purchase.supplier }}</td>
+                    <td>{{ purchase.description }}</td>
+                    <td>{{ purchase.amount|money }}</td>
+                    <td>{{ purchase.taxesAmount|money }}</td>
+                    <td>{{ purchase.totalAmount|money }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">
+                        Aucun achat pour ce mois
+                    </td>
+                </tr>
+            {%  endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="4">
+                    Totale
+                </th>
+                <th>{{ purchasesSum.amount|money }}</th>
+                <th>{{ purchasesSum.taxesAmount|money }}</th>
+                <th>{{ purchasesSum.totalAmount|money }}</th>
+            </tr>
+        </tfoot>
+    </table>
+
+    <h2>Bulletins de versement </h2>
+
+    <table class="ui compact table">
+        <thead>
+        <tr>
+            <th>Référence</th>
+            <th>Date</th>
+            <th>Client</th>
+            <th>Réalisateur</th>
+            <th>Montant HT</th>
+            <th>URSSAF</th>
+            <th>Montant TTC</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for slip in paymentSlips %}
+            <tr>
+                <td>{{ slip.bv }}</td>
+                <td>{{ slip.createdAt|date('d/m/Y') }}</td>
+                <td>{{ slip.client }}</td>
+                <td>{{ slip.student }}</td>
+                <td>{{ slip.amount|money }}</td>
+                <td>{{ slip.urssaf|money }}</td>
+                <td>{{ slip.totalAmount|money }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">
+                    Aucun BV pour ce mois
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <th colspan="4">
+                Totale
+            </th>
+            <th>{{ paymentSlipsSum.amount|money }}</th>
+            <th>{{ paymentSlipsSum.urssaf|money }}</th>
+            <th>{{ paymentSlipsSum.totalAmount|money }}</th>
+        </tr>
+        </tfoot>
+    </table>
+{% endblock %}

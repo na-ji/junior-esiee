@@ -1,0 +1,88 @@
+{% extends '::layout.html.twig' %}
+
+{% block title 'Factures clients' %}
+
+{% block content %}
+    <h1 class="ui header">
+        {{ block('title') }}
+    </h1>
+
+    <table class="ui compact table">
+        <thead>
+        <tr>
+            {{ knp_pagination_sortable(invoices, "Référence", 'i.ref') }}
+            {{ knp_pagination_sortable(invoices, "FC", 'i.fc') }}
+            {{ knp_pagination_sortable(invoices, "Date d'émmission", 'i.issuedAt') }}
+            {{ knp_pagination_sortable(invoices, "Date d'échéance", 'i.dueDate') }}
+            {{ knp_pagination_sortable(invoices, "Client", 'i.client') }}
+            <th style="padding: 0em;">Pourcentage</th>
+            <th style="padding: 0em;">Montant HT</th>
+            <th style="padding: 0em;">Montant TVA</th>
+            <th style="padding: 0em;">Montant TTC</th>
+            <th style="padding: 0em;">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for invoice in invoices %}
+        <tr{% if invoice.paid %} class="positive" {% endif %}>
+            <td>{{ invoice.ref }}</td>
+            <td>{{ invoice.fc }}</td>
+            <td>{{ invoice.issuedAt|date('d/m/Y') }}</td>
+            <td{% if invoice.dueDate < date('now') and not invoice.paid %} class="error"{% endif %}>
+                {{ invoice.dueDate|date('d/m/Y') }}
+            </td>
+            <td>{{ invoice.client }}</td>
+            <td>{{ invoice.percentage }} %</td>
+            <td>{{ invoice.amount|money }}</td>
+            <td>{{ invoice.taxesAmount|money }}</td>
+            <td>{{ invoice.totalAmount|money }}</td>
+            <td>
+                <div class="ui labeled icon top right pointing dropdown mini button">
+                    <i class="settings icon"></i>
+                    Actions
+                    <div class="menu">
+                        {% if invoice.paid %}
+                            <a href="{{ path('je_finances_fc_unpaid', {fc:invoice.fc}) }}" class="item">
+                                <i class="reply mail icon"></i> Annuler paiment
+                            </a>
+                        {% else %}
+                            <div data-row-action="{{ url('je_finances_fc_paid', {fc:invoice.fc}) }}" class="item">
+                                <i class="check icon"></i> Payé
+                            </div>
+                        {% endif %}
+                        {% if invoice.hasFile %}
+                            <a href="{% path invoice.file, 'reference' %}" class="item">
+                                <i class="file icon"></i> Document
+                            </a>
+                        {% endif %}
+                        <a href="{{ path('je_finances_fc_edit', {fc:invoice.fc}) }}" class="item">
+                            <i class="pencil icon"></i> Editer
+                        </a>
+                        <a class="item">
+                            <i class="delete icon"></i> Supprimer
+                        </a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">
+                    Aucun FC
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <th colspan="10">
+                <a class="ui green labeled icon button" href="{{ path('je_finances_fc_new') }}">
+                    Nouveau <i class="plus icon"></i>
+                </a>
+                {{ knp_pagination_render(invoices) }}
+            </th>
+        </tr>
+        </tfoot>
+    </table>
+
+{% endblock %}

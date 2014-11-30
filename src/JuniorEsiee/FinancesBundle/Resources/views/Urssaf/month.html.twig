@@ -1,0 +1,97 @@
+{% extends '::layout.html.twig' %}
+
+{% block title 'URSSAF mensuel' %}
+
+{% block content %}
+    <h1 class="ui header">
+        {{ block('title') }}
+    </h1>
+
+    <div>
+        Affichage du mois de
+        <div class="ui inline dropdown">
+            <input name="month" type="hidden" value="{{ month }}">
+            <div class="text">Mois</div>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+                {% for key, m in months() %}
+                    <a href="{{ path('je_finances_urssaf_month', {month:key, year:year}) }}" class="item" data-value="{{ key }}">{{ m }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="ui inline dropdown">
+            <input name="gender" type="hidden" value="{{ year }}">
+            <div class="text">Année</div>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+                {% for y in range(dateRange.min, dateRange.max) %}
+                    <a href="{{ path('je_finances_urssaf_month', {month:month, year:y}) }}" class="item" data-value="{{ y }}">{{ y }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <h2>Résumé</h2>
+
+    <table class="ui compact collapsing table">
+        <tbody>
+            <tr>
+                <th>Nombre de JEH</th>
+                <td>{{ paymentSlipsSum.numberOfDays|default(0) }}</td>
+            </tr>
+            <tr>
+                <th>Rémunérations HT</th>
+                <td>{{ paymentSlipsSum.amount|money }}</td>
+            </tr>
+            <tr>
+                <th>Cotisation</th>
+                <td>{{ paymentSlipsSum.urssaf|money }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Bulletins de versement </h2>
+
+    <table class="ui compact table">
+        <thead>
+        <tr>
+            <th>Référence</th>
+            <th>Date</th>
+            <th>Client</th>
+            <th>Réalisateur</th>
+            <th>JEH</th>
+            <th>Rémunérations HT</th>
+            <th>Cotisations</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for slip in paymentSlips %}
+            <tr>
+                <td>{{ slip.bv }}</td>
+                <td>{{ slip.createdAt|date('d/m/Y') }}</td>
+                <td>{{ slip.client }}</td>
+                <td>{{ slip.student }}</td>
+                <td>{{ slip.numberOfDays }}</td>
+                <td>{{ slip.amount|money }}</td>
+                <td>{{ slip.urssaf|money }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">
+                    Aucun BV pour ce mois
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <th colspan="4">
+                Totale
+            </th>
+            <th>{{ paymentSlipsSum.numberOfDays }}</th>
+            <th>{{ paymentSlipsSum.amount|money }}</th>
+            <th>{{ paymentSlipsSum.urssaf|money }}</th>
+        </tr>
+        </tfoot>
+    </table>
+{% endblock %}

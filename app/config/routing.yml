@@ -1,3 +1,7 @@
+junior_esiee_finances:
+    resource: "@JuniorEsieeFinancesBundle/Resources/config/routing.yml"
+    prefix:   /finances
+
 junior_esiee_business:
     resource: "@JuniorEsieeBusinessBundle/Resources/config/routing.yml"
     prefix:   /tool
@@ -8,7 +12,7 @@ junior_esiee_page:
 
 application_sonata_user:
     resource: "@ApplicationSonataUserBundle/Resources/config/routing/routing.yml"
-    prefix:   /
+    prefix:   /team
 
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
