@@ -1,8 +1,10 @@
 {% extends '::layout.html.twig' %}
 
+{% block title 'Trésorerie réelle' %}
+
 {% block content %}
     <h1 class="ui header">
-        Trésorerie réelle
+        {{ block('title') }}
     </h1>
     <form method="post" {{ form_enctype(form) }} novalidate>
         Afficher la période de
