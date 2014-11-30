@@ -84,7 +84,7 @@
                         <i class="dollar icon"></i>
                         Trésorerie
                     </a>
-                    <a {{ helper.current('je_stat', 'je_home_index') }}>
+                    <a {{ helper.current('je_stat', 'je_stat_index') }}>
                         <i class="tasks icon"></i>
                         Indicateurs
                     </a>
@@ -160,12 +160,8 @@
                 {% endif %}
 
                 {% if 'je_stat' in route %}
-                    <div class="ui pointing dropdown item{% if 'je_stat_finance' in route %} active{% endif %}">
-                        Trésorerie <i class="dropdown icon"></i>
-                        <div class="menu">
-                            <a href="{{ path('je_stat_finances_treasury') }}" class="item">Trésorerie réelle</a>
-                        </div>
-                    </div>
+                    <a {{ helper.current('je_stat_index') }}>Stats</a>
+                    <a {{ helper.current('je_stat_finances_treasury') }}>Trésorerie réelle</a>
                 {% endif %}
             </div>
         </div>

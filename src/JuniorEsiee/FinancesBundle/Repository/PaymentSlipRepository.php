@@ -4,7 +4,7 @@ namespace JuniorEsiee\FinancesBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
-use JE\StatBundle\Entity\DateRange;
+use JuniorEsiee\StatBundle\Entity\DateRange;
 
 /**
  * PaymentSlipRepository

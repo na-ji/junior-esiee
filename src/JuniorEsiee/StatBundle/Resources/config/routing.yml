@@ -1,0 +1,7 @@
+je_stat_index:
+    pattern:  /
+    defaults: { _controller: JuniorEsieeStatBundle:Index:index }
+
+je_stat_finances:
+    resource: "@JuniorEsieeStatBundle/Resources/config/routing_finances.yml"
+    prefix:   /finances

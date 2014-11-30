@@ -1,0 +1,3 @@
+je_stat_finances_treasury:
+    pattern:  /treasury
+    defaults: { _controller: JuniorEsieeStatBundle:Finances:treasury }

@@ -1,0 +1,120 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+    <h1 class="ui header">
+        Trésorerie réelle
+    </h1>
+    <form method="post" {{ form_enctype(form) }} novalidate>
+        Afficher la période de
+        {{ form_widget(form.monthFrom) }}
+        {{ form_widget(form.yearFrom) }}
+        <span style="padding-right: 8px">à</span>
+        {{ form_widget(form.monthTo) }}
+        {{ form_widget(form.yearTo) }}
+        {{ form_rest(form) }}
+
+        <button class="circular mini ui icon button">
+            <i class="check icon"></i>
+        </button>
+    </form>
+    {{ form_errors(form) }}
+
+    {% if form.vars.errors|length == 0 %}
+        <div id="graph" style="width: 100%; height: 400px; margin-top: 20px"></div>
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if form.vars.errors|length == 0 %}
+        <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+        <script type="text/javascript" src="http://code.highcharts.com/modules/exporting.js"></script>
+
+        <script type="text/javascript">
+            function number_format (number, decimals, dec_point, thousands_sep) {
+                // Strip all characters but numerical ones.
+                number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
+                var n = !isFinite(+number) ? 0 : +number,
+                        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+                        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+                        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+                        s = '',
+                        toFixedFix = function (n, prec) {
+                            var k = Math.pow(10, prec);
+                            return '' + Math.round(n * k) / k;
+                        };
+                // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+                s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+                if (s[0].length > 3) {
+                    s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+                }
+                if ((s[1] || '').length < prec) {
+                    s[1] = s[1] || '';
+                    s[1] += new Array(prec - s[1].length + 1).join('0');
+                }
+                return s.join(dec);
+            }
+
+            $(function () {
+                $('#graph').highcharts({
+                    title: {
+                        text: 'Trésorerie réelle mensuel',
+                        x: -20 //center
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    xAxis: {
+                        categories: [{{ dateRange.months|raw }}]
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Totale du mois (€)'
+                        },
+                        plotLines: [{
+                            value: 0,
+                            width: 1,
+                            color: '#808080'
+                        }]
+                    },
+                    tooltip: {
+                        valueSuffix: ' €',
+                        shared: true,
+                        crosshairs: true,
+                        formatter: function(){
+                            var tooltip = this.x + '<br><br>';
+                            $.each(this.points, function(i, point){
+                                tooltip += '<b>'+point.series.name+'</b> : '+number_format(point.y, 2, ',', ' ')+' €<br>';
+                            });
+                            return tooltip;
+                        }
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'middle',
+                        borderWidth: 0
+                    },
+                    colors: [
+                        '#99bf4c',
+                        '#c44242',
+                        '#4875c9'
+                    ],
+                    series: [{
+                        name: 'Entrées',
+                        data: [{% for sale in sales %}{{ sale.totalAmount|money('', 2, '.', '', false) }},{% endfor %}],
+                        type: 'column'
+                    },{
+                        name: 'Sorties',
+                        data: [{% for key, slip in paymentSlips %}{{ (slip.totalAmount + purchases[key].totalAmount)|money('', 2, '.', '', false) }},{% endfor %}],
+                        type: 'column'
+                    },{
+                        name: 'Résultat',
+                        data: [{% for key, sale in sales %}{{ (sale.totalAmount - paymentSlips[key].totalAmount - purchases[key].totalAmount)|money('', 2, '.', '', false) }},{% endfor %}],
+                        lineWidth: 2
+                    }]
+                });
+            });
+        </script>
+    {% endif %}
+{% endblock %}

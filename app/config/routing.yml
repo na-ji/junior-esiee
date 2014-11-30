@@ -1,3 +1,7 @@
+junior_esiee_stat:
+    resource: "@JuniorEsieeStatBundle/Resources/config/routing.yml"
+    prefix:   /stats
+
 junior_esiee_finances:
     resource: "@JuniorEsieeFinancesBundle/Resources/config/routing.yml"
     prefix:   /finances
