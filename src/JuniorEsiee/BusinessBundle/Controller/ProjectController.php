@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JuniorEsiee\BusinessBundle\Entity\Project;
 use JuniorEsiee\BusinessBundle\Form\ProjectType;
 use Symfony\Component\HttpFoundation\Request;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 class ProjectController extends Controller
 {
@@ -35,6 +36,9 @@ class ProjectController extends Controller
      */
     private $security;
 
+    /**
+     * @Secure(roles="ROLE_COMMERCIAL")
+     */
 	public function myProjectAction($page, $sort, $direction)
 	{
 		$_GET['sort']      = $sort;
@@ -45,6 +49,9 @@ class ProjectController extends Controller
         return $this->listProject($projects, $page, 'Mes appels à projets');
 	}
 
+    /**
+     * @Secure(roles="ROLE_COMMERCIAL, ROLE_ADMIN")
+     */
 	public function inboxAction($page, $sort, $direction)
 	{
 		$_GET['sort']      = $sort;
@@ -66,6 +73,7 @@ class ProjectController extends Controller
 
 	/**
 	 * @Template
+     * @Secure(roles="ROLE_COMMERCIAL")
 	 */
 	public function newAction(Request $request)
 	{
@@ -91,6 +99,7 @@ class ProjectController extends Controller
 
 	/**
 	 * @Template
+     * @Secure(roles="ROLE_COMMERCIAL")
 	 */
 	public function editAction(Project $project, Request $request)
 	{
@@ -114,6 +123,7 @@ class ProjectController extends Controller
 
 	/**
 	 * @Template
+     * @Secure(roles="ROLE_COMMERCIAL")
 	 */
 	public function showAction(Project $project)
 	{
@@ -122,6 +132,9 @@ class ProjectController extends Controller
 		);
 	}
 
+    /**
+     * @Secure(roles="ROLE_COMMERCIAL, ROLE_ADMIN")
+     */
 	public function deleteAction(Project $project)
 	{
 		$this->em->remove($project);
@@ -134,6 +147,7 @@ class ProjectController extends Controller
 
 	/**
 	 * @Template
+	 * @Secure(roles="ROLE_COMMERCIAL, ROLE_ADMIN")
 	 */
 	public function deleteConfirmationAction(Project $project)
 	{
