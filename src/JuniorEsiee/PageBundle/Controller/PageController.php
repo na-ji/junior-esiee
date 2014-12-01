@@ -93,7 +93,7 @@ class PageController extends Controller
 				$messageadmin = \Swift_Message::newInstance()
 					->setSubject("Message d'APPEL D'OFFRE depuis de le site web de ".$data['common']['prenom']." ".$data['common']['nom'].".")
 					->setFrom($data['common']['email'])
-					->setTo('dsi@junioresiee.com')
+					->setTo('contact@junioresiee.com')
 					->setContentType('text/html')
 				;
 
