@@ -177,7 +177,7 @@ class PageController extends Controller
 
 				$this->get('mailer')->send($messageclient);				
 				
-				$this->get('session')->getFlashBag()->add('success', "<strong>Votre appel d'offre a bien été envoyé à nos équipes</strong>, un mail de confirmation vous a été envoyée. <strong>Merci</strong> de votre intérêt.");
+				$this->get('session')->getFlashBag()->add('success', "<strong>Votre appel d'offre a bien été envoyé à nos équipes</strong>, un mail de confirmation vous a été envoyé. <strong>Merci</strong> de votre intérêt.");
 				
 				// Redirect - This is important to prevent users re-posting
 				// the form if they refresh the page
