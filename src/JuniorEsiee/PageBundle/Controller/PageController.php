@@ -155,7 +155,10 @@ class PageController extends Controller
 				$em->persist($project);
 				$em->flush();
 				
-				$messageadmin->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailOffre.html.twig', array('data' => $data)));
+				$messageadmin->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailOffre.html.twig', array(
+					'data'    => $data,
+					'project' => $project,
+				)));
 
 				$this->get('mailer')->send($messageadmin);
 				
