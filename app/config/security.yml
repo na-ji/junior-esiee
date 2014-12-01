@@ -58,7 +58,11 @@ security:
                 use_forward:    false
                 check_path:     /login_check
                 failure_path:   null
-            logout:             true
+                use_referer:    true
+                default_target_path: /tool
+            logout:
+                path:   /logout
+                target: /tool
             anonymous:          true
             remember_me:
                 key:      "%secret%"

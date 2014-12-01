@@ -21,51 +21,53 @@
     <body>
         {% import '::helper.html.twig' as helper %}
 
-        <div class="ui notification sidebar vertical">
-            <div class="ui feed">
-                <h4 class="ui header">Notifications</h4>
-                <div class="event">
-                    <div class="content">
-                        <div class="date">
-                            A l'instant
-                        </div>
-                        <div class="summary">
-                            <a>Sajna</a> a déposé un nouvel <a>AP</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="event">
-                    <div class="content">
-                        <div class="date">
-                            Il y a 3 jours
-                        </div>
-                        <div class="summary">
-                            <a>Martin</a> a complété votre <a>AP</a>
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <div class="ui notification sidebar vertical">
+                <div class="ui feed">
+                    <h4 class="ui header">Notifications</h4>
+                    <div class="event">
+                        <div class="content">
+                            <div class="date">
+                                A l'instant
+                            </div>
+                            <div class="summary">
+                                <a>Sajna</a> a déposé un nouvel <a>AP</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="event">
-                    <div class="content">
-                        <div class="date">
-                            Il y a 3 jours
-                        </div>
-                        <div class="summary">
-                            <a>Martin</a> a marqué votre <a>AP</a> en comme en cours
+                    <div class="event">
+                        <div class="content">
+                            <div class="date">
+                                Il y a 3 jours
+                            </div>
+                            <div class="summary">
+                                <a>Martin</a> a complété votre <a>AP</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="event">
-                    <div class="content">
-                        <div class="date">
-                            Il y a 3 jours
+                    <div class="event">
+                        <div class="content">
+                            <div class="date">
+                                Il y a 3 jours
+                            </div>
+                            <div class="summary">
+                                <a>Martin</a> a marqué votre <a>AP</a> en comme en cours
+                            </div>
                         </div>
-                        <div class="summary">
-                            <a>Martin</a> vous a ajouté en tant que réalisateur sur un <a>AP</a>
+                    </div>
+                    <div class="event">
+                        <div class="content">
+                            <div class="date">
+                                Il y a 3 jours
+                            </div>
+                            <div class="summary">
+                                <a>Martin</a> vous a ajouté en tant que réalisateur sur un <a>AP</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
         <div class="pusher">
         <div class="ui tiered menu fix-menu">
             <div class="menu">
@@ -89,35 +91,46 @@
                         Indicateurs
                     </a>
                 {% endif %}
-                <a {{ helper.current('je_business', 'je_business_my_project') }}>
-                    <i class="browser icon"></i>
-                    Projets
-                </a>
+                {% if is_granted('ROLE_COMMERCIAL') %}
+                    <a {{ helper.current('je_business', 'je_business_my_project') }}>
+                        <i class="browser icon"></i>
+                        Projets
+                    </a>
+                {% endif %}
                 {% if is_granted('ROLE_COMMUNICATION') %}
                     <a {{ helper.current('je_events', 'page_tool_index') }}>
                         <i class="bullhorn icon"></i>
                         Evénementiel
                     </a>
                 {% endif %}
-                <a {{ helper.current('je_bargain', 'page_tool_index') }}>
-                    <i class="money icon"></i>
-                    Stage
-                </a>
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <a {{ helper.current('je_bargain', 'page_tool_index') }}>
+                        <i class="money icon"></i>
+                        Stage
+                    </a>
+                {% endif %}
 
                 <div class="right menu">
-                    <a class="item notification" data-transition="overlay" data-direction="right">
-                        <div class="ui black circular small label">
-                            <i class="bell outline icon"></i> 4
-                        </div>
-                    </a>
-                    <a class="item">
-                        <i class="settings icon"></i>
-                        Parametres
-                    </a>
-                    <a class="item" href="{{ path('sonata_user_security_logout') }}">
-                        <i class="power icon"></i>
-                        Déconnexion
-                    </a>
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                        <a class="item notification" data-transition="overlay" data-direction="right">
+                            <div class="ui black circular small label">
+                                <i class="bell outline icon"></i> 4
+                            </div>
+                        </a>
+                        <a class="item">
+                            <i class="settings icon"></i>
+                            Parametres
+                        </a>
+                        <a class="item" href="{{ path('sonata_user_security_logout') }}">
+                            <i class="power icon"></i>
+                            Déconnexion
+                        </a>
+                    {% else %}
+                        <a class="item" href="{{ path('sonata_user_security_login') }}">
+                            <i class="power icon"></i>
+                            Connexion
+                        </a>
+                    {% endif %}
                 </div>
             </div>
 
