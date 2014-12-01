@@ -38,7 +38,7 @@ class PageController extends Controller
 
 				$messageclient = \Swift_Message::newInstance()
 					->setSubject("Confirmation d'envoi d'appel d'offre.")
-					->setFrom('contact@junioresiee.com')
+					->setFrom('contact@junioresiee.com' => "Site de Junior ESIEE")
 					->setTo($data['common']['email'])
 					->setContentType('text/html')
 					->attach(\Swift_Attachment::fromPath('uploads/plaquetteclient.pdf'))
@@ -164,7 +164,7 @@ class PageController extends Controller
 				
 				$messageclient = \Swift_Message::newInstance()
 					->setSubject("Confirmation d'envoi d'appel d'offre.")
-					->setFrom('contact@junioresiee.com')
+					->setFrom('contact@junioresiee.com' => "Site de Junior ESIEE")
 					->setTo($data['common']['email'])
 					->setContentType('text/html')
 					->attach(\Swift_Attachment::fromPath('uploads/plaquetteclient.pdf'))
