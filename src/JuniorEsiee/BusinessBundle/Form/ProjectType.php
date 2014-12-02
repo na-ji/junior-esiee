@@ -75,7 +75,7 @@ class ProjectType extends AbstractType
                     'required'   => false,
                     'class'      => 'ApplicationSonataUserBundle:User',
                     'properties' => array('id', 'username'),
-                    'role'       => 'ROLE_COMMERCIAL'
+                    'role'       => 'ROLE_CHARGE'
                 ))
                 ->add('rbu', 'association_list', array(
                     'required'   => false,
@@ -92,7 +92,7 @@ class ProjectType extends AbstractType
             ;
         }
 
-        if ($this->securityContext->isGranted('ROLE_COMMERCIAL'))
+        if ($this->securityContext->isGranted('ROLE_CHARGE'))
         {
             $builder
                 ->add('skillCategories', null, array(
