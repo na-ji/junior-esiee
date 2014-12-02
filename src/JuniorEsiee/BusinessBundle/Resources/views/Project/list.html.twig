@@ -18,21 +18,24 @@
         <tbody>
         {% for project in projects %}
             <tr>
-                <td>{{ project.title }}</td>
+                <td><a href="{{ path('je_business_project_show', {id:project.id}) }}" class="item">{{ project.title }}</a></td>
                 <td>{{ project.depositDate|format_date }}</td>
                 <td>{{ project.delay|format_date }}</td>
-                {% if project.state != 'state_aborted' and project.state != 'state_closed' and project.state != 'state_waiting_information' %}
-                    <td>
+                <td>
+                    {% if project.state != 'state_aborted' and project.state != 'state_closed' and project.state != 'state_waiting_information' %}
+                        {% if project.state == 'state_opened' %}
+                            {{ 'state_opened'|projectState }}
+                        {% endif %}
                         {% if project.commercial is null %}
                             {{ 'state_waiting_commercial'|projectState }}
                         {% endif %}
                         {% if project.students|length < 1 %}
                             {{ 'state_waiting_student'|projectState }}
                         {% endif %}
-                    </td>
-                {% else %}
-                    <td>{{ project.state|projectState }}</td>
-                {% endif %}
+                    {% else %}
+                        {{ project.state|projectState }}
+                    {% endif %}
+                </td>
                 <td>
                     <div class="ui labeled icon top right pointing dropdown mini button">
                         <i class="settings icon"></i>

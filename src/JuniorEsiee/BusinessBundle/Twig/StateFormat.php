@@ -38,6 +38,7 @@ class StateFormat extends \Twig_Extension
         $result = array(
             'state_closed'              => array('pink', 'Cloturé'),
             'state_aborted'             => array('orange', 'Avorté'),
+            'state_opened'              => array('green', 'Ouvert'),
             'state_waiting_information' => array('purple', 'Att Rens'),
             'state_waiting_student'     => array('teal', 'Att Real'),
             'state_waiting_commercial'  => array('blue', 'Att Comm'),

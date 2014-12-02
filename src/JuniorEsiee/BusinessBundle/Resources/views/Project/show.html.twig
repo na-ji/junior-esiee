@@ -1,8 +1,109 @@
 {% extends '::layout.html.twig' %}
 
-{% block title project.title %}
+{% block title project.title is not null ? project.title :'Projet sans nom' %}
 
 {% block content %}
-	<h1 class="ui header">{{ block('title') }}</h1>
+    <h1 class="ui header">
+    	<div class="content">
+        	{{ block('title') }}
+        	{% if project.state != 'state_aborted' and project.state != 'state_closed' and project.state != 'state_waiting_information' %}
+        		{% if project.state == 'state_opened' %}
+                    {{ 'state_opened'|projectState }}
+                {% endif %}
+                {% if project.commercial is null %}
+                    {{ 'state_waiting_commercial'|projectState }}
+                {% endif %}
+                {% if project.students|length < 1 %}
+                    {{ 'state_waiting_student'|projectState }}
+                {% endif %}
+            {% else %}
+                {{ project.state|projectState }}
+            {% endif %}<br />
+        	<div class="sub header">
+			    <a class="ui blue labeled icon submit button" href="{{ path('je_business_project_edit', {id:project.id}) }}" style="padding: .8em;">
+			        Editer
+			        <i class="pencil icon"></i>
+			    </a>
+        	</div>
+    	</div>
+    </h1>
 
+    <div class="ui two column grid">
+        <div class="column">
+            <div class="ui segment">
+                <h2>Informations</h2>
+                <h3 class="ui ribbon label">Détails</h3>
+                <p>
+                    {% if project.description is not null %}<b>Description</b> : {{ project.description }}<br />{% endif %}
+                    {% if project.depositDate is not null %}<b>Date de dépôt</b> : {{ project.depositDate|format_date }}<br />{% endif %}
+                    {% if project.delay is not null %}<b>Délais</b> : {{ project.delay|format_date }}<br />{% endif %}
+                    {% if project.skillCategories|length > 0 %}<b>Majeur{% if project.skillCategories|length > 1 %}s{% endif %}</b> : 
+						{% for skillCategory in project.skillCategories %}
+							{{ skillCategory }}{% if not loop.last %},{% endif %}
+						{% endfor %}
+                    	<br />
+                    {% endif %}
+                    {% if project.skills|length > 0 %}<b>Compétence{% if project.skills|length > 1 %}s{% endif %}</b> : 
+						{% for skill in project.skills %}
+							{{ skill }}{% if not loop.last %},{% endif %}
+						{% endfor %}
+                    	<br />
+                    {% endif %}
+                </p>
+                {% if project.scopeStatement is not null or project.graphicCharter is not null %}
+	                <div class="ui divider"></div>
+
+	                <h3 class="ui ribbon label">Pièces jointes</h3>
+	                <div class="ui grid">
+	                	<div class="two column row">
+			                {% if project.scopeStatement is not null %}
+			                	<div class="column">
+					                <p>Cahier des charges</p>
+					                <a href="{{ path('sonata_media_download', {'id': project.scopeStatement|sonata_urlsafeid }) }}" class="item">{% thumbnail project.scopeStatement, 'small' %}</a>
+					            </div>
+			                {% endif %}
+			                {% if project.graphicCharter is not null %}
+			                	<div class="column">
+					                <p>Charte graphique</p>
+					                <a href="{{ path('sonata_media_download', {'id': project.graphicCharter|sonata_urlsafeid }) }}" class="item">{% thumbnail project.graphicCharter, 'small' %}</a>
+					            </div>
+			                {% endif %}
+			            </div>
+	            	</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui segment">
+                <h2>Suivi</h2>
+                <h3 class="ui ribbon label">Contact</h3>
+                <p>
+                    {% if project.clientLastName is not null %}<b>Nom de famille</b> : {{ project.clientLastName }}<br />{% endif %}
+                    {% if project.clientFirstName is not null %}<b>Prénom</b> : {{ project.clientFirstName }}<br />{% endif %}
+                    {% if project.clientCompany is not null %}<b>Entreprise</b> : {{ project.clientCompany }}<br />{% endif %}
+                    {% if project.clientPhone is not null %}<b>Téléphone</b> : {{ project.clientPhone|phone }}<br />{% endif %}
+                    {% if project.clientEmail is not null %}<b>Email</b> : {{ project.clientEmail }}<br />{% endif %}
+                    {% if project.clientAddress is not null %}<b>Adresse</b> : {{ project.clientAddress }}<br />{% endif %}
+                    {% if project.clientZipCode is not null %}<b>Code postal</b> : {{ project.clientZipCode }}<br />{% endif %}
+                    {% if project.clientCity is not null %}<b>Ville</b> : {{ project.clientCity }}<br />{% endif %}
+                </p>
+                {% if project.rbu is not null or project.commercial is not null or project.students|length > 0 %}
+	                <div class="ui divider"></div>
+
+	                <h3 class="ui ribbon label">Suivi projet</h3>
+	                <p>
+	                    {% if project.rbu is not null %}<b>RBU</b> : {{ project.rbu|linkUser }}<br />{% endif %}
+	                    {% if project.commercial is not null %}<b>Commercial</b> : {{ project.commercial|linkUser }}<br />{% endif %}
+	                    {% if project.students|length > 0 %}<b>Réalisateur{% if project.students|length > 1 %}s{% endif %}</b> : 
+							{% for student in project.students %}
+								{{ student|linkUser }}{% if not loop.last %},{% endif %}
+							{% endfor %}
+	                    	<br />
+	                    {% endif %}
+	                </p>
+	            	</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

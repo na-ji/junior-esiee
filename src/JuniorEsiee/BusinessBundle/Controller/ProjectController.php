@@ -111,7 +111,10 @@ class ProjectController extends Controller
 			if ($form->isValid()) {
 				$this->em->persist($project);
 				$this->em->flush();
+
 				$request->getSession()->getFlashBag()->add('success', 'Votre appel à projet a bien été mis-à-jour.');
+
+				return $this->redirect($this->generateUrl('je_business_project_show', array('id' => $project->getId())));
 			}
 		}
 

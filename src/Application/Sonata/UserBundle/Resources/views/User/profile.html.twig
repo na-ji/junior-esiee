@@ -3,10 +3,10 @@
 {% block title "Profile de " ~ user %}
 
 {% block content %}
-
     <h1 class="ui header">
         {{ block('title') }}
     </h1>
+
     <div class="ui two column grid">
         <div class="column">
             <div class="ui segment">
@@ -14,7 +14,7 @@
                 <h3 class="ui ribbon label">Contact</h3>
                 <p>
                     <b>Email</b> : {{ user.email }}<br />
-                    {% if user.phone is not null %}<b>Téléphone</b> : {{ user.phone }}<br />{% endif %}
+                    {% if user.phone is not null %}<b>Téléphone</b> : {{ user.phone|phone }}<br />{% endif %}
                     {% if user.address is not null %}<b>Adresse</b> : {{ user.address }}<br />{% endif %}
                     {% if user.zipCode is not null %}<b>Code Postal</b> : {{ user.zipCode }}<br />{% endif %}
                     {% if user.city is not null %}<b>Ville</b> : {{ user.city }}<br />{% endif %}

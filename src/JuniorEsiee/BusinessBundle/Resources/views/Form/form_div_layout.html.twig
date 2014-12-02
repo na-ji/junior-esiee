@@ -26,30 +26,16 @@
     {% endspaceless %}
 {% endblock form_errors %}
 
-{% block choice_widget_expanded %}
-    {% spaceless %}
-        <div {{ block('widget_container_attributes') }} style="padding: 9px 0;">
-            {% for group_label, choice in choices %}
-                {% if choice is iterable %}
-                    <div class="ui segment">
-                        <h3 class="ui top attached label">{{ group_label }}</h3>
-                        {% for key in choice|keys %}
-                            <div class="ui checkbox">
-                                {{ form_widget(form.children[key]) }}
-                                {{ form_label(form.children[key]) }}
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    <div class="ui {% if not multiple %}radio {% endif %}checkbox">
-                        {{ form_widget(form.children[group_label]) }}
-                        {{ form_label(form.children[group_label]) }}
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-    {% endspaceless %}
-{% endblock choice_widget_expanded %}
+{% block choice_widget_expanded -%}
+    <div {{ block('widget_container_attributes') }} style="padding: 9px 0;">
+        {%- for child in form -%}
+            <div class="ui {% if not multiple %}radio {% endif %}checkbox">
+                {{- form_widget(child) -}}
+                {{- form_label(child) -}}
+            </div>
+        {%- endfor -%}
+    </div>
+{%- endblock choice_widget_expanded %}
 
 {% block choice_widget_collapsed %}
     {% spaceless %}

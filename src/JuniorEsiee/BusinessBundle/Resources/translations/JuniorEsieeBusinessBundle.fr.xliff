@@ -295,6 +295,10 @@
                 <source>state_closed</source>
                 <target>Cloturé</target>
             </trans-unit>
+            <trans-unit id="state_opened">
+                <source>state_opened</source>
+                <target>Ouvert</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

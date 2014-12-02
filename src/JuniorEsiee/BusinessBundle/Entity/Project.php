@@ -12,6 +12,7 @@ class Project
     const STATE_ABORTED             = 'state_aborted';
     const STATE_CLOSED              = 'state_closed';
     const STATE_WAITING_INFORMATION = 'state_waiting_information';
+    const STATE_OPENED              = 'state_opened';
 
     /**
      * @var integer
@@ -128,6 +129,7 @@ class Project
         $this->skillCategories = new \Doctrine\Common\Collections\ArrayCollection();
         $this->depositDate = new \DateTime();
         $this->delay = new \DateTime();
+        $this->state = Project::STATE_WAITING_INFORMATION;
     }
 
     public function __toString()
@@ -382,7 +384,7 @@ class Project
      */
     public static function getStates()
     {
-        return array(Project::STATE_ABORTED, Project::STATE_CLOSED, Project::STATE_WAITING_INFORMATION);
+        return array(Project::STATE_OPENED, Project::STATE_WAITING_INFORMATION, Project::STATE_ABORTED, Project::STATE_CLOSED);
     }
 
     /**

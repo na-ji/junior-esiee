@@ -22,12 +22,15 @@ class PhoneHelper extends \Twig_Extension
 
     public function phone($phone, array $attr = null)
     {
-        if (null === $phone || strlen($phone) < 9)
-            return $phone;
-        if(strlen($phone) == 9)
+        if(strlen($phone) === 9)
             $phone = '0'.$phone;
-
-        return chunk_split($phone, 2, ' ');
+        if(strlen($phone) === 10)
+            return preg_replace('#^0([0-9])([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})$#', '+33 (0)$1 $2 $3 $4 $5', $phone);
+        if(strlen($phone) === 11)
+            return preg_replace('#^([0-9]{2})([0-9])([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})$#', '+$1 (0)$2 $3 $4 $5 $6', $phone);
+        if(strlen($phone) === 12)
+            return preg_replace('#^\+([0-9]{2})([0-9])([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})$#', '+$1 (0)$2 $3 $4 $5 $6', $phone);
+        return preg_replace('#^([0-9]{2})0([0-9])([0-9]{2})([0-9]{2})([0-9]{2})([0-9]{2})$#', '+$1 (0)$2 $3 $4 $5 $6', $phone);
     }
 
     public function getName()

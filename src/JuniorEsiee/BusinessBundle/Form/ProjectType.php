@@ -110,6 +110,8 @@ class ProjectType extends AbstractType
                 ->add('state', 'choice', array(
                     'required'           => false,
                     'expanded'           => true,
+                    'multiple'           => false,
+                    'empty_value'        => false,
                     'choices'            => array_combine(Project::getStates(), Project::getStates()),
                     'translation_domain' => 'JuniorEsieeBusinessBundle',
                     'label'              => 'Statut'
