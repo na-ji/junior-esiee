@@ -38,8 +38,9 @@ class RolesType extends AbstractType
                 'Communication' => array(
                     'ROLE_COMMUNICATION' => 'ROLE_COMMUNICATION',
                 ),
-                'Administrateur' => array(
-                    'ROLE_ADMIN' => 'ROLE_ADMIN',
+                'Hiérarchie' => array(
+                    'ROLE_CHARGE' => 'ROLE_CHARGE',
+                    'ROLE_ADMIN'  => 'ROLE_ADMIN',
                 ),
             ),
             'translation_domain' => 'roles',

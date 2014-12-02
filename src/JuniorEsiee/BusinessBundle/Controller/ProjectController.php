@@ -63,7 +63,7 @@ class ProjectController extends Controller
 
 	public function listProject($projects, $page, $title)
 	{
-        $pagination = $this->paginator->paginate($projects, $page, 10);
+        $pagination = $this->paginator->paginate($projects, $page, 15);
 
 		return $this->render('JuniorEsieeBusinessBundle:Project:list.html.twig', array(
 			'title'    => $title,
@@ -99,7 +99,7 @@ class ProjectController extends Controller
 
 	/**
 	 * @Template
-     * @Secure(roles="ROLE_COMMERCIAL")
+     * @Secure(roles="ROLE_COMMERCIAL, ROLE_CHARGE")
 	 */
 	public function editAction(Project $project, Request $request)
 	{

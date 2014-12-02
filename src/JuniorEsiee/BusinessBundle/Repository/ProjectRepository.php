@@ -30,10 +30,25 @@ class ProjectRepository extends EntityRepository
             ->orderBy('p.depositDate');
     }
 
-    public function queryWithoutCommercial()
+    public function queryWaitingCommercial()
     {
         return $this->createQueryBuilder('p')
         	->where('p.commercial is NULL')
+            ->orderBy('p.depositDate');
+    }
+
+    public function queryWaitingStudents()
+    {
+        return $this->createQueryBuilder('p')
+        	->leftJoin('p.students', 'stu')
+        	->where('COUNT(stu.id) = 0')
+            ->orderBy('p.depositDate');
+    }
+
+    public function queryMissingInfo()
+    {
+        return $this->createQueryBuilder('p')
+        	->where('p.state = "state_waiting_information"')
             ->orderBy('p.depositDate');
     }
 }
