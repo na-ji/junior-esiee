@@ -1,0 +1,13 @@
+{% extends '::layout.html.twig' %}
+
+{% block title 'Confirmation de clôture' %}
+
+{% block content %}
+	<h1 class="ui header">Voulez-vous vraiment clôturer "{{ project.title }}" ?</h1>
+    <a class="ui orange labeled icon submit button" href="{{ path('je_business_project_close', {id:project.id}) }}">
+        Oui <i class="lock icon"></i>
+    </a>
+    <a href="{{ referer }}" class="ui labeled icon submit button">
+        Annuler <i class="reply mail icon"></i>
+    </a>
+{% endblock %}

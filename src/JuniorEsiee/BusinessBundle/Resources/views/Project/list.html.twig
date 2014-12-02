@@ -44,7 +44,7 @@
                             <a href="{{ path('je_business_project_show', {id:project.id}) }}" class="item">
                                 <i class="unhide icon"></i> Afficher
                             </a>
-                            {% if isGranted('ROLE_CHARGE') %}
+                            {% if is_granted('ROLE_CHARGE') %}
                                 <a href="{{ path('je_business_project_edit', {id:project.id}) }}" class="item">
                                     <i class="pencil icon"></i> Editer
                                 </a>
@@ -59,9 +59,17 @@
                                     <i class="file icon"></i> Charte graphique
                                 </a>
                             {% endif %}
-                            {% if isGranted('ROLE_ADMIN') %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                {% if project.state != 'state_aborted' and project.state != 'state_closed' %}
+                                    <a href="{{ path('je_business_project_abort_confirmation', {id:project.id}) }}" class="item">
+                                        <i class="delete icon"></i> Avorter
+                                    </a>
+                                    <a href="{{ path('je_business_project_close_confirmation', {id:project.id}) }}" class="item">
+                                        <i class="lock icon"></i> Clôturer
+                                    </a>
+                                {% endif %}
                                 <a href="{{ path('je_business_project_delete_confirmation', {id:project.id}) }}" class="item">
-                                    <i class="delete icon"></i> Supprimer
+                                    <i class="trash icon"></i> Supprimer
                                 </a>
                             {% endif %}
                         </div>

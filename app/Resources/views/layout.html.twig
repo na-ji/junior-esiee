@@ -144,11 +144,30 @@
 
                 {% if 'je_business' in route %}
                     <a {{ helper.current('je_business_my_project') }}>Mes AP</a>
-                    {% if isGranted('ROLE_ADMIN') %}
-                        <a class="item">AP en cours</a>
-                        <a {{ helper.current('je_business_inbox') }}>Boite de réception</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a {{ helper.current('je_business_project_in_progress') }}>AP en cours</a>
+                        <a {{ helper.current('je_business_project_inbox') }}>Boite de réception</a>
                     {% endif %}
                     <a {{ helper.current('je_business_project_new') }}>Déposer un AP</a>
+                    {% if is_granted('ROLE_CHARGE') %}
+                        <div class="item{% if 'je_business_project_waiting' in route %} active{% endif %}">
+                            <div class="ui pointing dropdown">
+                                <span class="text">AP en attente</span>
+                                <i class="dropdown icon"></i>
+                                <div class="menu">
+                                    <a {{ helper.current('je_business_project_waiting_students') }}>AP en attente d'intervenant</a>
+                                    <a {{ helper.current('je_business_project_waiting_commercial') }}>AP en attente de suivi commercial</a>
+                                    <a {{ helper.current('je_business_project_waiting_information') }}>AP en attente de renseignements supplémentaires</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <a {{ helper.current('je_business_project_waiting_students') }}>AP en attente d'intervenants</a>
+                    {% endif %}
+                    {% if is_granted('ROLE_CHARGE') %}
+                        <a {{ helper.current('je_business_project_aborted') }}>AP avortés</a>
+                    {% endif %}
+                    <a {{ helper.current('je_business_project_closed') }}>AP clôturés</a>
                 {% endif %}
 
                 {% if 'je_events' in route %}

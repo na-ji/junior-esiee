@@ -10,9 +10,57 @@ je_business_my_project:
         sort: p\.[^/]+
         direction: asc|desc
 
-je_business_inbox:
+je_business_project_inbox:
     pattern : /inbox/{page}/{sort}/{direction}
     defaults: { _controller: JuniorEsieeBusinessBundle:Project:inbox, page: 1, sort: p.depositDate, direction: desc }
+    requirements:
+        page: \d+
+        sort: p\.[^/]+
+        direction: asc|desc
+
+je_business_project_in_progress:
+    pattern : /in-progress/{page}/{sort}/{direction}
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:inProgress, page: 1, sort: p.depositDate, direction: desc }
+    requirements:
+        page: \d+
+        sort: p\.[^/]+
+        direction: asc|desc
+
+je_business_project_waiting_commercial:
+    pattern : /waiting-commercial/{page}/{sort}/{direction}
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:waitingCommercial, page: 1, sort: p.depositDate, direction: desc }
+    requirements:
+        page: \d+
+        sort: p\.[^/]+
+        direction: asc|desc
+
+je_business_project_waiting_students:
+    pattern : /waiting-students/{page}/{sort}/{direction}
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:waitingStudents, page: 1, sort: p.depositDate, direction: desc }
+    requirements:
+        page: \d+
+        sort: p\.[^/]+
+        direction: asc|desc
+
+je_business_project_waiting_information:
+    pattern : /waiting-information/{page}/{sort}/{direction}
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:waitingInformation, page: 1, sort: p.depositDate, direction: desc }
+    requirements:
+        page: \d+
+        sort: p\.[^/]+
+        direction: asc|desc
+
+je_business_project_aborted:
+    pattern : /aborted/{page}/{sort}/{direction}
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:aborted, page: 1, sort: p.depositDate, direction: desc }
+    requirements:
+        page: \d+
+        sort: p\.[^/]+
+        direction: asc|desc
+
+je_business_project_closed:
+    pattern : /closed/{page}/{sort}/{direction}
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:closed, page: 1, sort: p.depositDate, direction: desc }
     requirements:
         page: \d+
         sort: p\.[^/]+
@@ -47,5 +95,29 @@ je_business_project_delete_confirmation:
 je_business_project_delete:
     pattern : /{id}/delete
     defaults: { _controller: JuniorEsieeBusinessBundle:Project:delete }
+    requirements:
+        id: \d+
+
+je_business_project_abort_confirmation:
+    pattern : /{id}/abort-confirmation
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:abortConfirmation }
+    requirements:
+        id: \d+
+
+je_business_project_abort:
+    pattern : /{id}/abort
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:abort }
+    requirements:
+        id: \d+
+
+je_business_project_close_confirmation:
+    pattern : /{id}/close-confirmation
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:closeConfirmation }
+    requirements:
+        id: \d+
+
+je_business_project_close:
+    pattern : /{id}/close
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:close }
     requirements:
         id: \d+

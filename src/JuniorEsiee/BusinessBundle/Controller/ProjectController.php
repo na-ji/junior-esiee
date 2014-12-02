@@ -56,9 +56,82 @@ class ProjectController extends Controller
 	{
 		$_GET['sort']      = $sort;
 		$_GET['direction'] = $direction;
-		$projects          = $this->em->getRepository('JuniorEsieeBusinessBundle:Project')->queryWithoutCommercial();
+		$projects          = $this->em->getRepository('JuniorEsieeBusinessBundle:Project')->queryWaitingCommercial();
 
         return $this->listProject($projects, $page, 'Boîte de réception');
+	}
+
+    /**
+     * @Secure(roles="ROLE_COMMERCIAL, ROLE_ADMIN")
+     */
+	public function inProgressAction($page, $sort, $direction)
+	{
+		$_GET['sort']      = $sort;
+		$_GET['direction'] = $direction;
+		$user              = $this->security->getToken()->getUser();
+		$projects          = $this->em->getRepository('JuniorEsieeBusinessBundle:Project')->queryInProgress($user);
+
+        return $this->listProject($projects, $page, 'AP en cours');
+	}
+
+    /**
+     * @Secure(roles="ROLE_COMMERCIAL, ROLE_CHARGE")
+     */
+	public function waitingCommercialAction($page, $sort, $direction)
+	{
+		$_GET['sort']      = $sort;
+		$_GET['direction'] = $direction;
+		$projects          = $this->em->getRepository('JuniorEsieeBusinessBundle:Project')->queryWaitingCommercial();
+
+        return $this->listProject($projects, $page, 'AP en attente de suivi commercial');
+	}
+
+    /**
+     * @Secure(roles="ROLE_COMMERCIAL, ROLE_CHARGE")
+     */
+	public function waitingInformationAction($page, $sort, $direction)
+	{
+		$_GET['sort']      = $sort;
+		$_GET['direction'] = $direction;
+		$projects          = $this->em->getRepository('JuniorEsieeBusinessBundle:Project')->queryMissingInfo();
+
+        return $this->listProject($projects, $page, 'AP en attente de renseignements supplémentaires');
+	}
+
+    /**
+     * @Secure(roles="ROLE_COMMERCIAL")
+     */
+	public function waitingStudentsAction($page, $sort, $direction)
+	{
+		$_GET['sort']      = $sort;
+		$_GET['direction'] = $direction;
+		$projects          = $this->em->getRepository('JuniorEsieeBusinessBundle:Project')->queryWaitingStudents();
+
+        return $this->listProject($projects, $page, 'AP en attente d’intervenant');
+	}
+
+    /**
+     * @Secure(roles="ROLE_COMMERCIAL, ROLE_CHARGE")
+     */
+	public function abortedAction($page, $sort, $direction)
+	{
+		$_GET['sort']      = $sort;
+		$_GET['direction'] = $direction;
+		$projects          = $this->em->getRepository('JuniorEsieeBusinessBundle:Project')->queryAborted();
+
+        return $this->listProject($projects, $page, 'AP Avortés');
+	}
+
+    /**
+     * @Secure(roles="ROLE_COMMERCIAL")
+     */
+	public function closedAction($page, $sort, $direction)
+	{
+		$_GET['sort']      = $sort;
+		$_GET['direction'] = $direction;
+		$projects          = $this->em->getRepository('JuniorEsieeBusinessBundle:Project')->queryClosed();
+
+        return $this->listProject($projects, $page, 'AP clôturés');
 	}
 
 	public function listProject($projects, $page, $title)
@@ -156,6 +229,59 @@ class ProjectController extends Controller
 	{
 		return array(
 			'project' => $project,
+			'referer' => $this->request->headers->get('referer'),
+		);
+	}
+
+    /**
+     * @Secure(roles="ROLE_COMMERCIAL, ROLE_ADMIN")
+     */
+	public function abortAction(Project $project)
+	{
+		$project->setState(Project::STATE_ABORTED);
+		$this->em->persist($project);
+		$this->em->flush();
+
+		$this->request->getSession()->getFlashBag()->add('success', 'Votre appel à projet a bien été avorté.');
+
+		return $this->redirect($this->generateUrl('je_business_project_aborted'));
+	}
+
+	/**
+	 * @Template
+	 * @Secure(roles="ROLE_COMMERCIAL, ROLE_ADMIN")
+	 */
+	public function abortConfirmationAction(Project $project)
+	{
+		return array(
+			'project' => $project,
+			'referer' => $this->request->headers->get('referer'),
+		);
+	}
+
+    /**
+     * @Secure(roles="ROLE_COMMERCIAL, ROLE_ADMIN")
+     */
+	public function closeAction(Project $project)
+	{
+		$project->setState(Project::STATE_CLOSED);
+		$this->em->persist($project);
+		$this->em->flush();
+
+		$this->request->getSession()->getFlashBag()->add('success', 'L\'appel à projet a bien été clôturé.');
+
+		return $this->redirect($this->generateUrl('je_business_project_closed'));
+	}
+
+	/**
+	 * @Template
+	 * @Secure(roles="ROLE_COMMERCIAL, ROLE_ADMIN")
+	 */
+	public function closeConfirmationAction(Project $project)
+	{
+		return array(
+			'project' => $project,
+			'referer' => $this->request->headers->get('referer'),
 		);
 	}
 }

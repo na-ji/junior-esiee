@@ -30,25 +30,56 @@ class ProjectRepository extends EntityRepository
             ->orderBy('p.depositDate');
     }
 
+    public function queryInProgress(User $user)
+    {
+        return $this->createQueryBuilder('p')
+        	->leftJoin('p.students', 'stu')
+        	->where('p.commercial != :user')
+        	->andWhere('p.rbu != :user')
+        	->andWhere('stu.id != :user')
+        		->setParameter('user', $user->getId())
+        	->andWhere("p.state != 'state_aborted'")
+        	->andWhere("p.state != 'state_closed'")
+            ->orderBy('p.depositDate');
+    }
+
     public function queryWaitingCommercial()
     {
         return $this->createQueryBuilder('p')
         	->where('p.commercial is NULL')
+        	->andWhere("p.state != 'state_aborted'")
+        	->andWhere("p.state != 'state_closed'")
             ->orderBy('p.depositDate');
     }
 
     public function queryWaitingStudents()
     {
         return $this->createQueryBuilder('p')
-        	->leftJoin('p.students', 'stu')
-        	->where('COUNT(stu.id) = 0')
+        	->where('SIZE(p.students) = 0')
+        	->andWhere("p.state != 'state_waiting_information'")
+        	->andWhere("p.state != 'state_aborted'")
+        	->andWhere("p.state != 'state_closed'")
             ->orderBy('p.depositDate');
     }
 
     public function queryMissingInfo()
     {
         return $this->createQueryBuilder('p')
-        	->where('p.state = "state_waiting_information"')
+        	->Where("p.state = 'state_waiting_information'")
+            ->orderBy('p.depositDate');
+    }
+
+    public function queryAborted()
+    {
+        return $this->createQueryBuilder('p')
+        	->Where("p.state = 'state_aborted'")
+            ->orderBy('p.depositDate');
+    }
+
+    public function queryClosed()
+    {
+        return $this->createQueryBuilder('p')
+        	->Where("p.state = 'state_closed'")
             ->orderBy('p.depositDate');
     }
 }

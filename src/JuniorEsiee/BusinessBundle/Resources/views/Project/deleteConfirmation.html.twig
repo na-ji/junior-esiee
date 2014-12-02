@@ -7,7 +7,7 @@
     <a class="ui red labeled icon submit button" href="{{ path('je_business_project_delete', {id:project.id}) }}">
         Oui <i class="trash icon"></i>
     </a>
-    <a href="{{ path('je_business_my_project') }}" class="ui labeled icon submit button">
+    <a href="{{ referer }}" class="ui labeled icon submit button">
         Annuler <i class="reply mail icon"></i>
     </a>
 {% endblock %}
