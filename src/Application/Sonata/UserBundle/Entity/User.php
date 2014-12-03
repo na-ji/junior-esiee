@@ -47,6 +47,11 @@ class User extends BaseUser
     protected $skills;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    protected $skillCategories;
+
+    /**
      * @var Application\Sonata\UserBundle\Entity\Group
      */
     private $group;
@@ -422,39 +427,6 @@ class User extends BaseUser
     }
 
     /**
-     * Add skills
-     *
-     * @param \Application\Sonata\UserBundle\Entity\UserSkill $skills
-     * @return User
-     */
-    public function addSkill(\Application\Sonata\UserBundle\Entity\UserSkill $skills)
-    {
-        $this->skills[] = $skills;
-
-        return $this;
-    }
-
-    /**
-     * Remove skills
-     *
-     * @param \Application\Sonata\UserBundle\Entity\UserSkill $skills
-     */
-    public function removeSkill(\Application\Sonata\UserBundle\Entity\UserSkill $skills)
-    {
-        $this->skills->removeElement($skills);
-    }
-
-    /**
-     * Get skills
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getSkills()
-    {
-        return $this->skills;
-    }
-
-    /**
      * @param mixed $group
      */
     public function setGroup($group)
@@ -484,5 +456,72 @@ class User extends BaseUser
     public function getRoles()
     {
         return array_unique(array_merge(parent::getRoles(), $this->getGroup()->getRoles()));
+    }
+
+
+    /**
+     * Add skillCategories
+     *
+     * @param \Application\Sonata\UserBundle\Entity\SkillCategory $skillCategories
+     * @return User
+     */
+    public function addSkillCategory(\Application\Sonata\UserBundle\Entity\SkillCategory $skillCategories)
+    {
+        $this->skillCategories[] = $skillCategories;
+
+        return $this;
+    }
+
+    /**
+     * Remove skillCategories
+     *
+     * @param \Application\Sonata\UserBundle\Entity\SkillCategory $skillCategories
+     */
+    public function removeSkillCategory(\Application\Sonata\UserBundle\Entity\SkillCategory $skillCategories)
+    {
+        $this->skillCategories->removeElement($skillCategories);
+    }
+
+    /**
+     * Get skillCategories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSkillCategories()
+    {
+        return $this->skillCategories;
+    }
+
+    /**
+     * Add skills
+     *
+     * @param \Application\Sonata\UserBundle\Entity\Skill $skills
+     * @return User
+     */
+    public function addSkill(\Application\Sonata\UserBundle\Entity\Skill $skills)
+    {
+        $this->skills[] = $skills;
+
+        return $this;
+    }
+
+    /**
+     * Remove skills
+     *
+     * @param \Application\Sonata\UserBundle\Entity\Skill $skills
+     */
+    public function removeSkill(\Application\Sonata\UserBundle\Entity\Skill $skills)
+    {
+        $this->skills->removeElement($skills);
+    }
+
+    /**
+     * Get skills
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSkills()
+    {
+        return $this->skills;
     }
 }

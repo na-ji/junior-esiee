@@ -5,12 +5,16 @@
         <h2>Général</h2>
         {{ form_row(form.username) }}
         {{ form_row(form.email) }}
-        {{ form_row(form.group) }}
+        {% if is_granted('ROLE_ADMIN') and not owner|default(false) %}
+            {{ form_row(form.group) }}
+        {% endif %}
     </div>
     <div class="ui {{ color }} form segment">
         <h2>Dossier</h2>
-        {{ form_row(form.isComplete) }}
-        {{ form_row(form.registredAt) }}
+        {% if is_granted('ROLE_ADMIN') and not owner|default(false) %}
+            {{ form_row(form.isComplete) }}
+            {{ form_row(form.registredAt) }}
+        {% endif %}
         {{ form_row(form.lastname) }}
         {{ form_row(form.firstname) }}
         {{ form_row(form.gender) }}
@@ -26,6 +30,11 @@
         {{ form_row(form.socialSecurityCenter) }}
     </div>
     <div class="ui {{ color }} form segment">
+        <h2>Compétences</h2>
+        {{ form_row(form.skillCategories) }}
+        {{ form_row(form.skills) }}
+    </div>
+    <div class="ui {{ color }} form segment">
         <h2>Pièces Jointes</h2>
         {{ form_row(form.cv) }}
         {{ form_row(form.socialSecurity) }}
@@ -34,7 +43,9 @@
     <button type="submit" class="ui {{ color }} labeled icon submit button">
         Editer <i class="pencil icon"></i>
     </button>
-    <a href="{{ path('je_user_users') }}" class="ui labeled icon submit button">
-        Annuler <i class="reply mail icon"></i>
-    </a>
+    {% if not owner|default(false) %}
+        <a href="{{ path('je_user_users') }}" class="ui labeled icon submit button">
+            Annuler <i class="reply mail icon"></i>
+        </a>
+    {% endif %}
 {{ form_end(form) }}

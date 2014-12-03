@@ -1,4 +1,7 @@
 Application\Sonata\UserBundle\Entity\User:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: username
     properties:
         username:
             - NotBlank: ~
@@ -17,7 +20,7 @@ Application\Sonata\UserBundle\Entity\User:
             - Type:
                 type: integer
                 message: "Le code postal {{ value }} n'est pas un code postal valide."
-        groups:
+        group:
             - NotBlank: 
                 message: "Choisissez un poste"
 

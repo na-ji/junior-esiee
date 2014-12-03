@@ -1,0 +1,29 @@
+{% extends "SonataUserBundle:Profile:action.html.twig" %}
+
+{% block sonata_profile_title %}
+    Informations de connexion - {{ "title_user_edit_profile" | trans({}, 'SonataUserBundle')}}
+{% endblock %}
+
+{% block sonata_profile_content %}
+    {% form_theme form 'JuniorEsieeBusinessBundle:Form:form_div_layout.html.twig' %}
+    <div class="grid ui">
+        <div class="two column wide row">
+            <div class="column">
+                <div class="ui blue form segment">
+                    <h2>{{ 'title_user_edit_authentication'|trans({}, 'SonataUserBundle') }}</h2>
+                    <form action="{{ path('sonata_user_profile_edit_authentication') }}" method="POST">
+                        {{ form_widget(form) }}
+
+                        <button type="submit" name="submit" class="ui button primary" style="float:right;">{{ 'sonata_user_submit'|trans({}, 'SonataUserBundle') }}</button>
+                    </form>
+                </div>
+            </div>
+             <div class="column">
+                <div class="ui blue form segment">
+                    <h2 class="panel-title">{{ 'sonata_change_password_link'|trans({}, 'SonataUserBundle') }}</h2>
+                    {% render url("sonata_user_change_password") %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

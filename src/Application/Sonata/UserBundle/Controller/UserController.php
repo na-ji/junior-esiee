@@ -8,9 +8,12 @@ use Application\Sonata\UserBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use JMS\DiExtraBundle\Annotation\Inject;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Form;
 use Knp\Component\Pager\Paginator;
+use FOS\UserBundle\Util\TokenGeneratorInterface;
+use FOS\UserBundle\Mailer\MailerInterface;
 
 class UserController extends Controller
 {
@@ -24,6 +27,16 @@ class UserController extends Controller
      * @var Paginator
      */
     private $paginator;
+
+    /**
+     * @Inject("fos_user.util.token_generator")
+     */
+    protected $tokenGenerator;
+
+    /**
+     * @Inject("application.sonata.user.mailer")
+     */
+    protected $mailer;
 
     /**
      * @Secure(roles="ROLE_USERS_VIEW")
@@ -46,9 +59,8 @@ class UserController extends Controller
     public function newAction(Request $request)
     {
         $user = new User();
-        $user->setEnabled(true);
 
-        return $this->handleForm($user, $request);
+        return $this->handleForm($user, $request, true);
     }
 
     /**
@@ -71,18 +83,26 @@ class UserController extends Controller
         );
     }
 
-    private function handleForm(User $user, Request $request)
+    private function handleForm(User $user, Request $request, $new = false)
     {
         $form = $this->createForm(new UserType, $user);
 
         if($this->request->isMethod('POST')){
             $form->handleRequest($this->request);
+            var_dump($form->getConfig()->getRequestHandler());
 
             if($form->isValid()){
-                $this->em->persist($user);
-                foreach ($user->getGroups() as $group) {
-                    $this->em->persist($group);
+                if($new)
+                {
+                    $token = $this->tokenGenerator->generateToken();
+                    $user->setConfirmationToken($token);
+                    $user->setPlainPassword($token);
+                    $user->setHasPassword(false);
+                    $user->setEnabled(false);
+                    $user->setPasswordRequestedAt(new \DateTime());
+                    $this->mailer->sendCreatingPasswordEmailMessage($user);
                 }
+                $this->em->persist($user);
                 $this->em->flush();
 
                 $request->getSession()->getFlashBag()->add('success', $user->getUsername().' a bien été enregistré.');

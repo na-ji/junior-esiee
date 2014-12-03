@@ -1,0 +1,26 @@
+{% extends 'ApplicationSonataUserBundle::layout.html.twig' %}
+
+{% block fos_user_content %}
+    <h1 class="ui header">{% block sonata_profile_title %}{% trans from 'SonataUserBundle' %}sonata_profile_title{% endtrans %}{% endblock %}</h1>
+
+    <div class="ui grid">
+        <div class="four wide column">
+            {% import '::helper.html.twig' as helper %}
+            {% block sonata_profile_menu %}
+                <div class="ui vertical menu">
+                    <a {{ helper.current('fos_user_profile_show') }}>{{ "title_dashboard"|trans({}, 'SonataAdminBundle') }}</a>
+                    <a {{ helper.current('fos_user_profile_edit', 'fos_user_profile_edit', true) }}>Mon profil</a>
+                    <a {{ helper.current('_authentication', 'fos_user_profile_edit_authentication') }}>Informations de connexion</a>
+                </div>
+            {% endblock %}
+        </div>
+
+        <div class="twelve wide column">
+            {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+
+            {% block sonata_profile_content '' %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block title block('sonata_profile_title') %}

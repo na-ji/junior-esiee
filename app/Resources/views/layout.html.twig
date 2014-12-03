@@ -117,7 +117,7 @@
                                 <i class="bell outline icon"></i> 4
                             </div>
                         </a>
-                        <a class="item">
+                        <a {{ helper.current('fos_user_profile', 'sonata_user_profile_show') }}>
                             <i class="settings icon"></i>
                             Parametres
                         </a>
@@ -135,7 +135,7 @@
             </div>
 
             {% set route = app.request.get('_route') %}
-            {% if 'page_tool_index' not in route %}
+            {% if 'page_tool_index' not in route and 'fos_user_profile' not in route %}
             <div class="ui sub menu">
                 {% if 'je_user' in route %}
                     <a {{ helper.current('je_user_users') }}>Equipe</a>

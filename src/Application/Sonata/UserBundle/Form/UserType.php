@@ -12,7 +12,15 @@ use JMS\DiExtraBundle\Annotation\FormType;
  */
 class UserType extends AbstractType
 {
-        /**
+    private $owner;
+
+    public function __construct($owner = false)
+    {
+        $this->owner = $owner;
+    }
+
+
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
@@ -24,14 +32,6 @@ class UserType extends AbstractType
             ))
             ->add('email', 'email', array(
                 'label' => 'Email'
-            ))
-            ->add('isComplete', 'sonata_type_boolean', array(
-                'expanded' => true,
-                'label'    => 'Dossier complet'
-            ))
-            ->add('registredAt', null, array(
-                'label'    => "Date d'inscription",
-                'required' => false
             ))
             ->add('lastname', null, array(
                 'required' => false,
@@ -120,12 +120,38 @@ class UserType extends AbstractType
                 'required' => false,
                 'label'    => 'Numéro de chèque',
             ))
-            ->add('group', 'entity', array(
-                'label'    => 'Poste',
-                'class'    => 'ApplicationSonataUserBundle:Group',
-                'multiple' => false,
+            ->add('skillCategories', null, array(
+                'required' => false,
+                'multiple' => true,
+                'expanded' => true,
+                'label'    => 'Domaine(s) de compétence'
+            ))
+            ->add('skills', null, array(
+                'required' => false,
+                'multiple' => true,
+                'expanded' => true,
+                'label'    => 'Compétence(s)'
             ))
         ;
+
+        if (!$this->owner)
+        {
+            $builder
+                ->add('isComplete', 'sonata_type_boolean', array(
+                    'expanded' => true,
+                    'label'    => 'Dossier complet'
+                ))
+                ->add('registredAt', null, array(
+                    'label'    => "Date d'inscription",
+                    'required' => false
+                ))
+                ->add('group', 'entity', array(
+                    'label'    => 'Poste',
+                    'class'    => 'ApplicationSonataUserBundle:Group',
+                    'multiple' => false,
+                ))
+            ;
+        }
     }
     
     /**

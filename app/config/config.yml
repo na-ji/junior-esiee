@@ -145,6 +145,10 @@ sonata_user:
         user:
             class:       Application\Sonata\UserBundle\Admin\UserAdmin
             translation: ApplicationSonataUserBundle
+    profile:
+        dashboard:
+            blocks:
+                - { position: left, type: sonata.block.service.text, settings: { content: "<h2>Bienvenue dans les paramètres de votre compte!</h2> Merci de bien vouloir renseigner l'intrégralité des informations pour vous concernant dans votre profile."} }
 
 fos_user:
     db_driver:      orm
