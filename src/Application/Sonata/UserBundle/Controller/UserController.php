@@ -89,7 +89,6 @@ class UserController extends Controller
 
         if($this->request->isMethod('POST')){
             $form->handleRequest($this->request);
-            var_dump($form->getConfig()->getRequestHandler());
 
             if($form->isValid()){
                 if($new)
