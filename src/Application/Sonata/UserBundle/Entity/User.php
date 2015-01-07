@@ -455,7 +455,7 @@ class User extends BaseUser
      */
     public function getRoles()
     {
-        return array_unique(array_merge(parent::getRoles(), $this->getGroup()->getRoles()));
+        return array_unique(array_merge(parent::getRoles(), (null !== $this->getGroup() ? $this->getGroup()->getRoles() : array()) ));
     }
 
 
