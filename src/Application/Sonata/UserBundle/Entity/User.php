@@ -11,7 +11,7 @@ class User extends BaseUser
      */
     protected $id;
 
-    protected $isComplete;
+    protected $isComplete = false;
 
     protected $registredAt;
 
