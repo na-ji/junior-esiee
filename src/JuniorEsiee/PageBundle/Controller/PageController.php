@@ -24,8 +24,8 @@ class PageController extends Controller
 				$data = $form->getData();
 				
 				$messageadmin = \Swift_Message::newInstance()
-					->setSubject("Message de CONTACT depuis de le site web de ".$data['common']['prenom']." ".$data['common']['nom'].".")
-					->setFrom(array($data['common']['email'] => $data['common']['nom'].' '.$data['common']['prenom']))
+					->setSubject("Message de CONTACT depuis le site web de ".$data['common']['prenom']." ".$data['common']['nom'].".")
+					->setFrom(array($data['common']['email'] => $data['common']['prenom'].' '.$data['common']['nom']))
 					->setTo('contact@junioresiee.com')
 					->setContentType('text/html')
 					->setBody($this->renderView('JuniorEsieePageBundle:Email:EmailContact.html.twig', array(
@@ -91,8 +91,8 @@ class PageController extends Controller
 				$data = $form->getData();
 				
 				$messageadmin = \Swift_Message::newInstance()
-					->setSubject("Message d'APPEL D'OFFRE depuis de le site web de ".$data['common']['prenom']." ".$data['common']['nom'].".")
-					->setFrom(array($data['common']['email'] => $data['common']['nom'].' '.$data['common']['prenom']))
+					->setSubject("Message d'APPEL D'OFFRE depuis le site web de ".$data['common']['prenom']." ".$data['common']['nom'].".")
+					->setFrom(array($data['common']['email'] => $data['common']['prenom'].' '.$data['common']['nom']))
 					->setTo('contact@junioresiee.com')
 					->setContentType('text/html')
 				;
