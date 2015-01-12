@@ -1,3 +1,7 @@
+junior_esiee_notification:
+    resource: "@JuniorEsieeNotificationBundle/Resources/config/routing.yml"
+    prefix:   /
+
 junior_esiee_stat:
     resource: "@JuniorEsieeStatBundle/Resources/config/routing.yml"
     prefix:   /stats

@@ -48,6 +48,7 @@ class AppKernel extends Kernel
             new JuniorEsiee\BusinessBundle\JuniorEsieeBusinessBundle(),
             new JuniorEsiee\FinancesBundle\JuniorEsieeFinancesBundle(),
             new JuniorEsiee\StatBundle\JuniorEsieeStatBundle(),
+            new JuniorEsiee\NotificationBundle\JuniorEsieeNotificationBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

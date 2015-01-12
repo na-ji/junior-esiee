@@ -304,6 +304,7 @@ jms_di_extra:
             dispatcher: @event_dispatcher
             formFactory: @form.factory
             security: @security.context
+            notificator: @je.notification.notificator
 
 jms_security_extra:
     expressions: true

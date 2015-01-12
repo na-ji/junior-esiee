@@ -25,46 +25,20 @@
             <div class="ui notification sidebar vertical">
                 <div class="ui feed">
                     <h4 class="ui header">Notifications</h4>
-                    <div class="event">
-                        <div class="content">
-                            <div class="date">
-                                A l'instant
-                            </div>
-                            <div class="summary">
-                                <a>Sajna</a> a déposé un nouvel <a>AP</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="event">
-                        <div class="content">
-                            <div class="date">
-                                Il y a 3 jours
-                            </div>
-                            <div class="summary">
-                                <a>Martin</a> a complété votre <a>AP</a>
+                    {% for notification in getNofications(app.user) %}
+                        <div class="event">
+                            <div class="content">
+                                <div class="date">
+                                    {{ notification.date|format_datetime }}
+                                </div>
+                                <div class="summary">
+                                    {{ notification.safeMessage|raw }}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="event">
-                        <div class="content">
-                            <div class="date">
-                                Il y a 3 jours
-                            </div>
-                            <div class="summary">
-                                <a>Martin</a> a marqué votre <a>AP</a> en comme en cours
-                            </div>
-                        </div>
-                    </div>
-                    <div class="event">
-                        <div class="content">
-                            <div class="date">
-                                Il y a 3 jours
-                            </div>
-                            <div class="summary">
-                                <a>Martin</a> vous a ajouté en tant que réalisateur sur un <a>AP</a>
-                            </div>
-                        </div>
-                    </div>
+                    {% else %}
+                        Pas de notification pour le moment. 
+                    {% endfor %}
                 </div>
             </div>
         {% endif %}
@@ -113,8 +87,9 @@
                 <div class="right menu">
                     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                         <a class="item notification" data-transition="overlay" data-direction="right">
-                            <div class="ui black circular small label">
-                                <i class="bell outline icon"></i> 4
+                            {% set unreadNotification = countUnreadNotifications(app.user) %}
+                            <div class="ui {% if unreadNotification > 0 %}red{% else %}black{% endif %} circular small label">
+                                <i class="bell outline icon"></i> {{ unreadNotification }}
                             </div>
                         </a>
                         <a {{ helper.current('fos_user_profile', 'sonata_user_profile_show') }}>

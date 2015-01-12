@@ -8,6 +8,7 @@ use JMS\DiExtraBundle\Annotation\Service;
 use JMS\DiExtraBundle\Annotation\Tag;
 use JMS\DiExtraBundle\Annotation\Inject;
 use JMS\DiExtraBundle\Annotation\InjectParams;
+use Doctrine\ORM\EntityManager;
 
 /**
  * @Service
@@ -21,19 +22,33 @@ class UserHelper extends \Twig_Extension
     protected $router;
 
     /**
+     * @var EntityManager
+     */
+    private $em;
+
+    /**
      * @InjectParams({
-     *     "router" = @Inject("router")
+     *     "router" = @Inject("router"),
+     *     "em" = @Inject("doctrine.orm.entity_manager")
      * })
      */
-    function __construct(Router $router)
+    function __construct(Router $router, EntityManager $em)
     {
         $this->router = $router;
+        $this->em     = $em;
     }
 
     public function getFilters()
     {
         return array(
             'linkUser' => new \Twig_Filter_Method($this, 'linkUser', array('is_safe' => array('html'))),
+        );
+    }
+
+    public function getFunctions()
+    {
+        return array(
+            'getUser' => new \Twig_Function_Method($this, 'getUser'),
         );
     }
 
@@ -48,6 +63,11 @@ class UserHelper extends \Twig_Extension
         $html .= ">$user</a>";
 
         return $html;
+    }
+
+    public function getUser($id)
+    {
+        return $this->em->getRepository('ApplicationSonataUserBundle:User')->find($id);
     }
 
     public function getName()

@@ -1,0 +1,23 @@
+JuniorEsiee\NotificationBundle\Entity\Notification:
+    type: entity
+    table: je_notification
+    repositoryClass: JuniorEsiee\NotificationBundle\Repository\NotificationRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        message:
+            type: text
+        notificationRead:
+            type: boolean
+            column: notification_read
+        date:
+            type: datetime
+    manyToOne:
+        user:
+            targetEntity: Application\Sonata\UserBundle\Entity\User
+            nullable: true
+    lifecycleCallbacks: {  }

@@ -1,0 +1,3 @@
+junior_esiee_notification_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: JuniorEsieeNotificationBundle:Default:index }
