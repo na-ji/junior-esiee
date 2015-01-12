@@ -86,6 +86,12 @@ je_business_project_show:
     requirements:
         id: \d+
 
+je_business_project_validate:
+    pattern : /{id}/validate
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:validate }
+    requirements:
+        id: \d+
+
 je_business_project_delete_confirmation:
     pattern : /{id}/delete-confirmation
     defaults: { _controller: JuniorEsieeBusinessBundle:Project:deleteConfirmation }
@@ -121,3 +127,27 @@ je_business_project_close:
     defaults: { _controller: JuniorEsieeBusinessBundle:Project:close }
     requirements:
         id: \d+
+
+je_business_project_open_enrollment:
+    pattern : /{id}/open-enrollment/{type}/{open}
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:openEnrollment, type: implementer, open: 1 }
+    requirements:
+        id: \d+
+        type: commercial|implementer
+        open: 1|0
+
+je_business_project_postulate:
+    pattern : /{id}/postulate/{type}
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:postulate, type: implementer }
+    requirements:
+        id: \d+
+        type: commercial|implementer
+
+je_business_project_chose_candidate:
+    pattern : /{id}/chose-candidate/{type}/{candidate}/{accept}
+    defaults: { _controller: JuniorEsieeBusinessBundle:Project:choseCandidate, type: implementer }
+    requirements:
+        id: \d+
+        type: commercial|implementer
+        candidate: \d+
+        accept: accept|decline

@@ -13,6 +13,7 @@ class Project
     const STATE_CLOSED              = 'state_closed';
     const STATE_WAITING_INFORMATION = 'state_waiting_information';
     const STATE_OPENED              = 'state_opened';
+    const STATE_VALID               = 'state_valid';
 
     /**
      * @var integer
@@ -85,6 +86,16 @@ class Project
     private $state;
 
     /**
+     * @var boolean
+     */
+    private $commercialEnrollmentOpen = false;
+
+    /**
+     * @var boolean
+     */
+    private $studentsEnrollmentOpen = false;
+
+    /**
      * @var \Application\Sonata\UserBundle\Entity\User
      */
     private $commercial;
@@ -98,6 +109,16 @@ class Project
      * @var \Doctrine\Common\Collections\Collection
      */
     private $students;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $studentsApplicants;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $commercialApplicants;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -124,12 +145,14 @@ class Project
      */
     public function __construct()
     {
-        $this->students = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->skills = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->skillCategories = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->depositDate = new \DateTime();
-        $this->delay = new \DateTime();
-        $this->state = Project::STATE_WAITING_INFORMATION;
+        $this->students             = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->skills               = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->skillCategories      = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->studentsApplicants   = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->commercialApplicants = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->depositDate          = new \DateTime();
+        $this->delay                = new \DateTime();
+        $this->state                = Project::STATE_WAITING_INFORMATION;
     }
 
     public function __toString()
@@ -384,7 +407,7 @@ class Project
      */
     public static function getStates()
     {
-        return array(Project::STATE_OPENED, Project::STATE_WAITING_INFORMATION, Project::STATE_ABORTED, Project::STATE_CLOSED);
+        return array(Project::STATE_OPENED, Project::STATE_WAITING_INFORMATION, Project::STATE_ABORTED, Project::STATE_CLOSED, Project::STATE_VALID);
     }
 
     /**
@@ -645,5 +668,127 @@ class Project
     public function getClientCity()
     {
         return $this->clientCity;
+    }
+
+    /**
+     * Set commercialEnrollmentOpen
+     *
+     * @param boolean $commercialEnrollmentOpen
+     * @return Project
+     */
+    public function setCommercialEnrollmentOpen($commercialEnrollmentOpen)
+    {
+        $this->commercialEnrollmentOpen = $commercialEnrollmentOpen;
+
+        return $this;
+    }
+
+    /**
+     * Get commercialEnrollmentOpen
+     *
+     * @return boolean 
+     */
+    public function getCommercialEnrollmentOpen()
+    {
+        return $this->commercialEnrollmentOpen;
+    }
+
+    /**
+     * Set studentsEnrollmentOpen
+     *
+     * @param boolean $studentsEnrollmentOpen
+     * @return Project
+     */
+    public function setStudentsEnrollmentOpen($studentsEnrollmentOpen)
+    {
+        $this->studentsEnrollmentOpen = $studentsEnrollmentOpen;
+
+        return $this;
+    }
+
+    /**
+     * Get studentsEnrollmentOpen
+     *
+     * @return boolean 
+     */
+    public function getStudentsEnrollmentOpen()
+    {
+        return $this->studentsEnrollmentOpen;
+    }
+
+    /**
+     * Add studentsApplicants
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $studentsApplicants
+     * @return Project
+     */
+    public function addStudentsApplicant(\Application\Sonata\UserBundle\Entity\User $studentsApplicants)
+    {
+        $this->studentsApplicants[] = $studentsApplicants;
+
+        return $this;
+    }
+
+    /**
+     * Remove studentsApplicants
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $studentsApplicants
+     */
+    public function removeStudentsApplicant(\Application\Sonata\UserBundle\Entity\User $studentsApplicants)
+    {
+        $this->studentsApplicants->removeElement($studentsApplicants);
+    }
+
+    /**
+     * Get studentsApplicants
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getStudentsApplicants()
+    {
+        return $this->studentsApplicants;
+    }
+
+    /**
+     * Add commercialApplicants
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $commercialApplicants
+     * @return Project
+     */
+    public function addCommercialApplicant(\Application\Sonata\UserBundle\Entity\User $commercialApplicants)
+    {
+        $this->commercialApplicants[] = $commercialApplicants;
+
+        return $this;
+    }
+
+    /**
+     * Remove commercialApplicants
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $commercialApplicants
+     */
+    public function removeCommercialApplicant(\Application\Sonata\UserBundle\Entity\User $commercialApplicants)
+    {
+        $this->commercialApplicants->removeElement($commercialApplicants);
+    }
+
+    /**
+     * Get commercialApplicants
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCommercialApplicants()
+    {
+        return $this->commercialApplicants;
+    }
+
+    /**
+     * Is valid
+     *
+     * @return boolean
+     */
+    public function isValid()
+    {
+        return null !== $this->rbu && $this->skillCategories->isEmpty();
     }
 }

@@ -28,9 +28,9 @@
     {% if is_granted('ROLE_COMMERCIAL') %}
         <div class="ui {{ color }} form segment">
             <h2>Suivi</h2>
-            {% if is_granted('ROLE_COMMERCIAL') %}
+{#             {% if is_granted('ROLE_COMMERCIAL') %}
                 {{ form_row(form.state) }}
-            {% endif %}
+            {% endif %} #}
             {% if is_granted('ROLE_ADMIN') %}
                 {{ form_row(form.commercial) }}
                 {{ form_row(form.rbu) }}

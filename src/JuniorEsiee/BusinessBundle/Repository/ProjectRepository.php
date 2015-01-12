@@ -46,19 +46,16 @@ class ProjectRepository extends EntityRepository
     public function queryWaitingCommercial()
     {
         return $this->createQueryBuilder('p')
-        	->where('p.commercial is NULL')
-        	->andWhere("p.state != 'state_aborted'")
-        	->andWhere("p.state != 'state_closed'")
+        	->where('p.commercialEnrollmentOpen = 1')
+        	->andWhere("p.state = 'state_opened'")
             ->orderBy('p.depositDate');
     }
 
     public function queryWaitingStudents()
     {
         return $this->createQueryBuilder('p')
-        	->where('SIZE(p.students) = 0')
-        	->andWhere("p.state != 'state_waiting_information'")
-        	->andWhere("p.state != 'state_aborted'")
-        	->andWhere("p.state != 'state_closed'")
+            ->where('p.studentsEnrollmentOpen = 1')
+            ->andWhere("p.state = 'state_opened'")
             ->orderBy('p.depositDate');
     }
 

@@ -86,6 +86,9 @@
 {% block association_list_widget -%}
     {% set attr = attr|merge({'class': ' association_list_type'}) %}
     <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %} style="display: none;">
+        {% if empty_value is not none %}
+            <option value="">{{ empty_value|trans({}, translation_domain) }}</option>
+        {% endif %}
         {% set options = choices -%}
         {% for choice in options %}
             <option value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% endif %}>{{ choice.label|trans({}, translation_domain) }}</option>
@@ -147,6 +150,7 @@
         <button type="button" class="ui button teal" id="{{ id }}_list">Liste</button>
         <button type="button" class="ui button red" id="{{ id }}_delete">Supprimer</button>
     </div>
+    <br />
     {% if multiple %}
         <ul id="{{ id }}_value">
             {% for choice in options if choice is selectedchoice(value) %}

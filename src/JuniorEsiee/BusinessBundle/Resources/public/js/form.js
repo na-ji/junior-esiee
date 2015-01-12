@@ -35,7 +35,7 @@ $(function(){
                 } else {
                     $('#' + id + '_value').val('');
                 }
-                $('#' + id).val(null);
+                $('#' + id).val([]);
             });
         });
         $('.select-line').click(function (e) {

@@ -8,6 +8,8 @@ use JuniorEsiee\BusinessBundle\Entity\Project;
 use JuniorEsiee\BusinessBundle\Form\ProjectType;
 use Symfony\Component\HttpFoundation\Request;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Application\Sonata\UserBundle\Entity\User;
 
 class ProjectController extends Controller
 {
@@ -56,7 +58,7 @@ class ProjectController extends Controller
 	{
 		$_GET['sort']      = $sort;
 		$_GET['direction'] = $direction;
-		$projects          = $this->em->getRepository('JuniorEsieeBusinessBundle:Project')->queryWaitingCommercial();
+		$projects          = $this->em->getRepository('JuniorEsieeBusinessBundle:Project')->queryMissingInfo();
 
         return $this->listProject($projects, $page, 'Boîte de réception');
 	}
@@ -182,6 +184,8 @@ class ProjectController extends Controller
 			$form->handleRequest($this->request);
 
 			if ($form->isValid()) {
+		    	if ($project->getState() == Project::STATE_WAITING_INFORMATION)
+		    		$project->setState(Project::STATE_OPENED);
 				$this->em->persist($project);
 				$this->em->flush();
 
@@ -216,7 +220,7 @@ class ProjectController extends Controller
 		$this->em->remove($project);
 		$this->em->flush();
 
-		$this->request->getSession()->getFlashBag()->add('success', 'Votre appel à projet a bien été supprimé.');
+		$this->request->getSession()->getFlashBag()->add('success', 'L\'appel à projet a bien été supprimé.');
 
 		return $this->redirect($this->generateUrl('je_business_my_project'));
 	}
@@ -283,5 +287,212 @@ class ProjectController extends Controller
 			'project' => $project,
 			'referer' => $this->request->headers->get('referer'),
 		);
+	}
+
+	public function openEnrollmentAction(Project $project, $type, $open)
+	{
+		$open = (boolean) $open;
+		$ouvert = ($open) ? 'ouvert' : 'fermé';
+		if ($project->getState() !== Project::STATE_OPENED)
+		{
+			$this->request->getSession()->getFlashBag()->add('error', 'Vous ne pouvez lancer le recrutement sur cet appel à projet.');
+		} else 
+		{
+			switch($type)
+			{
+				case 'commercial':
+					if (!$this->security->isGranted('ROLE_ADMIN'))
+					{
+						throw new AccessDeniedException('Accès limité aux administrateurs.');
+					}
+					if ($project->getCommercialEnrollmentOpen() === $open)
+						$this->request->getSession()->getFlashBag()->add('warning', 'Le recrutement du commercial était déjà '.$ouvert.'.');
+					else {
+						$project->setCommercialEnrollmentOpen($open);
+						$this->request->getSession()->getFlashBag()->add('success', 'Le recrutement du commercial est maintenant '.$ouvert.'.');
+					}
+				break;
+				case 'implementer':
+					if (!$this->security->isGranted('ROLE_CHARGE'))
+					{
+						throw new AccessDeniedException('Accès limité aux commerciaux.');
+					}
+					if ($project->getStudentsEnrollmentOpen() === $open)
+						$this->request->getSession()->getFlashBag()->add('warning', 'Le recrutement des réalisateurs était déjà '.$ouvert.'.');
+					else {
+						$project->setStudentsEnrollmentOpen($open);
+						$this->request->getSession()->getFlashBag()->add('success', 'Le recrutement des réalisateurs est maintenant '.$ouvert.'.');
+					}
+				break;
+				default:
+					throw $this->createNotFoundException('URL incorrect');
+				break;
+			}
+			$this->em->persist($project);
+			$this->em->flush();
+		}
+
+		if (null !== $this->request->headers->get('referer'))
+			return $this->redirect($this->request->headers->get('referer'));
+		else
+			return $this->redirect($this->generateUrl('je_business_my_project'));
+	}
+
+	public function validateAction(Project $project)
+	{
+		$validator = $this->get('validator');
+		$errors    = $validator->validate($project);
+
+	    if (count($errors) > 0) {
+	    	foreach ($errors->getIterator() as $error) {
+	    		$this->request->getSession()->getFlashBag()->add('error', $error->getMessage());
+	    	}
+	    } else {
+	    	if ($project->getState() == Project::STATE_WAITING_INFORMATION)
+	    	{
+	    		$project->setState(Project::STATE_OPENED);
+				$this->em->persist($project);
+				$this->em->flush();
+	    	}
+			$this->request->getSession()->getFlashBag()->add('success', 'L\'appel à projet est valide.');
+	    }
+
+		if (null !== $this->request->headers->get('referer'))
+			return $this->redirect($this->request->headers->get('referer'));
+		else
+			return $this->redirect($this->generateUrl('je_business_project_show', array('id' => $project->getId())));
+	}
+
+	public function postulateAction(Project $project, $type)
+	{
+		if ($project->getState() !== Project::STATE_OPENED)
+		{
+			$this->request->getSession()->getFlashBag()->add('error', 'Vous ne pouvez postuler sur cet appel à projet.');
+		} else 
+		{
+			$user = $this->security->getToken()->getUser();
+			switch($type)
+			{
+				case 'commercial':
+					if (!$this->security->isGranted('ROLE_CHARGE'))
+					{
+						throw new AccessDeniedException('Accès limité aux commerciaux.');
+					}
+					if ($project->getCommercialEnrollmentOpen())
+					{
+						if($project->getCommercialApplicants()->contains($user))
+						{
+							$this->request->getSession()->getFlashBag()->add('warning', 'Vous avez déjà postulé comme commercial sur cet appel à projet.');
+						} else {
+							$project->addCommercialApplicant($user);
+							$this->request->getSession()->getFlashBag()->add('success', 'Vous avez postulé comme commercial sur cet appel à projet.');
+						}
+					}
+					else {
+						$this->request->getSession()->getFlashBag()->add('error', 'Vous ne pouvez postuler en commercial sur cet appel à projet.');
+					}
+				break;
+				case 'implementer':
+					if ($project->getStudentsEnrollmentOpen())
+					{
+						if($project->getStudentsApplicants()->contains($user))
+						{
+							$this->request->getSession()->getFlashBag()->add('warning', 'Vous avez déjà postulé comme réalisateur sur cet appel à projet.');
+						} else {
+							$project->addStudentsApplicant($user);
+							$this->request->getSession()->getFlashBag()->add('success', 'Vous avez postulé comme réalisateur sur cet appel à projet.');
+						}
+					}
+					else {
+						$this->request->getSession()->getFlashBag()->add('error', 'Vous ne pouvez postuler en réalisateur sur cet appel à projet.');
+					}
+				break;
+				default:
+					throw $this->createNotFoundException('URL incorrect');
+				break;
+			}
+			$this->em->persist($project);
+			$this->em->flush();
+		}
+
+		if (null !== $this->request->headers->get('referer'))
+			return $this->redirect($this->request->headers->get('referer'));
+		else
+			return $this->redirect($this->generateUrl('je_business_my_project'));
+	}
+
+	public function choseCandidateAction(Project $project, $type, User $candidate, $accept)
+	{
+		if ($project->getState() !== Project::STATE_OPENED)
+		{
+			$this->request->getSession()->getFlashBag()->add('error', 'Vous ne pouvez lancer le recrutement sur cet appel à projet.');
+		} else 
+		{
+			switch($type)
+			{
+				case 'commercial':
+					if (!$this->security->isGranted('ROLE_ADMIN'))
+					{
+						throw new AccessDeniedException('Accès limité aux administrateurs.');
+					}
+					if (!$project->getCommercialEnrollmentOpen())
+					{
+						$this->request->getSession()->getFlashBag()->add('error', 'Le recrutement de commercial est fermé.');
+					}
+					else {
+						if ($accept === 'accept')
+						{
+							if($project->getCommercial()->getId() == $candidate->getId())
+							{
+								$this->request->getSession()->getFlashBag()->add('warning', $candidate.' a déjà été choisi comme commercial.');
+							} else {
+								$project->setCommercial($candidate);
+								$project->setCommercialEnrollmentOpen(false);
+								//$project->getCommercialApplicants()->clear();
+								$this->request->getSession()->getFlashBag()->add('success', $candidate.' a été choisi comme commercial.');
+							}
+						} else {
+							$project->removeCommercialApplicant($candidate);
+							$this->request->getSession()->getFlashBag()->add('success', $candidate.' a été refusé comme commercial.');
+						}
+					}
+				break;
+				case 'implementer':
+					if (!$this->security->isGranted('ROLE_CHARGE'))
+					{
+						throw new AccessDeniedException('Accès limité aux commerciaux.');
+					}
+					if (!$project->getStudentsEnrollmentOpen())
+					{
+						$this->request->getSession()->getFlashBag()->add('error', 'Le recrutement de commercial est fermé.');
+					}
+					else {
+						if ($accept === 'accept')
+						{
+							if($project->getStudents()->contains($candidate))
+							{
+								$this->request->getSession()->getFlashBag()->add('warning', $candidate.' a déjà été choisi comme réalisateur.');
+							} else {
+								$project->addStudent($candidate);
+								$this->request->getSession()->getFlashBag()->add('success', $candidate.' a été choisi comme réalisateur.');
+							}
+						} else {
+							$project->removeStudentsApplicant($candidate);
+							$this->request->getSession()->getFlashBag()->add('success', $candidate.' a été refusé comme réalisateur.');
+						}
+					}
+				break;
+				default:
+					throw $this->createNotFoundException('URL incorrect');
+				break;
+			}
+			$this->em->persist($project);
+			$this->em->flush();
+		}
+
+		if (null !== $this->request->headers->get('referer'))
+			return $this->redirect($this->request->headers->get('referer'));
+		else
+			return $this->redirect($this->generateUrl('je_business_my_project'));
 	}
 }

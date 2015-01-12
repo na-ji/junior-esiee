@@ -36,7 +36,7 @@ class AssociationListType extends AbstractType
     {
         $resolver->setRequired(array('class', 'properties'));
         $resolver->setDefaults(array(
-            'role' => null,
+            'role' => 'ROLE_USER',
         ));
     }
 

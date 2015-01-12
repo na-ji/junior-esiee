@@ -10,20 +10,17 @@
         		{% if project.state == 'state_opened' %}
                     {{ 'state_opened'|projectState }}
                 {% endif %}
-                {% if project.commercial is null %}
+                {% if project.commercialEnrollmentOpen %}
                     {{ 'state_waiting_commercial'|projectState }}
                 {% endif %}
-                {% if project.students|length < 1 %}
+                {% if project.studentsEnrollmentOpen %}
                     {{ 'state_waiting_student'|projectState }}
                 {% endif %}
             {% else %}
                 {{ project.state|projectState }}
             {% endif %}<br />
         	<div class="sub header">
-			    <a class="ui blue labeled icon submit button" href="{{ path('je_business_project_edit', {id:project.id}) }}" style="padding: .8em;">
-			        Editer
-			        <i class="pencil icon"></i>
-			    </a>
+                {% include 'JuniorEsieeBusinessBundle:Project:actions.html.twig' with {'show': true} %}
         	</div>
     	</div>
     </h1>
@@ -100,6 +97,22 @@
 							{% endfor %}
 	                    	<br />
 	                    {% endif %}
+                        {% if is_granted('ROLE_ADMIN') and project.commercialApplicants|length > 0 and project.commercialEnrollmentOpen %}
+                            <b>Postulant{% if project.commercialApplicants|length > 1 %}s{% endif %} commercial</b> : 
+                            <ul>
+                                {% for commercial in project.commercialApplicants %}
+                                    <li>{{ commercial|linkUser }} <a href="{{ path('je_business_project_chose_candidate', {id: project.id, type: 'commercial', candidate: commercial.id, accept: 'accept'}) }}"><i class="green check circle icon"></i></a> <a href="{{ path('je_business_project_chose_candidate', {id: project.id, type: 'commercial', candidate: commercial.id, accept: 'decline'}) }}"><i class="red remove circle icon"></i></a></li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        {% if (is_granted('ROLE_ADMIN') or (is_granted('ROLE_CHARGE') and project.commercial == app.user)) and project.studentsApplicants|length > 0 and project.studentsEnrollmentOpen %}
+                            <b>Postulant{% if project.studentsApplicants|length > 1 %}s{% endif %} réalisateur</b> : 
+                            <ul>
+                                {% for student in project.studentsApplicants %}
+                                    <li>{{ student|linkUser }} <a href="{{ path('je_business_project_chose_candidate', {id: project.id, type: 'implementer', candidate: student.id, accept: 'accept'}) }}"><i class="green check circle icon"></i></a> <a href="{{ path('je_business_project_chose_candidate', {id: project.id, type: 'implementer', candidate: student.id, accept: 'decline'}) }}"><i class="red remove circle icon"></i></a></li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
 	                </p>
 	            	</div>
                 {% endif %}

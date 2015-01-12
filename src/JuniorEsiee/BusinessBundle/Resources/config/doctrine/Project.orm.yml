@@ -1,6 +1,6 @@
 JuniorEsiee\BusinessBundle\Entity\Project:
     type: entity
-    table: null
+    table: je_project
     repositoryClass: JuniorEsiee\BusinessBundle\Repository\ProjectRepository
     id:
         id:
@@ -58,16 +58,70 @@ JuniorEsiee\BusinessBundle\Entity\Project:
             type: string
             length: 255
             nullable: true
+        commercialEnrollmentOpen:
+            type: boolean
+            length: 255
+            nullable: false
+        studentsEnrollmentOpen:
+            type: boolean
+            length: 255
+            nullable: false
     manyToMany:
         students:
             targetEntity: Application\Sonata\UserBundle\Entity\User
             nullable: true
+            joinTable:
+                name: je_project__students
+                joinColumns:
+                    project_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    user_id:
+                        referencedColumnName: id
         skills:
             targetEntity: Application\Sonata\UserBundle\Entity\Skill
             nullable: true
+            joinTable:
+                name: je_project__skills
+                joinColumns:
+                    project_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    skill_id:
+                        referencedColumnName: id
         skillCategories:
             targetEntity: Application\Sonata\UserBundle\Entity\SkillCategory
             nullable: true
+            joinTable:
+                name: je_project__skill_categories
+                joinColumns:
+                    project_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    skill_category_id:
+                        referencedColumnName: id
+        studentsApplicants:
+            targetEntity: Application\Sonata\UserBundle\Entity\User
+            nullable: true
+            joinTable:
+                name: je_project__students_applicants
+                joinColumns:
+                    project_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    user_id:
+                        referencedColumnName: id
+        commercialApplicants:
+            targetEntity: Application\Sonata\UserBundle\Entity\User
+            nullable: true
+            joinTable:
+                name: je_project__commercial_applicants
+                joinColumns:
+                    project_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    user_id:
+                        referencedColumnName: id
     manyToOne:
         commercial:
             targetEntity: Application\Sonata\UserBundle\Entity\User

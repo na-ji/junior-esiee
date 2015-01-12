@@ -81,7 +81,7 @@
                         Utilisateurs
                     </a>
                 {% endif %}
-                {% if is_granted('ROLE_TREZ') %}
+{#                 {% if is_granted('ROLE_TREZ') %}
                     <a {{ helper.current('je_finances', 'je_finances_treasury') }}>
                         <i class="dollar icon"></i>
                         Trésorerie
@@ -90,14 +90,14 @@
                         <i class="tasks icon"></i>
                         Indicateurs
                     </a>
-                {% endif %}
+                {% endif %} #}
                 {% if is_granted('ROLE_COMMERCIAL') %}
                     <a {{ helper.current('je_business', 'je_business_my_project') }}>
                         <i class="browser icon"></i>
                         Projets
                     </a>
                 {% endif %}
-                {% if is_granted('ROLE_COMMUNICATION') %}
+{#                 {% if is_granted('ROLE_COMMUNICATION') %}
                     <a {{ helper.current('je_events', 'page_tool_index') }}>
                         <i class="bullhorn icon"></i>
                         Evénementiel
@@ -108,7 +108,7 @@
                         <i class="money icon"></i>
                         Stage
                     </a>
-                {% endif %}
+                {% endif %} #}
 
                 <div class="right menu">
                     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
@@ -155,9 +155,9 @@
                                 <span class="text">AP en attente</span>
                                 <i class="dropdown icon"></i>
                                 <div class="menu">
-                                    <a {{ helper.current('je_business_project_waiting_students') }}>AP en attente d'intervenant</a>
-                                    <a {{ helper.current('je_business_project_waiting_commercial') }}>AP en attente de suivi commercial</a>
-                                    <a {{ helper.current('je_business_project_waiting_information') }}>AP en attente de renseignements supplémentaires</a>
+                                    <a {{ helper.current('je_business_project_waiting_students') }}>d'intervenant</a>
+                                    <a {{ helper.current('je_business_project_waiting_commercial') }}>de suivi commercial</a>
+                                    <a {{ helper.current('je_business_project_waiting_information') }}>de renseignements supplémentaires</a>
                                 </div>
                             </div>
                         </div>

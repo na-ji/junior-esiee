@@ -299,6 +299,10 @@
                 <source>state_opened</source>
                 <target>Ouvert</target>
             </trans-unit>
+            <trans-unit id="state_valid">
+                <source>state_valid</source>
+                <target>Valide</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -1,0 +1,73 @@
+<div class="ui labeled icon top {% if show %}left{% else %}right{% endif %} pointing dropdown mini button"{% if show %} style="padding: .8em;"{% endif %}>
+    <i class="settings icon"></i>
+    Actions
+    <div class="menu">
+        {% if not show %}
+            <a href="{{ path('je_business_project_show', {id:project.id}) }}" class="item">
+                <i class="unhide icon"></i> Afficher
+            </a>
+        {% endif %}
+        {% if is_granted('ROLE_CHARGE') %}
+            <a href="{{ path('je_business_project_edit', {id:project.id}) }}" class="item">
+                <i class="pencil icon"></i> Editer
+            </a>
+        {% endif %}
+        {% if project.scopeStatement is not null %}
+            <a href="{{ path('sonata_media_download', {'id': project.scopeStatement|sonata_urlsafeid }) }}" class="item">
+                <i class="file icon"></i> Cahier des charges
+            </a>
+        {% endif %}
+        {% if project.graphicCharter is not null %}
+            <a href="{{ path('sonata_media_download', {'id': project.graphicCharter|sonata_urlsafeid }) }}" class="item">
+                <i class="file icon"></i> Charte graphique
+            </a>
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+            {% if project.state != 'state_aborted' and project.state != 'state_closed' %}
+                <a href="{{ path('je_business_project_abort_confirmation', {id:project.id}) }}" class="item">
+                    <i class="delete icon"></i> Avorter
+                </a>
+                <a href="{{ path('je_business_project_close_confirmation', {id:project.id}) }}" class="item">
+                    <i class="lock icon"></i> Clôturer
+                </a>
+            {% endif %}
+            {% if project.state == 'state_waiting_information' %}
+                <a href="{{ path('je_business_project_validate', {id:project.id, type:'commercial'}) }}" class="item">
+                    <i class="checkmark icon"></i> Valider
+                </a>
+            {% endif %}
+            {% if project.state == 'state_opened' and not project.commercialEnrollmentOpen %}
+                <a href="{{ path('je_business_project_open_enrollment', {id:project.id, type:'commercial'}) }}" class="item">
+                    <i class="search icon"></i> Rechercher commercial
+                </a>
+            {% endif %}
+        {% endif %}
+        {% if ((is_granted('ROLE_CHARGE') and app.user == project.commercial) or is_granted('ROLE_ADMIN')) and project.state == 'state_opened' and not project.studentsEnrollmentOpen %}
+            <a href="{{ path('je_business_project_open_enrollment', {id:project.id, type:'implementer'}) }}" class="item">
+                <i class="search icon"></i> Rechercher réalisateur
+            </a>
+        {% endif %}
+        {% if ((is_granted('ROLE_CHARGE') and app.user == project.commercial) or is_granted('ROLE_ADMIN')) and project.state == 'state_opened' and project.studentsEnrollmentOpen %}
+            <a href="{{ path('je_business_project_open_enrollment', {id:project.id, type:'implementer', open: 0}) }}" class="item">
+                <i class="minus circle icon"></i> Arrêter recrutement réalisateur
+            </a>
+        {% endif %}
+        {% if is_granted('ROLE_CHARGE') %}
+            {% if project.state == 'state_opened' and project.commercialEnrollmentOpen %}
+                <a href="{{ path('je_business_project_postulate', {id:project.id, type:'commercial'}) }}" class="item">
+                    <i class="share icon"></i> Postuler en commercial
+                </a>
+            {% endif %}
+        {% endif %}
+        {% if project.state == 'state_opened' and project.studentsEnrollmentOpen %}
+            <a href="{{ path('je_business_project_postulate', {id:project.id, type:'implementer'}) }}" class="item">
+                <i class="share icon"></i> Postuler en réalisateur
+            </a>
+        {% endif %}
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
+            <a href="{{ path('je_business_project_delete_confirmation', {id:project.id}) }}" class="item">
+                <i class="trash icon"></i> Supprimer
+            </a>
+        {% endif %}
+    </div>
+</div>

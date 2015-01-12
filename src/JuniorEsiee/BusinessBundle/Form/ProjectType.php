@@ -72,16 +72,20 @@ class ProjectType extends AbstractType
         {
             $builder
                 ->add('commercial', 'association_list', array(
-                    'required'   => false,
-                    'class'      => 'ApplicationSonataUserBundle:User',
-                    'properties' => array('id', 'username'),
-                    'role'       => 'ROLE_CHARGE'
+                    'required'    => false,
+                    'class'       => 'ApplicationSonataUserBundle:User',
+                    'properties'  => array('id', 'username'),
+                    'role'        => 'ROLE_CHARGE',
+                    'empty_value' => 'Choisissez une option',
+                    'empty_data'  => null,
                 ))
                 ->add('rbu', 'association_list', array(
-                    'required'   => false,
-                    'class'      => 'ApplicationSonataUserBundle:User',
-                    'properties' => array('id', 'username'),
-                    'role'       => 'ROLE_ADMIN'
+                    'required'    => false,
+                    'class'       => 'ApplicationSonataUserBundle:User',
+                    'properties'  => array('id', 'username'),
+                    'role'        => 'ROLE_ADMIN',
+                    'empty_value' => 'Choisissez une option',
+                    'empty_data'  => null,
                 ))
                 ->add('students', 'association_list', array(
                     'required'   => false,
@@ -107,15 +111,15 @@ class ProjectType extends AbstractType
                     'expanded' => true,
                     'label'    => 'Compétence(s)'
                 ))
-                ->add('state', 'choice', array(
-                    'required'           => false,
-                    'expanded'           => true,
-                    'multiple'           => false,
-                    'empty_value'        => false,
-                    'choices'            => array_combine(Project::getStates(), Project::getStates()),
-                    'translation_domain' => 'JuniorEsieeBusinessBundle',
-                    'label'              => 'Statut'
-                ))
+                // ->add('state', 'choice', array(
+                //     'required'           => false,
+                //     'expanded'           => true,
+                //     'multiple'           => false,
+                //     'empty_value'        => false,
+                //     'choices'            => array_combine(Project::getStates(), Project::getStates()),
+                //     'translation_domain' => 'JuniorEsieeBusinessBundle',
+                //     'label'              => 'Statut'
+                // ))
                 ->add('scopeStatement', 'sonata_media_type', array(
                     'required'      => false,
                     'provider'      => 'sonata.media.provider.file',
