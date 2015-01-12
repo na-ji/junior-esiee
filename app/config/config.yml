@@ -163,6 +163,10 @@ fos_user:
     service:
         user_manager: sonata.user.orm.user_manager
 
+    from_email:
+        address:        %mailer_user%
+        sender_name:    Site de Junior ESIEE
+
 ivory_ck_editor:
     default_config: main
     configs:
