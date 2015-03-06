@@ -293,7 +293,7 @@ sonata_media:
 jms_di_extra:
     locations:
         all_bundles: false
-        bundles: [JuniorEsieeBusinessBundle, ApplicationSonataUserBundle, JuniorEsieeFinancesBundle, JuniorEsieeStatBundle]
+        bundles: [JuniorEsieeBusinessBundle, ApplicationSonataUserBundle, JuniorEsieeFinancesBundle, JuniorEsieeStatBundle, JuniorEsieeNotificationBundle]
         directories: ["%kernel.root_dir%/../src"]
     automatic_controller_injections:
         properties:
@@ -328,3 +328,12 @@ jms_serializer:
       FOSUserBundle:
         namespace_prefix: "FOS\\UserBundle"
         path: "@ApplicationSonataUserBundle/Resources/config/serializer/FOS"
+
+fos_rest:
+    param_fetcher_listener: true
+    format_listener:        true
+    view:
+        view_response_listener: force
+    body_converter:
+        enabled: true
+        validate: true

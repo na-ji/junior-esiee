@@ -24,4 +24,17 @@ class NotificationRepository extends EntityRepository
         	->getSingleScalarResult()
         ;
     }
+
+    public function markAllAsRead(User $user)
+    {
+        return $this->createQueryBuilder('n')
+            ->update('JuniorEsieeNotificationBundle:Notification', 'n')
+            ->set('n.notificationRead', '1')
+            ->where('n.user = :user')
+                ->setParameter('user', $user->getId())
+            ->andWhere('n.notificationRead = 0')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
 }

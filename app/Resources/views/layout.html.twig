@@ -203,11 +203,20 @@
             %}
                 <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             <script type="text/javascript">
+                var unread = {{ unreadNotification }};
                 $('.item.notification').click(function () {
                     $('.notification.sidebar').sidebar({overlay: true}).sidebar('toggle');
+                    if (unread > 0) {
+                        $.get("{{ url('junior_esiee_notification_api_mark_all_as_read') }}", function(response) {
+                            $('a.item.notification > div.ui.red').removeClass('red').addClass('black').html('<i class="bell outline icon"></i> 0');
+                            unread = 0;
+                        });
+                    }
                 });
             </script>
+        {% endif %}
         {% endblock %}
     </body>
 </html>
