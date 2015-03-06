@@ -34,10 +34,10 @@ class ProjectRepository extends EntityRepository
     {
         return $this->createQueryBuilder('p')
         	->leftJoin('p.students', 'stu')
-        	->where('p.commercial != :user')
-        	->andWhere('p.rbu != :user')
-        	->andWhere('stu.id != :user')
-        		->setParameter('user', $user->getId())
+        	// ->where('p.commercial != :user')
+        	// ->andWhere('p.rbu != :user')
+        	// ->andWhere('stu.id != :user')
+        	// 	->setParameter('user', $user->getId())
         	->andWhere("p.state != 'state_aborted'")
         	->andWhere("p.state != 'state_closed'")
             ->orderBy('p.depositDate');
