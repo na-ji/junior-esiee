@@ -12,6 +12,9 @@
                 {{ knp_pagination_sortable(projects, "Date de dépôt", 'p.depositDate') }}
                 {{ knp_pagination_sortable(projects, "Délais", 'p.delay') }}
                 {{ knp_pagination_sortable(projects, "Statut", 'p.state') }}
+                <th style="padding: 0em;">RBU</th>
+                <th style="padding: 0em;">Commercial</th>
+                <th style="padding: 0em;">Réalisateur(s)</th>
                 <th style="padding: 0em;">Actions</th>
             </tr>
         </thead>
@@ -19,8 +22,8 @@
         {% for project in projects %}
             <tr>
                 <td><a href="{{ path('je_business_project_show', {id:project.id}) }}" class="item">{{ project.title }}</a></td>
-                <td>{{ project.depositDate|format_date }}</td>
-                <td>{{ project.delay|format_date }}</td>
+                <td>{{ project.depositDate|format_date('dd/MM/yy', 'fr', 'Europe/Paris') }}</td>
+                <td>{{ project.delay|format_date('dd/MM/yy', 'fr', 'Europe/Paris') }}</td>
                 <td>
                     {% if project.state != 'state_aborted' and project.state != 'state_closed' and project.state != 'state_waiting_information' %}
                         {% if project.state == 'state_opened' %}
@@ -36,6 +39,15 @@
                         {{ project.state|projectState }}
                     {% endif %}
                 </td>
+                <td>{{ project.rbu|linkUser }}</td>
+                <td>{{ project.commercial|linkUser }}</td>
+                <td>
+                    {% for student in project.students %}
+                        {{ student|linkUser }}{% if not loop.last %}, {% endif %}
+                    {% else %}
+                        Aucun
+                    {% endfor %}
+                </td>
                 <td>
                     {% include 'JuniorEsieeBusinessBundle:Project:actions.html.twig' with {'show': false} %}
                 </td>
@@ -50,7 +62,7 @@
         </tbody>
         <tfoot>
         <tr>
-            <th colspan="6">
+            <th colspan="8">
                 <a class="ui green labeled icon button" href="{{ path('je_business_project_new') }}">
                     Nouveau <i class="plus icon"></i>
                 </a>

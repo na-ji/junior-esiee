@@ -52,15 +52,20 @@ class UserHelper extends \Twig_Extension
         );
     }
 
-    public function linkUser(User $user, array $attr = null)
+    public function linkUser(User $user = null, array $attr = null)
     {
-        $html = "<a href='".$this->router->generate('je_user_users_profile', array('id'=>$user->getId()))."'";
+        if (null === $user)
+        {
+            $html = 'Aucun';
+        } else {
+            $html = "<a href='".$this->router->generate('je_user_users_profile', array('id'=>$user->getId()))."'";
 
-        if($attr !== null)
-            foreach($attr as $key => $value)
-                $html .= " $key='$value'";
+            if($attr !== null)
+                foreach($attr as $key => $value)
+                    $html .= " $key='$value'";
 
-        $html .= ">$user</a>";
+            $html .= ">$user</a>";
+        }
 
         return $html;
     }

@@ -23,7 +23,7 @@ je_business_project_in_progress:
     defaults: { _controller: JuniorEsieeBusinessBundle:Project:inProgress, page: 1, sort: p.depositDate, direction: desc }
     requirements:
         page: \d+
-        sort: p\.[^/]+
+        sort: stu+\.[^/]+|p+\.[^/]+|r+\.[^/]+|c+\.[^/]+
         direction: asc|desc
 
 je_business_project_waiting_commercial:
