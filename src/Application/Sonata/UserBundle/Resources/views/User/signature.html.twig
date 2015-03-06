@@ -1,21 +1,32 @@
-<div style="margin-top: 20px; background: #bbbbbb; width: 420px; padding: 1px;">
-    <div style="background: #fbfffb; width: 410px; padding: 5px;">
-        <div style="margin-bottom: 6px;">
-            <div style="float: left; margin-right: 3px;"><a href="http://www.junioresiee.com/" target="_blank"><img src="http://www.alexzone.net/d/i/logos-social/junior-esiee-petit.png" alt="Logo Junior ESIEE Paris" border="0" width="111" height="69" /></a></div>
-            <div style="float: right; width: 280px;">
-                <p style="margin: 0; font-size: 1.2em; text-shadow: 1px 1px 1px #aaccaa; color: #223322; font-weight: bold;">{{ user }}</p>
-                <p style="margin: 0; font-size: 1.0em; color: #223322; font-weight: bold;">{{ user.group }}</p>
-                <p style="margin: 0; font-size: 0.8em;">La Junior-Entreprise d'ESIEE Paris</p>
-                <p style="margin: 0; font-size: 0.8em;"><a href="mailto:{{ user.email }}"><span style="color: #000080;">{{ user.email }}</span></a> | <a href="tel:{{ user.phone }}"><span style="color: #000080;">{{ user.phone }}</span></a></p>
-            </div>
-            <div style="clear: both;">&nbsp;</div>
-        </div>
-        <div style="width: 416px; position: relative; margin-left: auto; margin-right: auto; text-align: center;">
-            <div style="font-size: 0.8em; margin-bottom: 15px; color: darkblue;"><span style="font-style: italic;">Junior ESIEE Paris<br /> 2, Boulevard Blaise Pascal BP 99<br /> 93162 NOISY LE GRAND CEDEX<br /> T&eacute;l: <a href="tel:+33(0)145926670"><span style="color: #000080;">+33 (0)1 45 92 66 70</span></a></span><br /> <a title="Junior ESIEE Paris" href="http://www.junioresiee.com/" target="_blank"><span style="color: #000080;">http://www.junioresiee.com</span></a></div>
-            <div>
-                <p><a href="http://www.facebook.com/JuniorESIEE" target="_blank"><img src="http://www.alexzone.net/d/i/logos-social/facebook.png" border="0" alt="Logo Facebook" width="25" height="25" /></a> &nbsp; &nbsp; &nbsp;<a href="http://twitter.com/JuniorESIEE" target="_blank"><img src="http://www.alexzone.net/d/i/logos-social/twitter.png" border="0" alt="Logo Twitter" width="25" height="25" /></a> &nbsp;&nbsp; &nbsp; &nbsp;<a href="http://www.viadeo.com/profile/00226oeexx90wxwa" target="_blank"><img src="http://www.alexzone.net/d/i/logos-social/viadeo.png" border="0" alt="Logo Viadeo" width="25" height="25" /></a> &nbsp; &nbsp;&nbsp;<a href="https://plus.google.com/117954618637794642146/about" target="_blank"><img src="http://www.alexzone.net/d/i/logos-social/google_plus.jpg" border="0" alt="Logo Google Plus" width="25" height="27" /></a></p>
-                <p style="font-size: 0.8em; color: green;">Afin de pr&eacute;server l'environnement, merci de n'imprimer qu'en cas de n&eacute;cessit&eacute;.</p>
-            </div>
+<div style="margin-bottom:6px; width:640px; height:95px;">
+    <div style="float:left; padding:5px; width:160px; vertical-align:middle;">
+        <img src="http://www.junioresiee.com/img/logo.png" alt="Logo Junior ESIEE Paris" style="border:none; max-height:95px;" />
+    </div>
+    <div style="float:right; margin-top:0px; text-align:left; width: 440px; font-size:12px; font-family:Verdana,Georgia,Serif; vertical-align:middle;">
+        <span style="font-weight:bold;"><span style="color:#024160;">{{ user }}</span> <span style="color:#ED7808;">|</span> <span style="color:#024160;">{{ user.group }}</span></span>
+        <br />
+        <a href="tel:{{ user.phone|phone|replace({' ' : ''}) }}" style="text-decoration:none;"><span style="color:#aaaaaa;">{{ user.phone|phone }}</span></a> <span style="color:#0097AA;">|</span> <a href="mailto:{{ user.email }}" style="text-decoration:none;"><span style="color:#aaaaaa;">{{ user.email }}</span></a>
+        <br />
+        <br />
+        <span style="font-weight:bold;"><span style="color:#024160;">Junior ESIEE, Junior-Entreprise</span> <span style="color:#ED7808;">|</span> <a href="http://www.junioresiee.com/" style="text-decoration:none;"><span style="color:#024160;">junioresiee.com</span></a>
+        </span>
+        <br />
+        <a href="tel:+33(0)145926670" style="text-decoration:none;"><span satyle="color:#aaaaaa;">01 45 92 66 70</span></a> <span style="color:#0097AA;">|</span> <a href="mailto:contact@junioresiee.com" style="text-decoration:none;"><span style="color:#aaaaaa;">contact@junioresiee.com</span></a>
+        <br />
+        <div style="margin-left:auto;margin-right:auto;margin-top:8px;">
+            <a href="http://www.facebook.com/JuniorESIEE" target="_blank"><img src="http://www.junioresiee.com/img/social/24x24/facebook.png" />
+            </a>
+            <a href="http://twitter.com/JuniorESIEE" target="_blank"><img src="http://www.junioresiee.com/img/social/24x24/twitter.png" />
+            </a>
+            <a href="https://www.youtube.com/user/junioresiee" target="_blank"><img src="http://www.junioresiee.com/img/social/24x24/youtube.png" />
+            </a>
+            <a href="https://plus.google.com/117954618637794642146" target="_blank"><img src="http://www.junioresiee.com/img/social/24x24/google_plus.png" />
+            </a>
+            <a href="http://www.viadeo.com/profile/00226oeexx90wxwa" target="_blank"><img src="http://www.junioresiee.com/img/social/24x24/viadeo.png" />
+            </a>
+            <a href="https://www.linkedin.com/company/junior-esiee" target="_blank"><img src="http://www.junioresiee.com/img/social/24x24/linkedin.png" />
+            </a>
         </div>
     </div>
+    <div style="clear: both;"></div>
 </div>

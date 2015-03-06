@@ -11,7 +11,7 @@
         <div class="column">
             <div class="ui segment">
                 <h2>Informations</h2>
-                <h3 class="ui ribbon label">Contact</h3>
+                <h3 class="ui ribbon label" style="margin-top: 20px;margin-bottom: 20px">Contact</h3>
                 <p>
                     <b>Email</b> : {{ user.email }}<br />
                     {% if user.phone is not null %}<b>Téléphone</b> : {{ user.phone|phone }}<br />{% endif %}
@@ -25,23 +25,47 @@
                 </a>
                 <div class="ui divider"></div>
 
-                <h3 class="ui ribbon label">Poste</h3>
+                <h3 class="ui ribbon label" style="margin-top: 20px;margin-bottom: 20px">Poste</h3>
                 <p>{{ user.group }}</p>
-                <ul class="ui list">
-                    {% for role in user.group.roles %}
-                        <li class="item">{{ role|trans({}, 'roles')|raw }}</li>
-                    {% endfor %}
-                </ul>
-                <a class="ui blue labeled icon submit button" href="{{ path('je_user_groups_edit', {id:user.group.id}) }}">
-                    Editer
-                    <i class="pencil icon"></i>
-                </a>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <ul class="ui list">
+                        {% for role in user.group.roles %}
+                            <li class="item">{{ role|trans({}, 'roles')|raw }}</li>
+                        {% endfor %}
+                    </ul>
+                    <a class="ui blue labeled icon submit button" href="{{ path('je_user_groups_edit', {id:user.group.id}) }}">
+                        Editer
+                        <i class="pencil icon"></i>
+                    </a>
+                {% endif %}
             </div>
         </div>
         <div class="column">
             <div class="ui segment">
+                <h2>Profile</h2>
+                <h3 class="ui ribbon label" style="margin-top: 20px;margin-bottom: 20px">Compétences</h3>
+                <p>
+                    {% if user.skillCategories|length > 0 %}<b>Domaines de compétence</b> : {% for skillCateory in user.skillCategories %}{{ skillCateory }}{% endfor %}<br />{% endif %}
+                    {% if user.skills|length > 0 %}<b>Compétences</b> : {% for skill in user.skills %}{{ skill }}{% endfor %}<br />{% endif %}
+                </p>
+                {% if user.cv is not null %}
+                    <div class="ui divider"></div>
+
+                    <h3 class="ui ribbon label" style="margin-top: 20px;margin-bottom: 20px">CV</h3>
+                    <div class="ui grid">
+                        <div class="two column row">
+                            {% if user.cv is not null %}
+                                <div class="column">
+                                    <a href="{{ path('sonata_media_download', {'id': user.cv|sonata_urlsafeid }) }}" class="item">{% thumbnail user.cv, 'small' %}</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="ui segment">
                 <h2>Signature</h2>
-                <h3 class="ui ribbon label">Résultat</h3>
+                <h3 class="ui ribbon label" style="margin-top: 20px;margin-bottom: 20px">Résultat</h3>
                 {% include 'ApplicationSonataUserBundle:User:signature.html.twig' %}
                 <h3 class="ui ribbon label" style="margin-top: 20px;margin-bottom: 20px">Code HTML</h3>
                 <div class="ui form">
