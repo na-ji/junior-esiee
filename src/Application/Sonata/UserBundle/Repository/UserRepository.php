@@ -17,4 +17,25 @@ class UserRepository extends EntityRepository
         return $this->createQueryBuilder('u')
             ->orderBy('u.firstname, u.lastname');
     }
+
+    public function queryWithSkillCategory(\Doctrine\Common\Collections\Collection $skillCategories)
+    {
+    	$i = 0;
+    	$q = $this->createQueryBuilder('u')
+        	->leftJoin('u.skillCategories', 'sk')
+            ;
+
+        foreach ($skillCategories as $skillCategory) {
+        	$q
+	        	->orWhere('sk.id = :skillcategory'.$i)
+	        		->setParameter('skillcategory'.$i, $skillCategory->getId())
+	        ;
+	        $i++;
+        }
+
+        return $q
+        	->orderBy('u.firstname, u.lastname')
+	        ->getQuery()
+	        ->getResult();
+    }
 }

@@ -327,6 +327,13 @@ class ProjectController extends Controller
 					else {
 						$project->setStudentsEnrollmentOpen($open);
 						$this->request->getSession()->getFlashBag()->add('success', 'Le recrutement des réalisateurs est maintenant '.$ouvert.'.');
+
+						if ($project->getSkillCategories()->count() > 0) {
+							$users = $this->em->getRepository('ApplicationSonataUserBundle:User')->queryWithSkillCategory($project->getSkillCategories());
+							foreach ($users as $user) {
+								$this->notificator->notify($user, 'Une nouvelle étude est disponible <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">à cette adresse</a>');
+							}
+						}
 					}
 				break;
 				default:
