@@ -95,7 +95,8 @@ class UserType extends AbstractType
             ->add('socialSecurityCenter', 'choice', array(
                 'choices'     => array(
                     'LMDE'   => 'LMDE', 
-                    'SMEREP' => 'SMEREP'
+                    'SMEREP' => 'SMEREP', 
+                    'Autre'  => 'Autre'
                 ),
                 'expanded'    => true,
                 'required'    => false,
