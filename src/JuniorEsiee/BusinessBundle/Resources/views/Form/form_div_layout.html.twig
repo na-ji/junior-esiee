@@ -105,7 +105,7 @@
     <div class="ui modal" id="{{ id }}_modal">
         <i class="close icon"></i>
         <div class="header">
-            Add {{ name }}
+            Ajouter {{ name }}
         </div>
         <div class="content">
             <table class="ui table segment">
@@ -118,7 +118,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for choice in options if form.vars.role is null or choice.data.isGranted(form.vars.role) %}
+                    {% for choice in options if form.vars.role is null or isUserGranted(choice.data, form.vars.role) %}
                             <tr class="hoverhidden">
                                 {% for property in form.vars.properties %}
                                     <td>{{ attribute(choice.data, property) }}</td>
@@ -132,7 +132,7 @@
                 <tfoot>
                     <tr>
                         <th colspan="3">
-                            <div class="ui blue labeled icon button"><i class="user icon"></i> Add {{ name }}</div>
+                            {# <div class="ui blue labeled icon button"><i class="user icon"></i> Add {{ name }}</div> #}
                         </th>
                     </tr>
                 </tfoot>
