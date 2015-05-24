@@ -28,6 +28,6 @@ JuniorEsiee\BusinessBundle\Entity\Project:
             - Count:
                 min: 1
                 minMessage: "Vous devez définir au minimum une majeur."
-        rbu:
-            - NotBlank:
-                message: "Vous devez définir le RBU."
+        # rbu:
+        #     - NotBlank:
+        #         message: "Vous devez définir le RBU."

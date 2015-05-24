@@ -36,7 +36,7 @@ class Notificator
         $this->twig   = $twig;
     }
 
-    public function notify(User $user, $message, $mail = false)
+    public function notify(User $user, $message, $mail_subject = null, $mail_body = null)
     {
         $notification = new Notification();
         $notification
@@ -45,14 +45,16 @@ class Notificator
         ;
         $this->em->persist($notification);
         $this->em->flush();
-        if ($mail)
+
+        if (null !== $mail_subject && null !== $mail_body)
         {
+            $mail_body .= '<br /><br />Cordialement,<br /><a href="{{ url(\'page_tool_index\') }}">L\'Outil Junior ESIEE</a>';
             $mail = \Swift_Message::newInstance()
-                ->setSubject("Notification depuis l'outil")
-                ->setFrom(array("ne-pas-repondre@junioresiee.com" => "l'Outil"))
+                ->setSubject($mail_subject)
+                ->setFrom(array("ne-pas-repondre@junioresiee.com" => "L'Outil Junior ESIEE"))
                 ->setTo($user->getEmail())
                 ->setContentType('text/html')
-                ->setBody($this->twig->render($message, array()))
+                ->setBody($this->twig->render($mail_body, array()))
             ;
             
             $response = $this->mailer->send($mail);

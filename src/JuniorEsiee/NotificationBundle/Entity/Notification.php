@@ -42,6 +42,11 @@ class Notification
         $this->notificationRead = false;
     }
 
+    public function __toString()
+    {
+        return ''.$this->id;
+    }
+
     /**
      * Get id
      *

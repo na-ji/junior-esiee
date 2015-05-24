@@ -58,7 +58,7 @@ class UserHelper extends \Twig_Extension
         {
             $html = 'Aucun';
         } else {
-            $html = "<a href='".$this->router->generate('je_user_users_profile', array('id'=>$user->getId()))."'";
+            $html = "<a href='".$this->router->generate('je_user_users_profile', array('id' => $user->getId()), true)."'";
 
             if($attr !== null)
                 foreach($attr as $key => $value)

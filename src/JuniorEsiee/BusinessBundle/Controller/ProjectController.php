@@ -315,6 +315,22 @@ class ProjectController extends Controller
 					else {
 						$project->setCommercialEnrollmentOpen($open);
 						$this->request->getSession()->getFlashBag()->add('success', 'Le recrutement du commercial est maintenant '.$ouvert.'.');
+
+						$commerciaux = $this->em->getRepository('ApplicationSonataUserBundle:User')->findByRoles(array('ROLE_COMMERCIAL'));
+						foreach ($commerciaux as $user) {
+							$this->notificator->notify(
+								$user, 
+								'Une nouvelle étude est disponible <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">à cette adresse</a>',
+								'[Junior] Une nouvelle étude à suivre est disponible',
+								'Bonjour,<br /><br />
+
+								Une nouvelle étude à suivre est disponible sur le site. Voici son intitulé :<br />
+								<b>'.$project->getTitle().'</b><br />
+								'.$project->getDescription().'<br /><br />
+
+								Plus d\'informations <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">à cette adresse</a>.'
+							);
+						}
 					}
 				break;
 				case 'implementer':
@@ -329,9 +345,20 @@ class ProjectController extends Controller
 						$this->request->getSession()->getFlashBag()->add('success', 'Le recrutement des réalisateurs est maintenant '.$ouvert.'.');
 
 						if ($project->getSkillCategories()->count() > 0) {
-							$users = $this->em->getRepository('ApplicationSonataUserBundle:User')->queryWithSkillCategory($project->getSkillCategories());
+							$users = $this->em->getRepository('ApplicationSonataUserBundle:User')->findWithSkillCategory($project->getSkillCategories());
 							foreach ($users as $user) {
-								$this->notificator->notify($user, 'Une nouvelle étude est disponible <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">à cette adresse</a>');
+								$this->notificator->notify(
+									$user, 
+									'Une nouvelle étude est disponible <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">à cette adresse</a>',
+									'[Junior] Une nouvelle étude est disponible',
+									'Bonjour,<br /><br />
+
+									Une nouvelle étude correspondant à votre domaine de compétence est disponible sur le site. Voici son intitulé :<br />
+									<b>'.$project->getTitle().'</b><br />
+									'.$project->getDescription().'<br /><br />
+
+									Plus d\'informations <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">à cette adresse</a>.'
+								);
 							}
 						}
 					}
@@ -397,7 +424,14 @@ class ProjectController extends Controller
 							$this->request->getSession()->getFlashBag()->add('warning', 'Vous avez déjà postulé comme commercial sur cet appel à projet.');
 						} else {
 							$project->addCommercialApplicant($user);
-							$this->notificator->notify($project->getRbu(), '{{ getUser('.$user->getId().')|linkUser }} a postulé en tant que commercial pour <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">'.$project.'</a>');
+							$this->notificator->notify(
+								$project->getRbu(), 
+								'{{ getUser('.$user->getId().')|linkUser }} a postulé en tant que commercial pour <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">'.$project.'</a>',
+								'[Junior] '.$user.' a postulé en commercial pour '.$project,
+								'Bonjour,<br /><br />
+
+								{{ getUser('.$user->getId().')|linkUser }} a postulé en tant que commercial pour <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">'.$project.'</a>.'
+							);
 							$this->request->getSession()->getFlashBag()->add('success', 'Vous avez postulé comme commercial sur cet appel à projet.');
 						}
 					}
@@ -413,7 +447,14 @@ class ProjectController extends Controller
 							$this->request->getSession()->getFlashBag()->add('warning', 'Vous avez déjà postulé comme réalisateur sur cet appel à projet.');
 						} else {
 							$project->addStudentsApplicant($user);
-							$this->notificator->notify($project->getCommercial(), '{{ getUser('.$user->getId().')|linkUser }} a postulé en tant que réalisateur pour <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">'.$project.'</a>');
+							$this->notificator->notify(
+								$project->getCommercial(), 
+								'{{ getUser('.$user->getId().')|linkUser }} a postulé en tant que réalisateur pour <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">'.$project.'</a>',
+								'[Junior] '.$user.' a postulé en réalisateur pour '.$project,
+								'Bonjour,<br /><br />
+
+								{{ getUser('.$user->getId().')|linkUser }} a postulé en tant que réalisateur pour <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">'.$project.'</a>.'
+							);
 							$this->request->getSession()->getFlashBag()->add('success', 'Vous avez postulé comme réalisateur sur cet appel à projet.');
 						}
 					}
@@ -460,7 +501,14 @@ class ProjectController extends Controller
 							{
 								$this->request->getSession()->getFlashBag()->add('warning', $candidate.' a déjà été choisi comme commercial.');
 							} else {
-								$this->notificator->notify($candidate, 'Vous avez été accepté en tant que commercial pour <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">'.$project.'</a>');
+								$this->notificator->notify(
+									$candidate, 
+									'Vous avez été accepté en tant que commercial pour <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">'.$project.'</a>',
+									'[Junior] Vous avez été accepté en tant que commercial pour '.$project,
+									'Bonjour,<br /><br />
+
+									Vous avez été accepté en tant que commercial pour <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">'.$project.'</a>.'
+								);
 								$project->setCommercial($candidate);
 								$project->setCommercialEnrollmentOpen(false);
 								//$project->getCommercialApplicants()->clear();
@@ -488,7 +536,14 @@ class ProjectController extends Controller
 							{
 								$this->request->getSession()->getFlashBag()->add('warning', $candidate.' a déjà été choisi comme réalisateur.');
 							} else {
-								$this->notificator->notify($candidate, 'Vous avez été accepté en tant que réalisateur pour <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">'.$project.'</a>');
+								$this->notificator->notify(
+									$candidate, 
+									'Vous avez été accepté en tant que réalisateur pour <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">'.$project.'</a>',
+									'[Junior] Vous avez été accepté en tant que réalisateur pour '.$project,
+									'Bonjour,<br /><br />
+
+									Vous avez été accepté en tant que réalisateur pour <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">'.$project.'</a>.'
+								);
 								$project->addStudent($candidate);
 								$this->request->getSession()->getFlashBag()->add('success', $candidate.' a été choisi comme réalisateur.');
 							}

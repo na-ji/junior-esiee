@@ -18,12 +18,12 @@ class UserRepository extends EntityRepository
             ->orderBy('u.firstname, u.lastname');
     }
 
-    public function queryWithSkillCategory(\Doctrine\Common\Collections\Collection $skillCategories)
+    public function findWithSkillCategory(\Doctrine\Common\Collections\Collection $skillCategories)
     {
     	$i = 0;
     	$q = $this->createQueryBuilder('u')
         	->leftJoin('u.skillCategories', 'sk')
-            ;
+        ;
 
         foreach ($skillCategories as $skillCategory) {
         	$q
@@ -36,6 +36,23 @@ class UserRepository extends EntityRepository
         return $q
         	->orderBy('u.firstname, u.lastname')
 	        ->getQuery()
-	        ->getResult();
+	        ->getResult()
+        ;
+    }
+
+    public function findByRoles($roles) {
+        $q = $this->createQueryBuilder('u')
+            ->leftJoin('u.group', 'g');
+        $i = 0;
+
+        foreach ($roles as $role) {
+            $q
+                ->andWhere("u.roles LIKE :role$i OR g.roles LIKE :role$i")
+                    ->setParameter("role$i", '%"'.$role.'"%')
+            ;
+            $i++;
+        }
+
+        return $q->getQuery()->getResult();
     }
 }
