@@ -19,25 +19,14 @@
             </tr>
         </thead>
         <tbody>
+        {% import 'JuniorEsieeBusinessBundle:Project:helper.html.twig' as helper %}
         {% for project in projects %}
             <tr>
                 <td><a href="{{ path('je_business_project_show', {id:project.id}) }}" class="item">{{ project.title }}</a></td>
                 <td>{{ project.depositDate|format_date('dd/MM/yy', 'fr', 'Europe/Paris') }}</td>
                 <td>{{ project.delay|format_date('dd/MM/yy', 'fr', 'Europe/Paris') }}</td>
                 <td>
-                    {% if project.state != 'state_aborted' and project.state != 'state_closed' and project.state != 'state_waiting_information' %}
-                        {% if project.state == 'state_opened' %}
-                            {{ 'state_opened'|projectState }}
-                        {% endif %}
-                        {% if project.commercialEnrollmentOpen %}
-                            {{ 'state_waiting_commercial'|projectState }}
-                        {% endif %}
-                        {% if project.studentsEnrollmentOpen %}
-                            {{ 'state_waiting_student'|projectState }}
-                        {% endif %}
-                    {% else %}
-                        {{ project.state|projectState }}
-                    {% endif %}
+                    {{ helper.projectState(project) }}
                 </td>
                 <td>{{ project.rbu|linkUser }}</td>
                 <td>{{ project.commercial|linkUser }}</td>

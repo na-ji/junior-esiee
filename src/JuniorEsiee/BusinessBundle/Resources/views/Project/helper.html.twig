@@ -1,0 +1,15 @@
+{% macro projectState(project) %}
+    {% if project.state != 'state_aborted' and project.state != 'state_closed' and project.state != 'state_waiting_information' %}
+        {% if project.state == 'state_opened' %}
+            {{ 'state_opened'|projectState }}
+        {% endif %}
+        {% if project.commercialEnrollmentOpen %}
+            {{ 'state_waiting_commercial'|projectState }}
+        {% endif %}
+        {% if project.studentsEnrollmentOpen %}
+            {{ 'state_waiting_student'|projectState }}
+        {% endif %}
+    {% else %}
+        {{ project.state|projectState }}
+    {% endif %}
+{% endmacro %}

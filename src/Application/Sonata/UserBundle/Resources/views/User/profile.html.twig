@@ -68,6 +68,7 @@
                 {% if is_granted('ROLE_CHARGE') and is_granted('ROLE_COMMERCIAL') %}
                     <h3 class="ui ribbon label" style="margin-top: 20px;margin-bottom: 20px">Projets</h3>
                     <p>
+                        {% import 'JuniorEsieeBusinessBundle:Project:helper.html.twig' as helper %}
                         {% if not projectsAsRbu|length > 0 and not projectsAsCommercial|length > 0 and not projectsAsStudents|length > 0 %}
                             Aucun projet
                         {% else %}
@@ -75,7 +76,7 @@
                                 <b>Comme RBU</b> : <br />
                                 <ul>
                                     {% for project in projectsAsRbu %}
-                                        <li><a href="{{ url('je_business_project_show', {id: project.id}) }}">{{ project }}</a></li>
+                                        <li><a href="{{ url('je_business_project_show', {id: project.id}) }}">{{ helper.projectState(project) }} {{ project }}</a></li>
                                     {% endfor %}
                                 </ul>
                             {% endif %}
@@ -83,7 +84,7 @@
                                 <b>Comme commercial</b> : <br />
                                 <ul>
                                     {% for project in projectsAsCommercial %}
-                                        <li><a href="{{ url('je_business_project_show', {id: project.id}) }}">{{ project }}</a></li>
+                                        <li><a href="{{ url('je_business_project_show', {id: project.id}) }}">{{ helper.projectState(project) }}  {{ project }}</a></li>
                                     {% endfor %}
                                 </ul>
                             {% endif %}
@@ -91,7 +92,7 @@
                                 <b>Comme réalisateur</b> : <br />
                                 <ul>
                                     {% for project in projectsAsStudents %}
-                                        <li><a href="{{ url('je_business_project_show', {id: project.id}) }}">{{ project }}</a></li>
+                                        <li><a href="{{ url('je_business_project_show', {id: project.id}) }}">{{ helper.projectState(project) }}  {{ project }}</a></li>
                                     {% endfor %}
                                 </ul>
                             {% endif %}
