@@ -78,8 +78,15 @@ class UserController extends Controller
      */
     public function profileAction(User $user)
     {
+        $projectsAsStudents   = $this->em->getRepository('JuniorEsieeBusinessBundle:Project')->findByStudents($user);
+        $projectsAsCommercial = $this->em->getRepository('JuniorEsieeBusinessBundle:Project')->findBy(array('commercial' => $user), array('depositDate' => 'DESC'));
+        $projectsAsRbu        = $this->em->getRepository('JuniorEsieeBusinessBundle:Project')->findBy(array('rbu' => $user), array('depositDate' => 'DESC'));
+
         return array(
-            'user' => $user,
+            'user'                 => $user,
+            'projectsAsStudents'   => $projectsAsStudents,
+            'projectsAsCommercial' => $projectsAsCommercial,
+            'projectsAsRbu'        => $projectsAsRbu,
         );
     }
 

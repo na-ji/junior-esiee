@@ -74,4 +74,16 @@ class ProjectRepository extends EntityRepository
         	->Where("p.state = 'state_closed'")
             ->orderBy('p.depositDate');
     }
+
+    public function findByStudents(User $user)
+    {
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.students', 'stu')
+            ->where('stu.id = :user')
+                ->setParameter('user', $user->getId())
+            ->orderBy('p.depositDate')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

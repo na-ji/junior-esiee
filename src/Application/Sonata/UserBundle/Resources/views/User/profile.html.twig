@@ -27,7 +27,7 @@
 
                 <h3 class="ui ribbon label" style="margin-top: 20px;margin-bottom: 20px">Poste</h3>
                 <p>{{ user.group }}</p>
-                {% if is_granted('ROLE_ADMIN') %}
+                {% if is_granted('ROLE_GROUP_EDIT') %}
                     <ul class="ui list">
                         {% for role in user.group.roles %}
                             <li class="item">{{ role|trans({}, 'roles')|raw }}</li>
@@ -45,6 +45,9 @@
                 <h2>Profile</h2>
                 <h3 class="ui ribbon label" style="margin-top: 20px;margin-bottom: 20px">Compétences</h3>
                 <p>
+                    {% if not user.skillCategories|length > 0 and not user.skills|length > 0 %}
+                        Aucune compétence
+                    {% endif %}
                     {% if user.skillCategories|length > 0 %}<b>Domaines de compétence</b> : {% for skillCateory in user.skillCategories %}{{ skillCateory }}{% endfor %}<br />{% endif %}
                     {% if user.skills|length > 0 %}<b>Compétences</b> : {% for skill in user.skills %}{{ skill }}{% endfor %}<br />{% endif %}
                 </p>
@@ -62,7 +65,41 @@
                         </div>
                     </div>
                 {% endif %}
+                {% if is_granted('ROLE_CHARGE') and is_granted('ROLE_COMMERCIAL') %}
+                    <h3 class="ui ribbon label" style="margin-top: 20px;margin-bottom: 20px">Projets</h3>
+                    <p>
+                        {% if not projectsAsRbu|length > 0 and not projectsAsCommercial|length > 0 and not projectsAsStudents|length > 0 %}
+                            Aucun projet
+                        {% else %}
+                            {% if projectsAsRbu|length > 0 %}
+                                <b>Comme RBU</b> : <br />
+                                <ul>
+                                    {% for project in projectsAsRbu %}
+                                        <li><a href="{{ url('je_business_project_show', {id: project.id}) }}">{{ project }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                            {% if projectsAsCommercial|length > 0 %}
+                                <b>Comme commercial</b> : <br />
+                                <ul>
+                                    {% for project in projectsAsCommercial %}
+                                        <li><a href="{{ url('je_business_project_show', {id: project.id}) }}">{{ project }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                            {% if projectsAsStudents|length > 0 %}
+                                <b>Comme réalisateur</b> : <br />
+                                <ul>
+                                    {% for project in projectsAsStudents %}
+                                        <li><a href="{{ url('je_business_project_show', {id: project.id}) }}">{{ project }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        {% endif %}
+                    </p>
+                {% endif %}
             </div>
+            {% if isUserGranted(user, 'ROLE_CHARGE') %}
             <div class="ui segment">
                 <h2>Signature</h2>
                 <h3 class="ui ribbon label" style="margin-top: 20px;margin-bottom: 20px">Résultat</h3>
@@ -74,6 +111,7 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
