@@ -53,13 +53,13 @@
             </a>
         {% endif %}
         {% if is_granted('ROLE_CHARGE') %}
-            {% if project.state == 'state_opened' and project.commercialEnrollmentOpen %}
+            {% if project.state == 'state_opened' and project.commercialEnrollmentOpen and not project.commercialApplicants.contains(app.user) %}
                 <a href="{{ path('je_business_project_postulate', {id:project.id, type:'commercial'}) }}" class="item">
                     <i class="share icon"></i> Postuler en commercial
                 </a>
             {% endif %}
         {% endif %}
-        {% if project.state == 'state_opened' and project.studentsEnrollmentOpen %}
+        {% if project.state == 'state_opened' and project.studentsEnrollmentOpen and not project.studentsApplicants.contains(app.user) %}
             <a href="{{ path('je_business_project_postulate', {id:project.id, type:'implementer'}) }}" class="item">
                 <i class="share icon"></i> Postuler en réalisateur
             </a>
