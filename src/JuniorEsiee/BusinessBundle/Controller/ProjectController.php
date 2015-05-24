@@ -316,20 +316,23 @@ class ProjectController extends Controller
 						$project->setCommercialEnrollmentOpen($open);
 						$this->request->getSession()->getFlashBag()->add('success', 'Le recrutement du commercial est maintenant '.$ouvert.'.');
 
-						$commerciaux = $this->em->getRepository('ApplicationSonataUserBundle:User')->findByRoles(array('ROLE_COMMERCIAL'));
-						foreach ($commerciaux as $user) {
-							$this->notificator->notify(
-								$user, 
-								'Une nouvelle étude est disponible <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">à cette adresse</a>',
-								'[Junior] Une nouvelle étude à suivre est disponible',
-								'Bonjour,<br /><br />
+						if ($open)
+						{
+							$commerciaux = $this->em->getRepository('ApplicationSonataUserBundle:User')->findByRoles(array('ROLE_COMMERCIAL', 'ROLE_CHARGE'));
+							foreach ($commerciaux as $user) {
+								$this->notificator->notify(
+									$user, 
+									'Une nouvelle étude est disponible <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">à cette adresse</a>',
+									'[Junior] Une nouvelle étude à suivre est disponible',
+									'Bonjour,<br /><br />
 
-								Une nouvelle étude à suivre est disponible sur le site. Voici son intitulé :<br />
-								<b>'.$project->getTitle().'</b><br />
-								'.$project->getDescription().'<br /><br />
+									Une nouvelle étude à suivre est disponible sur le site. Voici son intitulé :<br />
+									<b>'.$project->getTitle().'</b><br />
+									'.$project->getDescription().'<br /><br />
 
-								Plus d\'informations <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">à cette adresse</a>.'
-							);
+									Plus d\'informations <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">à cette adresse</a>.'
+								);
+							}
 						}
 					}
 				break;
@@ -344,21 +347,24 @@ class ProjectController extends Controller
 						$project->setStudentsEnrollmentOpen($open);
 						$this->request->getSession()->getFlashBag()->add('success', 'Le recrutement des réalisateurs est maintenant '.$ouvert.'.');
 
-						if ($project->getSkillCategories()->count() > 0) {
-							$users = $this->em->getRepository('ApplicationSonataUserBundle:User')->findWithSkillCategory($project->getSkillCategories());
-							foreach ($users as $user) {
-								$this->notificator->notify(
-									$user, 
-									'Une nouvelle étude est disponible <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">à cette adresse</a>',
-									'[Junior] Une nouvelle étude est disponible',
-									'Bonjour,<br /><br />
+						if ($open)
+						{
+							if ($project->getSkillCategories()->count() > 0) {
+								$users = $this->em->getRepository('ApplicationSonataUserBundle:User')->findWithSkillCategory($project->getSkillCategories());
+								foreach ($users as $user) {
+									$this->notificator->notify(
+										$user, 
+										'Une nouvelle étude est disponible <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">à cette adresse</a>',
+										'[Junior] Une nouvelle étude est disponible',
+										'Bonjour,<br /><br />
 
-									Une nouvelle étude correspondant à votre domaine de compétence est disponible sur le site. Voici son intitulé :<br />
-									<b>'.$project->getTitle().'</b><br />
-									'.$project->getDescription().'<br /><br />
+										Une nouvelle étude correspondant à votre domaine de compétence est disponible sur le site. Voici son intitulé :<br />
+										<b>'.$project->getTitle().'</b><br />
+										'.$project->getDescription().'<br /><br />
 
-									Plus d\'informations <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">à cette adresse</a>.'
-								);
+										Plus d\'informations <a href="{{ url(\'je_business_project_show\', {id: '.$project->getId().'}) }}">à cette adresse</a>.'
+									);
+								}
 							}
 						}
 					}
