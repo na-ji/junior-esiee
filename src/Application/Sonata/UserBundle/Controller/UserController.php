@@ -73,6 +73,32 @@ class UserController extends Controller
     }
 
     /**
+     * @Secure(roles="ROLE_USERS_EDIT, ROLE_ADMIN")
+     * @Template
+     */
+    public function deleteConfirmationAction(User $user)
+    {
+        return array(
+            'user'    => $user,
+            'referer' => $this->request->headers->get('referer'),
+        );
+    }
+
+    /**
+     * @Secure(roles="ROLE_USERS_EDIT, ROLE_ADMIN")
+     * @Template
+     */
+    public function deleteAction(User $user, Request $request)
+    {
+        $this->em->remove($user);
+        $this->em->flush();
+
+        $this->request->getSession()->getFlashBag()->add('success', 'L\'utilisateur a bien été supprimé.');
+
+        return $this->redirect($this->generateUrl('je_user_users'));
+    }
+
+    /**
      * @Secure(roles="ROLE_USERS_VIEW")
      * @Template
      */

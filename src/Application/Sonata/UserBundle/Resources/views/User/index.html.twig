@@ -32,15 +32,21 @@
                         <i class="settings icon"></i>
                         Actions
                         <div class="menu">
-                            <a href="{{ path('je_user_users_profile', {id:user.id}) }}" class="item">
-                                <i class="unhide icon"></i> Afficher
-                            </a>
-                            <a href="{{ path('je_user_users_edit', {id:user.id}) }}" class="item">
-                                <i class="pencil icon"></i> Editer
-                            </a>
-                            <a class="item">
-                                <i class="delete icon"></i> Supprimer
-                            </a>
+                            {% if is_granted('ROLE_USERS_VIEW') %}
+                                <a href="{{ path('je_user_users_profile', {id:user.id}) }}" class="item">
+                                    <i class="unhide icon"></i> Afficher
+                                </a>
+                            {% endif %}
+                            {% if is_granted('ROLE_USERS_EDIT') %}
+                                <a href="{{ path('je_user_users_edit', {id:user.id}) }}" class="item">
+                                    <i class="pencil icon"></i> Editer
+                                </a>
+                            {% endif %}
+                            {% if is_granted('ROLE_ADMIN') and is_granted('ROLE_USERS_EDIT') %}
+                                <a href="{{ path('je_user_users_delete_confirmation', {id:user.id}) }}" class="item">
+                                    <i class="delete icon"></i> Supprimer
+                                </a>
+                            {% endif %}
                         </div>
                     </div>
                 </td>

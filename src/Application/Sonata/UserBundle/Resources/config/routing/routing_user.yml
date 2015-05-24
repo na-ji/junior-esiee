@@ -19,3 +19,15 @@ je_user_users_profile:
     defaults: { _controller: ApplicationSonataUserBundle:User:profile }
     requirements:
         id: \d+
+
+je_user_users_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: ApplicationSonataUserBundle:User:delete }
+    requirements:
+        id: \d+
+
+je_user_users_delete_confirmation:
+    pattern:  /{id}/delete-confirmation
+    defaults: { _controller: ApplicationSonataUserBundle:User:deleteConfirmation }
+    requirements:
+        id: \d+

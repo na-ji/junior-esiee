@@ -1,0 +1,13 @@
+{% extends '::layout.html.twig' %}
+
+{% block title 'Confirmation de suppression' %}
+
+{% block content %}
+	<h1 class="ui header">Voulez-vous vraiment supprimer "{{ user }}" ?</h1>
+    <a class="ui red labeled icon submit button" href="{{ path('je_user_users_delete', {id:user.id}) }}">
+        Oui <i class="trash icon"></i>
+    </a>
+    <a href="{{ referer }}" class="ui labeled icon submit button">
+        Annuler <i class="reply mail icon"></i>
+    </a>
+{% endblock %}
