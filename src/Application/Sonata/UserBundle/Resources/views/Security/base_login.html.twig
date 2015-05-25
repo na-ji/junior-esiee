@@ -1,52 +1,45 @@
-{% extends 'ApplicationSonataUserBundle::layout.html.twig' %}
+{% extends 'ApplicationSonataUserBundle::base.html.twig' %}
 
 {% block title 'title_user_authentication'|trans({}, 'SonataUserBundle') %}
 
-{% block fos_user_content %}
-<div class="ui grid">
-    <div class="center aligned three column row">
-        <div class="column">
-            <h2 class="ui top attached header">
-                {{ block('title') }}
-            </h2>
-            <div class="ui attached segment">
-                {% if error %}
-                    <div class="ui error message">
-                        <div class="header">{{ error|trans({}, 'FOSUserBundle') }}</div>
-                    </div>
-                {% endif %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/junioresieebusiness/css/icheck_minimal_blue.css') }}" />
+{% endblock %}
 
-                <form action="{{ path("fos_user_security_check") }}" method="post" role="form" class="ui error form">
-                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
-
-                    <div class="field">
-                        <label for="username" style="width: initial;">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
-                        <input type="text" id="username" name="_username" value="{{ last_username }}" required="required"/>
-                    </div>
-
-
-                    <div class="field">
-                        <label for="password" style="width: initial;">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
-                        <input type="password" id="password" name="_password" required="required"/>
-                    </div>
-
-                    <div class="inline field" style="text-align: left;">
-                        <div class="ui checkbox">
-                            <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
-                            <label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
-                        </div>
-                    </div>
-
-                    <div class="inline field" style="text-align: left;">
-                        <a href="{{ path('fos_user_resetting_request') }}">{{ 'forgotten_password'|trans({}, 'SonataUserBundle') }}</a>
-                    </div>
-
-                    <div class="inline field">
-                        <input type="submit" id="_submit" name="_submit" class="ui primary button" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}"/>
-                    </div>
-                </form>
+{% block content %}
+    <form action="{{ path("fos_user_security_check") }}" method="post">
+        {% if error %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ error|trans({}, 'FOSUserBundle') }}
             </div>
+        {% endif %}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+
+        <div class="form-group has-feedback">
+            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" class="form-control" placeholder="{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}"/>
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
-    </div>
-</div>
+        <div class="form-group has-feedback">
+            <input type="password" id="password" name="_password" required="required" class="form-control" placeholder="{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}"/>
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">    
+                <div class="checkbox icheck">
+                    <label>
+                        <input type="checkbox" id="remember_me" name="_remember_me" value="on"> {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+                    </label>
+                </div>                        
+            </div><!-- /.col -->
+            <div class="col-xs-4">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}</button>
+            </div><!-- /.col -->
+        </div>
+    </form>
+
+    <a href="{{ path('fos_user_resetting_request') }}">{{ 'forgotten_password'|trans({}, 'SonataUserBundle') }}</a><br>
 {% endblock %}

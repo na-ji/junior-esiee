@@ -1,0 +1,25 @@
+{% extends "ApplicationSonataUserBundle::base.html.twig" %}
+
+{% block title 'forgotten_password'|trans({}, 'SonataUserBundle') %}
+
+{% block content %}
+	<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+        {% if invalid_username is defined %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}
+            </div>
+        {% endif %}
+        <div class="form-group has-feedback">
+            <input type="text" id="username" name="username" required="required" class="form-control" placeholder="{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}"/>
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+        <div class="row">
+            <div class="col-xs-offset-4 col-xs-8">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}</button>
+            </div><!-- /.col -->
+        </div>
+	</form>
+{% endblock content %}

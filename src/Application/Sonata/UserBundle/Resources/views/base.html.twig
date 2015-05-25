@@ -1,0 +1,41 @@
+{% extends '::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/junioresieebusiness/css/icheck_minimal_blue.css') }}" />
+{% endblock %}
+
+{% block body %}
+    <body class="login-page">
+        <div class="login-box">
+            <div class="login-logo">
+                <a href="{{ path('page_tool_index') }}">L'<b>Outil&#8482;</b></a>
+            </div><!-- /.login-logo -->
+            <div class="login-box-body">
+                <p class="login-box-msg">{{ block('title') }}</p>
+                {% block content %}
+                {% endblock %}
+            </div><!-- /.login-box-body -->
+        </div><!-- /.login-box -->
+
+        {% block javascripts %}
+            <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+            {% javascripts
+                'bundles/junioresieepage/js/bootstrap.min.js'
+                'bundles/junioresieebusiness/js/icheck.min.js'
+                output="js/base-tool-login.js"
+            %}
+                <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+            <script>
+                $(function () {
+                    $('input[type="checkbox"]').iCheck({
+                        checkboxClass: 'icheckbox_minimal-blue',
+                        radioClass: 'iradio_minimal-blue',
+                        increaseArea: '20%' // optional
+                    });
+                });
+            </script>
+        {% endblock %}
+    </body>
+{% endblock %}

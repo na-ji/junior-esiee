@@ -1,39 +1,27 @@
-{% extends 'ApplicationSonataUserBundle::layout.html.twig' %}
+{% extends 'ApplicationSonataUserBundle::base.html.twig' %}
 
 {% block title 'resetting.reset.submit'|trans({}, 'FOSUserBundle') %}
 
-{% block fos_user_content %}
-<div class="ui grid">
-    <div class="center aligned three column row">
-        <div class="column">
-            <h2 class="ui top attached header">
-                {{ block('title') }}
-            </h2>
-            <div class="ui attached segment">
-                {% if not form.vars.valid %}
-                    <div class="ui error message">
-                        <div class="header">{{ form_errors(form) }}</div>
-                    </div>
-                {% endif %}
-				<form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" role="form" class="ui error form">
-                	<div class="field">
-					    {{ form_label(form.new.first, null, { 'label_attr': {'style': 'width: initial;'} }) }}
-					    {{ form_errors(form.new.first) }}
-					    {{ form_widget(form.new.first) }}
-					</div>
-                	<div class="field">
-					    {{ form_label(form.new.second, null, { 'label_attr': {'style': 'width: initial;'} }) }}
-					    {{ form_errors(form.new.second) }}
-					    {{ form_widget(form.new.second) }}
-					</div>
-					<div class="inline field">
-			        	<input type="submit" value="{{ 'resetting.reset.submit'|trans({}, 'FOSUserBundle') }}" class="ui primary button" />
-					</div>
-					{{ form_rest(form) }}
-				</form>
+{% block content %}
+    <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" role="form">
+        {% if not form.vars.valid %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ form_errors(form) }}
             </div>
+        {% endif %}
+
+        {{ form_row(form.new.first) }}
+        {{ form_row(form.new.second) }}
+
+        {{ form_rest(form) }}
+        <div class="row">
+            <div class="col-xs-offset-5 col-xs-7">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">{{ 'resetting.reset.submit'|trans({}, 'FOSUserBundle') }}</button>
+            </div><!-- /.col -->
         </div>
-    </div>
-</div>
+    </form>
 {% endblock %}
 

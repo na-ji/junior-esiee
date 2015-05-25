@@ -43,6 +43,7 @@ assetic:
     use_controller: false
     bundles:
         - JuniorEsieePageBundle
+        - ApplicationSonataUserBundle
     #java: /usr/bin/java
     read_from:      "%kernel.root_dir%/../www"
     filters:
