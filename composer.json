@@ -37,7 +37,7 @@
         "knplabs/knp-paginator-bundle"            : "~2.4",
         "oyejorge/less.php"                       : "~1.7",
         "braincrafted/bootstrap-bundle"           : "dev-master",
-        "twbs/bootstrap"                          : "3.2.*",
+        "twbs/bootstrap"                          : "3.3.*",
         "jquery/jquery"                           :  "1.11.*"
     },
     "require-dev": {
