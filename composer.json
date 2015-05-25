@@ -35,7 +35,10 @@
         "knplabs/knp-menu"                        : "dev-master as 1.1",
         "knplabs/knp-menu-bundle"                 : "dev-master as 1.1",
         "knplabs/knp-paginator-bundle"            : "~2.4",
-        "leafo/lessphp"                           : "dev-master"
+        "oyejorge/less.php"                       : "~1.7",
+        "braincrafted/bootstrap-bundle"           : "dev-master",
+        "twbs/bootstrap"                          : "3.2.*",
+        "jquery/jquery"                           :  "1.11.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
@@ -64,6 +67,19 @@
     "config": {
         "bin-dir": "bin"
     },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "jquery/jquery",
+                "version": "1.11.1",
+                "dist": {
+                    "url": "http://code.jquery.com/jquery-1.11.1.js",
+                    "type": "file"
+                }
+            }
+        }
+    ],
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "www",

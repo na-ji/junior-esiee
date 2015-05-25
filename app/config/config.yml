@@ -53,7 +53,7 @@ assetic:
             jar: "%kernel.root_dir%/Resources/java/yuicompressor.jar"
         lessphp:
             apply_to: "\.less$"
-            file: %kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php
+            file: %kernel.root_dir%/../vendor/oyejorge/less.php/lessc.inc.php
             formatter: "compressed"
             preserve_comments: false
 
@@ -308,6 +308,7 @@ jms_di_extra:
             formFactory: @form.factory
             security: @security.context
             notificator: @je.notification.notificator
+            flash: @braincrafted_bootstrap.flash
 
 jms_security_extra:
     expressions: true
@@ -317,7 +318,7 @@ knp_paginator:
     default_options:
         page_name: page
     template:
-        pagination: ::pagination.html.twig
+        # pagination: ::pagination.html.twig
         sortable:   ::sortable.html.twig
 
 jms_serializer:
@@ -336,3 +337,10 @@ fos_rest:
     body_converter:
         enabled: true
         validate: true
+
+braincrafted_bootstrap:
+    less_filter: lessphp
+    fonts_dir: %kernel.root_dir%/../www/fonts
+    auto_configure:
+        assetic: false
+        knp_paginator: true
