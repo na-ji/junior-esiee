@@ -135,7 +135,7 @@
 								</ul>
 							</li>
 						{% endif %}
-						{% if is_granted('ROLE_TREZ') %}
+						{% if is_granted('ROLE_TREZ_VIEW') %}
 							<li class="treeview {{ helper.active('je_finances') }}">
 								<a href="{{ path('je_finances_treasury') }}">
 									<i class='fa fa-dollar'></i> <span>Trésorerie</span> <i class="fa fa-angle-left pull-right"></i>
