@@ -1,52 +1,60 @@
 {% form_theme form 'JuniorEsieeBusinessBundle:Form:form_div_layout.html.twig' %}
 
-{{ form_start(form) }}
-    <div class="ui {{ color }} form segment">
-        <h2>Client</h2>
-        {{ form_row(form.clientLastName) }}
-        {{ form_row(form.clientFirstName) }}
-        {{ form_row(form.clientCompany) }}
-        {{ form_row(form.clientPhone) }}
-        {{ form_row(form.clientEmail) }}
-        {{ form_row(form.clientAddress) }}
-        {{ form_row(form.clientZipCode) }}
-        {{ form_row(form.clientCity) }}
+{{ form_start(form, { 'style': 'horizontal' }) }}
+    <div class="box box-{{ color }}">
+        <div class="box-body">
+            <h2>Client</h2>
+            {{ form_row(form.clientLastName) }}
+            {{ form_row(form.clientFirstName) }}
+            {{ form_row(form.clientCompany) }}
+            {{ form_row(form.clientPhone) }}
+            {{ form_row(form.clientEmail) }}
+            {{ form_row(form.clientAddress) }}
+            {{ form_row(form.clientZipCode) }}
+            {{ form_row(form.clientCity) }}
+        </div>
     </div>
-    <div class="ui {{ color }} form segment">
-        <h2>Projet</h2>
-        {{ form_row(form.title) }}
-        {{ form_row(form.description) }}
-        {{ form_row(form.depositDate) }}
-        {{ form_row(form.delay) }}
-        {% if is_granted('ROLE_COMMERCIAL') %}
-            {{ form_row(form.skillCategories) }}
-            {{ form_row(form.skills) }}
-            {{ form_row(form.scopeStatement) }}
-            {{ form_row(form.graphicCharter) }}
-        {% endif %}
+    <div class="box box-{{ color }}">
+        <div class="box-body">
+            <h2>Projet</h2>
+            {{ form_row(form.title) }}
+            {{ form_row(form.description) }}
+            {{ form_row(form.depositDate) }}
+            {{ form_row(form.delay) }}
+            {% if is_granted('ROLE_COMMERCIAL') %}
+                {{ form_row(form.skillCategories) }}
+                {{ form_row(form.skills) }}
+                {{ form_row(form.scopeStatement) }}
+                {{ form_row(form.graphicCharter) }}
+            {% endif %}
+        </div>
     </div>
     {% if is_granted('ROLE_COMMERCIAL') %}
-        <div class="ui {{ color }} form segment">
-            <h2>Suivi</h2>
-{#             {% if is_granted('ROLE_COMMERCIAL') %}
-                {{ form_row(form.state) }}
-            {% endif %} #}
-            {% if is_granted('ROLE_ADMIN') %}
-                {{ form_row(form.commercial) }}
-                {{ form_row(form.rbu) }}
-            {% endif %}
+        <div class="box box-{{ color }}">
+            <div class="box-body">
+                <h2>Suivi</h2>
+    {#             {% if is_granted('ROLE_COMMERCIAL') %}
+                    {{ form_row(form.state) }}
+                {% endif %} #}
+                {% if is_granted('ROLE_ADMIN') %}
+                    {{ form_row(form.commercial) }}
+                    {{ form_row(form.rbu) }}
+                {% endif %}
+            </div>
         </div>
     {% endif %}
     {% if is_granted('ROLE_ADMIN') %}
-        <div class="ui {{ color }} form segment">
-            <h2>Réalisation</h2>
-            {{ form_row(form.students) }}
+        <div class="box box-{{ color }}">
+            <div class="box-body">
+                <h2>Réalisation</h2>
+                {{ form_row(form.students) }}
+            </div>
         </div>
     {% endif %}
-    <button type="submit" class="ui {{ color }} labeled icon submit button">
-        Editer <i class="pencil icon"></i>
+    <button type="submit" class="btn btn-{{ color }} btn-lg">
+        {% if color == 'info' %}Editer{% else %}Déposer{% endif %}
     </button>
-    <a href="{{ path('je_business_my_project') }}" class="ui labeled icon submit button">
-        Annuler <i class="reply mail icon"></i>
+    <a href="{{ path('je_business_my_project') }}" class="btn btn-danger btn-lg">
+        Annuler
     </a>
 {{ form_end(form) }}

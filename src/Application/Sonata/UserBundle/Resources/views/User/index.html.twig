@@ -3,72 +3,74 @@
 {% block title "Liste des utilisateurs" %}
 
 {% block content %}
-
-    <h1 class="ui header">
-        {{ block('title') }}
-    </h1>
-
-    <table class="ui compact table segment">
-        <thead>
-        <tr>
-            <th>Nom</th>
-            <th>Email</th>
-            <th>Téléphone</th>
-            <th>Poste</th>
-            <th>Dernière connexion</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user|linkUser }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.phone|phone }}</td>
-                <td>{{ user.group }}</td>
-                <td>Le {{ user.lastLogin|date('d/m/Y à H:i') }}</td>
-                <td>
-                    <div class="ui labeled icon top right pointing dropdown mini button">
-                        <i class="settings icon"></i>
-                        Actions
-                        <div class="menu">
-                            {% if is_granted('ROLE_USERS_VIEW') %}
-                                <a href="{{ path('je_user_users_profile', {id:user.id}) }}" class="item">
-                                    <i class="unhide icon"></i> Afficher
-                                </a>
-                            {% endif %}
-                            {% if is_granted('ROLE_USERS_EDIT') %}
-                                <a href="{{ path('je_user_users_edit', {id:user.id}) }}" class="item">
-                                    <i class="pencil icon"></i> Editer
-                                </a>
-                            {% endif %}
-                            {% if is_granted('ROLE_ADMIN') and is_granted('ROLE_USERS_EDIT') %}
-                                <a href="{{ path('je_user_users_delete_confirmation', {id:user.id}) }}" class="item">
-                                    <i class="delete icon"></i> Supprimer
-                                </a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">
-                    Aucun utilisateur
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-        <tfoot>
-        <tr>
-            <th colspan="6">
-                <a class="ui green labeled icon button" href="{{ path('je_user_users_new') }}">
-                    Nouveau <i class="plus icon"></i>
-                </a>
+    <div class="col-sm-12">
+        <div class="box">
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>Poste</th>
+                        <th>Dernière connexion</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user|linkUser }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.phone|phone }}</td>
+                            <td>{{ user.group }}</td>
+                            <td>Le {{ user.lastLogin|date('d/m/Y à H:i') }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        Actions&nbsp;&nbsp;<span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                        {% if is_granted('ROLE_USERS_VIEW') %}
+                                            <li>
+                                                <a href="{{ path('je_user_users_profile', {id:user.id}) }}" class="item">
+                                                    <i class="fa fa-fw fa-eye"></i> Afficher
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                        {% if is_granted('ROLE_USERS_EDIT') %}
+                                            <li>
+                                                <a href="{{ path('je_user_users_edit', {id:user.id}) }}" class="item">
+                                                    <i class="fa fa-fw fa-pencil"></i> Editer
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                        {% if is_granted('ROLE_ADMIN') and is_granted('ROLE_USERS_EDIT') %}
+                                            <li>
+                                                <a href="{{ path('je_user_users_delete_confirmation', {id:user.id}) }}" class="item">
+                                                    <i class="fa fa-fw fa-trash"></i> Supprimer
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">
+                                Aucun utilisateur
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div><!-- /.box-body -->
+            <div class="box-footer clearfix">
+                <a class="btn btn-success btn-lg" href="{{ path('je_user_users_new') }}">Nouveau</a>
                 {{ knp_pagination_render(users) }}
-            </th>
-        </tr>
-        </tfoot>
-    </table>
-
+            </div>
+        </div><!-- /.box -->
+        </div>
+    </div>
 {% endblock %}

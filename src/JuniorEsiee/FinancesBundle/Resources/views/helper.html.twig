@@ -1,0 +1,51 @@
+{% macro rangeSelector(route, month, months, year, years) %}
+    <div style="margin-bottom: 10px;">
+        Affichage {% if month is null %}de l'anéee{% else %}du mois de{% endif %}
+        {% if month is not null %}
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                {{ months[month] }}&nbsp;&nbsp;<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                {% for key, m in months %}
+                    <li{% if key == month %} class="active"{% endif %}>
+                        <a href="{{ path(route, {month:key, year:year}) }}" class="item" data-value="{{ key }}">{{ m }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                {{ year }}&nbsp;&nbsp;<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                {% for y in years %}
+                    <li{% if y == year %} class="active"{% endif %}>
+                        <a href="{{ path(route, (month is not null) ? {month:month, year:y} : {year:y}) }}" class="item" data-value="{{ y }}">{{ y }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro form(route, color, form) %}
+    {% form_theme form 'JuniorEsieeBusinessBundle:Form:form_div_layout.html.twig' %}
+    <div class="col-sm-12">
+        <form class="form-horizontal" method="post">
+            <div class="box box-{{ color }}">
+                <div class="box-body">
+                        {{ bootstrap_set_style('horizontal') }}
+                        {{ form_widget(form) }}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-{{ color }} btn-lg">
+                Editer
+            </button>
+            <a href="{{ path(route) }}" class="btn btn-danger btn-lg">
+                Annuler
+            </a>
+        </form>
+    </div>
+{% endmacro %}

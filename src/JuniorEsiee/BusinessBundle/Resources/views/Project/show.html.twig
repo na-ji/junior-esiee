@@ -1,96 +1,91 @@
 {% extends '::layout.html.twig' %}
 
-{% block title project.title is not null ? project.title :'Projet sans nom' %}
+{% block title %}
+    {{ project.title is not null ? project.title :'Projet sans nom' }}
+    {% import 'JuniorEsieeBusinessBundle:Project:helper.html.twig' as helper %}
+    {{ helper.projectState(project) }}
+    {% include 'JuniorEsieeBusinessBundle:Project:actions.html.twig' with {'show': true} %}
+{% endblock %}
 
 {% block content %}
-    {% import 'JuniorEsieeBusinessBundle:Project:helper.html.twig' as helper %}
-    <h1 class="ui header">
-    	<div class="content">
-        	{{ block('title') }}
-        	{{ helper.projectState(project) }}<br />
-        	<div class="sub header">
-                {% include 'JuniorEsieeBusinessBundle:Project:actions.html.twig' with {'show': true} %}
-        	</div>
-    	</div>
-    </h1>
 
-    <div class="ui two column grid">
-        <div class="column">
-            <div class="ui segment">
+    <div class="col-sm-6">
+        <div class="box">
+            <div class="box-body">
                 <h2>Informations</h2>
-                <h3 class="ui ribbon label">Détails</h3>
+                <h3>Détails</h3>
                 <p>
                     {% if project.description is not null %}<b>Description</b> : {{ project.description }}<br />{% endif %}
                     {% if project.depositDate is not null %}<b>Date de dépôt</b> : {{ project.depositDate|format_date }}<br />{% endif %}
                     {% if project.delay is not null %}<b>Délais</b> : {{ project.delay|format_date }}<br />{% endif %}
                     {% if project.skillCategories|length > 0 %}<b>Majeur{% if project.skillCategories|length > 1 %}s{% endif %}</b> : 
-						{% for skillCategory in project.skillCategories %}
-							{{ skillCategory }}{% if not loop.last %},{% endif %}
-						{% endfor %}
+    					{% for skillCategory in project.skillCategories %}
+    						{{ skillCategory }}{% if not loop.last %},{% endif %}
+    					{% endfor %}
                     	<br />
                     {% endif %}
                     {% if project.skills|length > 0 %}<b>Compétence{% if project.skills|length > 1 %}s{% endif %}</b> : 
-						{% for skill in project.skills %}
-							{{ skill }}{% if not loop.last %},{% endif %}
-						{% endfor %}
+    					{% for skill in project.skills %}
+    						{{ skill }}{% if not loop.last %},{% endif %}
+    					{% endfor %}
                     	<br />
                     {% endif %}
                 </p>
                 {% if project.scopeStatement is not null or project.graphicCharter is not null %}
-	                <div class="ui divider"></div>
+                    <div class="ui divider"></div>
 
-	                <h3 class="ui ribbon label">Pièces jointes</h3>
-	                <div class="ui grid">
-	                	<div class="two column row">
-			                {% if project.scopeStatement is not null %}
-			                	<div class="column">
-					                <p>Cahier des charges</p>
-					                <a href="{{ path('sonata_media_download', {'id': project.scopeStatement|sonata_urlsafeid }) }}" class="item">{% thumbnail project.scopeStatement, 'small' %}</a>
-					            </div>
-			                {% endif %}
-			                {% if project.graphicCharter is not null %}
-			                	<div class="column">
-					                <p>Charte graphique</p>
-					                <a href="{{ path('sonata_media_download', {'id': project.graphicCharter|sonata_urlsafeid }) }}" class="item">{% thumbnail project.graphicCharter, 'small' %}</a>
-					            </div>
-			                {% endif %}
-			            </div>
-	            	</div>
+                    <h3>Pièces jointes</h3>
+                    <div class="row">
+		                {% if project.scopeStatement is not null %}
+		                	<div class="col-sm-6">
+				                <p>Cahier des charges</p>
+				                <a href="{{ path('sonata_media_download', {'id': project.scopeStatement|sonata_urlsafeid }) }}" class="item">{% thumbnail project.scopeStatement, 'small' %}</a>
+				            </div>
+		                {% endif %}
+		                {% if project.graphicCharter is not null %}
+		                	<div class="col-sm-6">
+				                <p>Charte graphique</p>
+				                <a href="{{ path('sonata_media_download', {'id': project.graphicCharter|sonata_urlsafeid }) }}" class="item">{% thumbnail project.graphicCharter, 'small' %}</a>
+				            </div>
+		                {% endif %}
+                	</div>
                 {% endif %}
             </div>
         </div>
-        <div class="column">
-            <div class="ui segment">
+    </div>
+    <div class="col-sm-6">
+        <div class="box">
+            <div class="box-body">
                 <h2>Suivi</h2>
-                <h3 class="ui ribbon label">Contact</h3>
+                <h3>Contact</h3>
                 <p>
                     {% if project.clientLastName is not null %}<b>Nom de famille</b> : {{ project.clientLastName }}<br />{% endif %}
                     {% if project.clientFirstName is not null %}<b>Prénom</b> : {{ project.clientFirstName }}<br />{% endif %}
                     {% if project.clientCompany is not null %}<b>Entreprise</b> : {{ project.clientCompany }}<br />{% endif %}
-                    {% if project.clientPhone is not null %}<b>Téléphone</b> : {{ project.clientPhone|phone }}<br />{% endif %}
-                    {% if project.clientEmail is not null %}<b>Email</b> : {{ project.clientEmail }}<br />{% endif %}
+                    {% if project.clientPhone is not null %}<b>Téléphone</b> : <a href="tel:{{ project.clientPhone|phone }}">{{ project.clientPhone|phone }}</a><br />{% endif %}
+                    {% if project.clientEmail is not null %}<b>Email</b> : <a href="mailto:{{ project.clientEmail }}">{{ project.clientEmail }}</a><br />{% endif %}
                     {% if project.clientAddress is not null %}<b>Adresse</b> : {{ project.clientAddress }}<br />{% endif %}
                     {% if project.clientZipCode is not null %}<b>Code postal</b> : {{ project.clientZipCode }}<br />{% endif %}
                     {% if project.clientCity is not null %}<b>Ville</b> : {{ project.clientCity }}<br />{% endif %}
                 </p>
                 {% if project.rbu is not null or project.commercial is not null or project.students|length > 0 %}
-	                <div class="ui divider"></div>
+                    <div class="ui divider"></div>
 
-	                <h3 class="ui ribbon label">Suivi projet</h3>
-	                <p>
-	                    {% if project.rbu is not null %}<b>RBU</b> : {{ project.rbu|linkUser }}<br />{% endif %}
-	                    {% if project.commercial is not null %}<b>Commercial</b> : {{ project.commercial|linkUser }}<br />{% endif %}
-	                    {% if project.students|length > 0 %}<b>Réalisateur{% if project.students|length > 1 %}s{% endif %}</b> : 
-							{% for student in project.students %}
-								{{ student|linkUser }}{% if not loop.last %},{% endif %}
-							{% endfor %}
-	                    	<br />
-	                    {% endif %}
+                    <h3>Suivi projet</h3>
+                    <p>
+                        {% if project.rbu is not null %}<b>RBU</b> : {{ project.rbu|linkUser }}<br />{% endif %}
+                        {% if project.commercial is not null %}<b>Commercial</b> : {{ project.commercial|linkUser }}<br />{% endif %}
+                        {% if project.students|length > 0 %}<b>Réalisateur{% if project.students|length > 1 %}s{% endif %}</b> : 
+    						{% for student in project.students %}
+    							{{ student|linkUser }}{% if not loop.last %},{% endif %}
+    						{% endfor %}
+                        	<br />
+                        {% endif %}
                         {% if is_granted('ROLE_ADMIN') and project.commercialApplicants|length > 0 and project.commercialEnrollmentOpen %}
                             <b>Postulant{% if project.commercialApplicants|length > 1 %}s{% endif %} commercial</b> : 
                             <ul>
                                 {% for commercial in project.commercialApplicants %}
-                                    <li>{{ commercial|linkUser }} <a href="{{ path('je_business_project_chose_candidate', {id: project.id, type: 'commercial', candidate: commercial.id, accept: 'accept'}) }}"><i class="green check circle icon"></i></a> <a href="{{ path('je_business_project_chose_candidate', {id: project.id, type: 'commercial', candidate: commercial.id, accept: 'decline'}) }}"><i class="red remove circle icon"></i></a></li>
+                                    <li>{{ commercial|linkUser }} <a href="{{ path('je_business_project_chose_candidate', {id: project.id, type: 'commercial', candidate: commercial.id, accept: 'accept'}) }}"><i class="text-green fa fa-check-circle"></i></a> <a href="{{ path('je_business_project_chose_candidate', {id: project.id, type: 'commercial', candidate: commercial.id, accept: 'decline'}) }}"><i class="text-red fa fa-times-circle"></i></a></li>
                                 {% endfor %}
                             </ul>
                         {% endif %}
@@ -98,12 +93,11 @@
                             <b>Postulant{% if project.studentsApplicants|length > 1 %}s{% endif %} réalisateur</b> : 
                             <ul>
                                 {% for student in project.studentsApplicants %}
-                                    <li>{{ student|linkUser }} <a href="{{ path('je_business_project_chose_candidate', {id: project.id, type: 'implementer', candidate: student.id, accept: 'accept'}) }}"><i class="green check circle icon"></i></a> <a href="{{ path('je_business_project_chose_candidate', {id: project.id, type: 'implementer', candidate: student.id, accept: 'decline'}) }}"><i class="red remove circle icon"></i></a></li>
+                                    <li>{{ student|linkUser }} <a href="{{ path('je_business_project_chose_candidate', {id: project.id, type: 'implementer', candidate: student.id, accept: 'accept'}) }}"><i class="text-green fa fa-check-circle"></i></a> <a href="{{ path('je_business_project_chose_candidate', {id: project.id, type: 'implementer', candidate: student.id, accept: 'decline'}) }}"><i class="text-red fa fa-times-circle"></i></a></li>
                                 {% endfor %}
                             </ul>
                         {% endif %}
-	                </p>
-	            	</div>
+                    </p>
                 {% endif %}
             </div>
         </div>

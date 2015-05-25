@@ -3,10 +3,7 @@
 {% block title "Nouvel utilisateur" %}
 
 {% block content %}
-
-    <h1 class="ui header">
-        {{ block('title') }}
-    </h1>
-
-    {% include 'ApplicationSonataUserBundle:User:form.html.twig' with {color: 'green'} %}
+	<div class="col-sm-12">
+    	{% include 'ApplicationSonataUserBundle:User:form.html.twig' with {color: 'success'} %}
+    </div>
 {% endblock %}

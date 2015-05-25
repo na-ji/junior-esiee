@@ -3,43 +3,46 @@
 {% block title 'Variables' %}
 
 {% macro inputs(vars, toRender) %}
-    {% for var in vars if var.slug in toRender %}
-        <input type="text" name="{{ var.slug }}" value="{{ var.value }} {{ var.unit }}" style="width: 100px" />
-    {% endfor %}
+    <div class="row">
+        {% for var in vars if var.slug in toRender %}
+            <div class="col-sm-1">
+                <input type="text" name="{{ var.slug }}" value="{{ var.value }} {{ var.unit }}" class="form-control" />
+            </div>
+        {% endfor %}
+    </div>
 {% endmacro %}
 {% import _self as form %}
 
 {% block content %}
-    <h1 class="ui header">{{ block('title') }}</h1>
-    <form method="post" class="ui form">
-        <div class="field">
-            <label for="">SMIC horraire</label>
-            <div class="controls">
-                {{ form.inputs(vars, ['smic']) }}
+    <div class="col-sm-12">
+        <form method="post" class="ui form">
+            <div class="form-group">
+                <label for="">SMIC horraire</label>
+                <div class="controls">
+                    {{ form.inputs(vars, ['smic']) }}
+                </div>
             </div>
-        </div>
-        <div class="field">
-            <label for="">TVA</label>
-            <div class="controls">
-                {{ form.inputs(vars, ['tva_high', 'tva_medium', 'tva_low']) }}
+            <div class="form-group">
+                <label for="">TVA</label>
+                <div class="controls">
+                    {{ form.inputs(vars, ['tva_high', 'tva_medium', 'tva_low']) }}
+                </div>
             </div>
-        </div>
-        <div class="field">
-            <label for="">Cotisations base URSSAF</label>
-            <div class="controls">
-                {{ form.inputs(vars, ['urssaf_2_1', 'urssaf_2_2', 'urssaf_2_3', 'urssaf_2_4']) }}
+            <div class="form-group">
+                <label for="">Cotisations base URSSAF</label>
+                <div class="controls">
+                    {{ form.inputs(vars, ['urssaf_2_1', 'urssaf_2_2', 'urssaf_2_3', 'urssaf_2_4']) }}
+                </div>
             </div>
-        </div>
-        <div class="field">
-            <label for="">Cotisations base brute</label>
-            <div class="controls">
-                {{ form.inputs(vars, ['urssaf_1_1', 'urssaf_1_2']) }}
+            <div class="form-group">
+                <label for="">Cotisations base brute</label>
+                <div class="controls">
+                    {{ form.inputs(vars, ['urssaf_1_1', 'urssaf_1_2']) }}
+                </div>
             </div>
-        </div>
-        <button class="ui blue icon labeled button">
-            <i class="check icon"></i>
-            Modifier
-        </button>
-    </form>
-
+            <button class="btn btn-lg btn-info">
+                Modifier
+            </button>
+        </form>
+    </div>
 {% endblock %}

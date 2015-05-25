@@ -60,9 +60,12 @@ class UserType extends AbstractType
                 'required'    => false,
                 'empty_value' => false
             ))
-            ->add('phone', null, array(
+            ->add('phone', 'text', array(
                 'required' => false,
                 'label'    => 'Téléphone',
+                'attr'     => array(
+                    'data-inputmask' => "'mask': '9999999999'"
+                ),
             ))
             ->add('address', null, array(
                 'required' => false,
@@ -142,9 +145,12 @@ class UserType extends AbstractType
                     'expanded' => true,
                     'label'    => 'Dossier complet'
                 ))
-                ->add('registredAt', null, array(
+                ->add('registredAt', 'sonata_type_date_picker', array(
                     'label'    => "Date d'inscription",
-                    'required' => false
+                    'required' => false,
+                    'attr'     => array(
+                        'class' => 'datepicker',
+                    ),
                 ))
                 ->add('group', 'entity', array(
                     'label'    => 'Poste',

@@ -1,51 +1,59 @@
 {% form_theme form 'JuniorEsieeBusinessBundle:Form:form_div_layout.html.twig' %}
 
-{{ form_start(form) }}
-    <div class="ui {{ color }} form segment">
-        <h2>Général</h2>
-        {{ form_row(form.username) }}
-        {{ form_row(form.email) }}
-        {% if is_granted('ROLE_ADMIN') and not owner|default(false) %}
-            {{ form_row(form.group) }}
-        {% endif %}
+{{ form_start(form, { 'style': 'horizontal' }) }}
+    <div class="box box-{{ color }}">
+        <div class="box-body">
+            <h2>Général</h2>
+            {{ form_row(form.username) }}
+            {{ form_row(form.email) }}
+            {% if is_granted('ROLE_ADMIN') and not owner|default(false) %}
+                {{ form_row(form.group) }}
+            {% endif %}
+        </div>
     </div>
-    <div class="ui {{ color }} form segment">
-        <h2>Dossier</h2>
-        {% if is_granted('ROLE_ADMIN') and not owner|default(false) %}
-            {{ form_row(form.isComplete) }}
-            {{ form_row(form.registredAt) }}
-        {% endif %}
-        {{ form_row(form.lastname) }}
-        {{ form_row(form.firstname) }}
-        {{ form_row(form.gender) }}
-        {{ form_row(form.promo) }}
-        {{ form_row(form.phone) }}
-        {{ form_row(form.address) }}
-        {{ form_row(form.zipCode) }}
-        {{ form_row(form.city) }}
-        {{ form_row(form.birthCity) }}
-        {{ form_row(form.birthDepartment) }}
-        {{ form_row(form.nationality) }}
-        {{ form_row(form.socialSecurityNumber) }}
-        {{ form_row(form.socialSecurityCenter) }}
+    <div class="box box-{{ color }}">
+        <div class="box-body">
+            <h2>Dossier</h2>
+            {% if is_granted('ROLE_ADMIN') and not owner|default(false) %}
+                {{ form_row(form.isComplete) }}
+                {{ form_row(form.registredAt) }}
+            {% endif %}
+            {{ form_row(form.lastname) }}
+            {{ form_row(form.firstname) }}
+            {{ form_row(form.gender) }}
+            {{ form_row(form.promo) }}
+            {{ form_row(form.phone) }}
+            {{ form_row(form.address) }}
+            {{ form_row(form.zipCode) }}
+            {{ form_row(form.city) }}
+            {{ form_row(form.birthCity) }}
+            {{ form_row(form.birthDepartment) }}
+            {{ form_row(form.nationality) }}
+            {{ form_row(form.socialSecurityNumber) }}
+            {{ form_row(form.socialSecurityCenter) }}
+        </div>
     </div>
-    <div class="ui {{ color }} form segment">
-        <h2>Compétences</h2>
-        {{ form_row(form.skillCategories) }}
-        {{ form_row(form.skills) }}
+    <div class="box box-{{ color }}">
+        <div class="box-body">
+            <h2>Compétences</h2>
+            {{ form_row(form.skillCategories) }}
+            {{ form_row(form.skills) }}
+        </div>
     </div>
-    <div class="ui {{ color }} form segment">
-        <h2>Pièces Jointes</h2>
-        {{ form_row(form.cv) }}
-        {{ form_row(form.socialSecurity) }}
-        {{ form_row(form.chequeNumber) }}
+    <div class="box box-{{ color }}">
+        <div class="box-body">
+            <h2>Pièces Jointes</h2>
+            {{ form_row(form.cv) }}
+            {{ form_row(form.socialSecurity) }}
+            {{ form_row(form.chequeNumber) }}
+        </div>
     </div>
-    <button type="submit" class="ui {{ color }} labeled icon submit button">
-        Editer <i class="pencil icon"></i>
+    <button type="submit" class="btn btn-{{ color }} btn-lg">
+        {% if color == 'info' %}Editer{% else %}Ajouter{% endif %}
     </button>
     {% if not owner|default(false) %}
-        <a href="{{ path('je_user_users') }}" class="ui labeled icon submit button">
-            Annuler <i class="reply mail icon"></i>
+        <a href="{{ path('je_user_users') }}" class="btn btn-danger btn-lg">
+            Annuler
         </a>
     {% endif %}
 {{ form_end(form) }}

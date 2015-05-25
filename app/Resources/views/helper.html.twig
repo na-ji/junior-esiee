@@ -1,5 +1,17 @@
 {% macro current(route, target, exact) %}
-    class="{% if (exact|default(false) and route == app.request.get('_route')) or ( not exact|default(false) and route in app.request.get('_route')) %}active {% endif %}item"
+    class="{% if (exact|default(false) and route == app.request.get('_route')) or ( not exact|default(false) and route in app.request.get('_route')) %}active {% endif %}"
     {% set target = target|default(route) %}
     href="{{ path(target) }}"
 {% endmacro %}
+
+{% macro liCurrent(route, title, target, exact) %}
+    <li {% if (exact|default(false) and route == app.request.get('_route')) or ( not exact|default(false) and route in app.request.get('_route')) %}class="active"{% endif %}>
+    	{% set target = target|default(route) %}
+    	<a href="{{ path(target) }}">{{ title|raw }}</a>
+    </li>    
+{% endmacro %}
+
+{% macro active(route, exact) %}
+    {% if (exact|default(false) and route == app.request.get('_route')) or ( not exact|default(false) and route in app.request.get('_route')) %}active{% endif %}
+{% endmacro %}
+

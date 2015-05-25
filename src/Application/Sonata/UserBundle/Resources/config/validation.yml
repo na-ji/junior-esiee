@@ -12,10 +12,6 @@ Application\Sonata\UserBundle\Entity\User:
             - Regex:
                 pattern: "/^[a-z0-9\.-]+@edu\.esiee\.fr$/"
                 message: "Vous devez avoir un mail @edu.esiee.fr"
-        phone:
-            - Type:
-                type: integer
-                message: "Le numéro {{ value }} n'est pas un numéro valide."
         zipCode:
             - Type:
                 type: integer

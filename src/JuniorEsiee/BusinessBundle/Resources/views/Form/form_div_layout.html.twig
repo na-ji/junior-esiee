@@ -1,87 +1,16 @@
-{% block form_row %}
-    {% spaceless %}
-        <div class="field{% if form.vars.errors|length > 0 %} error{% endif %}">
-            {{ form_label(form) }}
-            <div class="controls">
-                {{ form_widget(form) }}
-                {{ form_errors(form) }}
-            </div>
-        </div>
-    {% endspaceless %}
-{% endblock form_row %}
+{% extends 'BraincraftedBootstrapBundle:Form:bootstrap.html.twig' %}
 
-{% block form_errors %}
+{% block checkbox_widget %}
     {% spaceless %}
-        {% if errors|length > 0 %}
-            <div class="ui red pointing above ui label">
-                {% for error in errors %}
-                    <p>{{
-                        error.messagePluralization is null
-                        ? error.messageTemplate|trans(error.messageParameters, 'validators')
-                        : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
-                        }}</p>
-                {% endfor %}
-            </div>
-        {% endif %}
+        <input type="checkbox" class="icheck" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />&nbsp;&nbsp;
     {% endspaceless %}
-{% endblock form_errors %}
+{% endblock checkbox_widget %}
 
-{% block choice_widget_expanded %}
+{% block radio_widget %}
     {% spaceless %}
-        <div {{ block('widget_container_attributes') }} style="padding: 9px 0;">
-            {% for group_label, choice in choices %}
-                {% if choice is iterable %}
-                    <div class="ui segment">
-                        <h3 class="ui top attached label">{{ group_label }}</h3>
-                        {% for key in choice|keys %}
-                            <div class="ui checkbox">
-                                {{ form_widget(form.children[key]) }}
-                                {{ form_label(form.children[key]) }}
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    <div class="ui {% if not multiple %}radio {% endif %}checkbox">
-                        {{ form_widget(form.children[group_label]) }}
-                        {{ form_label(form.children[group_label]) }}
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
+        <input type="radio" class="icheck" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />&nbsp;&nbsp;
     {% endspaceless %}
-{% endblock choice_widget_expanded %}
-
-{% block choice_widget_collapsed %}
-    {% spaceless %}
-        <div class="ui {% if "class" in attr|keys %}{{ attr.class }}{% else %}selection{% endif %} dropdown">
-            <input type="hidden" {% if value is not iterable %}value="{{ value }}"{% endif %} {{ block('widget_attributes') }}>
-            <div class="default text">Choisissez</div>
-            <i class="dropdown icon"></i>
-            <div class="menu ui transition hidden">
-                {% for choice in choices %}
-                    <div class="item{% if choice.value == value %} active{% endif %}" data-value="{{ choice.value }}">{{ choice.label|trans({}, translation_domain) }}</div>
-                {% endfor %}
-            </div>
-        </div>
-    {% endspaceless %}
-{% endblock choice_widget_collapsed %}
-
-{% block form_label %}
-    {% spaceless %}
-        {% if label is not sameas(false) %}
-            {% if not compound %}
-                {% set label_attr = label_attr|merge({'for': id}) %}
-            {% endif %}
-            {% if required %}
-                {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
-            {% endif %}
-            {% if label is empty %}
-                {% set label = name|humanize %}
-            {% endif %}
-            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain)|raw }}{% if required %} *{% endif %}</label>
-        {% endif %}
-    {% endspaceless %}
-{% endblock form_label %}
+{% endblock radio_widget %}
 
 {% block association_list_widget -%}
     {% set attr = attr|merge({'class': ' association_list_type'}) %}
@@ -102,53 +31,59 @@
             'multiple': {{ multiple ? 'true' : 'false' }},
         };
     </script>
-    <div class="ui modal" id="{{ id }}_modal">
-        <i class="close icon"></i>
-        <div class="header">
-            Ajouter {{ name }}
-        </div>
-        <div class="content">
-            <table class="ui table segment">
-                <thead>
-                    <tr>
-                        {% for property in form.vars.properties %}
-                            <th>{{ property }}</th>
-                        {% endfor %}
-                        <th>Select</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for choice in options if form.vars.role is null or isUserGranted(choice.data, form.vars.role) %}
-                            <tr class="hoverhidden">
+    <div class="modal fade" id="{{ id }}_modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Ajouter {{ name }}</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="ui table segment">
+                        <thead>
+                            <tr>
                                 {% for property in form.vars.properties %}
-                                    <td>{{ attribute(choice.data, property) }}</td>
+                                    <th>{{ property }}</th>
                                 {% endfor %}
-                                <td>
-                                    <div class="ui left labeled icon button select-line" target="{{ id }}" target-value="{{ choice.data.id }}"><i class="right arrow icon"></i>Select</div>
-                                </td>
+                                <th>Select</th>
                             </tr>
-                    {% endfor %}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th colspan="3">
-                            {# <div class="ui blue labeled icon button"><i class="user icon"></i> Add {{ name }}</div> #}
-                        </th>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-        <div class="actions">
-            <div class="ui button">Cancel</div>
-            <div class="ui button">OK</div>
+                        </thead>
+                        <tbody>
+                            {% for choice in options if form.vars.role is null or isUserGranted(choice.data, form.vars.role) %}
+                                    <tr class="hoverhidden">
+                                        {% for property in form.vars.properties %}
+                                            <td>{{ attribute(choice.data, property) }}</td>
+                                        {% endfor %}
+                                        <td>
+                                            <div class="btn btn-default select-line" target="{{ id }}" target-value="{{ choice.data.id }}">
+                                                Choisir
+                                            </div>
+                                        </td>
+                                    </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="3">
+                                    {# <div class="ui blue labeled icon button"><i class="user icon"></i> Add {{ name }}</div> #}
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn btn-default" data-dismiss="modal">Annuler</div>
+                    <div class="btn btn-primary">OK</div>
+                </div>
+            </div>
         </div>
     </div>
     {% if not multiple %}
-        <input id="{{ id }}_value" type="text" disabled="disabled" value="{% for choice in options if choice is selectedchoice(value) %}{{ choice.label|trans({}, translation_domain) }}{% endfor %}" style="width: 150px;margin-right: 10px;" />
+        <input id="{{ id }}_value" type="text" disabled="disabled" value="{% for choice in options if choice is selectedchoice(value) %}{{ choice.label|trans({}, translation_domain) }}{% endfor %}" class="form-control" style="width: 150px;margin-right: 10px;" /><br />
     {% endif %}
     <div class="ui small buttons">
-        <button type="button" class="ui button teal" id="{{ id }}_list">Liste</button>
-        <button type="button" class="ui button red" id="{{ id }}_delete">Supprimer</button>
+        <button type="button" class="btn bg-teal" id="{{ id }}_list" data-toggle="modal" data-target="#{{ id }}_modal">Liste</button>&nbsp;
+        <button type="button" class="btn btn-danger" id="{{ id }}_delete">Supprimer</button>
     </div>
     <br />
     {% if multiple %}

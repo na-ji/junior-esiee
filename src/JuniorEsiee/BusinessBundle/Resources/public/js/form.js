@@ -1,33 +1,30 @@
 $(function(){
-    $('.ui.dropdown')
-        .dropdown()
-    ;
+    // $('.ui.dropdown')
+    //     .dropdown()
+    // ;
 
-    $('.message .close').on('click', function() {
-        $(this).closest('.message').fadeOut();
-    });
+    // $('.message .close').on('click', function() {
+    //     $(this).closest('.message').fadeOut();
+    // });
 
-    $('[data-dimmer=click]').click(function(e){
-        $(this).find('.dimmer').dimmer('show');
-        e.stopPropagation();
-    });
+    // $('[data-dimmer=click]').click(function(e){
+    //     $(this).find('.dimmer').dimmer('show');
+    //     e.stopPropagation();
+    // });
 
-    $( "[data-widget=datePicker]" ).datepicker({
-        dateFormat:"dd/mm/yy",
-        showOtherMonths: true,
-        selectOtherMonths: true,
-        dayNamesMin: [ "Di", "Lu", "Ma", "Me", "Je", "Ve", "Sa" ],
-        monthNames: [ "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" ],
-        firstDay: 1
-    });
+    // $( "[data-widget=datePicker]" ).datepicker({
+    //     dateFormat:"dd/mm/yy",
+    //     showOtherMonths: true,
+    //     selectOtherMonths: true,
+    //     dayNamesMin: [ "Di", "Lu", "Ma", "Me", "Je", "Ve", "Sa" ],
+    //     monthNames: [ "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" ],
+    //     firstDay: 1
+    // });
 
     if ($('.association_list_type').length)
     {
         $('.association_list_type').each(function() {
             var id = $(this).attr('id');
-            $('#' + id + '_list').click(function() {
-                $('#' + id + '_modal').modal('show');
-            });
             $('#' + id + '_delete').click(function() {
                 if (window[id + '_choice']['multiple'])
                 {

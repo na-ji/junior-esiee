@@ -51,6 +51,7 @@ class UserHelper extends \Twig_Extension
     {
         return array(
             'linkUser' => new \Twig_Filter_Method($this, 'linkUser', array('is_safe' => array('html'))),
+            'md5'      => new \Twig_SimpleFilter('md5', 'md5'),
         );
     }
 

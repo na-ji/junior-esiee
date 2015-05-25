@@ -3,29 +3,24 @@
 {% block title "Profile de " ~ user %}
 
 {% block content %}
-    <h1 class="ui header">
-        {{ block('title') }}
-    </h1>
-
-    <div class="ui two column grid">
-        <div class="column">
-            <div class="ui segment">
+    <div class="col-md-6">
+        <div class="box">
+            <div class="box-body">
                 <h2>Informations</h2>
-                <h3 class="ui ribbon label" style="margin-top: 20px;margin-bottom: 20px">Contact</h3>
+                <h3 style="margin-top: 20px;margin-bottom: 20px">Contact</h3>
                 <p>
-                    <b>Email</b> : {{ user.email }}<br />
-                    {% if user.phone is not null %}<b>Téléphone</b> : {{ user.phone|phone }}<br />{% endif %}
+                    <b>Email</b> : <a href="mailto:{{ user.email }}">{{ user.email }}</a><br />
+                    {% if user.phone is not null %}<b>Téléphone</b> : <a href="tel:{{ user.phone|phone }}">{{ user.phone|phone }}</a><br />{% endif %}
                     {% if user.address is not null %}<b>Adresse</b> : {{ user.address }}<br />{% endif %}
                     {% if user.zipCode is not null %}<b>Code Postal</b> : {{ user.zipCode }}<br />{% endif %}
                     {% if user.city is not null %}<b>Ville</b> : {{ user.city }}<br />{% endif %}
                 </p>
-                <a class="ui blue labeled icon submit button" href="{{ path('je_user_users_edit', {id:user.id}) }}">
+                <a class="btn btn-lg btn-info" href="{{ path('je_user_users_edit', {id:user.id}) }}">
                     Editer
-                    <i class="pencil icon"></i>
                 </a>
                 <div class="ui divider"></div>
 
-                <h3 class="ui ribbon label" style="margin-top: 20px;margin-bottom: 20px">Poste</h3>
+                <h3 style="margin-top: 20px;margin-bottom: 20px">Poste</h3>
                 <p>{{ user.group }}</p>
                 {% if is_granted('ROLE_GROUP_EDIT') %}
                     <ul class="ui list">
@@ -33,17 +28,18 @@
                             <li class="item">{{ role|trans({}, 'roles')|raw }}</li>
                         {% endfor %}
                     </ul>
-                    <a class="ui blue labeled icon submit button" href="{{ path('je_user_groups_edit', {id:user.group.id}) }}">
+                    <a class="btn btn-lg btn-info" href="{{ path('je_user_groups_edit', {id:user.group.id}) }}">
                         Editer
-                        <i class="pencil icon"></i>
                     </a>
                 {% endif %}
             </div>
         </div>
-        <div class="column">
-            <div class="ui segment">
+    </div>
+    <div class="col-md-6">
+        <div class="box">
+            <div class="box-body">
                 <h2>Profile</h2>
-                <h3 class="ui ribbon label" style="margin-top: 20px;margin-bottom: 20px">Compétences</h3>
+                <h3 style="margin-top: 20px;margin-bottom: 20px">Compétences</h3>
                 <p>
                     {% if not user.skillCategories|length > 0 and not user.skills|length > 0 %}
                         Aucune compétence
@@ -54,7 +50,7 @@
                 {% if user.cv is not null %}
                     <div class="ui divider"></div>
 
-                    <h3 class="ui ribbon label" style="margin-top: 20px;margin-bottom: 20px">CV</h3>
+                    <h3 style="margin-top: 20px;margin-bottom: 20px">CV</h3>
                     <div class="ui grid">
                         <div class="two column row">
                             {% if user.cv is not null %}
@@ -66,7 +62,7 @@
                     </div>
                 {% endif %}
                 {% if is_granted('ROLE_CHARGE') and is_granted('ROLE_COMMERCIAL') %}
-                    <h3 class="ui ribbon label" style="margin-top: 20px;margin-bottom: 20px">Projets</h3>
+                    <h3 style="margin-top: 20px;margin-bottom: 20px">Projets</h3>
                     <p>
                         {% import 'JuniorEsieeBusinessBundle:Project:helper.html.twig' as helper %}
                         {% if not projectsAsRbu|length > 0 and not projectsAsCommercial|length > 0 and not projectsAsStudents|length > 0 %}
@@ -100,19 +96,17 @@
                     </p>
                 {% endif %}
             </div>
-            {% if isUserGranted(user, 'ROLE_CHARGE') %}
-            <div class="ui segment">
-                <h2>Signature</h2>
-                <h3 class="ui ribbon label" style="margin-top: 20px;margin-bottom: 20px">Résultat</h3>
-                {% include 'ApplicationSonataUserBundle:User:signature.html.twig' %}
-                <h3 class="ui ribbon label" style="margin-top: 20px;margin-bottom: 20px">Code HTML</h3>
-                <div class="ui form">
-                    <div class="field">
-                        <textarea>{% include 'ApplicationSonataUserBundle:User:signature.html.twig' %}</textarea>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
         </div>
+        {% if isUserGranted(user, 'ROLE_CHARGE') %}
+        <div class="box">
+            <div class="box-body">
+                <h2>Signature</h2>
+                <h3 style="margin-top: 20px;margin-bottom: 20px">Résultat</h3>
+                {% include 'ApplicationSonataUserBundle:User:signature.html.twig' %}
+                <h3 style="margin-top: 20px;margin-bottom: 20px">Code HTML</h3>
+                <textarea class="form-control">{% include 'ApplicationSonataUserBundle:User:signature.html.twig' %}</textarea>
+            </div>
+        </div>
+        {% endif %}
     </div>
 {% endblock %}

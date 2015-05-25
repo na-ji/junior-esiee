@@ -3,95 +3,82 @@
 {% block title 'URSSAF mensuel' %}
 
 {% block content %}
-    <h1 class="ui header">
-        {{ block('title') }}
-    </h1>
+    <div class="col-sm-12">
+        {% import 'JuniorEsieeFinancesBundle::helper.html.twig' as helper %}
+        {{ helper.rangeSelector('je_finances_urssaf_month', month, months(), year, range(dateRange.min, dateRange.max)) }}
 
-    <div>
-        Affichage du mois de
-        <div class="ui inline dropdown">
-            <input name="month" type="hidden" value="{{ month }}">
-            <div class="text">Mois</div>
-            <i class="dropdown icon"></i>
-            <div class="menu">
-                {% for key, m in months() %}
-                    <a href="{{ path('je_finances_urssaf_month', {month:key, year:year}) }}" class="item" data-value="{{ key }}">{{ m }}</a>
-                {% endfor %}
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Résumé</h3>
+            </div>
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                        <tr>
+                            <td>Nombre de JEH</td>
+                            <td>{{ paymentSlipsSum.numberOfDays|default(0) }}</td>
+                        </tr>
+                        <tr>
+                            <td>Rémunérations HT</td>
+                            <td>{{ paymentSlipsSum.amount|money }}</td>
+                        </tr>
+                        <tr>
+                            <td>Cotisation</td>
+                            <td>{{ paymentSlipsSum.urssaf|money }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div class="ui inline dropdown">
-            <input name="gender" type="hidden" value="{{ year }}">
-            <div class="text">Année</div>
-            <i class="dropdown icon"></i>
-            <div class="menu">
-                {% for y in range(dateRange.min, dateRange.max) %}
-                    <a href="{{ path('je_finances_urssaf_month', {month:month, year:y}) }}" class="item" data-value="{{ y }}">{{ y }}</a>
-                {% endfor %}
+
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Bulletins de versement</h3>
+            </div>
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Référence</th>
+                        <th>Date</th>
+                        <th>Client</th>
+                        <th>Réalisateur</th>
+                        <th>JEH</th>
+                        <th>Rémunérations HT</th>
+                        <th>Cotisations</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for slip in paymentSlips %}
+                        <tr>
+                            <td>{{ slip.bv }}</td>
+                            <td>{{ slip.createdAt|date('d/m/Y') }}</td>
+                            <td>{{ slip.client }}</td>
+                            <td>{{ slip.student }}</td>
+                            <td>{{ slip.numberOfDays }}</td>
+                            <td>{{ slip.amount|money }}</td>
+                            <td>{{ slip.urssaf|money }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="10">
+                                Aucun BV pour ce mois
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th colspan="4">
+                            Totale
+                        </th>
+                        <th>{{ paymentSlipsSum.numberOfDays }}</th>
+                        <th>{{ paymentSlipsSum.amount|money }}</th>
+                        <th>{{ paymentSlipsSum.urssaf|money }}</th>
+                    </tr>
+                    </tfoot>
+                </table>
             </div>
         </div>
     </div>
-
-    <h2>Résumé</h2>
-
-    <table class="ui definition compact collapsing table">
-        <tbody>
-            <tr>
-                <td>Nombre de JEH</td>
-                <td>{{ paymentSlipsSum.numberOfDays|default(0) }}</td>
-            </tr>
-            <tr>
-                <td>Rémunérations HT</td>
-                <td>{{ paymentSlipsSum.amount|money }}</td>
-            </tr>
-            <tr>
-                <td>Cotisation</td>
-                <td>{{ paymentSlipsSum.urssaf|money }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h2>Bulletins de versement </h2>
-
-    <table class="ui compact table">
-        <thead>
-        <tr>
-            <th>Référence</th>
-            <th>Date</th>
-            <th>Client</th>
-            <th>Réalisateur</th>
-            <th>JEH</th>
-            <th>Rémunérations HT</th>
-            <th>Cotisations</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for slip in paymentSlips %}
-            <tr>
-                <td>{{ slip.bv }}</td>
-                <td>{{ slip.createdAt|date('d/m/Y') }}</td>
-                <td>{{ slip.client }}</td>
-                <td>{{ slip.student }}</td>
-                <td>{{ slip.numberOfDays }}</td>
-                <td>{{ slip.amount|money }}</td>
-                <td>{{ slip.urssaf|money }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="10">
-                    Aucun BV pour ce mois
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-        <tfoot>
-        <tr>
-            <th colspan="4">
-                Totale
-            </th>
-            <th>{{ paymentSlipsSum.numberOfDays }}</th>
-            <th>{{ paymentSlipsSum.amount|money }}</th>
-            <th>{{ paymentSlipsSum.urssaf|money }}</th>
-        </tr>
-        </tfoot>
-    </table>
 {% endblock %}

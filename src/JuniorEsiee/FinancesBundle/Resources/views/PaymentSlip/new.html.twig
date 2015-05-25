@@ -3,18 +3,6 @@
 {% block title 'Nouveau BV' %}
 
 {% block content %}
-    <h1 class="ui header">
-        {{ block('title') }}
-    </h1>
-
-    <form class="ui green form segment" method="post" {{ form_enctype(form) }} novalidate>
-        {% form_theme form 'JuniorEsieeBusinessBundle:Form:form_div_layout.html.twig' %}
-        {{ form_widget(form) }}
-        <button type="submit" class="ui green labeled icon submit button">
-            Créer <i class="plus icon"></i>
-        </button>
-        <a href="{{ path('je_finances_bv') }}" class="ui labeled icon submit button">
-            Annuler <i class="reply mail icon"></i>
-        </a>
-    </form>
+    {% import 'JuniorEsieeFinancesBundle::helper.html.twig' as helper %}
+    {{ helper.form('je_finances_bv', 'success', form) }}
 {% endblock %}

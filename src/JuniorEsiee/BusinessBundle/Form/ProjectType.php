@@ -36,7 +36,10 @@ class ProjectType extends AbstractType
                 'label'    => 'Entreprise'
             ))
             ->add('clientPhone', null, array(
-                'label' => 'Téléphone'
+                'label' => 'Téléphone',
+                'attr'     => array(
+                    'data-inputmask' => "'mask': '9999999999'"
+                ),
             ))
             ->add('clientEmail', null, array(
                 'label' => 'Email'
@@ -50,9 +53,12 @@ class ProjectType extends AbstractType
             ->add('clientCity', null, array(
                 'label' => 'Ville'
             ))
-            ->add('depositDate', 'date', array(
+            ->add('depositDate', 'sonata_type_date_picker', array(
                 'required' => false,
-                'label'    => 'Date de dépôt'
+                'label'    => 'Date de dépôt',
+                'attr'     => array(
+                    'class' => 'datepicker',
+                ),
             ))
             ->add('title', null, array(
                 'required' => false,
@@ -62,9 +68,12 @@ class ProjectType extends AbstractType
                 'required' => false,
                 'label'    => 'Description'
             ))
-            ->add('delay', 'date', array(
+            ->add('delay', 'sonata_type_date_picker', array(
                 'required' => false,
-                'label'    => 'Délais'
+                'label'    => 'Délais',
+                'attr'     => array(
+                    'class' => 'datepicker',
+                ),
             ))
         ;
 

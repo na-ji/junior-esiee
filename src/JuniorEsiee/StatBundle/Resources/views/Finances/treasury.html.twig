@@ -3,27 +3,26 @@
 {% block title 'Trésorerie réelle' %}
 
 {% block content %}
-    <h1 class="ui header">
-        {{ block('title') }}
-    </h1>
-    <form method="post" {{ form_enctype(form) }} novalidate>
-        Afficher la période de
-        {{ form_widget(form.monthFrom) }}
-        {{ form_widget(form.yearFrom) }}
-        <span style="padding-right: 8px">à</span>
-        {{ form_widget(form.monthTo) }}
-        {{ form_widget(form.yearTo) }}
-        {{ form_rest(form) }}
+    <div class="col-sm-12">
+        <form method="post" {{ form_enctype(form) }} novalidate>
+            Afficher la période de
+            {{ form_widget(form.monthFrom) }}
+            {{ form_widget(form.yearFrom) }}
+            <span style="padding-right: 8px">à</span>
+            {{ form_widget(form.monthTo) }}
+            {{ form_widget(form.yearTo) }}
+            {{ form_rest(form) }}
 
-        <button class="circular mini ui icon button">
-            <i class="check icon"></i>
-        </button>
-    </form>
-    {{ form_errors(form) }}
+            <button class="btn" style="margin-bottom: 4px;">
+                <i class="fa fa-check"></i>
+            </button>
+        </form>
+        {{ form_errors(form) }}
 
-    {% if form.vars.errors|length == 0 %}
-        <div id="graph" style="width: 100%; height: 400px; margin-top: 20px"></div>
-    {% endif %}
+        {% if form.vars.errors|length == 0 %}
+            <div id="graph" style="width: 100%; height: 400px; margin-top: 20px"></div>
+        {% endif %}
+    </div>
 {% endblock %}
 
 {% block javascripts %}

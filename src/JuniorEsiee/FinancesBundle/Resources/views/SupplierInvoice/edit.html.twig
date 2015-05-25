@@ -3,18 +3,6 @@
 {% block title 'Editer le FF / RF' %}
 
 {% block content %}
-    <h1 class="ui header">
-        {{ block('title') }}
-    </h1>
-
-    <form class="ui blue form segment" method="post" novalidate>
-        {% form_theme form 'JuniorEsieeBusinessBundle:Form:form_div_layout.html.twig' %}
-        {{ form_widget(form) }}
-        <button type="submit" class="ui blue labeled icon submit button">
-            Editer <i class="pencil icon"></i>
-        </button>
-        <a href="{{ path('je_finances_ff') }}" class="ui labeled icon submit button">
-            Annuler <i class="reply mail icon"></i>
-        </a>
-    </form>
+    {% import 'JuniorEsieeFinancesBundle::helper.html.twig' as helper %}
+    {{ helper.form('je_finances_ff', 'info', form) }}
 {% endblock %}

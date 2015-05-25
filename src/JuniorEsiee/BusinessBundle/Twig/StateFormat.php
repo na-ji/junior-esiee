@@ -36,15 +36,15 @@ class StateFormat extends \Twig_Extension
     public function projectState($state)
     {
         $result = array(
-            'state_closed'              => array('pink', 'Cloturé'),
+            'state_closed'              => array('maroon', 'Cloturé'),
             'state_aborted'             => array('orange', 'Avorté'),
-            'state_opened'              => array('green', 'Ouvert'),
+            'state_opened'              => array('success', 'Ouvert'),
             'state_waiting_information' => array('purple', 'Att Rens'),
             'state_waiting_student'     => array('teal', 'Att Real'),
-            'state_waiting_commercial'  => array('blue', 'Att Comm'),
+            'state_waiting_commercial'  => array('info', 'Att Comm'),
         );
 
-        return '<div class="tiny ui '.$result[$state][0].' label" title="'.$this->translator->trans($state, array(), 'JuniorEsieeBusinessBundle').'">'.$result[$state][1].'</div>';
+        return '<span class="label label-'.$result[$state][0].'" title="'.$this->translator->trans($state, array(), 'JuniorEsieeBusinessBundle').'">'.$result[$state][1].'</span>';
     }
 
     public function getName()

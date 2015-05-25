@@ -1,222 +1,309 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Coucou{% endblock %}</title>
-        {% block stylesheets %}
-            {% stylesheets
-                'bundles/junioresieebusiness/css/smoothness/jquery-ui-1.10.3.custom.min.css'
-                'bundles/junioresieebusiness/css/semantic.1.0.1.min.css'
-                'bundles/junioresieebusiness/less/global.less'
-                'bundles/junioresieebusiness/less/form.less'
-                'bundles/junioresieebusiness/less/table.less'
-                filter='cssrewrite'
-                output="css/base-tool.css"
-            %}
-            <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
-            {% endstylesheets %}
-        {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}" />
-    </head>
-    <body>
-        {% import '::helper.html.twig' as helper %}
+	<head>
+		<meta charset="UTF-8" />
+		<title>{% block title %}Coucou{% endblock %}</title>
+		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+		{% block stylesheets %}
+			{% stylesheets
+				'bundles/junioresieepage/css/bootstrap.css'
+				'bundles/junioresieebusiness/less/AdminLTE/AdminLTE.less'
+				'bundles/junioresieebusiness/less/AdminLTE/skins/skin-blue.less'
+				filter='cssrewrite'
+				output="css/base-tool.css"
+			%}
+			<link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
+			{% endstylesheets %}
+			<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+			<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+		{% endblock %}
+		<link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}" />
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		{% if form is defined %}
+			<link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/junioresieebusiness/css/icheck_minimal_blue.css') }}" />
+			<link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/junioresieebusiness/css/datepicker3.css') }}" />
+		{% endif %}
+	</head>
+	<body class="skin-blue sidebar-mini">
+		<div class="wrapper">
+			{% import '::helper.html.twig' as helper %}
+			<header class="main-header">
+				<a href="{{ helper.current('page_tool_index', 'page_tool_index') }}" class="logo">
+					<!-- mini logo for sidebar mini 50x50 pixels -->
+					<span class="logo-mini">L'<b>O</b></span>
+					<!-- logo for regular state and mobile devices -->
+					<span class="logo-lg">L'<b>Outil&#8482;</b></span>
+				</a>
 
-        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            <div class="ui notification sidebar vertical">
-                <div class="ui feed">
-                    <h4 class="ui header">Notifications</h4>
-                    {% for notification in getNofications(app.user) %}
-                        <div class="event">
-                            <div class="content">
-                                <div class="date">
-                                    {{ notification.date|format_datetime }}
-                                </div>
-                                <div class="summary">
-                                    {{ notification.safeMessage|raw }}
-                                </div>
-                            </div>
-                        </div>
-                    {% else %}
-                        Pas de notification pour le moment. 
-                    {% endfor %}
-                </div>
-            </div>
-        {% endif %}
-        <div class="pusher">
-        <div class="ui tiered menu fix-menu">
-            <div class="menu">
-                <a {{ helper.current('page_tool_index', 'page_tool_index') }}>
-                    <i class="home icon"></i>
-                    Accueil
-                </a>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <a {{ helper.current('je_user', 'je_user_users') }}>
-                        <i class="users icon"></i>
-                        Utilisateurs
-                    </a>
-                {% endif %}
-                 {% if is_granted('ROLE_TREZ') %}
-                    <a {{ helper.current('je_finances', 'je_finances_treasury') }}>
-                        <i class="dollar icon"></i>
-                        Trésorerie
-                    </a>
-                    <a {{ helper.current('je_stat', 'je_stat_index') }}>
-                        <i class="tasks icon"></i>
-                        Indicateurs
-                    </a>
-                {% endif %}
-                {% if is_granted('ROLE_COMMERCIAL') %}
-                    <a {{ helper.current('je_business', 'je_business_my_project') }}>
-                        <i class="browser icon"></i>
-                        Projets
-                    </a>
-                {% endif %}
-{#                 {% if is_granted('ROLE_COMMUNICATION') %}
-                    <a {{ helper.current('je_events', 'page_tool_index') }}>
-                        <i class="bullhorn icon"></i>
-                        Evénementiel
-                    </a>
-                {% endif %}
-                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                    <a {{ helper.current('je_bargain', 'page_tool_index') }}>
-                        <i class="money icon"></i>
-                        Stage
-                    </a>
-                {% endif %} #}
+				<!-- Header Navbar -->
+				<nav class="navbar navbar-static-top" role="navigation">
+					<!-- Sidebar toggle button-->
+					<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+						<span class="sr-only">Toggle navigation</span>
+					</a>
+					{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+						<!-- Navbar Right Menu -->
+						<div class="navbar-custom-menu">
+							<ul class="nav navbar-nav">
+								<!-- Messages Menu -->
+								<li class="dropdown messages-menu">
+									<!-- Menu toggle button -->
+									<a href="#" class="dropdown-toggle notification-button" data-toggle="dropdown">
+										<i class="fa fa-bell-o"></i>
+										{% set unreadNotification = countUnreadNotifications(app.user) %}
+										<span class="label label-{% if unreadNotification > 0 %}danger{% else %}success{% endif %}">{{ unreadNotification }}</span>
+									</a>
+									<ul class="dropdown-menu">
+										<li class="header">{{ unreadNotification }} notification{% if unreadNotification > 1 %}s{% endif %} non lue{% if unreadNotification > 1 %}s{% endif %}</li>
+										<li>
+											<!-- Inner Menu: contains the messages -->
+											<ul class="menu">
+												{% for notification in getNofications(app.user)  %}
+													<li>
+														<div {% if not notification.notificationRead %}class="unread"{% endif %}>
+															<h4>
+																{{ notification.safeMessage|raw }}
+																<small><i class="fa fa-clock-o"></i> {{ notification.date|format_datetime('dd/MM/Y H:m', 'fr', 'Europe/Paris') }}</small>
+															</h4>
+														</div>
+													</li>
+												{% else %}
+													Pas de notification pour le moment. 
+												{% endfor %}
+											</ul>
+										</li>
+										<li class="footer"><a href="#">Voir toutes les notifications</a></li>
+									</ul>
+								</li>
+								<!-- User Account Menu -->
+								<li class="dropdown user user-menu">
+									<!-- Menu Toggle Button -->
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+										<!-- The user image in the navbar-->
+										<img src="//www.gravatar.com/avatar/{{ app.user.email|md5 }}?d=retro" class="user-image" alt="User Image"/>
+										<!-- hidden-xs hides the username on small devices so only the image appears. -->
+										<span class="hidden-xs">{{ app.user.username }}</span>
+									</a>
+									<ul class="dropdown-menu">
+										<!-- The user image in the menu -->
+										<li class="user-header">
+											<img src="//www.gravatar.com/avatar/{{ app.user.email|md5 }}?d=retro" class="img-circle" alt="User Image" />
+											<p>
+												{{ app.user }}
+											</p>
+										</li>
+										<!-- Menu Footer-->
+										<li class="user-footer">
+											<div class="pull-left">
+												<a href="{{ path('sonata_user_profile_show') }}" class="btn btn-default btn-flat">Paramètres</a>
+											</div>
+											<div class="pull-right">
+												<a href="{{ path('sonata_user_security_logout') }}" class="btn btn-default btn-flat">Déconnexion</a>
+											</div>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					{% endif %}
+				</nav>
+			</header>
 
-                <div class="right menu">
-                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                        <a class="item notification" data-transition="overlay" data-direction="right">
-                            {% set unreadNotification = countUnreadNotifications(app.user) %}
-                            <div class="ui {% if unreadNotification > 0 %}red{% else %}black{% endif %} circular small label">
-                                <i class="bell outline icon"></i> {{ unreadNotification }}
-                            </div>
-                        </a>
-                        <a {{ helper.current('fos_user_profile', 'sonata_user_profile_show') }}>
-                            <i class="settings icon"></i>
-                            Parametres
-                        </a>
-                        <a class="item" href="{{ path('sonata_user_security_logout') }}">
-                            <i class="power icon"></i>
-                            Déconnexion
-                        </a>
-                    {% else %}
-                        <a class="item" href="{{ path('sonata_user_security_login') }}">
-                            <i class="power icon"></i>
-                            Connexion
-                        </a>
-                    {% endif %}
-                </div>
-            </div>
+			<!-- Left side column. contains the logo and sidebar -->
+			<aside class="main-sidebar">
+				<!-- sidebar: style can be found in sidebar.less -->
+				<section class="sidebar">
+					<!-- Sidebar Menu -->
+					<ul class="sidebar-menu">
+						{{ helper.liCurrent('page_tool_index', '<i class="fa fa-home"></i> <span>Accueil</span>') }}
+						{% if is_granted('ROLE_ADMIN') %}
+							<li class="treeview {{ helper.active('je_user') }}">
+								<a href="{{ path('je_user_users') }}">
+									<i class='fa fa-users'></i> <span>Utilisateurs</span> <i class="fa fa-angle-left pull-right"></i>
+								</a>
+								<ul class="treeview-menu">
+									{{ helper.liCurrent('je_user_users', 'Equipe') }}
+									{{ helper.liCurrent('je_user_groups', 'Postes') }}
+								</ul>
+							</li>
+						{% endif %}
+						{% if is_granted('ROLE_TREZ') %}
+							<li class="treeview {{ helper.active('je_finances') }}">
+								<a href="{{ path('je_finances_treasury') }}">
+									<i class='fa fa-dollar'></i> <span>Trésorerie</span> <i class="fa fa-angle-left pull-right"></i>
+								</a>
+								<ul class="treeview-menu">
+									{{ helper.liCurrent('je_finances_treasury', 'Trésorerie réelle') }}
+									{{ helper.liCurrent('je_finances_taxes', 'TVA') }}
+									<li class="treeview {{ helper.active('je_finances_urssaf') }}">
+										<a href="#">
+											URSSAF <i class="fa fa-angle-left pull-right"></i>
+										</a>
+										<ul class="treeview-menu">
+											<li class="{{ helper.active('je_finances_urssaf_year') }}">
+												<a href="{{ path('je_finances_urssaf_year') }}">URSSAF annuel</a>
+											</li>
+											<li class="{{ helper.active('je_finances_urssaf_month') }}">
+												<a href="{{ path('je_finances_urssaf_month') }}">URSSAF mensuel</a>
+											</li>
+										</ul>
+									</li>
+									{{ helper.liCurrent('je_finances_fc', 'Factures clients') }}
+									{{ helper.liCurrent('je_finances_bv', 'Bulletins de versement') }}
+									{{ helper.liCurrent('je_finances_ff', 'Factures fournisseurs / RF') }}
+									{{ helper.liCurrent('je_finances_vars', 'Variables') }}
+								</ul>
+							</li>
+							<li class="treeview {{ helper.active('je_stat') }}">
+								<a href="{{ path('je_stat_index') }}">
+									<i class='fa fa-line-chart'></i> <span>Indicateurs</span> <i class="fa fa-angle-left pull-right"></i>
+								</a>
+								<ul class="treeview-menu">
+									{{ helper.liCurrent('je_stat_index', 'Stats') }}
+									{{ helper.liCurrent('je_stat_finances_treasury', 'Trésorerie réelle') }}
+								</ul>
+							</li>
+						{% endif %}
+						{% if is_granted('ROLE_COMMERCIAL') %}
+							<li class="treeview {{ helper.active('je_business') }}">
+								<a href="{{ path('je_business_my_project') }}">
+									<i class='fa fa-list-alt'></i> <span>Projets</span> <i class="fa fa-angle-left pull-right"></i>
+								</a>
+								<ul class="treeview-menu">
+									{{ helper.liCurrent('je_business_my_project', 'Mes AP') }}
+									{% if is_granted('ROLE_ADMIN') %}
+										{{ helper.liCurrent('je_business_project_in_progress', 'AP en cours') }}
+										{{ helper.liCurrent('je_business_project_inbox', 'Boite de réception') }}
+									{% endif %}
+									{{ helper.liCurrent('je_business_project_new', 'Déposer un AP') }}
+									{% if is_granted('ROLE_CHARGE') %}
+										<li>
+											<a href="#">
+												AP en attente <i class="fa fa-angle-left pull-right"></i>
+											</a>
+											<ul class="treeview-menu">
+												{{ helper.liCurrent('je_business_project_waiting_students', 'd\'intervenant') }}
+												{{ helper.liCurrent('je_business_project_waiting_commercial', 'de suivi commercial') }}
+												{{ helper.liCurrent('je_business_project_waiting_information', 'de renseignements suppl.') }}
+											</ul>
+										</li>
+										{{ helper.liCurrent('je_business_project_aborted', 'AP avortés') }}
+									{% else %}
+										{{ helper.liCurrent('je_business_project_waiting_students', 'AP en attente d\'intervenant') }}
+									{% endif %}
+									{{ helper.liCurrent('je_business_project_closed', 'AP clôturés') }}
+								</ul>
+							</li>
+						{% endif %}
+						{% if is_granted('ROLE_COMMUNICATION') %}
+							<li class="treeview {{ helper.active('je_events') }}">
+								<a href="{{ path('page_tool_index') }}">
+									<i class='fa fa-bullhorn'></i> <span>Evénementiel</span> <i class="fa fa-angle-left pull-right"></i>
+								</a>
+								<ul class="treeview-menu">
+									<li><a href="#">Evènements Junior</a></li>
+									<li><a href="#">Evènements Entreprise</a></li>
+									<li><a href="#">Recrutement</a></li>
+									<li><a href="#">Ajouter un événement</a></li>
+								</ul>
+							</li>
+						{% endif %}
+						{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+							<li class="treeview {{ helper.active('je_bargain') }}">
+								<a href="{{ path('page_tool_index') }}">
+									<i class='fa fa-money'></i> <span>Stage</span> <i class="fa fa-angle-left pull-right"></i>
+								</a>
+								<ul class="treeview-menu">
+									<li><a href="#">Link in level 2</a></li>
+									<li><a href="#">Link in level 2</a></li>
+								</ul>
+							</li>
+						{% endif %}
+					</ul><!-- /.sidebar-menu -->
+				</section>
+				<!-- /.sidebar -->
+			</aside>
 
-            {% set route = app.request.get('_route') %}
-            {% if 'page_tool_index' not in route and 'fos_user_profile' not in route %}
-            <div class="ui sub menu">
-                {% if 'je_user' in route %}
-                    <a {{ helper.current('je_user_users') }}>Equipe</a>
-                    <a {{ helper.current('je_user_groups') }}>Postes</a>
-                {% endif %}
+			<!-- Content Wrapper. Contains page content -->
+			<div class="content-wrapper">
+				<!-- Content Header (Page header) -->
+				<section class="content-header">
+					<h1>
+						{{ block('title') }}
+						<small>{{ block('description') }}</small>
+					</h1>
+				</section>
 
-                {% if 'je_business' in route %}
-                    <a {{ helper.current('je_business_my_project') }}>Mes AP</a>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a {{ helper.current('je_business_project_in_progress') }}>AP en cours</a>
-                        <a {{ helper.current('je_business_project_inbox') }}>Boite de réception</a>
-                    {% endif %}
-                    <a {{ helper.current('je_business_project_new') }}>Déposer un AP</a>
-                    {% if is_granted('ROLE_CHARGE') %}
-                        <div class="item{% if 'je_business_project_waiting' in route %} active{% endif %}">
-                            <div class="ui pointing dropdown">
-                                <span class="text">AP en attente</span>
-                                <i class="dropdown icon"></i>
-                                <div class="menu">
-                                    <a {{ helper.current('je_business_project_waiting_students') }}>d'intervenant</a>
-                                    <a {{ helper.current('je_business_project_waiting_commercial') }}>de suivi commercial</a>
-                                    <a {{ helper.current('je_business_project_waiting_information') }}>de renseignements supplémentaires</a>
-                                </div>
-                            </div>
-                        </div>
-                    {% else %}
-                        <a {{ helper.current('je_business_project_waiting_students') }}>AP en attente d'intervenants</a>
-                    {% endif %}
-                    {% if is_granted('ROLE_CHARGE') %}
-                        <a {{ helper.current('je_business_project_aborted') }}>AP avortés</a>
-                    {% endif %}
-                    <a {{ helper.current('je_business_project_closed') }}>AP clôturés</a>
-                {% endif %}
+				<!-- Main content -->
+				<section class="content">
+					<div class="row">
+						<div class="col-sm-12">
+		                    {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': true } %}
+		                </div>
+						{% block content %}{% endblock %}
+					</div>
+				</section><!-- /.content -->
+			</div><!-- /.content-wrapper -->
 
-                {% if 'je_events' in route %}
-                    <a class="item active">Evènements Junior</a>
-                    <a class="item">Evènements Entreprise</a>
-                    <a class="item">Recrutement</a>
-                    <a class="item">Ajouter un événement</a>
-                {% endif %}
+			<!-- Main Footer -->
+			<footer class="main-footer">
+				<!-- To the right -->
+				<div class="pull-right hidden-xs">
+					Made with <i class="fa fa-heart text-blue"></i> by Naji
+				</div>
+				<!-- Default to the left -->
+				<strong>Copyright &copy; {{ "now"|date("Y") }} <a href="http://junioresiee.com">Junior ESIEE</a></strong>
+			</footer>
+		</div><!-- ./wrapper -->
 
-                {% if 'je_finances' in route %}
-                    <a {{ helper.current('je_finances_treasury') }}>Trésorerie réelle</a>
-                    <a {{ helper.current('je_finances_taxes') }}>TVA</a>
-                    <div class="item{% if 'je_finances_urssaf' in route %} active{% endif %}">
-                        <div class="ui pointing dropdown">
-                            <span class="text">URSSAF</span>
-                            <i class="dropdown icon"></i>
-                            <div class="menu">
-                                <a href="{{ path('je_finances_urssaf_year') }}" class="item">URSSAF annuel</a>
-                                <a href="{{ path('je_finances_urssaf_month') }}" class="item">URSSAF mensuel</a>
-                            </div>
-                        </div>
-                    </div>
-                    <a {{ helper.current('je_finances_fc') }}>Factures clients</a>
-                    <a {{ helper.current('je_finances_bv') }}>Bulletins de versement</a>
-                    <a {{ helper.current('je_finances_ff') }}>Factures fournisseurs / RF</a>
-                    <a {{ helper.current('je_finances_vars') }}>Variables</a>
-                {% endif %}
-
-                {% if 'je_stat' in route %}
-                    <a {{ helper.current('je_stat_index') }}>Stats</a>
-                    <a {{ helper.current('je_stat_finances_treasury') }}>Trésorerie réelle</a>
-                {% endif %}
-            </div>
-            {% endif %}
-        </div>
-
-        <div class="content">
-            {% for type, flashMessages in app.session.flashbag.all() %}
-                {% for flashMessage in flashMessages %}
-                <div class="ui {{ type }} message">
-                    <i class="close icon"></i>
-                    <div class="header">{{ flashMessage|raw }}</div>
-                </div>             
-                {% endfor %}
-            {% endfor %}
-            {% block content %}{% endblock %}
-        </div>
-        </div>
-
-        {% block javascripts %}
-            <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-            {% javascripts
-                'bundles/junioresieebusiness/js/jquery-ui-1.10.3.custom.min.js'
-                'bundles/junioresieebusiness/js/semantic.1.0.1.min.js'
-                'bundles/junioresieebusiness/js/form.js'
-                'bundles/junioresieebusiness/js/table.js'
-                output="js/base-tool.js"
-            %}
-                <script type="text/javascript" src="{{ asset_url }}"></script>
-            {% endjavascripts %}
-            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            <script type="text/javascript">
-                var unread = {{ unreadNotification }};
-                $('.item.notification').click(function () {
-                    $('.notification.sidebar').sidebar({overlay: true}).sidebar('toggle');
-                    if (unread > 0) {
-                        $.get("{{ url('junior_esiee_notification_api_mark_all_as_read') }}", function(response) {
-                            $('a.item.notification > div.ui.red').removeClass('red').addClass('black').html('<i class="bell outline icon"></i> 0');
-                            unread = 0;
-                        });
-                    }
-                });
-            </script>
-        {% endif %}
-        {% endblock %}
-    </body>
+		{% block javascripts %}
+			<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+			{% javascripts
+				'bundles/junioresieepage/js/bootstrap.min.js'
+				'bundles/junioresieebusiness/js/jquery.slimscroll.min.js'
+				'bundles/junioresieebusiness/js/app.min.js'
+				output="js/base-tool.js"
+			%}
+				<script type="text/javascript" src="{{ asset_url }}"></script>
+			{% endjavascripts %}
+			{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+				<script type="text/javascript">
+					var unread = {{ unreadNotification }};
+					$('a.notification-button').click(function () {
+						if (unread > 0) {
+							$.get("{{ url('junior_esiee_notification_api_mark_all_as_read') }}", function(response) {
+								$('a.notification-button > span.label').removeClass('label-danger').addClass('label-success').text('0');
+								unread = 0;
+							});
+						}
+					});
+				</script>
+			{% endif %}
+			{% if form is defined %}
+				<script type="text/javascript" src="{{ asset('bundles/junioresieebusiness/js/icheck.min.js') }}"></script>
+				<script type="text/javascript" src="{{ asset('bundles/junioresieebusiness/js/fastclick.min.js') }}"></script>
+				<script type="text/javascript" src="{{ asset('bundles/junioresieebusiness/js/bootstrap-datepicker.js') }}"></script>
+				<script type="text/javascript" src="{{ asset('bundles/junioresieebusiness/js/bootstrap-datepicker.fr.js') }}"></script>
+				<script type="text/javascript" src="{{ asset('bundles/junioresieebusiness/js/jquery.inputmask.js') }}"></script>
+				<script type="text/javascript" src="{{ asset('bundles/junioresieebusiness/js/jquery.inputmask.regex.extensions.js') }}"></script>
+				<script type="text/javascript" src="{{ asset('bundles/junioresieebusiness/js/form.js') }}"></script>
+				<script type="text/javascript">
+					$(function() {
+						$('input[type="checkbox"].icheck, input[type="radio"].icheck').iCheck({
+							checkboxClass: 'icheckbox_minimal-blue',
+							radioClass: 'iradio_minimal-blue'
+						});
+						$('.datepicker').datepicker({
+		                    format : 'd M yyyy',
+		                    language    : 'fr'
+						});
+						$("input[data-inputmask]").inputmask();
+					});
+				</script>
+			{% endif %}
+		{% endblock %}
+	</body>
 </html>

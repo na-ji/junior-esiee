@@ -1,42 +1,53 @@
 {% if pageCount > 1 %}
     {% spaceless %}
-        <div class="ui pagination menu">
+        <ul class="pagination pagination-sm no-margin pull-right">
             {% if first is defined and current != first %}
-                <a href="{{ path(route, query|merge({(pageParameterName): first})) }}" class="icon item">
-                    <i class="icon double angle left"></i>
-                </a>
+                <li>
+                    <a href="{{ path(route, query|merge({(pageParameterName): first})) }}">
+                        <i class="fa fa-angle-double-left"></i>
+                    </a>
+                </li>
             {% endif %}
 
             {% if previous is defined %}
-                <a href="{{ path(route, query|merge({(pageParameterName): previous})) }}" class="icon item">
-                    <i class="icon angle left"></i>
-                </a>
+                <li>
+                    <a href="{{ path(route, query|merge({(pageParameterName): previous})) }}">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                </li>
             {% endif %}
 
             {% for page in pagesInRange %}
-                {% if page != current %}
-                    <a href="{{ path(route, query|merge({(pageParameterName): page})) }}" class="item">
-                        {{ page }}
-                    </a>
-                {% else %}
-                    <a class="active item">
-                        {{ page }}
-                    </a>
-                {% endif %}
-
+                    {% if page != current %}
+                        <li>
+                            <a href="{{ path(route, query|merge({(pageParameterName): page})) }}">
+                                {{ page }}
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="active">
+                            <a>
+                                {{ page }}
+                            </a>
+                        </li>
+                    {% endif %}
             {% endfor %}
 
             {% if next is defined %}
-                <a href="{{ path(route, query|merge({(pageParameterName): next})) }}" class="icon item">
-                    <i class="icon angle right"></i>
-                </a>
+                <li>
+                    <a href="{{ path(route, query|merge({(pageParameterName): next})) }}">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </li>
             {% endif %}
 
             {% if last is defined and current != last %}
-                <a href="{{ path(route, query|merge({(pageParameterName): last})) }}" class="icon item">
-                    <i class="icon double angle right"></i>
-                </a>
+                <li>
+                    <a href="{{ path(route, query|merge({(pageParameterName): last})) }}">
+                        <i class="fa fa-angle-double-right"></i>
+                    </a>
+                </li>
             {% endif %}
-        </div>
+        </ul>
     {% endspaceless %}
 {% endif %}
