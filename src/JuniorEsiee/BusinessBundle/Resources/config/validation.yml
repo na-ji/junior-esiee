@@ -2,22 +2,22 @@ JuniorEsiee\BusinessBundle\Entity\Project:
     properties:
         clientLastName:
             - NotBlank: ~
-        clientFirstName:
-            - NotBlank: ~
+        # clientFirstName:
+        #     - NotBlank: ~
         clientPhone:
-            - NotBlank: ~
+            # - NotBlank: ~
             - Length:
                 max: 20
         clientEmail:
-            - NotBlank: ~
+            # - NotBlank: ~
             - Email:
                 message: "'{{ value }}' n'est pas un email valide."
-        clientAddress:
-            - NotBlank: ~
-        clientZipCode:
-            - NotBlank: ~
-        clientCity:
-            - NotBlank: ~
+        # clientAddress:
+        #     - NotBlank: ~
+        # clientZipCode:
+        #     - NotBlank: ~
+        # clientCity:
+        #     - NotBlank: ~
         depositDate:
             - DateTime: ~
         delay:
