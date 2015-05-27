@@ -1,10 +1,14 @@
 {% extends '::layout.html.twig' %}
 
-{% block title %}
+{% block subtitle %}
     {{ project.title is not null ? project.title :'Projet sans nom' }}
     {% import 'JuniorEsieeBusinessBundle:Project:helper.html.twig' as helper %}
     {{ helper.projectState(project) }}
     {% include 'JuniorEsieeBusinessBundle:Project:actions.html.twig' with {'show': true} %}
+{% endblock %}
+
+{% block title %}
+    {{ project.title is not null ? project.title :'Projet sans nom' }}
 {% endblock %}
 
 {% block content %}

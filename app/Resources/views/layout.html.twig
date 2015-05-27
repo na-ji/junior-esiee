@@ -237,7 +237,7 @@
 				<!-- Content Header (Page header) -->
 				<section class="content-header">
 					<h1>
-						{{ block('title') }}
+						{% block subtitle %}{{ block('title') }}{% endblock %}
 						<small>{{ block('description') }}</small>
 					</h1>
 				</section>
