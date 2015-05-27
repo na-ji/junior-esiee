@@ -21,26 +21,32 @@ JuniorEsiee\BusinessBundle\Entity\Project:
             type: string
             length: 255
             column: client_company
+            nullable: true
         clientPhone:
             type: string
             length: 20
             column: client_phone
+            nullable: true
         clientEmail:
             type: string
             length: 255
             column: client_email
+            nullable: true
         clientAddress:
             type: string
             length: 255
             column: client_address
+            nullable: true
         clientZipCode:
             type: string
             length: 255
             column: client_zip_code
+            nullable: true
         clientCity:
             type: string
             length: 255
             column: client_city
+            nullable: true
         depositDate:
             type: date
             column: deposit_date

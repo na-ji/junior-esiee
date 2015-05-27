@@ -37,21 +37,26 @@ class ProjectType extends AbstractType
             ))
             ->add('clientPhone', null, array(
                 'label' => 'Téléphone',
+                'required' => false,
                 'attr'     => array(
                     'data-inputmask' => "'mask': '9999999999'"
                 ),
             ))
             ->add('clientEmail', null, array(
-                'label' => 'Email'
+                'label'    => 'Email',
+                'required' => false,
             ))
             ->add('clientAddress', null, array(
-                'label' => 'Adresse'
+                'label'    => 'Adresse',
+                'required' => false,
             ))
             ->add('clientZipCode', null, array(
-                'label' => 'Code Postal'
+                'label'    => 'Code Postal',
+                'required' => false,
             ))
             ->add('clientCity', null, array(
-                'label' => 'Ville'
+                'label'    => 'Ville',
+                'required' => false,
             ))
             ->add('depositDate', 'sonata_type_date_picker', array(
                 'required' => false,
