@@ -1,38 +1,10 @@
-.compact.table{
-    .mini.button{
-        font-size: 0.6em;
+@media (max-width: 767px) {
+    .table-responsive .dropdown-menu {
+        position: static !important;
     }
 }
-
-.ui.compact.table{
-    th.sortable{
-        padding: 0em !important;
-        a{
-            padding: 0.3em 0.5em;
-            color: rgba(0, 0, 0, 0.8);
-            text-decoration: none;
-            display: block;
-
-            &:hover{
-                background: rgba(0,0,0,.1);
-            }
-
-            &.sortable{
-                i{
-                    opacity: 0;
-                }
-                &:hover{
-                    i{
-                        opacity: 1;
-                    }
-                }
-            }
-        }
+@media (min-width: 768px) {
+    .table-responsive {
+        overflow: visible;
     }
-}
-
-.ui.table tfoot th {
-    font-weight: 400;
-    font-style: italic;
-    background-color: rgba(0,0,0,.03);
 }
