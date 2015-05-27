@@ -3,11 +3,13 @@
 {% block title 'Confirmation d\'avortion' %}
 
 {% block content %}
-	<h1 class="ui header">Voulez-vous vraiment avorter "{{ project.title }}" ?</h1>
-    <a class="ui orange labeled icon submit button" href="{{ path('je_business_project_abort', {id:project.id}) }}">
-        Oui <i class="delete icon"></i>
-    </a>
-    <a href="{{ referer }}" class="ui labeled icon submit button">
-        Annuler <i class="reply mail icon"></i>
-    </a>
+	<div class="col-sm-12">
+		<h1>Voulez-vous vraiment avorter "{{ project.title }}" ?</h1>
+	    <a class="btn btn-lg btn-warning" href="{{ path('je_business_project_abort', {id:project.id}) }}">
+	        Oui
+	    </a>
+	    <a href="{{ referer }}" class="btn btn-lg btn-primary">
+	        Annuler
+	    </a>
+	</div>
 {% endblock %}
