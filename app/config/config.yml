@@ -44,6 +44,7 @@ assetic:
     bundles:
         - JuniorEsieePageBundle
         - ApplicationSonataUserBundle
+        - FOSCommentBundle
     #java: /usr/bin/java
     read_from:      "%kernel.root_dir%/../www"
     filters:
@@ -345,3 +346,18 @@ braincrafted_bootstrap:
     auto_configure:
         assetic: false
         knp_paginator: true
+
+fos_comment:
+    db_driver: orm
+    class:
+        model:
+            comment: JuniorEsiee\CommentBundle\Entity\Comment
+            thread: JuniorEsiee\CommentBundle\Entity\Thread
+    acl: true
+    service:
+        manager:
+            thread:  fos_comment.manager.thread.acl
+            comment: fos_comment.manager.comment.acl
+            vote:    fos_comment.manager.vote.acl
+        sorting:
+            default: date_asc

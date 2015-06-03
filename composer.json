@@ -38,7 +38,8 @@
         "oyejorge/less.php"                       : "~1.7",
         "braincrafted/bootstrap-bundle"           : "dev-master",
         "twbs/bootstrap"                          : "3.3.*",
-        "jquery/jquery"                           :  "1.11.*"
+        "jquery/jquery"                           :  "1.11.*",
+        "friendsofsymfony/comment-bundle"         : "^2.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

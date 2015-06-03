@@ -25,10 +25,11 @@ class AppKernel extends Kernel
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new JMS\AopBundle\JMSAopBundle(),
-            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle($this),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
+            new FOS\CommentBundle\FOSCommentBundle(),
 
             // Sonata
             new Sonata\CoreBundle\SonataCoreBundle(),
@@ -51,6 +52,7 @@ class AppKernel extends Kernel
             new JuniorEsiee\FinancesBundle\JuniorEsieeFinancesBundle(),
             new JuniorEsiee\StatBundle\JuniorEsieeStatBundle(),
             new JuniorEsiee\NotificationBundle\JuniorEsieeNotificationBundle(),
+            new JuniorEsiee\CommentBundle\JuniorEsieeCommentBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

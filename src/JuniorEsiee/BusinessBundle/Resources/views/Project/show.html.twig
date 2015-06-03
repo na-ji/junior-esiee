@@ -12,7 +12,6 @@
 {% endblock %}
 
 {% block content %}
-
     <div class="col-sm-6">
         <div class="box">
             <div class="box-body">
@@ -36,7 +35,7 @@
                     {% endif %}
                 </p>
                 {% if project.scopeStatement is not null or project.graphicCharter is not null %}
-                    <div class="ui divider"></div>
+                    <hr />
 
                     <h3>Pièces jointes</h3>
                     <div class="row">
@@ -103,6 +102,16 @@
                         {% endif %}
                     </p>
                 {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="box">
+            <div class="box-body">
+                <h2>Commentaires</h2>
+                <div class="row">
+                    {% include 'FOSCommentBundle:Thread:async.html.twig' with {'id': 'project' ~ project.id} %}
+                </div>
             </div>
         </div>
     </div>
